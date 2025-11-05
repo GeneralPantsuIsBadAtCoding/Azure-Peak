@@ -452,8 +452,8 @@
 "iC" = (
 /obj/structure/winch{
 	dir = 2;
-	gid = peasantgate;
-	redstone_id = peasantgate;
+	gid = "peasantgate";
+	redstone_id = "peasantgate";
 	name = "townside gate winch"
 	},
 /turf/open/floor/rogue/concrete{
@@ -1046,8 +1046,8 @@
 "vF" = (
 /obj/structure/winch{
 	dir = 2;
-	gid = peasantgate_2;
-	redstone_id = peasantgate_2;
+	gid = "peasantgate_2";
+	redstone_id = "peasantgate_2";
 	name = "farside gate winch"
 	},
 /turf/open/floor/rogue/concrete{
@@ -1361,8 +1361,8 @@
 /area/rogue/outdoors/warcamp)
 "Dj" = (
 /obj/structure/gate/bars/preopen{
-	gid = peasantgate;
-	redstone_id = peasantgate;
+	gid = "peasantgate";
+	redstone_id = "peasantgate";
 	max_integrity = 9000
 	},
 /turf/open/floor/rogue/metal/barograte,
@@ -1635,8 +1635,8 @@
 /area/rogue/outdoors/warcamp)
 "Iy" = (
 /obj/structure/gate/bars/preopen{
-	gid = peasantgate_2;
-	redstone_id = peasantgate_2;
+	gid = "peasantgate_2";
+	redstone_id = "peasantgate_2";
 	max_integrity = 9000
 	},
 /turf/open/floor/rogue/metal/barograte,

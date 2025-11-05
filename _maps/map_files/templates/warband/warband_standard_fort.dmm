@@ -301,8 +301,8 @@
 /area/rogue/indoors/warcamp/fort)
 "fW" = (
 /obj/structure/gate{
-	gid = warbandfort_final;
-	redstone_id = warbandfort_final
+	gid = "warbandfort_final";
+	redstone_id = "warbandfort_final"
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/warcamp/fort)
@@ -694,8 +694,8 @@
 /area/rogue/indoors/warcamp/fort)
 "kp" = (
 /obj/structure/gate/bars/preopen{
-	gid = warbandfortouter;
-	redstone_id = warbandfortouter;
+	gid = "warbandfortouter";
+	redstone_id = "warbandfortouter";
 	max_integrity = 19600
 	},
 /turf/open/floor/rogue/metal/barograte,
@@ -846,7 +846,7 @@
 /area/rogue/outdoors/warcamp)
 "ns" = (
 /obj/structure/gate{
-	gid = warbandfort_armory;
+	gid = "warbandfort_armory";
 	redstone_id = "warbandfort_armory"
 	},
 /turf/open/floor/rogue/metal/barograte,
@@ -909,8 +909,8 @@
 /area/rogue/indoors/warcamp/fort)
 "oS" = (
 /obj/structure/winch{
-	gid = warbandfortinner;
-	redstone_id = warbandfortinner;
+	gid = "warbandfortinner";
+	redstone_id = "warbandfortinner";
 	name = "inner gate winch";
 	dir = 4;
 	pixel_x = -6
@@ -1584,7 +1584,7 @@
 /obj/structure/winch{
 	dir = 2;
 	redstone_id = "warbandfort_armory";
-	gid = warbandfort_armory
+	gid = "warbandfort_armory"
 	},
 /turf/open/floor/rogue/concrete{
 	dir = 1
@@ -1853,8 +1853,8 @@
 /area/rogue/outdoors/warcamp)
 "GK" = (
 /obj/structure/winch{
-	redstone_id = warbandfortouter;
-	gid = warbandfortouter;
+	redstone_id = "warbandfortouter";
+	gid = "warbandfortouter";
 	name = "outer gate winch";
 	dir = 4;
 	pixel_x = -6
@@ -2681,8 +2681,8 @@
 /area/rogue/outdoors/warcamp)
 "UZ" = (
 /obj/structure/winch{
-	redstone_id = warbandfort_final;
-	gid = warbandfort_final
+	redstone_id = "warbandfort_final";
+	gid = "warbandfort_final"
 	},
 /turf/open/floor/rogue/concrete{
 	dir = 1
@@ -2936,8 +2936,8 @@
 /area/rogue/outdoors/warcamp)
 "XM" = (
 /obj/structure/gate/bars/preopen{
-	gid = warbandfortinner;
-	redstone_id = warbandfortinner
+	gid = "warbandfortinner";
+	redstone_id = "warbandfortinner"
 	},
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/indoors/warcamp/fort)
