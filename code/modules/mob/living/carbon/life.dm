@@ -649,6 +649,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						if(sleepless_flaw) // If you're sleepless, you have a higher chance of going to a nightmare. Every time you sleep, the chance gets higher for the rest of the round.
 							teleport_to_dream(src, 10000, sleepless_flaw.dream_prob, FALSE)
 							sleepless_flaw.dream_prob += 1000
+							sleepless_flaw.drugged_up = FALSE
 							Sleeping(250)
 						else 
 							teleport_to_dream(src, 10000, dream_prob)
