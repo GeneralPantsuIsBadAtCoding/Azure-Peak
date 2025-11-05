@@ -59,8 +59,6 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	var/paused_until = 0
 
 	var/failed_sneak_check = 0
-	///Time at which controller became inactive
-	var/inactive_timestamp
 
 	///Can this AI idle?
 	var/can_idle = TRUE
@@ -223,12 +221,20 @@ have ways of interacting with a specific atom and control it. They posses a blac
 		RegisterSignal(new_grid, SPATIAL_GRID_CELL_EXITED(SPATIAL_GRID_CONTENTS_TYPE_CLIENTS), PROC_REF(on_client_exit))
 	recalculate_idle()
 
-/datum/ai_controller/proc/should_idle()
+/datum/ai_controller/proc/should_idle(grace_period = FALSE)
 	if(!can_idle)
 		return FALSE
+
+	// Check if any players are nearby
 	for(var/datum/spatial_grid_cell/grid as anything in our_cells.member_cells)
 		if(length(grid.client_contents))
-			return FALSE
+			return FALSE // Players nearby, no idling
+
+	// If we previously had a grace period timer, then no need to add another
+	if(!grace_period)
+		addtimer(CALLBACK(src, PROC_REF(recalculate_idle), TRUE), AI_IDLE_GRACE_PERIOD, TIMER_UNIQUE | TIMER_OVERRIDE)
+		return FALSE
+
 	return TRUE
 
 /datum/ai_controller/proc/recalculate_idle()

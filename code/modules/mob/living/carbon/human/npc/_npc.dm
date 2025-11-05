@@ -961,7 +961,7 @@
 	if(mode == NPC_AI_OFF)
 		return
 
-	consider_wakeup()
+	consider_sleep_state()
 
 /mob/living/carbon/human/proc/set_new_cells()
 	if(QDELETED(src)) // Move to nullspace causes move and causes this.
@@ -978,22 +978,28 @@
 	for(var/datum/spatial_grid_cell/new_grid as anything in cell_collections[1])
 		RegisterSignal(new_grid, SPATIAL_GRID_CELL_ENTERED(SPATIAL_GRID_CONTENTS_TYPE_CLIENTS), PROC_REF(on_client_enter))
 		RegisterSignal(new_grid, SPATIAL_GRID_CELL_EXITED(SPATIAL_GRID_CONTENTS_TYPE_CLIENTS), PROC_REF(on_client_exit))
-	consider_wakeup()
+	consider_sleep_state()
 
 /mob/living/carbon/human/proc/update_grid()
 	SIGNAL_HANDLER
 	set_new_cells()
 
-/mob/living/carbon/human/proc/consider_wakeup()
+/mob/living/carbon/human/proc/consider_sleep_state(grace_period = FALSE)
 	if(mode == NPC_AI_OFF)
 		return
 
+	// Check if any players are nearby
 	for(var/datum/spatial_grid_cell/grid as anything in our_cells.member_cells)
 		if(length(grid.client_contents))
 			if(mode != NPC_AI_SLEEP || mode != NPC_AI_IDLE)
 				return TRUE
 			mode = NPC_AI_IDLE
 			return TRUE
+	
+	// If we previously had a grace period timer, then no need to add another
+	if(!grace_period)
+		addtimer(CALLBACK(src, PROC_REF(consider_sleep_state), TRUE), AI_IDLE_GRACE_PERIOD, TIMER_UNIQUE | TIMER_OVERRIDE)
+		return TRUE
 
 	mode = NPC_AI_SLEEP
 	return FALSE

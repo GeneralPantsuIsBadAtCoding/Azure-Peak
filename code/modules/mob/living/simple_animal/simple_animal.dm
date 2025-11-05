@@ -916,7 +916,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		else
 			stack_trace("Something attempted to set simple animals AI to an invalid state: [togglestatus]")
 
-/mob/living/simple_animal/proc/consider_wakeup()
+/mob/living/simple_animal/proc/consider_sleep_state()
 	for(var/datum/spatial_grid_cell/grid as anything in our_cells.member_cells)
 		if(length(grid.client_contents))
 			toggle_ai(AI_ON)
@@ -979,7 +979,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 /mob/living/simple_animal/proc/on_client_exit(datum/source, datum/exited)
 	SIGNAL_HANDLER
-	consider_wakeup()
+	consider_sleep_state()
 
 /mob/living/simple_animal/proc/set_new_cells()
 	var/turf/our_turf = get_turf(src)
@@ -994,7 +994,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	for(var/datum/spatial_grid_cell/new_grid as anything in cell_collections[1])
 		RegisterSignal(new_grid, SPATIAL_GRID_CELL_ENTERED(SPATIAL_GRID_CONTENTS_TYPE_CLIENTS), PROC_REF(on_client_enter))
 		RegisterSignal(new_grid, SPATIAL_GRID_CELL_EXITED(SPATIAL_GRID_CONTENTS_TYPE_CLIENTS), PROC_REF(on_client_exit))
-	consider_wakeup()
+	consider_sleep_state()
 
 /mob/living/simple_animal/Moved()
 	. = ..()
@@ -1013,4 +1013,4 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	for(var/datum/spatial_grid_cell/new_grid as anything in cell_collections[1])
 		RegisterSignal(new_grid, SPATIAL_GRID_CELL_ENTERED(SPATIAL_GRID_CONTENTS_TYPE_CLIENTS), PROC_REF(on_client_enter))
 		RegisterSignal(new_grid, SPATIAL_GRID_CELL_EXITED(SPATIAL_GRID_CONTENTS_TYPE_CLIENTS), PROC_REF(on_client_exit))
-	consider_wakeup()
+	consider_sleep_state()

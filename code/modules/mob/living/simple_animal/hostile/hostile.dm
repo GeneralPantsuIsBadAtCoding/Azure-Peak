@@ -603,7 +603,7 @@
 		value = initial(search_objects)
 	search_objects = value
 
-/mob/living/simple_animal/hostile/consider_wakeup()
+/mob/living/simple_animal/hostile/consider_sleep_state()
 	for(var/datum/spatial_grid_cell/grid as anything in our_cells.member_cells)
 		if(length(grid.client_contents))
 			toggle_ai(AI_ON)
