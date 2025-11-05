@@ -12,7 +12,7 @@
 	being born in these rough places otherwise devoid of a fairer sex. Your mother-clan is in thrall \
 	to the Ironmask. True orcs would kill you on sight, seeing you as a mongrel dog, and non-orcish \
 	people cannot decide between regarding you with either mere distrust or outright disgust. Yet \
-	somehow your wandering feet came to Azure Peak, where half-orcs ply muscle and their hardiness \
+	somehow your wandering feet came to Twilight Axis, where half-orcs ply muscle and their hardiness \
 	in the rough underbelly or outer reaches of society.<br>\
 	(+1 Strength)"
 

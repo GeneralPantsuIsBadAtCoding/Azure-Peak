@@ -442,6 +442,10 @@
 /datum/config_entry/string/channel_announce_new_game_message
 	default = null
 
+/// ID роли дискорда для пингов о запуске сервера
+/datum/config_entry/string/game_alert_role_id
+	default = null
+
 /datum/config_entry/flag/debug_admin_hrefs
 
 /datum/config_entry/number/mc_tick_rate/base_mc_tick_rate

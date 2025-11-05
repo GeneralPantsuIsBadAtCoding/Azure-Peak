@@ -162,7 +162,7 @@
 	var/static/list/slapcraft_recipe_list = list(
 		/datum/crafting_recipe/roguetown/survival/heatershield,
 		/datum/crafting_recipe/roguetown/survival/collar,
-		/datum/crafting_recipe/roguetown/survival/bell_collar,
+		/datum/crafting_recipe/roguetown/leather/neck/leather_leash,
 		)
 
 /obj/item/natural/bundle/curred_hide

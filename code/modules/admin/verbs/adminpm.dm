@@ -166,6 +166,8 @@
 				admin_ticket_log(src, "<font color='red'>[replymsg]</font>")
 				to_chat(recipient, span_danger("[replymsg]"))
 				to_chat(src, span_notice("PM to-<b>Admins</b>: <span class='linkify'>[msg]</span>"))
+			
+			SEND_SOUND(recipient, sound('sound/adminhelp.ogg'))
 
 			//play the receiving admin the adminhelp sound (if they have them enabled)
 			if(recipient.prefs.toggles & SOUND_ADMINHELP)
