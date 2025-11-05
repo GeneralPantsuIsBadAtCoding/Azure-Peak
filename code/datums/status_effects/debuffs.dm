@@ -858,7 +858,7 @@
 	my_stack++
 	if(!owner) // wtf
 		return TRUE
-	if(owner.stat) // Dead / Unconscious
+	if(owner.stat) // Dead / Unconscious	
 		return TRUE
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
@@ -866,6 +866,10 @@
 			return (my_stack > CRIT_RESISTANCE_STACKS_OP)
 	if(isdullahan(owner))
 		return (my_stack > CRIT_RESISTANCE_STACKS_OP)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/C = owner
+		if(C.in_medium_or_heavy_armor())
+			return TRUE // No gaming the system with medium / heavy armor
 	if(!owner.mind)
 		return (my_stack > CRIT_RESISTANCE_STACKS_NPC)
 	return (my_stack > CRIT_RESISTANCE_STACKS_PLAYER)
