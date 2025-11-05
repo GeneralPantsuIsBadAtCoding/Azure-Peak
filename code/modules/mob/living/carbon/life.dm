@@ -33,8 +33,6 @@
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		handle_automated_frenzy()
 
-	handle_brain_damage()
-
 	if(stat != DEAD)
 		return 1
 
