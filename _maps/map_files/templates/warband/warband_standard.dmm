@@ -512,27 +512,27 @@
 	pixel_y = -4
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandstandard;
+	lockid = "warbandstandard";
 	name = "gaol key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandstandard;
+	lockid = "warbandstandard";
 	name = "gaol key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandstandard;
+	lockid = "warbandstandard";
 	name = "gaol key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandstandard;
+	lockid = "warbandstandard";
 	name = "gaol key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandstandard;
+	lockid = "warbandstandard";
 	name = "gaol key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandstandard;
+	lockid = "warbandstandard";
 	name = "gaol key"
 	},
 /turf/open/floor/rogue/grassyel,
@@ -638,7 +638,7 @@
 "tk" = (
 /obj/structure/mineral_door/bars{
 	locked = 1;
-	lockid = warbandstandard
+	lockid = "warbandstandard"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/warcamp)

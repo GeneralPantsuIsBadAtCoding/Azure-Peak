@@ -232,7 +232,7 @@
 /obj/structure/mineral_door/swing_door{
 	keylock = 1;
 	locked = 1;
-	lockid = warbandpeasant;
+	lockid = "warbandpeasant";
 	name = "stables"
 	},
 /turf/open/floor/rogue/dirt/road,
@@ -2425,35 +2425,31 @@
 	icon_state = "tablewood1"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandpeasant;
+	lockid = "warbandpeasant";
 	name = "stable key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandpeasant;
+	lockid = "warbandpeasant";
 	name = "stable key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandpeasant;
+	lockid = "warbandpeasant";
 	name = "stable key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandpeasant;
+	lockid = "warbandpeasant";
 	name = "stable key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandpeasant;
+	lockid = "warbandpeasant";
 	name = "stable key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandpeasant;
+	lockid = "warbandpeasant";
 	name = "stable key"
 	},
 /obj/item/roguekey/custom{
-	lockid = warbandpeasant;
-	name = "stable key"
-	},
-/obj/item/roguekey/custom{
-	lockid = warbandpeasant;
+	lockid = "warbandpeasant";
 	name = "stable key"
 	},
 /turf/open/floor/rogue/dirt/road,
