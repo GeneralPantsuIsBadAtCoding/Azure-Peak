@@ -2491,16 +2491,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	ShowChoices(user)
 	return 1
 
-/datum/preferences/proc/resolve_loadout_to_color(item_path)
-	if (loadout && (item_path == loadout.path) && loadout_1_hex)
-		return loadout_1_hex
-	if (loadout2 && (item_path == loadout2.path) && loadout_2_hex)
-		return loadout_2_hex
-	if (loadout3 && (item_path == loadout3.path) && loadout_3_hex)
-		return loadout_3_hex
-	
-	return FALSE
-
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE, character_setup = FALSE, antagonist = FALSE)
 	if(randomise[RANDOM_SPECIES] && !character_setup)
 		random_species()
