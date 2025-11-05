@@ -2104,8 +2104,8 @@
 /area/rogue/indoors/warcamp/wizard)
 "BE" = (
 /obj/structure/gate/bars/preopen{
-	gid = summongate;
-	redstone_id = peasantgate
+	gid = "summongate";
+	redstone_id = "summongate"
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/warcamp/wizard)
@@ -2449,8 +2449,8 @@
 	},
 /obj/structure/winch{
 	dir = 2;
-	gid = summongate;
-	redstone_id = summongate
+	gid = "summongate";
+	redstone_id = "summongate"
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/warcamp/wizard)
