@@ -905,8 +905,11 @@
 					var/skilldiff = user.get_skill_level(user_skill) - get_skill_level(src_skill)
 					. += "<font size = 3><i>[skilldiff_report(skilldiff)] in my wielded skill than they are in theirs.</i></font>"
 
-	if((!obscure_name || client?.prefs.masked_examine) && (flavortext || headshot_link || ooc_notes))
-		. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
+	if(!obscure_name || client?.prefs.masked_examine)
+		if((user.client?.prefs.chatheadshot) && headshot_link)
+			. += "<span class='info'><img src=[headshot_link] width=100 height=100/></span>"
+		if(flavortext || headshot_link || ooc_notes)
+			. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
 
 	if(lip_style)
 		switch(lip_color)
