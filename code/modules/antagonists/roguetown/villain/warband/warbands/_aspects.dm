@@ -255,7 +255,7 @@
 	warcamp = /datum/map_template/warcamp_standard
 	aspects = list(ASPECT_CULT)
 	faithlock = list(ALL_INHUMEN_PATRONS)
-	combatmusic = list('sound/misc/warband/placeholder/outskirts_combattest_cult.ogg')
+	combatmusic = list('sound/music/combat2.ogg')
 
 /datum/warbands/subtypes/psydon
 	title = "OLD GOD"

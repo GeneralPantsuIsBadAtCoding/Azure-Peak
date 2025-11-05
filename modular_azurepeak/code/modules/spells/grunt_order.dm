@@ -55,7 +55,7 @@
         revert_cast()
         return
 
-/obj/effect/proc_holder/spell/invoked/grunt_order/proc/process_grunts(var/order_type, turf/target_location = null, mob/living/target = null, var/faction_tag = null)
+/obj/effect/proc_holder/spell/invoked/grunt_order/proc/process_grunts(order_type, turf/target_location = null, mob/living/target = null, faction_tag = null)
     var/mob/caster = usr
     var/count = 0
     var/msg = ""
