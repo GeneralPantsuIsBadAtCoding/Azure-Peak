@@ -13,6 +13,7 @@
 	// Stat balancing. Per-server decision. Preferably keep neutral until analysis post testmerges.
 	//race_bonus = list(STAT_INTELLIGENCE = 1, STAT_CONSTITUTION = 1)
 	skin_tone_wording = "Catalyst"
+	max_age = "???"
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY,MUTCOLORS)
 	default_features = MANDATORY_FEATURE_LIST
@@ -163,6 +164,29 @@
 
 /datum/species/dullahan/get_skin_list()
 	return list(
+		"Timber-Gronn" = SKIN_COLOR_TIMBER_GRONN,
+		"Giza-Azure" = SKIN_COLOR_GIZA_AZURE,
+		"Walnut-Stine" = SKIN_COLOR_WALNUT_STINE,
+		"Etrustcan-Dandelion" = SKIN_COLOR_ETRUSTCAN_DANDELION,
+		"Naledi-Born" = SKIN_COLOR_NALEDI_BORN,
+		"Naledi-Southerner" = SKIN_COLOR_NALEDI_LIGHT,
+		"Kaze-Lotus" = SKIN_COLOR_KAZE_LOTUS,
+		"Grenzel-Azuria" = SKIN_COLOR_GRENZEL_WOODS,
+		"Etrusca-Lirvas" = SKIN_COLOR_ETRUSCA_LIRVAS,
+		"Free Roamers" = SKIN_COLOR_FREE_FOLK,
+		"Aavnic"	= SKIN_COLOR_AVAR_BORNE,
+		"Shalvine Roamer" = SKIN_COLOR_SHALVINE_AZURE,
+		"Lalve-Steppes" = SKIN_COLOR_LALVE_NALEDI,
+		"Naledi-Otava" = SKIN_COLOR_NALEDI_OTAVA,
+		"Grezel-Aavnic" = SKIN_COLOR_GRENZEL_AVAR,
+		"Hammer-Gronn" = SKIN_COLOR_HAMMER_GRONN,
+		"Commorah" = SKIN_COLOR_COMMORAH,
+		"Gloomhaven" = SKIN_COLOR_GLOOMHAVEN,
+		"Darkpila" = SKIN_COLOR_DARKPILA,
+		"Sshanntynlan" = SKIN_COLOR_SSHANNTYNLAN,
+		"Llurth Dreir" = SKIN_COLOR_LLURTH_DREIR,
+		"Tafravma" = SKIN_COLOR_TAFRAVMA,
+		"Yuethindrynn" = SKIN_COLOR_YUETHINDRYNN,
 		"Grenzelhoft" = SKIN_COLOR_PALE_GRENZELHOFT,
 		"Hammerhold" = SKIN_COLOR_PALE_HAMMERHOLD,
 		"Ebon" = SKIN_COLOR_PALE_EBON,
@@ -171,14 +195,7 @@
 		"Arlenneth" = SKIN_COLOR_ARLENNETH,
 		"Nessyss" = SKIN_COLOR_NESSYSS,
 		"Helixia" = SKIN_COLOR_HELIXIA,
-		"Nymsea" = SKIN_COLOR_NYMSEA,
-		"Commorah" = SKIN_COLOR_COMMORAH,
-		"Gloomhaven" = SKIN_COLOR_GLOOMHAVEN,
-		"Darkpila" = SKIN_COLOR_DARKPILA,
-		"Sshanntynlan" = SKIN_COLOR_SSHANNTYNLAN,
-		"Llurth Dreir" = SKIN_COLOR_LLURTH_DREIR,
-		"Tafravma" = SKIN_COLOR_TAFRAVMA,
-		"Yuethindrynn" = SKIN_COLOR_YUETHINDRYNN
+		"Nymsea" = SKIN_COLOR_NYMSEA
 	)
 
 /datum/species/dullahan/get_hairc_list()

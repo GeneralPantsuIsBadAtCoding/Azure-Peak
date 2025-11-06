@@ -18,6 +18,8 @@
 	(+1 Constitution, +1 Perception)" 
 
 	skin_tone_wording = "Identity"
+	max_age = 250
+
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)
