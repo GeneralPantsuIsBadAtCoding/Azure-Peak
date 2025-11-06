@@ -13,7 +13,7 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/magic/ENDVRE.ogg'
-	invocations = list("ON YOUR FEET!","ENDURE!","HOLD FAST!") // holy larp yelling for healing is silly
+	invocations = list("ENDURE!","GET UP!","COME ON!") //Kept intentionally vague as to whether it's genuine magic or just a very inspiring attempt to rally the target, like with 'PRAYER'. Invigorate the wounded; give them the motivation to thug it out.
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -105,8 +105,8 @@
 
 /obj/effect/proc_holder/spell/invoked/psydonlux_tamper
 	name = "WEEP"
-	overlay_state = "WEEP"
-	releasedrain = 20
+	overlay_state = "WEEP" //Absolver-exclusive.
+	releasedrain = 33
 	chargedrain = 0
 	chargetime = 0
 	range = 2
@@ -197,9 +197,9 @@
 
 /obj/effect/proc_holder/spell/invoked/psydonabsolve	
 	name = "ABSOLVE"
-	overlay_state = "ABSOLVE"
+	overlay_state = "ABSOLVE" //Absolver exclusive.
 	desc = "Exchange your vitality for the sake of another. </br>‎  </br>Siphons away all injuries - be it physical damage, blood loss, or dismemberment - from the target, completely healing them. In exchange, all siphoned injuries are subsequently inflicted unto you. Using this on a target who's dead will fully resurrect them, albeit at the cost of your own lyfe."
-	releasedrain = 20
+	releasedrain = 50
 	chargedrain = 0
 	chargetime = 0
 	range = 1
@@ -212,7 +212,7 @@
 	antimagic_allowed = FALSE
 	recharge_time = 30 SECONDS // 60 seconds cooldown
 	miracle = TRUE
-	devotion_cost = 80
+	devotion_cost = 100
 
 /obj/effect/proc_holder/spell/invoked/psydonabsolve/cast(list/targets, mob/living/user)
 
@@ -392,7 +392,7 @@
 	name = "PRAYER"
 	desc = "Catch your breath, recite a psalm betwixt huffs, and gather your wits before continuing forth. </br>‎  </br>Provides minor health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	overlay_state = "limb_attach"
-	releasedrain = 15
+	releasedrain = 20
 	chargedrain = 0
 	chargetime = 0
 	range = 2
@@ -400,10 +400,12 @@
 	movement_interrupt = FALSE
 	sound = null
 	associated_skill = /datum/skill/magic/holy
+	invocations = list("#..our father above, hallowed be thy name..","#..thy kingdom come, thy will be done..","#..I fear no evil, for thou art with me..") //Like with 'ENDURE', it's kept vague as to whether this is an acutal miracle or not. Fluffs it as a proper prayer, incantations and all!
+	invocation_type = "shout"
 	antimagic_allowed = FALSE
 	recharge_time = 5 SECONDS
 	miracle = TRUE
-	devotion_cost = 0
+	devotion_cost = 0 //Doesn't have an initial cost, but charges the caster once they're interrupted or have cycled a couple times. Check the 'if-doafter' line near the bottom if you wish to fiddle with the logic.
 
 /obj/effect/proc_holder/spell/self/psydonpray/cast(mob/living/carbon/human/user) //Lesser version of 'RESPITE' and 'PERSIST', T1. Self-regenerative
 	. = ..()
@@ -482,8 +484,8 @@
 		H.adjustFireLoss(burnhealval)
 		if (conditional_buff)
 			to_chat(user, span_info("My pain gives way to a sense of furthered clarity before returning again, dulled."))
-		user.devotion?.update_devotion(-15)
-		to_chat(user, "<font color='purple'>I lose 15 devotion!</font>")
+		user.devotion?.update_devotion(-20)
+		to_chat(user, "<font color='purple'>I lose 20 devotion!</font>")
 		cast(user)	
 		return TRUE
 	else
@@ -496,13 +498,15 @@
 	name = "RESPITE"
 	desc = "Gather yourself, so that you may ready yourself for whatever lies next. </br>‎  </br>Provides health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	overlay_state = "RESPITE"
-	releasedrain = 20
+	releasedrain = 25
 	chargedrain = 0
 	chargetime = 0
 	range = 2
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = null
+	invocations = list("#..with every broken bone, I swore I lyved..","#..thou shalt ward me within the valleys o' evil..","#..the fires of Syon, everburning with thine vigor..") //General rule of thumb, with these prayers; the more powerful they are, the more zealous the incantations should be.
+	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
 	recharge_time = 5 SECONDS
@@ -586,8 +590,8 @@
 		H.adjustFireLoss(burnhealval)
 		if (conditional_buff)
 			to_chat(user, span_info("My pain gives way to a sense of furthered clarity before returning again, dulled."))
-		user.devotion?.update_devotion(-20)
-		to_chat(user, "<font color='purple'>I lose 20 devotion!</font>")
+		user.devotion?.update_devotion(-25)
+		to_chat(user, "<font color='purple'>I lose 25 devotion!</font>")
 		cast(user)	
 		return TRUE
 	else
@@ -600,12 +604,14 @@
 	name = "PERSIST"
 	desc = "Invoke your faith under hushed breaths, so that you may yet triumph over adversity. </br>‎  </br>Provides greater health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	overlay_state = "PERSIST"
-	releasedrain = 33
+	releasedrain = 30
 	chargedrain = 0
 	chargetime = 0
 	range = 2
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
+	invocations = list("#..in Psydon's glory, all malaises shall melt away..","#..thine holy spirit lies within all our hearts, weeping forevermore..","#..thou shalt know all, for enduring begets enlightenment..") //Highest tier of self-healing, and - in turn - the most devoutly-phrased.
+	invocation_type = "shout"
 	sound = null
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -690,8 +696,8 @@
 		H.adjustFireLoss(burnhealval)
 		if (conditional_buff)
 			to_chat(user, span_info("My pain gives way to a sense of furthered clarity before returning again, dulled."))
-		user.devotion?.update_devotion(-66)
-		to_chat(user, "<font color='purple'>I lose 60 devotion!</font>")
+		user.devotion?.update_devotion(-50)
+		to_chat(user, "<font color='purple'>I lose 50 devotion!</font>")
 		cast(user)	
 		return TRUE
 	else
