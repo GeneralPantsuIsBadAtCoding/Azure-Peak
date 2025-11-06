@@ -579,7 +579,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					wound.heal_wound(wound.sleep_healing * sleepy_mod)
 			adjustToxLoss(-sleepy_mod)
 	else
-		// Resting on a bed or something
 		var/sleepy_mod = 0
 		var/sleep_threshold = 30
 		var/message = "I'll fall asleep soon..."
