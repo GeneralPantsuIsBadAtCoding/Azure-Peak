@@ -429,8 +429,8 @@
 	name = "psydonic war axe"
 	desc = "An ornate battle axe, plated in a ceremonial veneer of silver. The premiere instigator of conflict against elven attachees."
 	icon_state = "psyaxe"
-	force = 20
-	force_wielded = 25
+	force = 25
+	force_wielded = 30
 	minstr = 11
 	wdefense = 6
 	blade_dulling = DULLING_SHAFT_METAL
@@ -554,8 +554,8 @@
 	)
 
 /obj/item/rogueweapon/greataxe/psy
-	force = 15
-	force_wielded = 25
+	force = 25
+	force_wielded = 30
 	possible_item_intents = list(/datum/intent/axe/cut, /datum/intent/axe/chop, /datum/intent/mace/strike) //When possible, add the longsword's 'alternate grip' mechanic to let people flip this around into a Mace-scaling weapon with swapped damage.
 	gripped_intents = list(/datum/intent/axe/cut/battle/greataxe, /datum/intent/axe/chop/battle/greataxe, /datum/intent/mace/rangedthrust, /datum/intent/mace/strike) //Axe-equivalent to the Godendag or Grand Mace.
 	name = "psydonic poleaxe"

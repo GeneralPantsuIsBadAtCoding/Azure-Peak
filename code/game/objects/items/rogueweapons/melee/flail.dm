@@ -120,13 +120,13 @@
 	minstr = 5
 
 /obj/item/rogueweapon/flail/sflail/silver
-	force = 35
+	force = 25
 	icon_state = "silverflail"
 	name = "silver morningstar"
 	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/mace/smash/flailrange)
-	desc = "A heavy, silver flail. It follows the Grenzelhoftian design of a 'morning star', utilizing a longer chain to extend its reach. While stronger than a steel flail, it requires far more strength to effectively swing."
+	desc = "A heavy, silver flail. It follows the Grenzelhoftian design of a 'morning star', utilizing a longer chain to extend its reach. While weaker than a steel flail, it'll sunder accursed beings."
 	smeltresult = /obj/item/ingot/silver
-	minstr = 12
+	minstr = 5
 	is_silver = TRUE
 
 /obj/item/rogueweapon/flail/sflail/silver/ComponentInitialize()
@@ -144,7 +144,7 @@
 	name = "swift journey"
 	desc = "The striking head is full of teeth, rattling viciously with ever strike, with every rotation. Each set coming from one the wielder has laid to rest. Carried alongside them as a great show of respect."
 	icon_state = "necraflail"
-	force = 35
+	force = 30
 	is_silver = TRUE
 
 /obj/item/rogueweapon/flail/sflail/necraflail/ComponentInitialize()
@@ -162,8 +162,8 @@
 	name = "psydonic flail"
 	desc = "An ornate flail, plated in a ceremonial veneer of silver. Its flanged head can crumple even the toughest of darksteel-maille."
 	icon_state = "psyflail"
-	force = 35
-	minstr = 10
+	force = 30
+	minstr = 5
 	wdefense = 0
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silverblessed

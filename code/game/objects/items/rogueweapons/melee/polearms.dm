@@ -389,8 +389,8 @@
 	name = "psydonic spear"
 	desc = "An ornate spear, plated in a ceremonial veneer of silver. The barbs pierce your palm, and - for just a moment - you see red. Never forget that you are why Psydon wept."
 	icon_state = "psyspear"
-	force = 15
-	force_wielded = 25
+	force = 20
+	force_wielded = 30
 	minstr = 11
 	wdefense = 6
 	resistance_flags = FIRE_PROOF	//It's meant to be smacked by a "lamptern", and is special enough to warrant overriding the spear weakness

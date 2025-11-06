@@ -755,8 +755,8 @@
 	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike. </br>'Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.'"
 	icon_state = "psysword"
 	sheathe_icon = "psysword"
-	force = 20
-	force_wielded = 25
+	force = 25
+	force_wielded = 30
 	minstr = 9
 	wdefense = 6
 	dropshrink = 1
@@ -968,8 +968,8 @@
 	desc = "Otavan smiths worked with Grenzelhoftian artificers, and an esoteric sidearm was born: a shortsword with an unique design, dismissing a crossguard in favor of a hollow beak to hook and draw harm away from its user. Short in length, yet lethally light in weight."
 	icon_state = "psyswordshort"
 	sheathe_icon = "psyswordshort"
-	force = 20
-	force_wielded = 20
+	force = 25
+	force_wielded = 25
 	minstr = 7
 	wdefense = 3
 	wbalance = WBALANCE_SWIFT
