@@ -43,7 +43,6 @@
 	name = "sailor's pants"
 	icon_state = "sailorpants"
 
-
 /obj/item/clothing/under/roguetown/tights/explorerpants
 	name = "explorer's pants"
 	desc = "Practical and modest, you hope that it will survive the next cavedive."
