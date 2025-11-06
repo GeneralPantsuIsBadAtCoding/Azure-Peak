@@ -390,29 +390,29 @@
 
 /obj/effect/proc_holder/spell/self/psydonprayer
 	name = "PRAYER"
-	desc = "Catch your breath, recite a psalm betwixt huffs, and gather your wits before continuing forth. </br>‎  </br>Provides minor health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
+	desc = "Recite a psalm betwixt huffs, so that your wits do not succumb to more worldly ailments. </br>‎  </br>Provides minor health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	overlay_state = "limb_attach"
-	releasedrain = 20
+	releasedrain = 15
 	chargedrain = 0
 	chargetime = 0
 	range = 2
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = null
-	associated_skill = /datum/skill/magic/holy
 	invocations = list("#..our father above, hallowed be thy name..","#..thy kingdom come, thy will be done..","#..I fear no evil, for thou art with me..") //Like with 'ENDURE', it's kept vague as to whether this is an acutal miracle or not. Fluffs it as a proper prayer, incantations and all!
 	invocation_type = "shout"
+	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
 	recharge_time = 5 SECONDS
 	miracle = TRUE
 	devotion_cost = 0 //Doesn't have an initial cost, but charges the caster once they're interrupted or have cycled a couple times. Check the 'if-doafter' line near the bottom if you wish to fiddle with the logic.
 
-/obj/effect/proc_holder/spell/self/psydonpray/cast(mob/living/carbon/human/user) //Lesser version of 'RESPITE' and 'PERSIST', T1. Self-regenerative
+/obj/effect/proc_holder/spell/self/psydonrespite/cast(mob/living/carbon/human/user) ///Lesser version of 'RESPITE' and 'PERSIST', T1. Self-regenerative
 	. = ..()
 	if(!ishuman(user))
 		revert_cast()
 		return FALSE
-
+		
 	var/mob/living/carbon/human/H = user
 	var/brute = H.getBruteLoss()
 	var/burn = H.getFireLoss()
@@ -424,7 +424,7 @@
 
 	for(var/obj/item/clothing/neck/current_item in H.get_equipped_items(TRUE))
 		if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver, /obj/item/clothing/neck/roguetown/psicross/g))
-			switch(current_item.type) //The higher your worn psycross's tier is, the greater your per-tick healing bonus will be.
+			switch(current_item.type) // Worn Psicross Piety bonus. For fun.
 				if(/obj/item/clothing/neck/roguetown/psicross/wood)
 					psicross_bonus = -1				
 				if(/obj/item/clothing/neck/roguetown/psicross/aalloy)
@@ -433,7 +433,7 @@
 					psicross_bonus = -4
 				if(/obj/item/clothing/neck/roguetown/psicross/silver)
 					psicross_bonus = -6
-				if(/obj/item/clothing/neck/roguetown/psicross/g)
+				if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
 					psicross_bonus = -7
 				if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
 					zcross_trigger = TRUE		
@@ -449,7 +449,7 @@
 		sit_bonus1 = -7
 	if(brute > 400)
 		sit_bonus1 = -9	
-
+		
 	if(burn > 100) //Ditto.
 		sit_bonus2 = -1
 	if(burn > 150)
@@ -484,13 +484,13 @@
 		H.adjustFireLoss(burnhealval)
 		if (conditional_buff)
 			to_chat(user, span_info("My pain gives way to a sense of furthered clarity before returning again, dulled."))
-		user.devotion?.update_devotion(-20)
-		to_chat(user, "<font color='purple'>I lose 20 devotion!</font>")
+		user.devotion?.update_devotion(-15)
+		to_chat(user, "<font color='purple'>I lose 15 devotion!</font>")
 		cast(user)	
 		return TRUE
 	else
 		to_chat(H, span_warning("My thoughts and sense of quiet escape me."))	
-		return FALSE					
+		return FALSE								
 
 //
 
