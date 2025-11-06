@@ -43,6 +43,18 @@
 	name = "sailor's pants"
 	icon_state = "sailorpants"
 
+/obj/item/clothing/under/roguetown/tights/desertskirt
+	name = "desert skirt"
+	desc = "At least it cools me off, but what of the modesty?"
+	icon_state = "desertskirt"
+	item_state = "desertskirt"
+
+/obj/item/clothing/under/roguetown/tights/explorerpants
+	name = "explorer's pants"
+	desc = "Practical and modest, you hope that it will survive the next cavedive."
+	icon_state = "explorerpants"
+	item_state = "explorerpants"
+
 /obj/item/clothing/under/roguetown/tights/puritan
 	name = "formal breeches"
 	icon_state = "monkpants"
