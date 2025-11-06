@@ -633,12 +633,13 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					fallingas += sleepy_mod
 					if(HAS_TRAIT(src, TRAIT_FASTSLEEP))
 						fallingas += sleepy_mod
-					if(fallingas > sleep_threshold)
-						fallingas = FALSE
-						to_chat(src, span_blue("I've fallen asleep."))
+					if(fallingas >= sleep_threshold)
+						if(!is_asleep) //to not spam chat
+							to_chat(src, span_blue("I've fallen asleep."))
+							is_asleep = TRUE
 						if(sleepless_flaw) // If you're sleepless, you have a higher chance of going to a nightmare. Every time you sleep, the chance gets higher for the rest of the round.
 							teleport_to_dream(src, 10000, sleepless_flaw.dream_prob, FALSE)
-							sleepless_flaw.dream_prob += 1000
+							sleepless_flaw.dream_prob += 500
 							sleepless_flaw.drugged_up = FALSE
 							Sleeping(250)
 						else 
@@ -646,6 +647,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 							Sleeping(300)
 						
 			else
+				is_asleep = FALSE
+				fallingas = FALSE
 				energy_add(sleepy_mod * 10)
 		else if(fallingas)
 			fallingas = FALSE
