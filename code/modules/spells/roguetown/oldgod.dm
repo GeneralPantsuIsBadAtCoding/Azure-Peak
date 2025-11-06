@@ -388,7 +388,7 @@
 
 //
 
-/obj/effect/proc_holder/spell/self/psydonpray
+/obj/effect/proc_holder/spell/self/psydonprayer
 	name = "PRAYER"
 	desc = "Catch your breath, recite a psalm betwixt huffs, and gather your wits before continuing forth. </br>‎  </br>Provides minor health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	overlay_state = "limb_attach"
