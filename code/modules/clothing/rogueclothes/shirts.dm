@@ -384,7 +384,7 @@
 	allowed_sex = list(MALE, FEMALE)
 
 
-/obj/item/clothing/suit/roguetown/shirt/robe/explorer
+/obj/item/clothing/suit/roguetown/shirt/explorer
 	name = "explorer's vest"
 	desc = "Vest belonging to those who seek knowledge!"
 	icon_state = "explorervest"
