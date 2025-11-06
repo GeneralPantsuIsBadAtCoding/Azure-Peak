@@ -121,7 +121,6 @@
 		S.start()
 		var/success
 		if(prob(prob_us))
-			HU.remove_status_effect(/datum/status_effect/buff/clash)
 			HU.play_overhead_indicator('icons/mob/overhead_effects.dmi', "clashtwo", 1 SECONDS, OBJ_LAYER, soundin = 'sound/combat/clash_disarm_us.ogg', y_offset = 24)
 			disarmed(IM)
 			Slowdown(5)
@@ -129,7 +128,6 @@
 		if(prob(prob_opp))
 			HU.disarmed(IU)
 			HU.Slowdown(5)
-			remove_status_effect(/datum/status_effect/buff/clash)
 			play_overhead_indicator('icons/mob/overhead_effects.dmi', "clashtwo", 1 SECONDS, OBJ_LAYER, soundin = 'sound/combat/clash_disarm_opp.ogg', y_offset = 24)
 			success = TRUE
 		if(!success)
@@ -143,7 +141,9 @@
 			HU.disarmed(IU)
 	
 	remove_status_effect(/datum/status_effect/buff/clash)
+	remove_status_effect(/datum/status_effect/buff/clash/limbguard)
 	HU.remove_status_effect(/datum/status_effect/buff/clash)
+	HU.remove_status_effect(/datum/status_effect/buff/clash/limbguard)
 
 
 /mob/living/carbon/human/proc/disarmed(obj/item/I)
@@ -159,13 +159,14 @@
 
 /mob/living/carbon/human/proc/bad_guard(msg, cheesy = FALSE)
 	stamina_add(((max_stamina * BAD_GUARD_FATIGUE_DRAIN) / 100))
-	if(cheesy)	//We tried to hit someone with Guard up. Unfortunately this must be super punishing to prevent cheese.
+	if(cheesy)	//We tried to hit someone with Riposte (Not Limb Guard) up. Unfortunately this must be super punishing to prevent cheese.
 		energy_add(-((max_energy * BAD_GUARD_FATIGUE_DRAIN) / 100))
 		Immobilize(2 SECONDS)
 	if(msg)
 		to_chat(src, msg)
 		emote("strain", forced = TRUE)
 	remove_status_effect(/datum/status_effect/buff/clash)
+	remove_status_effect(/datum/status_effect/buff/clash/limbguard)
 
 /mob/living/carbon/human/proc/purge_peel(amt)
 	//Equipment slots manually picked out cus we don't have a proc for this apparently

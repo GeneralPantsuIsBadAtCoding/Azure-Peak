@@ -1107,8 +1107,9 @@
 
 /datum/status_effect/buff/clash
 	id = "clash"
-	duration = 10 SECONDS
+	duration = 6 SECONDS
 	var/dur
+	var/sfx_on_apply = 'sound/combat/clash_initiate.ogg'
 	alert_type = /atom/movable/screen/alert/status_effect/buff/clash
 
 	mob_effect_icon = 'icons/mob/mob_effects.dmi'
@@ -1163,7 +1164,8 @@
 		return
 	dur = world.time
 	var/mob/living/carbon/human/H = owner
-	playsound(H, 'sound/combat/clash_initiate.ogg', 100, TRUE)
+	if(sfx_on_apply)
+		playsound(H, sfx_on_apply, 100, TRUE)
 
 /datum/status_effect/buff/clash/tick()
 	if(!owner.get_active_held_item() || !(owner.mobility_flags & MOBILITY_STAND))
@@ -1192,9 +1194,9 @@
 	icon_state = "clash"
 
 
-/datum/status_effect/buff/guard
+/datum/status_effect/buff/clash/limbguard
 	id = "guard"
-	duration = 20
+	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/buff/clash //!
 
 	var/protected_zone
@@ -1203,16 +1205,15 @@
 	mob_effect_icon_state = "eff_guard"
 	mob_effect_layer = MOB_EFFECT_LAYER_GUARD
 
-/datum/status_effect/buff/guard/on_creation(mob/living/new_owner, zone)
+/datum/status_effect/buff/clash/limbguard/on_creation(mob/living/new_owner, zone)
 	if(!zone)
-		CRASH("Guard was called with no zone!")
+		CRASH("Guard (Defend rclick) was called with no valid zone!")
 	protected_zone = zone
-	mob_effect_icon_state += "_[zone]"
+	mob_effect_icon_state = initial(mob_effect_icon_state)+"_[zone]"
 	set_offsets()
-
 	. = ..()
 
-/datum/status_effect/buff/guard/proc/set_offsets()
+/datum/status_effect/buff/clash/limbguard/proc/set_offsets()
 	switch(protected_zone)
 		if(BODY_ZONE_L_ARM)
 			mob_effect_offset_x = 9
@@ -1229,6 +1230,32 @@
 		if(BODY_ZONE_R_LEG)
 			mob_effect_offset_x = -6
 			mob_effect_offset_y = -9
+
+/datum/status_effect/buff/clash/limbguard/process_attack(mob/living/parent, mob/living/target, mob/user, obj/item/I)
+	if(ishuman(user) && target == owner)
+		var/mob/living/carbon/human/HM = user
+		var/mob/living/carbon/human/HO = owner
+		var/obj/item/IM = target.get_active_held_item()
+		var/obj/item/IU
+		if(check_zone(HM.zone_selected) == protected_zone)	//User has struck the exact limb that was being protected. Bad!
+			if(user.used_intent.masteritem)
+				IU = user.used_intent.masteritem
+			if(!IU)
+				HO.process_clash(user, IM, IU)	//We gore their hand same as regular riposte if they try to grab the protected limb.
+			HM.Immobilize(3 SECONDS)
+			HM.OffBalance(3 SECONDS)
+			HM.apply_status_effect(/datum/status_effect/debuff/exposed, 10 SECONDS)
+			HM.emote("gasp")
+			if(HM.mind)
+				owner.stamina_add(-(owner.max_stamina / 3))
+				owner.energy_add((owner.max_energy / 5))
+				remove_self(success = TRUE)
+			return COMPONENT_NO_ATTACK	//We cancel the attack that triggered this.
+
+/datum/status_effect/buff/clash/limbguard/proc/remove_self(success)
+	if(success)	//Simplest way to avoid triggering the "expired duration" stamcost from /clash, as the dur is "-1" here normally.
+		dur = 999999
+	owner.remove_status_effect(/datum/status_effect/buff/clash/limbguard)
 
 #define BLOODRAGE_FILTER "bloodrage"
 
