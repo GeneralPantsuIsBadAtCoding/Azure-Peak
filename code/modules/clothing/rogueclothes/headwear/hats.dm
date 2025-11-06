@@ -96,7 +96,7 @@
 	item_state = "explorerhat"
 	sewrepair = TRUE
 
-/obj/item/clothing/head/roguetown/explorerhat
+/obj/item/clothing/head/roguetown/deserthood
 	name = "desert hood"
 	desc = "If only it was this warm."
 	icon_state = "deserthood"
