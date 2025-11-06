@@ -1117,14 +1117,20 @@
 	mob_effect_layer = MOB_EFFECT_LAYER_GUARD_CLASSIC
 
 /datum/status_effect/buff/clash/on_creation(mob/living/new_owner, ...)
+	RegisterSignal(new_owner, COMSIG_MOB_ATTACKED_BY_HAND, PROC_REF(process_touch))
 	RegisterSignal(new_owner, COMSIG_MOB_ITEM_ATTACK, PROC_REF(process_attack))
 	RegisterSignal(new_owner, COMSIG_MOB_ITEM_BEING_ATTACKED, PROC_REF(process_attack))
 	RegisterSignal(new_owner, COMSIG_MOB_ON_KICK, PROC_REF(guard_disrupted))
 	RegisterSignal(new_owner, COMSIG_MOB_KICKED, PROC_REF(guard_disrupted))
 	RegisterSignal(new_owner, COMSIG_ITEM_GUN_PROCESS_FIRE, PROC_REF(guard_disrupted_cheesy))
 	RegisterSignal(new_owner, COMSIG_CARBON_SWAPHANDS, PROC_REF(guard_disrupted))
-	RegisterSignal(new_owner, COMSIG_MOVABLE_IMPACT_ZONE, PROC_REF(guard_disrupted))
+	RegisterSignal(new_owner, COMSIG_ATOM_BULLET_ACT, PROC_REF(guard_struck_by_projectile))
+	RegisterSignal(new_owner, COMSIG_LIVING_IMPACT_ZONE, PROC_REF(guard_struck_by_projectile))
 	. = ..()
+
+/datum/status_effect/buff/clash/proc/process_touch(mob/living/carbon/human/parent, mob/living/carbon/human/attacker, mob/living/carbon/human/defender)
+	var/obj/item/I = defender.get_active_held_item()
+	defender.process_clash(attacker, I, null)
 
 /datum/status_effect/buff/clash/proc/process_attack(mob/living/parent, mob/living/target, mob/user, obj/item/I)
 	var/bad_guard = FALSE
@@ -1145,6 +1151,10 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.bad_guard(span_suicide("I switched stances too quickly! It drains me!"), cheesy = TRUE)
+
+//Mostly here so the child (limbguard) can have special behaviour.
+/datum/status_effect/buff/clash/proc/guard_struck_by_projectile()
+	guard_disrupted()
 
 //Our guard was disrupted by normal means.
 /datum/status_effect/buff/clash/proc/guard_disrupted()
@@ -1179,14 +1189,15 @@
 	var/mob/living/carbon/human/H = owner
 	if(newdur > (initial(duration) - 0.2 SECONDS))	//Not checking exact duration to account for lag and any other tick / timing inconsistencies.
 		H.bad_guard(span_warning("I held my focus for too long. It's left me drained."))
+	UnregisterSignal(owner, COMSIG_ATOM_BULLET_ACT)
+	UnregisterSignal(owner, COMSIG_MOB_ATTACKED_BY_HAND)
 	UnregisterSignal(owner, COMSIG_MOB_ITEM_ATTACK)
 	UnregisterSignal(owner, COMSIG_MOB_ITEM_BEING_ATTACKED)
 	UnregisterSignal(owner, COMSIG_MOB_ON_KICK)
 	UnregisterSignal(owner, COMSIG_MOB_KICKED)
 	UnregisterSignal(owner, COMSIG_ITEM_GUN_PROCESS_FIRE)
 	UnregisterSignal(owner, COMSIG_CARBON_SWAPHANDS)
-	UnregisterSignal(owner, COMSIG_MOVABLE_IMPACT_ZONE)
-
+	UnregisterSignal(owner, COMSIG_LIVING_IMPACT_ZONE)
 
 /atom/movable/screen/alert/status_effect/buff/clash
 	name = "Ready to Clash"
@@ -1213,6 +1224,15 @@
 	set_offsets()
 	. = ..()
 
+/datum/status_effect/buff/clash/limbguard/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_FROZEN_STAMINA, TRAIT_STATUS_EFFECT)
+	dur = 999999
+
+/datum/status_effect/buff/clash/limbguard/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_FROZEN_STAMINA, TRAIT_STATUS_EFFECT)
+
 /datum/status_effect/buff/clash/limbguard/proc/set_offsets()
 	switch(protected_zone)
 		if(BODY_ZONE_L_ARM)
@@ -1236,7 +1256,7 @@
 		var/mob/living/carbon/human/HM = user
 		var/mob/living/carbon/human/HO = owner
 		var/obj/item/IM = target.get_active_held_item()
-		var/obj/item/IU
+		var/obj/item/IU 
 		if(check_zone(HM.zone_selected) == protected_zone)	//User has struck the exact limb that was being protected. Bad!
 			if(user.used_intent.masteritem)
 				IU = user.used_intent.masteritem
@@ -1249,13 +1269,38 @@
 			if(HM.mind)
 				owner.stamina_add(-(owner.max_stamina / 3))
 				owner.energy_add((owner.max_energy / 5))
-				remove_self(success = TRUE)
+				remove_self()
 			return COMPONENT_NO_ATTACK	//We cancel the attack that triggered this.
 
-/datum/status_effect/buff/clash/limbguard/proc/remove_self(success)
-	if(success)	//Simplest way to avoid triggering the "expired duration" stamcost from /clash, as the dur is "-1" here normally.
-		dur = 999999
+/datum/status_effect/buff/clash/limbguard/proc/remove_self()
 	owner.remove_status_effect(/datum/status_effect/buff/clash/limbguard)
+
+//Projectile struck our protected limb. Unlike regular Riposte, this will deflect the projectile at no cost.
+/datum/status_effect/buff/clash/limbguard/guard_struck_by_projectile(mob/living/target, obj/P, hit_zone)
+	var/obj/IP = P
+	if(istype(P, /obj/projectile/bullet/reusable))
+		var/obj/projectile/bullet/reusable/RP = P	//This will ensure it gets dropped as an item first. Otherwise the non-reusable projectile will get poofed in a cloud of sparks.
+		IP = RP.handle_drop()
+	if(check_zone(hit_zone) == protected_zone)
+		var/turnangle = (prob(50) ? 270 : 90)
+		if(prob(10))	
+			turnangle = 0 //Right back at thee
+		var/turndir = turn(target.dir, turnangle)
+		var/dist = rand(3, 7)
+		var/current_turf = get_turf(IP)
+		var/target_turf = get_ranged_target_turf(current_turf, turndir, dist)
+		do_sparks(2, TRUE, current_turf)
+		var/static/list/deflect_sounds = list(\
+		'sound/combat/parry/deflect_1.ogg',
+		'sound/combat/parry/deflect_2.ogg',
+		'sound/combat/parry/deflect_3.ogg',
+		'sound/combat/parry/deflect_4.ogg',
+		'sound/combat/parry/deflect_5.ogg',
+		'sound/combat/parry/deflect_6.ogg')
+		playsound(target, pick(deflect_sounds), 100, TRUE)
+		target.visible_message(span_warning("[target] deflects \the [IP]!"))
+		P.safe_throw_at(target_turf, dist, 1, spin = TRUE)
+		return COMPONENT_CANCEL_THROW //Also returns COMPONENT_ATOM_BLOCK_BULLET
 
 #define BLOODRAGE_FILTER "bloodrage"
 

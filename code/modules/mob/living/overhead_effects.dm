@@ -72,7 +72,8 @@
 	appearance.appearance_flags = RESET_COLOR
 	overlays_standing[overlay_layer] = appearance
 	apply_overlay(overlay_layer)
-	addtimer(CALLBACK(src, PROC_REF(clear_overhead_indicator), appearance, overlay_layer), clear_time)
+	if(clear_time > 0)	//< 0 means it's likely meant to be infinite (-1), 0 means, uh, that something went wrong.
+		addtimer(CALLBACK(src, PROC_REF(clear_overhead_indicator), appearance, overlay_layer), clear_time)
 	if(soundin)
 		playsound(src, soundin, 100, FALSE, extrarange = -1, ignore_walls = FALSE)
 	return appearance
