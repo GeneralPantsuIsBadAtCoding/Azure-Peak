@@ -407,7 +407,7 @@
 	miracle = TRUE
 	devotion_cost = 0 //Doesn't have an initial cost, but charges the caster once they're interrupted or have cycled a couple times. Check the 'if-doafter' line near the bottom if you wish to fiddle with the logic.
 
-/obj/effect/proc_holder/spell/self/psydonrespite/cast(mob/living/carbon/human/user) ///Lesser version of 'RESPITE' and 'PERSIST', T1. Self-regenerative
+/obj/effect/proc_holder/spell/self/psydonprayer/cast(mob/living/carbon/human/user) ///Lesser version of 'RESPITE' and 'PERSIST', T1. Self-regenerative
 	. = ..()
 	if(!ishuman(user))
 		revert_cast()
