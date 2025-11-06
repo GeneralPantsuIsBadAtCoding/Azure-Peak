@@ -1107,13 +1107,19 @@
 
 /datum/status_effect/buff/clash
 	id = "clash"
-	duration = 6 SECONDS
+	duration = 10 SECONDS
 	var/dur
 	alert_type = /atom/movable/screen/alert/status_effect/buff/clash
 
+	mob_effect_icon = 'icons/mob/mob_effects.dmi'
+	mob_effect_icon_state = "eff_riposte"
+	mob_effect_layer = MOB_EFFECT_LAYER_GUARD_CLASSIC
+
 /datum/status_effect/buff/clash/on_creation(mob/living/new_owner, ...)
 	RegisterSignal(new_owner, COMSIG_MOB_ITEM_ATTACK, PROC_REF(process_attack))
+	RegisterSignal(new_owner, COMSIG_MOB_ITEM_BEING_ATTACKED, PROC_REF(process_attack))
 	RegisterSignal(new_owner, COMSIG_MOB_ON_KICK, PROC_REF(guard_disrupted))
+	RegisterSignal(new_owner, COMSIG_MOB_KICKED, PROC_REF(guard_disrupted))
 	RegisterSignal(new_owner, COMSIG_ITEM_GUN_PROCESS_FIRE, PROC_REF(guard_disrupted_cheesy))
 	RegisterSignal(new_owner, COMSIG_CARBON_SWAPHANDS, PROC_REF(guard_disrupted))
 	RegisterSignal(new_owner, COMSIG_MOVABLE_IMPACT_ZONE, PROC_REF(guard_disrupted))
@@ -1126,14 +1132,14 @@
 	if(U.has_status_effect(/datum/status_effect/buff/clash) && !target.has_status_effect(/datum/status_effect/buff/clash))
 		if(user == parent)
 			bad_guard = TRUE
-	if(ishuman(target) && target.has_status_effect(/datum/status_effect/buff/clash) && target.get_active_held_item()  && !bad_guard)
+	if(ishuman(target) && target.get_active_held_item() && !bad_guard)
 		var/mob/living/carbon/human/HM = target
 		var/obj/item/IM = target.get_active_held_item()
 		var/obj/item/IU 
 		if(user.used_intent.masteritem)
 			IU = user.used_intent.masteritem
 		HM.process_clash(user, IM, IU)
-		return
+		return COMPONENT_NO_ATTACK
 	if(bad_guard)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -1157,7 +1163,7 @@
 		return
 	dur = world.time
 	var/mob/living/carbon/human/H = owner
-	H.play_overhead_indicator('icons/mob/overhead_effects.dmi', prob(50) ? "clash" : "clashr", duration, OBJ_LAYER, soundin = 'sound/combat/clash_initiate.ogg', y_offset = 28)
+	playsound(H, 'sound/combat/clash_initiate.ogg', 100, TRUE)
 
 /datum/status_effect/buff/clash/tick()
 	if(!owner.get_active_held_item() || !(owner.mobility_flags & MOBILITY_STAND))
@@ -1169,12 +1175,12 @@
 	owner.apply_status_effect(/datum/status_effect/debuff/clashcd)
 	var/newdur = world.time - dur
 	var/mob/living/carbon/human/H = owner
-	if(newdur > (duration - 0.3 SECONDS))	//Not checking exact duration to account for lag and any other tick / timing inconsistencies.
+	if(newdur > (initial(duration) - 0.2 SECONDS))	//Not checking exact duration to account for lag and any other tick / timing inconsistencies.
 		H.bad_guard(span_warning("I held my focus for too long. It's left me drained."))
-	var/mutable_appearance/appearance = H.overlays_standing[OBJ_LAYER]
-	H.clear_overhead_indicator(appearance)
 	UnregisterSignal(owner, COMSIG_MOB_ITEM_ATTACK)
+	UnregisterSignal(owner, COMSIG_MOB_ITEM_BEING_ATTACKED)
 	UnregisterSignal(owner, COMSIG_MOB_ON_KICK)
+	UnregisterSignal(owner, COMSIG_MOB_KICKED)
 	UnregisterSignal(owner, COMSIG_ITEM_GUN_PROCESS_FIRE)
 	UnregisterSignal(owner, COMSIG_CARBON_SWAPHANDS)
 	UnregisterSignal(owner, COMSIG_MOVABLE_IMPACT_ZONE)
@@ -1184,6 +1190,45 @@
 	name = "Ready to Clash"
 	desc = span_notice("I am on guard, and ready to clash. If I am hit, I will successfully defend. Attacking will make me lose my focus.")
 	icon_state = "clash"
+
+
+/datum/status_effect/buff/guard
+	id = "guard"
+	duration = 20
+	alert_type = /atom/movable/screen/alert/status_effect/buff/clash //!
+
+	var/protected_zone
+
+	mob_effect_icon = 'icons/mob/mob_effects.dmi'
+	mob_effect_icon_state = "eff_guard"
+	mob_effect_layer = MOB_EFFECT_LAYER_GUARD
+
+/datum/status_effect/buff/guard/on_creation(mob/living/new_owner, zone)
+	if(!zone)
+		CRASH("Guard was called with no zone!")
+	protected_zone = zone
+	mob_effect_icon_state += "_[zone]"
+	set_offsets()
+
+	. = ..()
+
+/datum/status_effect/buff/guard/proc/set_offsets()
+	switch(protected_zone)
+		if(BODY_ZONE_L_ARM)
+			mob_effect_offset_x = 9
+			mob_effect_offset_y = 0
+		if(BODY_ZONE_R_ARM)
+			mob_effect_offset_x = -9
+			mob_effect_offset_y = 0
+		if(BODY_ZONE_HEAD)
+			mob_effect_offset_x = 0
+			mob_effect_offset_y = 17
+		if(BODY_ZONE_L_LEG)
+			mob_effect_offset_x = 6
+			mob_effect_offset_y = -9
+		if(BODY_ZONE_R_LEG)
+			mob_effect_offset_x = -6
+			mob_effect_offset_y = -9
 
 #define BLOODRAGE_FILTER "bloodrage"
 

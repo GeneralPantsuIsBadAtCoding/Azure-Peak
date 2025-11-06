@@ -942,18 +942,26 @@ GLOBAL_VAR_INIT(pixel_diff_time, 1)
 				animate(attack, pixel_y = 3 * y_sign * angle_mult, time = 0.2 SECONDS, easing = CIRCULAR_EASING | EASE_IN, flags = ANIMATION_PARALLEL)
 				animate(pixel_y = y_return, time = 0.2 SECONDS, easing = CIRCULAR_EASING | EASE_OUT)
 	else
-		//Oldschool indicators.
-		var/turf/first_step = get_step(src, get_dir(src, A))
-		var/obj/effect/temp_visual/dir_setting/attack_effect/firstatk = new(first_step, get_dir(src, A))
-		firstatk.icon_state = visual_effect_icon
-		firstatk.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-		if(dist > 1)	//2+ tiles, we trace a path to the target.
-			for(var/i = 1, i<dist, i++)
-				var/turf/next_step = get_step(first_step, get_dir(first_step, A))
-				var/obj/effect/temp_visual/dir_setting/attack_effect/atk = new(next_step, get_dir(first_step, A))
-				atk.icon_state = visual_effect_icon
-				atk.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-				first_step = next_step
+		do_attack_animation_simple(A, visual_effect_icon)
+
+	///Oldschool indicators. Used by non-weapon intents or ismple mobs.
+/atom/movable/proc/do_attack_animation_simple(atom/A, visual_effect_icon, wiggle = TRUE)
+	var/newdir = get_dir(src, A)
+	var/turf/first_step = get_step(src, newdir)
+	var/obj/effect/temp_visual/dir_setting/attack_effect/firstatk = new(first_step, newdir)
+	firstatk.icon_state = visual_effect_icon
+	firstatk.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/dist = get_dist(src, A)
+	if(dist > 1)	//2+ tiles, we trace a path to the target.
+		for(var/i = 1, i<dist, i++)
+			newdir = get_dir(first_step, A)
+			var/turf/next_step = get_step(first_step, newdir)
+			var/obj/effect/temp_visual/dir_setting/attack_effect/atk = new(next_step, newdir)
+			atk.icon_state = visual_effect_icon
+			atk.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+			first_step = next_step
+	if(wiggle)
+		wiggle(A)
 
 /obj/effect/temp_visual/dir_setting/attack_effect
 	icon = 'icons/effects/effects.dmi'

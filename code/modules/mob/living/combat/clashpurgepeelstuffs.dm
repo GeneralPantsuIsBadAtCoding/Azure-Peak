@@ -20,11 +20,11 @@
 	if(H.has_status_effect(/datum/status_effect/buff/clash))	//They also have Clash active. It'll trigger the special event.
 		clash(user, IM, IU)
 	else	//Otherwise, we just riposte them.
-		var/sharpnesspenalty = SHARPNESS_ONHIT_DECAY * 5
+		var/sharpnesspenalty = 0.15
 		if(IM.wbalance == WBALANCE_HEAVY || IU.blade_dulling == DULLING_SHAFT_CONJURED)
-			sharpnesspenalty *= 2
+			sharpnesspenalty += 0.05
 		if(IU.max_blade_int)
-			IU.remove_bintegrity(sharpnesspenalty, user)
+			IU.remove_bintegrity((IU.blade_int * sharpnesspenalty), user)
 		else
 			var/integdam = INTEG_PARRY_DECAY_NOSHARP * 5
 			if(IU.blade_dulling == DULLING_SHAFT_CONJURED)

@@ -46,6 +46,9 @@
 /datum/status_effect/incapacitating/immobilized
 	id = "immobilized"
 	alert_type = /atom/movable/screen/alert/status_effect/immobilized
+	mob_effect_icon = 'icons/mob/mob_effects.dmi'
+	mob_effect_icon_state = "eff_immobilized"
+	mob_effect_offset_x = 3
 
 /atom/movable/screen/alert/status_effect/immobilized
 	name = "Immobilized"

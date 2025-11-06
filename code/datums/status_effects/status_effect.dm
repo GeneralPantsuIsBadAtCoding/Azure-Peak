@@ -31,8 +31,9 @@
 	/// Each entry defines a stat affected by the status effect during its duration.
 	var/list/effectedstats = list()
 
+
 	///Icon path for this effect's on-mob effect.
-	var/mob_effect_icon
+	var/mob_effect_icon = 'icons/mob/mob_effects.dmi'
 	var/mob_effect_icon_state
 	///How long the effect is meant to last. Will default to the duration otherwise.
 	var/mob_effect_dur
@@ -40,7 +41,7 @@
 	var/mob_effect_layer = ABOVE_MOB_LAYER
 	var/mob_effect_offset_x
 	var/mob_effect_offset_y
-	///A direct reference to the generated mob effect post-creation. Used for manipulation (or deletion) of the effect expires normally.
+	///A direct reference to the generated mob effect post-creation. Used for manipulation (or deletion) of the effect. Normally expires.
 	var/mutable_appearance/mob_effect
 
 /datum/status_effect/New(list/arguments)
@@ -59,9 +60,7 @@
 		qdel(src)
 		return
 
-	if(mob_effect_icon)
-		if(!mob_effect_icon_state)
-			CRASH("[src] tried to apply a status mob effect without an icon state!")
+	if(mob_effect_icon_state)
 		if(!mob_effect_dur)
 			mob_effect_dur = (duration - 1)	//-1 tick juuust in case something goes wrong between status effect deletion and the callback of the appearance itself.
 		mob_effect = owner.play_overhead_indicator_simple(mob_effect_icon, mob_effect_icon_state, mob_effect_dur, mob_effect_layer, null, mob_effect_offset_y, mob_effect_offset_x)

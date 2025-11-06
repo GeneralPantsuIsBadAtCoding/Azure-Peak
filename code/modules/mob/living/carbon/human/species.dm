@@ -1475,6 +1475,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return FALSE
 	if(user == target)
 		return FALSE
+	SEND_SIGNAL(user, COMSIG_MOB_KICKED, target)
 	if(!HAS_TRAIT(user, TRAIT_GARROTED))	
 		if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
 			to_chat(user, span_notice("I can't move my leg!"))
@@ -1513,7 +1514,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				var/text = "[bodyzone2readablezone(selzone)]..."
 				user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
 
-			user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
+			user.do_attack_animation_simple(target, ATTACK_EFFECT_KICK, TRUE)
 			if(!nodmg)
 				playsound(target, 'sound/combat/hits/kick/stomp.ogg', 100, TRUE, -1)
 
@@ -1524,7 +1525,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	else
 		if(!target.kick_attack_check(user))
 			return 0
-		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
+		user.do_attack_animation_simple(target, ATTACK_EFFECT_KICK, TRUE)
 		playsound(target, 'sound/combat/hits/kick/kick.ogg', 100, TRUE, -1)
 
 		if (target.pulling && target.grab_state < GRAB_AGGRESSIVE)
@@ -1622,10 +1623,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			target.mind.attackedme[user.real_name] = world.time
 		user.stamina_add(15)
 		target.forcesay(GLOB.hit_appends)
-		if(user.has_status_effect(/datum/status_effect/buff/clash))
-			user.bad_guard(span_warning("The kick throws my stance off!"))
-		if(target.has_status_effect(/datum/status_effect/buff/clash))
-			target.bad_guard(span_warning("The kick throws my stance off!"))
 
 /datum/species/proc/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	return

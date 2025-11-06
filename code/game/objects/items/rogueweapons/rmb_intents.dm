@@ -189,7 +189,7 @@
 	bypasses_click_cd = TRUE
 
 /datum/rmb_intent/riposte/special_attack(mob/living/user, atom/target)	//Wish we could breakline these somehow.
-	if(!user.has_status_effect(/datum/status_effect/buff/clash) && !user.has_status_effect(/datum/status_effect/debuff/clashcd))
+	if(!user.has_status_effect(/datum/status_effect/buff/clash) && !user.has_status_effect(/datum/status_effect/debuff/clashcd) && !user.has_status_effect(/datum/status_effect/buff/guard))
 		if(!user.get_active_held_item()) //Nothing in our hand to Guard with.
 			return 
 		if(user.r_grab || user.l_grab || length(user.grabbedby)) //Not usable while grabs are in play.
@@ -202,7 +202,11 @@
 		if(user.magearmor == FALSE && HAS_TRAIT(user, TRAIT_MAGEARMOR))	//The magearmor is ACTIVE, so we can't Guard. (Yes, it's active while FALSE / 0.)
 			to_chat(user, span_warning("I'm already focusing on my mage armor!"))
 			return
-		user.apply_status_effect(/datum/status_effect/buff/clash)
+		var/zone = check_zone(user.zone_selected)
+		if(zone == BODY_ZONE_CHEST)
+			user.apply_status_effect(/datum/status_effect/buff/clash)
+		else
+			user.apply_status_effect(/datum/status_effect/buff/guard, zone)
 
 /datum/rmb_intent/guard
 	name = "guarde"

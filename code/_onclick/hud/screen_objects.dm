@@ -1794,7 +1794,7 @@
 		var/list/candidates = get_hearers_in_LOS(5, src, RECURSIVE_CONTENTS_CLIENT_MOBS)
 		for(var/mob/living/L in candidates)
 			if(L.cmode)
-				cmode_involved
+				cmode_involved = TRUE
 				break
 	else
 		cmode_involved = TRUE
@@ -1818,7 +1818,9 @@
 				hud_used.rmb_intent.update_icon()
 				hud_used.rmb_intent.collapse_intents()
 	
-	var/str = "[src] switches stance to <b>[capitalize(rmb_intent.name)]!</b>"
+	//Cmode: "X switches stance to <b>Stance!</b>"
+	//No cmode: "X switches stance to <i>Stance.</i>"
+	var/str = "[src] switches stance to [cmode_involved ? "<b>" : "<i>"][capitalize(rmb_intent.name)][cmode_involved ? "<b>" : "<i>"][cmode_involved ? "!" : "."]"
 	visible_message(cmode_involved ? span_warning(str) : span_info(str))
 	filtered_balloon_alert(TRAIT_COMBAT_AWARE, "[capitalize(rmb_intent.name)]...", rand(0, 8))
 
