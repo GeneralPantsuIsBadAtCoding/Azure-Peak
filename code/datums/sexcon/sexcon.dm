@@ -214,6 +214,68 @@
 		return FALSE
 	return TRUE
 
+/datum/sex_controller/proc/can_violate_victim(mob/living/carbon/human/victim)
+	if(!victim.mind)
+		return FALSE
+	if(!victim.mind.key)
+		return FALSE
+	if(!user.client.prefs.violated[victim.mind.key])
+		return FALSE
+	if(user.client.prefs.violated[victim.mind.key] + VIOLATED_ALLOWED_TIME < world.time)
+		return FALSE
+	return TRUE
+
+/datum/sex_controller/proc/need_to_be_violated(mob/living/carbon/human/victim)
+	// Dont need to violate self
+	if(user == victim)
+		return FALSE
+	// If user and victim both are not defiant, then no violation needs to happen
+	if(!user.defiant && !victim.defiant)
+		return FALSE
+	// Need to violate AFK clients
+	if(!victim.mind || !victim.mind.key || !victim.client) // Changed to OR statements to remove ZAPE of mobs without minds or keys
+		return TRUE
+	// Need to violate combat mode people - Include user to remove ZAPE
+	if(victim.cmode || user.cmode)
+		return TRUE
+	// Need to violate unconscious people, or those surrendering to remove ZAPE
+	if(victim.stat || victim.surrendering)
+		return TRUE
+	return FALSE
+
+/datum/sex_controller/proc/violate_victim(mob/living/carbon/human/victim)
+	if(!user.client)
+		return
+	if(!victim.mind)
+		return
+	if(!victim.mind.key)
+		return
+	if(user.client.prefs.violated[victim.mind.key] && user.client.prefs.violated[victim.mind.key] + VIOLATED_ALLOWED_TIME >= world.time)
+		return
+	var/pq_warning = pick(list("If I continue down this road, my soul will be burdened.", "I feel a terrible omen watching me...", "The forces of dark feel heavy on my soul."))
+	to_chat(user, span_userdanger(pq_warning))
+	var/alert = alert(user, "Do I really want to do this?", "Violate", "Yes", "No")
+	if(alert != "Yes")
+		return
+	user.visible_message(span_boldwarning("[user] begins to violate [victim]!"))
+	if(!do_after(user, 5 SECONDS, target = victim))
+		return
+	if(!need_to_be_violated(victim))
+		return
+	if(!user.client)
+		return
+	if(!victim.mind)
+		return
+	if(!victim.mind.key)
+		return
+	if(user.client.prefs.violated[victim.mind.key] && user.client.prefs.violated[victim.mind.key] + VIOLATED_ALLOWED_TIME >= world.time)
+		return
+	// ZAPED
+	//to_chat(user, span_boldwarning(pick(list("I feel tainted...", "I feel less human...")))) ZAPE
+	log_combat(user, victim, "Initiated noncon against")
+	//adjust_playerquality(-4, user.ckey, reason = "Initiated noncon on an AFK/resisting person.") ZAPE
+	user.client.prefs.violated[victim.mind.key] = world.time
+
 /datum/sex_controller/proc/adjust_speed(amt)
 	speed = clamp(speed + amt, SEX_SPEED_MIN, SEX_SPEED_MAX)
 

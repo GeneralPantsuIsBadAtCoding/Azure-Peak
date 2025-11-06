@@ -172,6 +172,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/headshot_link
 	var/nsfw_headshot_link //Twilight Axis edit далее TA
+	var/list/violated = list() // ТА
 	var/chatheadshot = TRUE
 	var/ooc_extra
 	var/song_artist
@@ -2415,9 +2416,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				if("be_defiant")
 					defiant = !defiant
 					if(defiant)
-						to_chat(user, span_notice("You will now have resistance from people violating you. Ahelp if you are targeted in spite of this."))
+						to_chat(user, span_notice("You will now have resistance from people violating you, but be punished for trying to violate others." + " " + span_boldwarning("(COMBAT Mode will disable ERP interactions. Bypassing this is a bannable offense, AHELP if necessary.)")))
 					else
-						to_chat(user, span_boldwarning("You fully immerse yourself in the grim experience, waiving your resistance from people violating you."))
+						to_chat(user, span_boldwarning("You fully immerse yourself in the grim experience, waiving your resistance from people violating you, but letting you do the same unto other non-defiants"))
 		
 				if("schizo_voice")
 					toggles ^= SCHIZO_VOICE

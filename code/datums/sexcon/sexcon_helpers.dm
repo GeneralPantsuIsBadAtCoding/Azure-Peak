@@ -52,6 +52,9 @@
 		to_chat(initiator, "<span class='warning'>[src] dosn't wish to be touched. (Their ERP preference under options)</span>")
 		to_chat(src, "<span class='warning'>[initiator] failed to touch you. (Your ERP preference under options)</span>")
 		return
+	if(!user.can_do_sex() || user.sexcon.need_to_be_violated(src)) // Changed to remove ZAPE
+		to_chat(user, "<span class='warning'>I can't do this. This person is defiant!</span>")
+		return
 	user.sexcon.start(src)
 
 /mob/living/proc/can_do_sex()
