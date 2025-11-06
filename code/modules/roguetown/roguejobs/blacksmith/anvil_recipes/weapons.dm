@@ -773,7 +773,7 @@
 	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver)
 	created_item = /obj/item/rogueweapon/sword/silver
 
-/datum/anvil_recipe/weapons/silver/sword
+/datum/anvil_recipe/weapons/silver/rapier
 	name = "Rapier, Silver (+2 Silver)"
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver)
