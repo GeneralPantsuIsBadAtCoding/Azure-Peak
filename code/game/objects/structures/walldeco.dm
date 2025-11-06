@@ -50,8 +50,17 @@
 		if(SSrole_class_handler.bandits_in_round)
 			. += span_bold("I see that bandits are active in the region.")
 			user.playsound_local(user, 'sound/misc/notice (2).ogg', 100, FALSE)
+			if(!HAS_TRAIT(user, TRAIT_ALERT))
+				ADD_TRAIT(user, TRAIT_ALERT, TRAIT_GENERIC)
+				to_chat(user, span_notice("These criminal faces sunk into your memory. You'll be able to recognize them. At least for a period of time."))
+				addtimer(CALLBACK(GLOBAL_PROC, /proc/remove_alert_trait, user), 30 MINUTES)
 		else
 			. += span_bold("There doesn't seem to be any reports of bandit activity.")
+
+/proc/remove_alert_trait(mob/user)
+	if(user && HAS_TRAIT(user, TRAIT_ALERT))
+		REMOVE_TRAIT(user, TRAIT_ALERT, TRAIT_GENERIC)
+		to_chat(user, span_notice("Memory fades. It's becomes harder to remember the faces of those criminals."))
 
 /obj/structure/fluff/walldeco/innsign
 	name = "sign"

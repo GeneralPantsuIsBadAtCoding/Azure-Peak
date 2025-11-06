@@ -58,6 +58,7 @@
 
 ///Shows all active bounties to the user.
 /obj/structure/roguemachine/bounty/proc/consult_bounties(mob/living/carbon/human/user)
+	var/mob/living/carbon/human/H = user
 	var/bounty_found = FALSE
 	var/consult_menu
 	consult_menu += "<center>BOUNTIES<BR>"
@@ -70,8 +71,18 @@
 		var/datum/browser/popup = new(user, "BOUNTIES", "", 500, 300)
 		popup.set_content(consult_menu)
 		popup.open()
+		if(HAS_TRAIT(H, TRAIT_JUSTICARSIGHT) && !HAS_TRAIT(H, TRAIT_RALERT))
+			user.playsound_local(user, 'sound/misc/notice (2).ogg', 100, FALSE)
+			ADD_TRAIT(H, TRAIT_RALERT, TRAIT_GENERIC)
+			addtimer(CALLBACK(GLOBAL_PROC, /proc/remove_ralert_trait, user), 30 MINUTES)
+			to_chat(H, span_notice("Descriptors of the wanted sink into my memory..."))
 	else
 		say("No bounties are currently active.")
+
+/proc/remove_ralert_trait(mob/user)
+	if(user && HAS_TRAIT(user, TRAIT_RALERT))
+		REMOVE_TRAIT(user, TRAIT_RALERT, TRAIT_GENERIC)
+		to_chat(user, span_notice("Memory fades — I no longer remember all the bounties."))
 
 /obj/structure/roguemachine/bounty/proc/remove_bounty(mob/living/carbon/human/user)
 	var/list/bounty_list = list()

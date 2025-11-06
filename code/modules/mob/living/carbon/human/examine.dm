@@ -152,13 +152,14 @@
 				if (istype(H.patron, /datum/patron/old_god))
 					. += span_userdanger("HEATHEN! SHAME!")
 */
-		if(name in GLOB.outlawed_players)
-			. += span_userdanger("OUTLAW!")
+		if(HAS_TRAIT(user, TRAIT_ALERT))
+			if(name in GLOB.outlawed_players)
+				. += span_userdanger("OUTLAW!")
 
-		if(HAS_TRAIT(user, TRAIT_JUSTICARSIGHT) && !HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))
+		if(!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS) && HAS_TRAIT(user, TRAIT_RALERT))
 			for(var/datum/bounty/b in GLOB.head_bounties) //I hate this.
 				if(b.target == real_name)
-					. += span_syndradio("[m3] a bounty on [m2] head of [b.amount] mammon for [b.reason], issued by [b.employer].")
+					. += span_syndradio("[m3] a bounty on [m2] head of [b.amount] mammon, issued by [b.employer].")
 					break
 
 		if(name in GLOB.court_agents)
@@ -1017,7 +1018,7 @@
 		if(mind.special_role == "Bandit")
 			if(HAS_TRAIT(examiner, TRAIT_COMMIE))
 				villain_text = span_notice("Free man!")
-			if(HAS_TRAIT(src,TRAIT_KNOWNCRIMINAL))
+			if(HAS_TRAIT(src,TRAIT_KNOWNCRIMINAL) && HAS_TRAIT(examiner, TRAIT_ALERT))
 				villain_text = span_userdanger("BANDIT!")
 		if(mind.special_role == "Vampire Lord")
 			var/datum/antagonist/vampire/VD = mind.has_antag_datum(/datum/antagonist/vampire)
