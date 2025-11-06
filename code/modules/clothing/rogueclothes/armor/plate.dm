@@ -11,6 +11,9 @@
 	nodismemsleeves = TRUE
 	max_integrity = ARMOR_INT_CHEST_PLATE_STEEL
 	allowed_sex = list(MALE, FEMALE)
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
+	pickup_sound = 'sound/foley/equip/equip_armor_plate.ogg'
+	equip_sound = 'sound/foley/equip/equip_armor_plate.ogg'
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	equip_delay_self = 4 SECONDS
@@ -350,7 +353,7 @@
 	name = "full-plate corset"
 	desc = "Breastplate, pauldrons, couters, cuisses... did you forget something?"
 	icon_state = "platekini"
-	allowed_sex = list(FEMALE)
+	allowed_sex = list(MALE, FEMALE)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	equip_delay_self = 8 SECONDS
 	unequip_delay_self = 8 SECONDS
@@ -453,7 +456,7 @@
 	item_state = "halfplatekini"
 	armor = ARMOR_CUIRASS // Identical to steel cuirass, but covering the groin instead of the vitals.
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_STEEL	// Identical to steel cuirasss. Same steel price.
-	allowed_sex = list(FEMALE)
+	allowed_sex = list(MALE, FEMALE)
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 

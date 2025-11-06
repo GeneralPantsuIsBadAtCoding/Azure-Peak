@@ -148,6 +148,7 @@
 	desc = "Thick, padded gloves made for the harshest of climates, and wildest of beasts encountered in the untamed lands."
 	icon_state = "atgervi_raider_gloves"
 	item_state = "atgervi_raider_gloves"
+	color = "#ffffff"
 
 /obj/item/clothing/gloves/roguetown/plate/atgervi
 	name = "beast claws"

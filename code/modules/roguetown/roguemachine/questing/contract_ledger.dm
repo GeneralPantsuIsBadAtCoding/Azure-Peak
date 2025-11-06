@@ -1,5 +1,61 @@
-// File for all contracts & quests related logic on the noticeboard
-/obj/structure/roguemachine/noticeboard/proc/consult_contracts(mob/user)
+/obj/structure/roguemachine/contractledger
+	name = "Grand Contract Ledger"
+	desc = "A massive ledger book with gilded edges, sitting atop a pedestal with the Mercenary's Guild banner. Its myriad enchanted pages are filled with various contracts and bounties issued by Mercenary's Guild, with arcane scripts that appears and fades as contracts are issued and completed."
+	icon = 'code/modules/roguetown/roguemachine/questing/questing.dmi'
+	icon_state = "contractledger"
+	density = TRUE
+	anchored = TRUE
+	max_integrity = 0
+	layer = ABOVE_MOB_LAYER
+	layer = GAME_PLANE_UPPER
+	var/input_point
+
+/obj/structure/roguemachine/contractledger/Initialize()
+	. = ..()
+	input_point = locate(x, y - 1, z)
+	var/obj/effect/decal/marker_export/marker = new(get_turf(input_point))
+	marker.desc = "Place completed contract scrolls here to turn them in."
+	marker.layer = ABOVE_OBJ_LAYER
+
+/obj/structure/roguemachine/contractledger/attackby(obj/item/P, mob/living/carbon/human/user, params)
+	. = .. ()
+	if(istype(P, /obj/item/paper/scroll/quest))
+		turn_in_contract(user, P)
+		return
+	return
+
+/obj/structure/roguemachine/contractledger/Topic(href, href_list)
+	. = ..()
+	if(href_list["consultcontracts"])
+		consult_contracts(usr)
+		return attack_hand(usr) 
+	if(href_list["turnincontract"])
+		turn_in_contract(usr)
+		return attack_hand(usr) 
+	if(href_list["abandoncontract"])
+		abandon_contract(usr)
+		return attack_hand(usr) 
+	if(href_list["printcontracts"])
+		print_contracts(usr)
+		return attack_hand(usr)
+	return attack_hand(usr)
+
+/obj/structure/roguemachine/contractledger/attack_hand(mob/living/carbon/human/user)
+	if(!ishuman(user))
+		return
+	// Inshallah I'll make this TGUI one day.
+	var/contents = "<center><h2>Grand Contract Ledger</h2>"
+	contents += "<a href='?src=[REF(src)];consultcontracts=1'>Consult Contracts</a><br>"
+	contents += "<a href='?src=[REF(src)];turnincontract=1'>Turn in Contract</a><br>"
+	contents += "<a href='?src=[REF(src)];abandoncontract=1'>Abandon Contract</a><br>"
+	if(user.job == "Steward" || user.job == "Merchant")
+		contents += "<a href='?src=[REF(src)];printcontracts=1'>Print Issued Contracts</a><br>"
+	contents += "</center>"
+	var/datum/browser/popup = new(user, "Grand Contract Ledger", "", 500, 300)
+	popup.set_content(contents)
+	popup.open()
+
+/obj/structure/roguemachine/contractledger/proc/consult_contracts(mob/user)
 	if(!(user in SStreasury.bank_accounts))
 		say("You have no bank account.")
 		return
@@ -106,7 +162,7 @@
 	SStreasury.treasury_value += deposit
 	SStreasury.log_entries += "+[deposit] to treasury (quest deposit)"
 
-/obj/structure/roguemachine/noticeboard/proc/find_quest_landmark(difficulty, type)
+/obj/structure/roguemachine/contractledger/proc/find_quest_landmark(difficulty, type)
 	// First try to find landmarks that match both difficulty AND type
 	var/list/correctest_landmarks = list()
 	GLOB.quest_landmarks_list = shuffle(GLOB.quest_landmarks_list)
@@ -152,7 +208,7 @@
 
 	return null
 
-/obj/structure/roguemachine/noticeboard/proc/turn_in_contract(mob/user, obj/item/paper/scroll/quest/scroll_in_hand)
+/obj/structure/roguemachine/contractledger/proc/turn_in_contract(mob/user, obj/item/paper/scroll/quest/scroll_in_hand)
 	var/obj/item/paper/scroll/quest/target_scroll = null
 
 	if(scroll_in_hand)
@@ -165,7 +221,7 @@
 				turn_in_scroll(user, target_scroll)
 
 
-/obj/structure/roguemachine/noticeboard/proc/turn_in_scroll(mob/user, obj/item/paper/scroll/quest/scroll)
+/obj/structure/roguemachine/contractledger/proc/turn_in_scroll(mob/user, obj/item/paper/scroll/quest/scroll)
 	var/reward = 0
 	var/original_reward = 0
 	var/total_deposit_return = 0
@@ -198,7 +254,7 @@
 
 	cash_in(round(reward), original_reward)
 
-/obj/structure/roguemachine/noticeboard/proc/cash_in(reward, original_reward)
+/obj/structure/roguemachine/contractledger/proc/cash_in(reward, original_reward)
 	var/list/coin_types = list(
 		/obj/item/roguecoin/gold = FLOOR(reward / 10, 1),
 		/obj/item/roguecoin/silver = FLOOR(reward % 10 / 5, 1),
@@ -218,7 +274,7 @@
 			"Your handler assistance-increased reward of [reward] mammons has been dispensed! The difference is [reward - original_reward] mammons." : \
 			"Your reward of [reward] mammons has been dispensed.")
 
-/obj/structure/roguemachine/noticeboard/proc/abandon_contract(mob/user)
+/obj/structure/roguemachine/contractledger/proc/abandon_contract(mob/user)
 	var/obj/item/paper/scroll/quest/abandoned_scroll = locate() in input_point
 	if(!abandoned_scroll)
 		to_chat(user, span_warning("No contract scroll found in the input area!"))
@@ -275,7 +331,7 @@
 	qdel(quest)
 	qdel(abandoned_scroll)
 
-/obj/structure/roguemachine/noticeboard/proc/print_contracts(mob/user)
+/obj/structure/roguemachine/contractledger/proc/print_contracts(mob/user)
 	var/list/active_quests = list()
 	for(var/obj/item/paper/scroll/quest/quest_scroll in world)
 		if(quest_scroll.assigned_quest && !quest_scroll.assigned_quest.complete)

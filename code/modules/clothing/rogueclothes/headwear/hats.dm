@@ -142,6 +142,12 @@
 	color = "#1b1717ff"
 	detail_color = "#b68e37ff"
 
+/obj/item/clothing/head/roguetown/chaperon/noble/hand
+	name = "hand's chaperon"
+	desc = "A noble's chaperon made for the right hand man. \"Heavy is the head that bears the crown.\""
+	color = CLOTHING_AZURE
+	detail_color = CLOTHING_WHITE
+
 /obj/item/clothing/head/roguetown/chaperon/councillor
 	name = "chaperon hat"
 	desc = "A fancy hat worn by nobles."
@@ -162,12 +168,11 @@
 
 /obj/item/clothing/head/roguetown/armingcap
 	name = "cap"
-	desc = "A light cap made of leather, usually worn under a helmet."
+	desc = "A light cap made of cloth, usually worn under a helmet."
 	icon_state = "armingcap"
 	item_state = "armingcap"
 	flags_inv = HIDEEARS
 	sewrepair = TRUE
-	salvage_result = /obj/item/natural/hide/cured
 	//dropshrink = 0.75
 
 /obj/item/clothing/head/roguetown/knitcap

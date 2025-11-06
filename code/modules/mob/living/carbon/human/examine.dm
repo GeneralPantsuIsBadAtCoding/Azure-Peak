@@ -248,6 +248,8 @@
 		if(item)
 			. += span_notice("You get the feeling [m2] most valuable possession is \a [item].")
 
+	var/obscured = check_obscured_slots()
+	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 	if(HAS_TRAIT(user, TRAIT_ROYALSERVANT))
 		var/datum/job/our_job = SSjob.name_occupations[job]
 		if(length(culinary_preferences) && is_type_in_list(our_job, list(/datum/job/roguetown/lord, /datum/job/roguetown/lady, /datum/job/roguetown/exlady, /datum/job/roguetown/prince)))
@@ -293,9 +295,6 @@
 						. += shit
 		if(user.mind?.has_antag_datum(/datum/antagonist/vampire) || user.mind?.has_antag_datum(/datum/antagonist/vampire))
 			. += span_userdanger("<a href='?src=[REF(src)];task=bloodpoolinfo;'>Vitae: [(mind && !clan) ? (bloodpool * CLIENT_VITAE_MULTIPLIER) : bloodpool]; Blood: [blood_volume]</a>")
-
-	var/list/obscured = check_obscured_slots()
-	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
 	if(wear_shirt && !(SLOT_SHIRT in obscured))
 		if(!wear_armor)
@@ -877,12 +876,6 @@
 					var/skilldiff = user.get_skill_level(user_skill) - get_skill_level(src_skill)
 					. += "<font size = 3><i>[skilldiff_report(skilldiff)] in my wielded skill than they are in theirs.</i></font>"
 
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
-			. += "<a href='?src=[REF(src)];task=assess;'>Assess</a>"
-
 	if((!obscure_name || client?.prefs.masked_examine) && (flavortext || headshot_link || ooc_notes))
 		. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
 
@@ -903,9 +896,33 @@
 		lines = build_cool_description_unknown(get_mob_descriptors_unknown(obscure_name, user), src)
 	else
 		lines = build_cool_description(get_mob_descriptors(obscure_name, user), src)
+	
+	var/app_str
+	if(!(user.client?.prefs?.full_examine))
+		app_str = "<details><summary>[span_info("Details")]</summary>"
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
+			app_str += span_info("<a href='?src=[REF(src)];task=assess;'>Assess</a><br>")
 
 	for(var/line in lines)
-		. += span_info(line)
+		var/index = 1
+		app_str += span_info(line)
+		index++
+		if(index != length(lines))
+			app_str += "<br>"
+
+	if(!(user.client?.prefs?.full_examine))
+		if(length(lines))
+			app_str += "</details>"
+
+	. += app_str
+
+	// Characters with the hunted flaw will freak out if they can't see someone's face.
+	if(!appears_dead)
+		if(skipface && user.has_flaw(/datum/charflaw/hunted) && user != src)
+			user.add_stress(/datum/stressevent/hunted)
 
 	var/trait_exam = common_trait_examine()
 	if(!isnull(trait_exam))

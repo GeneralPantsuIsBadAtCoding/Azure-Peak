@@ -113,6 +113,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Papakha"
 	path = /obj/item/clothing/head/roguetown/papakha
 
+/datum/loadout_item/rosa_crown
+	name = "Rosa Crown"
+	path = /obj/item/flowercrown/rosa
+
+/datum/loadout_item/salvia_crown
+	name = "Salvia Crown"
+	path = /obj/item/flowercrown/salvia
+
 //CLOAKS
 /datum/loadout_item/tabard
 	name = "Tabard"

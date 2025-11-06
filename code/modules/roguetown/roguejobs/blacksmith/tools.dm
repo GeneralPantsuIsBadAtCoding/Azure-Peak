@@ -321,6 +321,7 @@
 /obj/item/rogueweapon/tongs/proc/make_unhot(input)
 	if(hott == input)
 		hott = FALSE
+		update_icon()
 
 /obj/item/rogueweapon/tongs/attack_self(mob/user)
 	if(hingot)

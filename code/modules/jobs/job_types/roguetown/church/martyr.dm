@@ -496,7 +496,7 @@
 	)
 
 /datum/outfit/job/roguetown/martyr
-	job_bitflag = BITFLAG_CHURCH
+	job_bitflag = BITFLAG_HOLY_WARRIOR
 
 /datum/job/roguetown/martyr/after_spawn(mob/living/H, mob/M, latejoin = TRUE)
 	..()

@@ -147,7 +147,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 					if("Vulpkian")
 						testing("Your character is now a Venardine.")
 						species_name = "Venardine"
-		_load_species(S, species_name)	
+		_load_species(S, species_name)
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -190,8 +190,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["musicvol"]			>> musicvol
 	S["anonymize"]			>> anonymize
 	S["masked_examine"]		>> masked_examine
+	S["full_examine"]		>> full_examine
 	S["mute_animal_emotes"]	>> mute_animal_emotes
 	S["autoconsume"]		>> autoconsume
+	S["no_examine_blocks"]	>> no_examine_blocks
 	S["crt"]				>> crt
 	S["grain"]				>> grain
 	S["sexable"]			>> sexable
@@ -267,7 +269,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 	key_bindings 	= sanitize_islist(key_bindings, list())
-	
+
 	//ROGUETOWN
 	parallax = PARALLAX_INSANE
 
@@ -305,8 +307,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["musicvol"], musicvol)
 	WRITE_FILE(S["anonymize"], anonymize)
 	WRITE_FILE(S["masked_examine"], masked_examine)
+	WRITE_FILE(S["full_examine"], full_examine)
 	WRITE_FILE(S["mute_animal_emotes"], mute_animal_emotes)
 	WRITE_FILE(S["autoconsume"], autoconsume)
+	WRITE_FILE(S["no_examine_blocks"], no_examine_blocks)
 	WRITE_FILE(S["crt"], crt)
 	WRITE_FILE(S["sexable"], sexable)
 	WRITE_FILE(S["shake"], shake)
@@ -439,6 +443,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (loadout_type3)
 		loadout3 = new loadout_type3()
 
+/datum/preferences/proc/_load_loadout_colours(S)
+	S["loadout_1_hex"] >> loadout_1_hex
+	S["loadout_2_hex"] >> loadout_2_hex
+	S["loadout_3_hex"] >> loadout_3_hex
+
 /datum/preferences/proc/_load_height(S)
 	var/preview_height
 	S["body_height"] >> preview_height
@@ -532,6 +541,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	_load_loadout(S)
 	_load_loadout2(S)
 	_load_loadout3(S)
+	_load_loadout_colours(S)
 
 	_load_combat_music(S)
 
@@ -771,7 +781,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["nsfwflavortext"] , html_decode(nsfwflavortext))
 	WRITE_FILE(S["erpprefs"] , html_decode(erpprefs))
 	WRITE_FILE(S["img_gallery"] , img_gallery)
-	
+
 	if(loadout)
 		WRITE_FILE(S["loadout"] , loadout.type)
 	else
@@ -794,6 +804,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["familiar_ooc_notes"] , familiar_prefs.familiar_ooc_notes)
 	WRITE_FILE(S["familiar_ooc_extra"] , familiar_prefs.familiar_ooc_extra)
 	WRITE_FILE(S["familiar_ooc_extra_link"] , familiar_prefs.familiar_ooc_extra_link)
+	
+	WRITE_FILE(S["loadout_1_hex"], loadout_1_hex)
+	WRITE_FILE(S["loadout_2_hex"], loadout_2_hex)
+	WRITE_FILE(S["loadout_3_hex"], loadout_3_hex)
 
 	return TRUE
 
