@@ -130,7 +130,8 @@
 		next_blaststrong = world.time + 300
 		return .
 	if(target && next_cast < world.time) //fires a wave of a random projectile after blinking
-		if (QDELETED(src)) return // Проверка перед blast
+		if (QDELETED(src)) 
+			return // Проверка перед blast
 		blast()
 		next_cast = world.time + 100
 		return .
