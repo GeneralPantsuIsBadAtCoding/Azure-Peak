@@ -691,7 +691,6 @@
 #include "code\datums\gods\faiths\divine_pantheon.dm"
 #include "code\datums\gods\faiths\inhumen_pantheon.dm"
 #include "code\datums\gods\faiths\old_god.dm"
-#include "code\datums\gods\patrons\patrons_blessings.dm"
 #include "code\datums\gods\patrons\atheism.dm"
 #include "code\datums\gods\patrons\old_god.dm"
 #include "code\datums\gods\patrons\divine\_divine.dm"
