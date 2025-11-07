@@ -28,7 +28,7 @@
 /datum/outfit/job/roguetown/puritan
 	name = "Inquisitor"
 	jobtype = /datum/job/roguetown/puritan
-	job_bitflag = BITFLAG_CHURCH	//Counts as church.
+	job_bitflag = BITFLAG_HOLY_WARRIOR	//Counts as church.
 	allowed_patrons = list(/datum/patron/old_god)
 
 //// The Inquisitor. Jack of all trades, master of none. Respectable assortment of skills, stats, and equipment; good at both subterfuge and combat. Functions very well on their own, and even better with a full sect.
@@ -255,7 +255,7 @@
 
 /mob/living/carbon/human/proc/faith_test()
 	set name = "Test Faith"
-	set category = "Inquisition"
+	set category = "Interrogation"
 	var/obj/item/grabbing/I = get_active_held_item()
 	var/mob/living/carbon/human/H
 	var/obj/item/S = get_inactive_held_item()
@@ -321,7 +321,7 @@
 
 /mob/living/carbon/human/proc/torture_victim()
 	set name = "Reveal Allegiance"
-	set category = "Inquisition"
+	set category = "Interrogation"
 	var/obj/item/grabbing/I = get_active_held_item()
 	var/mob/living/carbon/human/H
 	var/obj/item/S = get_inactive_held_item()

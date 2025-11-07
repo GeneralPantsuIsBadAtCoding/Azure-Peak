@@ -143,7 +143,7 @@
 
 /datum/coven_power/quietus/scorpions_touch
 	name = "Scorpion's Touch"
-	desc = "Create a powerful venom to apply to your enemies."
+	desc = "Create a powerful substance to set your enemies on fire."
 
 	level = 2
 	research_cost = 1
@@ -177,7 +177,7 @@
 //BAAL'S CARESS
 /datum/coven_power/quietus/baals_caress
 	name = "Baal's Caress"
-	desc = "Transmute your vitae into a toxin that destroys all flesh it touches."
+	desc = "Transmute your vitae into a toxin that destroys all flesh it touches. Must be used on a SHARP weapon."
 
 	level = 3
 	research_cost = 2
@@ -205,7 +205,7 @@
 
 /datum/coven_power/quietus/baals_caress/activate(obj/item/rogueweapon/target)
 	. = ..()
-	target.AddElement(/datum/element/one_time_poison, list(/datum/reagent/strongpoison = 2))
+	target.AddElement(/datum/element/one_time_poison, list(/datum/reagent/bloodacid = 2))
 
 /datum/coven_power/quietus/taste_of_death
 	name = "Taste of Death"

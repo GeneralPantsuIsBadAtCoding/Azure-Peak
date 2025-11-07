@@ -38,13 +38,14 @@
 	They typically trace their beginnings to how their progenator died before being raised."
 */
 	skin_tone_wording = "Origin City-State"
+	max_age = 850
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,OLDGREY)
 	allowed_taur_types = list(
 		/obj/item/bodypart/taur/spider,
 	)
 	default_features = MANDATORY_FEATURE_LIST
-	use_skintones = 1
+	use_skintones = TRUE
 	disliked_food = NONE
 	liked_food = NONE
 	possible_ages = ALL_AGES_LIST
@@ -142,7 +143,8 @@
 		"Yuethindrynn" = SKIN_COLOR_YUETHINDRYNN,
 		"Koredynn" = SKIN_COLOR_KOREDYNN,
 		"Aiseedrynn" = SKIN_COLOR_AISEEDRYNN,
-		"Grenduskra" = SKIN_COLOR_GRENDUSKRA
+		"Grenduskra" = SKIN_COLOR_GRENDUSKRA,
+		"Hun'sek" = SKIN_COLOR_HUNSEK
 	)
 
 /datum/species/elf/dark/get_hairc_list()

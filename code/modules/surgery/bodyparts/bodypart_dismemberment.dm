@@ -30,7 +30,17 @@
 		if(zone_precise != BODY_ZONE_PRECISE_NECK)
 			return FALSE
 		if(!HAS_TRAIT(C, TRAIT_CRITICAL_WEAKNESS) && !HAS_TRAIT(C, TRAIT_EASYDISMEMBER))	//People with these traits can be decapped standing, or buckled, or however.
-			if(!isnull(C.mind) && (C.mobility_flags & MOBILITY_STAND) && !C.buckled) //Only allows upright decapitations if it's not a player. Unless they're buckled.
+			var/has_mind = TRUE  // DEBUG: Temporarily forced to TRUE for testing
+			var/not_buckled = !C.buckled
+
+			// Check if currently standing OR within grace period after being knocked down
+			var/can_stand = (C.mobility_flags & MOBILITY_STAND)
+			if(!can_stand && C.mob_timers && C.mob_timers["last_standing"])
+				// Within 2 seconds of being knocked down? Still count as standing
+				if(world.time < C.mob_timers["last_standing"] + STANDING_DECAP_GRACE_PERIOD)
+					can_stand = TRUE
+
+			if(has_mind && can_stand && not_buckled) //Only allows upright decapitations if it's not a player. Unless they're buckled.
 				return FALSE
 
 	if(body_zone != BODY_ZONE_HEAD)
@@ -47,6 +57,10 @@
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_DISMEMBER, src) & COMPONENT_CANCEL_DISMEMBER)
 		return FALSE //signal handled the dropping
+	
+	if(C.try_resist_critical())
+		C.visible_message(span_danger("Critical resistance! [C]'s [src.name] hangs on by a thread!</span>"))
+		return FALSE
 
 	var/obj/item/bodypart/affecting = C.get_bodypart(BODY_ZONE_CHEST)
 	if(affecting && dismember_wound)
@@ -60,7 +74,6 @@
 		C.emote("painscream")
 	if(!(NOBLOOD in C.dna?.species?.species_traits))
 		add_mob_blood(C)
-	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	C.add_stress(/datum/stressevent/dismembered)
 	var/stress2give = /datum/stressevent/viewdismember
 	if(C.buckled)
@@ -178,6 +191,9 @@
 	if(held_index)
 		was_owner.dropItemToGround(owner.get_item_for_held_index(held_index), force = TRUE)
 		was_owner.hand_bodyparts[held_index] = null
+
+	if(organ_slowdown)
+		was_owner.remove_movespeed_modifier("[src.type]_slow", update = TRUE)
 	was_owner.bodyparts -= src
 	owner = null
 
@@ -397,6 +413,8 @@
 
 	update_bodypart_damage_state()
 
+	if(organ_slowdown)
+		C.add_movespeed_modifier("[src.type]_slow", update=TRUE, priority=100, flags=NONE, override=FALSE, multiplicative_slowdown=organ_slowdown, movetypes=GROUND, blacklisted_movetypes=NONE, conflict=FALSE)
 	C.updatehealth()
 	C.update_body()
 	C.update_hair()

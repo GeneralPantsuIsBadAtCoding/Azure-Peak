@@ -260,7 +260,9 @@
 		pintle.functional = TRUE
 		had_disfunctional_pintle = TRUE
 
-	owner?.sexcon?.adjust_charge(SEX_MAX_CHARGE)
+	var/datum/component/arousal/arousal_comp = owner?.GetComponent(/datum/component/arousal)
+	if(arousal_comp)
+		arousal_comp.set_charge(SEX_MAX_CHARGE)  // Fully restore charge
 
 /datum/status_effect/buff/fermented_crab/on_remove()
 	. = ..()
@@ -464,9 +466,15 @@
 	examine_text = "SUBJECTPRONOUN is bathed in a restorative aura!"
 	var/healing_on_tick = 1
 	var/outline_colour = "#c42424"
+	var/tech_healing_modifier = 1
 
-/datum/status_effect/buff/healing/on_creation(mob/living/new_owner, new_healing_on_tick)
+/datum/status_effect/buff/healing/on_creation(mob/living/new_owner, new_healing_on_tick, is_inhumen = FALSE)
 	healing_on_tick = new_healing_on_tick
+	tech_healing_modifier = SSchimeric_tech.get_healing_multiplier()
+	if(is_inhumen)
+		// The penalty/benefit of healing tech is halved for inhumen followers
+		tech_healing_modifier = 1 + ((tech_healing_modifier - 1) * 0.5)
+	healing_on_tick *= tech_healing_modifier
 	return ..()
 
 /datum/status_effect/buff/healing/on_apply()
@@ -493,6 +501,17 @@
 		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -healing_on_tick)
 		owner.adjustCloneLoss(-healing_on_tick, 0)
 // Lesser miracle effect end
+
+/atom/movable/screen/alert/status_effect/buff/healing/campfire
+	name = "Warming Respite"
+	desc = "The warmth of a fire soothes my ails."
+	icon_state = "buff"
+
+/datum/status_effect/buff/healing/campfire
+	id = "healing_campfire"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/healing/campfire
+	examine_text = null
+	duration = 10 SECONDS
 
 #define BLOODHEAL_DUR_SCALE_PER_LEVEL 3 SECONDS
 #define BLOODHEAL_RESTORE_DEFAULT 5

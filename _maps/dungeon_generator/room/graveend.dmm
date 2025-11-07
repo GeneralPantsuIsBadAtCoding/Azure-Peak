@@ -134,7 +134,7 @@
 /mob/living/simple_animal/hostile/rogue/haunt{
 	name = "Bonetaker";
 	STACON = 15;
-	STAEND = 15;
+	STAWIL = 15;
 	STAINT = 15;
 	STALUC = 15;
 	STAPER = 15;

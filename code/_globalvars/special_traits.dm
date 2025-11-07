@@ -49,6 +49,16 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 	var/datum/job/assigned_job = SSjob.GetJob(character.mind?.assigned_role)
 	if(assigned_job)
 		assigned_job.clamp_stats(character)
+	check_trait_incompatibilities(character)
+
+/// Check for incompatible traits and remove one of them
+/proc/check_trait_incompatibilities(mob/living/carbon/human/H)
+	// Easy Dismemberment & Critical Resistance get both cancelled out
+	if(HAS_TRAIT(H, TRAIT_EASYDISMEMBER) && HAS_TRAIT(H, TRAIT_CRITICAL_RESISTANCE))
+		REMOVE_TRAIT(H, TRAIT_EASYDISMEMBER, null) // Doesn't care for source, they ARE getting canceled
+		REMOVE_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, null)
+		to_chat(H, span_warning("My limbs are too frail and my body too tough... the contradiction leaves me unable to resist critical wounds."))
+	return TRUE
 
 /proc/apply_prefs_virtue(mob/living/carbon/human/character, client/player)
 	if (!player)

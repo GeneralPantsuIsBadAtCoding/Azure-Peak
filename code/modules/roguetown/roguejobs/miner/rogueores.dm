@@ -159,7 +159,7 @@
 		QDEL_NULL(currecipe)
 	if(istype(loc, /obj/machinery/anvil))
 		var/obj/machinery/anvil/A = loc
-		A.hingot = null
+		A.current_workpiece = null
 		A.update_icon()
 	..()
 

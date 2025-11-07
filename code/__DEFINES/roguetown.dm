@@ -118,6 +118,7 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_TOWNER 		"CAT_TOWNER"  		// Villager class - Villagers can use it
 #define CTAG_ANTAG 			"CAT_ANTAG"  		// Antag class - results in an antag
 #define CTAG_BANDIT			"CAT_BANDIT"		// Bandit class - Tied to the bandit antag really
+#define CTAG_ASSASSIN		"CAT_ASSASSIN"		// Assassin classes - Tied to the assassin antag for specialization
 #define CTAG_CHALLENGE 		"CAT_CHALLENGE"  	// Challenge class - Meant to be free for everyone
 #define CTAG_VAGABOND		"CAT_VAGABOND"		// Vagabond class - start with nothing and work your way up
 #define CTAG_INQUISITION	"CAT_INQUISITION"	// For Orthodoxist subclasses
@@ -174,6 +175,7 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_SHOPHAND		"CAT_SHOPHAND"
 #define CTAG_ARCHIVIST		"CAT_ARCHIVIST"
 #define CTAG_TOWNCRIER		"CAT_TOWNCRIER"
+#define CTAG_KEEPER			"CAT_KEEPER"
 #define CTAG_TAILOR			"CAT_TAILOR"
 #define CTAG_SOILBRIDE		"CAT_SOILBRIDE"
 #define CTAG_INNKEEPER		"CAT_INNKEEPER"

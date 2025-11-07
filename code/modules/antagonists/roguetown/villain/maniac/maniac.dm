@@ -31,7 +31,7 @@
 		TRAIT_STABLEHEART,
 		TRAIT_STABLELIVER,
 		TRAIT_ANTIMAGIC,
-		TRAIT_SCHIZO_AMBIENCE,
+		TRAIT_PSYCHOSIS,
 		TRAIT_BLOODLOSS_IMMUNE,
 	)
 	/// Traits that only get applied in the final sequence

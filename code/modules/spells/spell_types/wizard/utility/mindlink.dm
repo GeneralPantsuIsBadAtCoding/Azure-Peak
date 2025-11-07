@@ -6,7 +6,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	cost = 3
 	xp_gain = TRUE
-	recharge_time = 5 MINUTES
+	recharge_time = 3 MINUTES
 	spell_tier = 3
 	invocations = list("Mens Nexu")
 	invocation_type = "whisper"
@@ -40,6 +40,8 @@
 
 	if(user.client)
 		possible_targets = list(user.real_name) + possible_targets // Oohhhhhh this looks bad. But this is supposed to append ourselves at the start of the ordered list.
+
+	user.emote("me", 1, "'s eyes briefly glow with an otherworldly light.", TRUE, custom_me = TRUE)
 
 	var/first_target_name = input(user, "Choose the first person to link", "Mindlink") as null|anything in possible_targets
 

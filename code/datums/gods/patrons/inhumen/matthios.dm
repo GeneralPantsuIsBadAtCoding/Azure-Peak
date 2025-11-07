@@ -55,8 +55,10 @@
     message_out,
     message_self,
     conditional_buff,
-    situational_bonus
+    situational_bonus,
+	is_inhumen
 )
+	*is_inhumen = TRUE
 	*message_out = span_info("A wreath of... strange light passes over [target]?")
 	*message_self = span_notice("I'm bathed in a... strange holy light?")
 

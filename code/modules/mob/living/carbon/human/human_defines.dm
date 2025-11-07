@@ -155,6 +155,7 @@
 	var/list/curses = list()
 	COOLDOWN_DECLARE(priest_announcement)
 	COOLDOWN_DECLARE(guildmaster_announcement) //This is not for priest but if you are looking for GUILDMASTER announcements it's here, more so convinence than anything.
+	COOLDOWN_DECLARE(crier_announcement)
 	COOLDOWN_DECLARE(priest_sermon)
 	COOLDOWN_DECLARE(priest_apostasy)
 	COOLDOWN_DECLARE(priest_excommunicate)
@@ -169,5 +170,10 @@
 
 	var/mob/living/carbon/human/hostagetaker //Stores the person that took us hostage in a var, allows us to force them to attack the mob and such
 	var/mob/living/carbon/human/hostage //What hostage we have
+
+	// Boolean. Usually set only to TRUE for non-Eoran church roles.
+	var/virginity = FALSE
+	// Used to prevent certain antag from having sex
+	var/can_do_sex = TRUE
 
 	fovangle = FOV_DEFAULT

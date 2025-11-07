@@ -27,6 +27,8 @@
 	if(buckled)
 		buckled.unbuckle_mob(src,force=1)
 
+	stop_offering_item()
+
 	GLOB.mob_living_list -= src
 	for(var/s in ownedSoullinks)
 		var/datum/soullink/S = s
@@ -326,7 +328,7 @@
 		return FALSE
 	if(!(src.mobility_flags & MOBILITY_STAND))
 		return TRUE
-	var/list/acceptable = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_L_ARM)
+	var/list/acceptable = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_STOMACH)
 	if(HAS_TRAIT(L, TRAIT_CIVILIZEDBARBARIAN))
 		acceptable.Add(BODY_ZONE_HEAD)
 	if( !(check_zone(L.zone_selected) in acceptable) )
@@ -526,7 +528,8 @@
 	if(M.buckled)
 		return //don't make them change direction or offset them if they're buckled into something.
 	if(M.dir != turn(get_dir(M,src), 180))
-		M.setDir(get_dir(M, src))
+		if(!((cmode || M.cmode) && M.grab_state < GRAB_AGGRESSIVE))
+			M.setDir(get_dir(M, src))
 	var/offset = 0
 	switch(grab_state)
 		if(GRAB_PASSIVE)
@@ -537,19 +540,34 @@
 			offset = GRAB_PIXEL_SHIFT_NECK
 		if(GRAB_KILL)
 			offset = GRAB_PIXEL_SHIFT_NECK
-	switch(get_dir(M, src))
-		if(NORTH)
-			M.set_mob_offsets("pulledby", 0, 0+offset)
-			M.layer = MOB_LAYER+0.05
-		if(SOUTH)
-			M.set_mob_offsets("pulledby", 0, 0-offset)
-			M.layer = MOB_LAYER-0.05
-		if(EAST)
-			M.set_mob_offsets("pulledby", 0+offset, 0)
-			M.layer = MOB_LAYER
-		if(WEST)
-			M.set_mob_offsets("pulledby", 0-offset, 0)
-			M.layer = MOB_LAYER
+	if((cmode || M.cmode) && M.grab_state < GRAB_AGGRESSIVE)
+		switch(get_dir(src, M))
+			if(NORTH)
+				set_mob_offsets("pulledby", 0, 0+offset)
+				layer = MOB_LAYER+0.05
+			if(SOUTH)
+				set_mob_offsets("pulledby", 0, 0-offset)
+				layer = MOB_LAYER-0.05
+			if(EAST)
+				set_mob_offsets("pulledby", 0+offset, 0)
+				layer = MOB_LAYER
+			if(WEST)
+				set_mob_offsets("pulledby", 0-offset, 0)
+				layer = MOB_LAYER
+	else
+		switch(get_dir(M, src))
+			if(NORTH)
+				M.set_mob_offsets("pulledby", 0, 0+offset)
+				M.layer = MOB_LAYER+0.05
+			if(SOUTH)
+				M.set_mob_offsets("pulledby", 0, 0-offset)
+				M.layer = MOB_LAYER-0.05
+			if(EAST)
+				M.set_mob_offsets("pulledby", 0+offset, 0)
+				M.layer = MOB_LAYER
+			if(WEST)
+				M.set_mob_offsets("pulledby", 0-offset, 0)
+				M.layer = MOB_LAYER
 
 /mob/living/proc/reset_pull_offsets(mob/living/M, override)
 	if(!override && M.buckled)
@@ -594,6 +612,8 @@
 	if(pulling)
 		if(ismob(pulling))
 			var/mob/living/M = pulling
+			if(pulledby && pulledby == pulling)
+				reset_offsets("pulledby")
 			M.reset_offsets("pulledby")
 			reset_pull_offsets(pulling)
 			if(HAS_TRAIT(M, TRAIT_GARROTED))
@@ -611,6 +631,8 @@
 				var/obj/item/grabbing/I = get_inactive_held_item()
 				if(I.grabbed == pulling)
 					dropItemToGround(I, silent = FALSE)
+	reset_offsets("pulledby")
+	reset_pull_offsets(src)
 
 	. = ..()
 
@@ -632,17 +654,6 @@
 	set hidden = 1
 	stop_pulling()
 
-//same as above
-/mob/living/pointed(atom/A as mob|obj|turf in view(client.view, src))
-	if(incapacitated())
-		return FALSE
-	if(HAS_TRAIT(src, TRAIT_DEATHCOMA))
-		return FALSE
-	if(!..())
-		return FALSE
-	visible_message(span_notice(span_name("[src]") + " points at [A]."), span_notice("I point at [A]."))
-	return TRUE
-
 /mob/living/verb/succumb(whispered as null, reaper as null)
 	set hidden = TRUE
 	if(stat == DEAD)
@@ -659,6 +670,10 @@
 		updatehealth()
 //		if(!whispered)
 //			to_chat(src, span_userdanger("I have given up life and succumbed to death."))
+
+		var/word_input = stripped_input(src, "Your parting words? Leave empty if you will.", "Last Words")
+		if(word_input)
+			say(word_input)
 		death()
 
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = TRUE, check_immobilized = FALSE, ignore_stasis = FALSE)
@@ -1111,6 +1126,10 @@
 			resist_fire() //stop, drop, and roll
 		else if(last_special <= world.time)
 			resist_restraints() //trying to remove cuffs.
+			var/datum/component/riding/human/riding_datum = GetComponent(/datum/component/riding/human)
+			if(riding_datum)
+				for(var/mob/M in buckled_mobs)
+					riding_datum.force_dismount(M)
 
 /mob/living/proc/submit(var/instant = FALSE)
 	set name = "Yield"
@@ -1230,6 +1249,11 @@
 		resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAWIL)) * 5
 	resist_chance *= combat_modifier
 	resist_chance = clamp(resist_chance, 5, 95)
+
+	if(!L.compliance || !compliance)
+		if(badluck(7))
+			badluckmessage(src)
+			return
 
 	if(L.compliance)
 		resist_chance = 100
@@ -1744,6 +1768,10 @@
 			should_be_lying = buckled.buckle_lying
 
 	if(should_be_lying)
+		// Track when we transition from standing to prone for dismemberment grace period
+		if(mobility_flags & MOBILITY_STAND) 
+			if(mob_timers)
+				mob_timers["last_standing"] = world.time
 		resting = TRUE
 		mobility_flags &= ~MOBILITY_STAND
 		if(buckled)
@@ -2264,3 +2292,78 @@
 /mob/living/proc/get_fire_overlay(stacks, on_fire)
 	RETURN_TYPE(/mutable_appearance)
 	return null
+
+/mob/living/proc/offer_item(mob/living/offered_to, obj/offered_item)
+	if(isnull(offered_to) || isnull(offered_item))
+		stack_trace("no offered_to or offered_item in offer_item()")
+		return
+
+	var/time_left = COOLDOWN_TIMELEFT(src, offer_cooldown)
+
+	if(time_left)
+		to_chat(src, span_danger("I must wait [time_left / 10] seconds before offering again."))
+		return FALSE
+
+	offered_item_ref = WEAKREF(offered_item)
+
+	var/stealthy = (m_intent == MOVE_INTENT_SNEAK)
+
+	if(stealthy)
+		to_chat(src, span_notice("I secretly offer [offered_item] to [offered_to]."))
+		to_chat(offered_to, span_notice("[offered_to] secretly offers [offered_item] to me..."))
+	else
+		visible_message(
+			span_notice("[src] offers [offered_item] to [offered_to] with an outstretched hand."), \
+			span_notice("I offer [offered_item] to [offered_to] with an outstretched hand."), \
+			vision_distance = COMBAT_MESSAGE_RANGE, \
+			ignored_mobs = list(offered_to)
+		)
+		to_chat(offered_to, span_notice("[offered_to] offers [offered_item] to me..."))
+
+	new /obj/effect/temp_visual/offered_item_effect(get_turf(src), offered_item, src, offered_to, stealthy)
+
+/mob/living/proc/cancel_offering_item(stealthy)
+	var/obj/offered_item = offered_item_ref?.resolve()
+	if(isnull(offered_item))
+		stop_offering_item()
+		return
+	if(stealthy)
+		to_chat(src, "I stop offering [offered_item ? offered_item : "the item"].")
+	else
+		visible_message(
+			span_notice("[src] puts their hand back down."), \
+			span_notice("I stop offering [offered_item ? offered_item : "the item"]."), \
+			vision_distance = COMBAT_MESSAGE_RANGE, \
+		)
+	stop_offering_item()
+
+/mob/living/proc/stop_offering_item()
+	COOLDOWN_START(src, offer_cooldown, 1 SECONDS)
+	SEND_SIGNAL(src, COMSIG_LIVING_STOPPED_OFFERING_ITEM)
+	offered_item_ref = null
+	update_a_intents()
+
+/mob/living/proc/try_accept_offered_item(mob/living/offerer, obj/offered_item, stealthy)
+	if(get_active_held_item())
+		to_chat(src, span_warning("I need a free hand to take it!"))
+		return FALSE
+
+	accept_offered_item(offerer, offered_item, stealthy)
+	return TRUE
+
+/mob/living/proc/accept_offered_item(mob/living/offerer, obj/offered_item, stealthy)
+	transferItemToLoc(offered_item, src)
+	put_in_active_hand(offered_item)
+	if(stealthy)
+		to_chat(offerer, span_notice("[src] takes the secretly offered [offered_item]."))
+		to_chat(src, span_notice("I take the secretly offered [offered_item] from [offerer]."))
+	else
+		to_chat(offerer, span_notice("[src] takes [offered_item] from my outstretched hand."))
+		visible_message(
+			span_warning("[src] takes [offered_item] from [offerer]'s outstretched hand!"), \
+			span_notice("I take [offered_item] from [offerer]'s outstretched hand."), \
+			vision_distance = COMBAT_MESSAGE_RANGE, \
+			ignored_mobs = list(offerer)
+		)
+	SEND_SIGNAL(offered_item, COMSIG_OBJ_HANDED_OVER, src, offerer)
+	offerer.stop_offering_item()

@@ -176,12 +176,6 @@
 
 // --------- IRON -----------
 
-/datum/anvil_recipe/tools/iron/chain
-	name = "Chains (x2)"
-	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/rope/chain
-	createditem_num = 2
-
 /datum/anvil_recipe/tools/iron/blowrod
 	name = "Glass Blowing Rod"
 	req_bar = /obj/item/ingot/iron
@@ -309,12 +303,6 @@
 	created_item = /obj/item/rogueweapon/thresher
 	i_type = "Tools"
 
-/datum/anvil_recipe/tools/iron/scissors
-	name = "Scissors, Iron"
-	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/rogueweapon/huntingknife/scissors
-	i_type = "Tools"
-
 /datum/anvil_recipe/tools/iron/headhook
 	name = "Headhook, Iron (+2 Fibers)"
 	req_bar = /obj/item/ingot/iron
@@ -355,13 +343,6 @@
 	created_item = /obj/item/rogueweapon/huntingknife/cleaver
 	createditem_num = 1
 
-/datum/anvil_recipe/tools/steel/scissors
-	name = "Scissors, Steel"
-	req_bar = /obj/item/ingot/steel
-	created_item = /obj/item/rogueweapon/huntingknife/scissors/steel
-	i_type = "Tools"
-
-
 // --------- SILVER -----------
 
 /datum/anvil_recipe/tools/silver/cups
@@ -371,9 +352,9 @@
 	createditem_num = 3
 
 /datum/anvil_recipe/tools/silver/shovel
-	name = "Shovel, Silver (+1 Silver, +1 Small Log)"
+	name = "Shovel, Silver (+1 Small Log)"
 	req_bar = /obj/item/ingot/silver
-	additional_items = list(/obj/item/ingot/silver, /obj/item/grown/log/tree/small)
+	additional_items = list(/obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/shovel/silver
 
 // --------- GOLD RECIPES-----------
@@ -508,3 +489,25 @@
 	created_item = /obj/item/mold/plate
 	craftdiff = SKILL_LEVEL_MASTER
 	i_type = "Casting"
+
+// --------- HEARTBEAST TOOLS -----------
+/datum/anvil_recipe/tools/heartbeast_vials
+	name = "Blood vials"
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/heart_blood_vial
+	craftdiff = SKILL_LEVEL_APPRENTICE
+	createditem_num = 5
+
+/datum/anvil_recipe/tools/heartbeast_canisters
+	name = "Blood canisters"
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/heart_blood_canister
+	craftdiff = SKILL_LEVEL_APPRENTICE
+	createditem_num = 2
+
+/datum/anvil_recipe/tools/aspect_canisters
+	name = "Aspect canisters"
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/heart_canister
+	craftdiff = SKILL_LEVEL_APPRENTICE
+	createditem_num = 3

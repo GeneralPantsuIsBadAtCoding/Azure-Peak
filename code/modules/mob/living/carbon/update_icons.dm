@@ -281,6 +281,15 @@
 		overlays_standing[BACK_LAYER] = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = 'icons/mob/clothing/back.dmi')
 		update_hud_back(back)
 
+	if(backl)
+		overlays_standing[BACK_LAYER] = backl.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = 'icons/mob/clothing/back.dmi')
+		update_hud_backl(back)
+	
+	if(backr)
+		overlays_standing[BACK_LAYER] = backr.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = 'icons/mob/clothing/back.dmi')
+		update_hud_backl(back)
+
+
 	apply_overlay(BACK_LAYER)
 
 /mob/living/carbon/update_inv_head(hide_nonstandard = FALSE)

@@ -1020,7 +1020,9 @@
 /area/rogue/under/tomb/sewer)
 "vb" = (
 /obj/structure/closet/crate/roguecloset/crafted,
-/obj/item/storage/fancy/candle_box,
+/obj/item/candle/yellow,
+/obj/item/candle/yellow,
+/obj/item/candle/yellow,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/armor,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/royal)
