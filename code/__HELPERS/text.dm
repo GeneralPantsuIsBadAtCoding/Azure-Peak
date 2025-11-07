@@ -600,7 +600,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 	t = replacetext(t, "$-", "$")
 
 	if(hyperlink)
-		testing("t is [t]")
+
 		t = replacetext(t, regex(@"https?:\/\/[^\s$.?#].[^\s]*", "gi"), "<a href=\"$0\">$0</a>")
 
 	return t

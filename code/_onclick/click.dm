@@ -183,7 +183,7 @@
 //		CtrlClickOn(A)
 //		return
 	if(modifiers["right"])
-		testing("right")
+
 		if(!oactive)
 			RightClickOn(A, params)
 			return
@@ -290,7 +290,7 @@
 					resolveAdjacentClick(A,W,params,used_hand)
 					return
 				if(T)
-					testing("beginautoaim")
+
 					var/list/mobs_here = list()
 					for(var/mob/M in T)
 						if(M.invisibility || M == src)

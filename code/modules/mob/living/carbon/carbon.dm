@@ -1144,7 +1144,7 @@
 /mob/living/carbon/can_be_revived()
 	. = ..()
 	if(!getorgan(/obj/item/organ/brain) && (!mind))
-		testing("norescarbon")
+
 		return 0
 
 /mob/living/carbon/harvest(mob/living/user)

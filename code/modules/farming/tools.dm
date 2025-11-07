@@ -345,7 +345,7 @@
 /obj/item/rogueweapon/pitchfork/afterattack(obj/target, mob/user, proximity)
 	if((!proximity) || (!wielded))
 		return ..()
-	testing("fuck")
+
 	if(isopenturf(target))
 		if(forked.len)
 			for(var/obj/item/I in forked)

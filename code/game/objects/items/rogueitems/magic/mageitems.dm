@@ -83,7 +83,7 @@
 		return
 	var/obj/effect/decal/cleanable/roguerune/pickrune
 	var/runenameinput = input(user, "Runes", "Tier 1 and 2 Runes") as null|anything in GLOB.t2rune_types
-	testing("runenameinput [runenameinput]")
+
 	pickrune = GLOB.rune_types[runenameinput]
 	rune_to_scribe = pickrune
 	if(rune_to_scribe == null)
@@ -163,7 +163,7 @@
 		return
 	var/obj/effect/decal/cleanable/roguerune/pickrune
 	var/runenameinput = input(user, "Runes", "T4 Runes") as null|anything in GLOB.t4rune_types
-	testing("runenameinput [runenameinput]")
+
 	pickrune = GLOB.rune_types[runenameinput]
 	rune_to_scribe = pickrune
 	if(rune_to_scribe == null)

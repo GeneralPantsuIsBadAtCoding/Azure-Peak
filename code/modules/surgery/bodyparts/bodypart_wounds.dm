@@ -148,7 +148,6 @@
 			dam += 10
 		if(istype(user.rmb_intent, /datum/rmb_intent/weak) || bclass == BCLASS_PEEL)
 			do_crit = FALSE
-	testing("bodypart_attacked_by() dam [dam]")
 
 	var/datum/wound/dynwound = manage_dynamic_wound(bclass, dam, armor)
 
@@ -570,7 +569,7 @@
 	return FALSE
 
 /obj/item/bodypart/proc/bandage_expire()
-	testing("expire bandage")
+
 	if(!owner)
 		return FALSE
 	if(!bandage)

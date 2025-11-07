@@ -198,36 +198,36 @@
 
 
 /datum/sex_controller/proc/begin_fuck(mob/living/user)
-	testing("fuckstart")
+
 	if(!user)
-		testing("fuckfail")
+
 		return
 	if(!owner.hasPenis())
-		testing("fuckfail2")
+
 		return
 	if(user.loc != owner.loc)
-		testing("fuckfailloc")
+
 		return
 	if(!get_location_accessible(owner, BODY_ZONE_PRECISE_GROIN))
-		testing("fuckfail3")
+
 		return
 	if(!get_location_accessible(user, BODY_ZONE_PRECISE_GROIN))
-		testing("fuckfail4")
+
 		return
 	if(HAS_TRAIT(owner, TRAIT_LIMPDICK))
 		to_chat(owner, "<span class='warning'>My soldier won't stand up for me.</span>")
 		return
 	if(user.sexcon.inpussy)
 		if(user.sexcon.inpussy != owner)
-			testing("fuckfail5")
+
 			return
 	if(eatingus)
-		testing("fuckfail6")
+
 		return
 	if(fucking)
 		if(fucking == user)
 			if(fucking.sexcon.riding == owner)
-				testing("fuckfail7")
+
 				fucking.sexcon.stop_riding()
 	if(fucking)
 		if(fucking == user)
@@ -289,7 +289,7 @@
 		if(user.sexcon.inass != owner)
 			return
 	if(!owner.hasPenis())
-		testing("fuckfail2")
+
 		return
 	if(eatingus)
 		return
@@ -339,10 +339,10 @@
 		return
 	if(user.sexcon.ontits)
 		if(user.sexcon.ontits != owner)
-			testing("tfuckfail")
+
 			return
 	if(eatingus)
-		testing("tfuckfail2")
+
 		return
 	if(HAS_TRAIT(owner, TRAIT_LIMPDICK))
 		to_chat(owner, "<span class='warning'>My soldier won't stand up for me.</span>")
@@ -379,7 +379,7 @@
 
 /datum/sex_controller/proc/begin_mouthfuck(mob/living/user)
 	if(!user)
-		testing("mfuckfail")
+
 		return
 	if(!get_location_accessible(owner, BODY_ZONE_PRECISE_GROIN))
 		return
@@ -387,14 +387,14 @@
 		return
 	if(user.sexcon.inmouth)
 		if(user.sexcon.inmouth != owner)
-			testing("mfuckfail2")
+
 			return
 	if(user.cmode)
 		if(!user.stat)
 			to_chat(owner, "<span class='warning'>Not through clenched teeth.</span>")
 			return
 	if(user.sexcon.weeating)
-		testing("mfuckfail3")
+
 		if(user.sexcon.weeating != owner)
 			return
 		else
@@ -407,7 +407,7 @@
 	if(!owner.hasPenis())
 		return
 	if(fucking)
-		testing("mfuckfail4")
+
 		if(fucking == user)
 			if(fuckspeed == initial(fuckspeed))
 				fuckspeed = max(round(fuckspeed / 2), 1)
@@ -432,7 +432,7 @@
 
 /datum/sex_controller/proc/begin_mouthride(mob/living/user)
 	if(!user)
-		testing("mridefail")
+
 		return
 	if(!get_location_accessible(user, BODY_ZONE_PRECISE_MOUTH))
 		return
@@ -445,24 +445,24 @@
 	if(!user.lying || owner.lying)
 		return
 	if(inpussy)
-		testing("mridefail2")
+
 		return
 	if(eatingus)
-		testing("mridefail3")
+
 		if(eatingus != user) //someone is eating us already that isnt the user so we cant change
-			testing("mridefail4")
+
 			return
 		else
-			testing("mridefail5")
+
 			stop_eating_us()
 	if(user.sexcon.weeating)
 		if(user.sexcon.weeating != owner) //they are eating someone else
-			testing("mridefail6")
+
 			return
 		else
 			user.sexcon.stop_eating()
 	if(riding)
-		testing("mridefail7")
+
 		if(riding == user)
 			if(user.sexcon.eatspeed == initial(user.sexcon.eatspeed))
 				user.sexcon.eatspeed = max(round(user.sexcon.eatspeed / 2), 1)
@@ -487,21 +487,21 @@
 //basically fucking but we can control the speed too
 /datum/sex_controller/proc/begin_riding(mob/living/user)
 	if(!user)
-		testing("ridefail")
+
 		return
 	if(!get_location_accessible(user, BODY_ZONE_PRECISE_GROIN))
-		testing("ridefail2")
+
 		return
 	if(!get_location_accessible(owner, BODY_ZONE_PRECISE_GROIN))
-		testing("ridefail3")
+
 		return
 	if(!user.lying || owner.lying)
 		return
 	if(!user.hasPenis())
-		testing("ridefail4")
+
 		return
 	if(!owner.hasVagina())
-		testing("ridefail5")
+
 		return
 	if(HAS_TRAIT(user, TRAIT_LIMPDICK))
 		to_chat(owner, "<span class='warning'>The soldier won't stand up for me.</span>")
@@ -512,13 +512,13 @@
 		else
 			user.sexcon.stop_fucking() //start riding instead
 	if(eatingus)
-		testing("ridefail6")
+
 		return
 	if(riding)
-		testing("ridefail7")
+
 		if(riding == user)
 			if(riding.sexcon.weeating != owner)
-				testing("ridefail8")
+
 				if(user.sexcon.fuckspeed == initial(user.sexcon.fuckspeed))
 					user.sexcon.fuckspeed = max(round(user.sexcon.fuckspeed / 2), 1)
 					to_chat(owner, "<span class='info'>I speed up.</span>")
@@ -545,31 +545,31 @@
 
 /datum/sex_controller/proc/begin_eating(mob/living/user)
 	if(!user)
-		testing("eatfail1")
+
 		return
 	if(!get_location_accessible(owner, BODY_ZONE_PRECISE_MOUTH))
-		testing("eatfail12")
+
 		return
 	if(!get_location_accessible(user, BODY_ZONE_PRECISE_GROIN))
-		testing("eatfail13")
+
 		return
 	if(eatingus)
 		if(eatingus == user)
 			if(!(user.lying && owner.lying))
-				testing("eatfail1lyy")
+
 				return
 	if(user.sexcon.eatingus) //someone else eating us
-		testing("eatfail14")
+
 		if(user.sexcon.eatingus != owner)
-			testing("eatfail5")
+
 			return
 		else if(user.sexcon.riding == owner) //start eating instead
-			testing("eatfail6")
+
 			user.sexcon.stop_riding()
 	if(!user.hasVagina()) //start sucking instead
 		return
 	if(weeating)
-		testing("sp1")
+
 		if(weeating == user)
 			if(eatspeed == initial(eatspeed))
 				eatspeed = max(round(eatspeed / 2), 1)
@@ -591,31 +591,31 @@
 
 /datum/sex_controller/proc/begin_sucking(mob/living/user)
 	if(!user)
-		testing("eatfail1")
+
 		return
 	if(!get_location_accessible(owner, BODY_ZONE_PRECISE_MOUTH))
-		testing("eatfail12")
+
 		return
 	if(!get_location_accessible(user, BODY_ZONE_PRECISE_GROIN))
-		testing("eatfail13")
+
 		return
 	if(eatingus)
 		if(eatingus == user)
 			if(!(user.lying && owner.lying))
-				testing("eatfail1lyy")
+
 				return
 	if(user.sexcon.eatingus) //someone else eating us
-		testing("eatfail14")
+
 		if(user.sexcon.eatingus != owner)
-			testing("eatfail5")
+
 			return
 		else if(user.sexcon.riding == owner) //start eating instead
-			testing("eatfail6")
+
 			user.sexcon.stop_riding()
 	if(!user.hasPenis()) //start sucking instead
 		return
 	if(weeating)
-		testing("sp1")
+
 		if(weeating == user)
 			if(eatspeed == initial(eatspeed))
 				eatspeed = max(round(eatspeed / 2), 1)
@@ -637,24 +637,24 @@
 
 /datum/sex_controller/proc/begin_fapping(obj/item/grabbing/G, mob/living/user)
 	if(!G)
-		testing("fapfail1")
+
 		return
 	if(fucking)
-		testing("fapfail2")
+
 		return
 	if(eatingus)
-		testing("fapfail3")
+
 		return
 	if(!get_location_accessible(owner, BODY_ZONE_PRECISE_GROIN))
-		testing("fapfail4")
+
 		return
 	if(HAS_TRAIT(owner, TRAIT_LIMPDICK))
 		to_chat(user, "<span class='warning'>The soldier won't stand up for me.</span>")
 		return
 	if(fapping)
-		testing("fapfail6")
+
 		if(fapping == G)
-			testing("fapfail7")
+
 			if(fapspeed == initial(fapspeed))
 				fapspeed = max(round(fapspeed / 2), 1)
 				to_chat(user, "<span class='info'>I speed up.</span>")
@@ -680,24 +680,24 @@
 
 /datum/sex_controller/proc/begin_fingering(obj/item/grabbing/G, mob/living/user)
 	if(!G)
-		testing("fapfail1")
+
 		return
 	if(fucking)
-		testing("fapfail2")
+
 		return
 	if(eatingus)
-		testing("fapfail3")
+
 		return
 	if(!get_location_accessible(owner, BODY_ZONE_PRECISE_GROIN))
-		testing("fapfail4")
+
 		return
 	if(HAS_TRAIT(owner, TRAIT_LIMPDICK))
 		to_chat(user, "<span class='warning'>The soldier won't stand up for me.</span>")
 		return
 	if(fapping)
-		testing("fapfail6")
+
 		if(fapping == G)
-			testing("fapfail7")
+
 			if(fapspeed == initial(fapspeed))
 				fapspeed = max(round(fapspeed / 2), 1)
 				to_chat(user, "<span class='info'>I speed up.</span>")
@@ -832,7 +832,7 @@
 		riding = null
 
 /datum/sex_controller/proc/stop_eating_us()
-	testing("stopeatingus")
+
 	if(eatingus && eatingus.sexcon.weeating == owner)
 		eatingus.sexcon.weeating = null
 		eatingus = null
@@ -843,13 +843,13 @@
 		weeating = null
 
 /datum/sex_controller/proc/stop_fapping_us()
-	testing("fapping us")
+
 	if(fapping && fapping.grabbee != owner)
 		fapping.handaction = null
 		fapping = null
 
 /datum/sex_controller/proc/stop_fapping()
-	testing("fapping st")
+
 	if(fapping && fapping.grabbee == owner)
 		fapping.handaction = null
 		fapping = null

@@ -366,12 +366,12 @@
 	if(CZ)
 		if( !(check_zone(L.zone_selected) in acceptable) )
 			to_chat(L, span_warning("I can't reach that."))
-			testing("reach2")
+
 			return FALSE
 	else
 		if( !(L.zone_selected in acceptable) )
 			to_chat(L, span_warning("I can't reach that."))
-			testing("reach2")
+
 			return FALSE
 	return TRUE
 

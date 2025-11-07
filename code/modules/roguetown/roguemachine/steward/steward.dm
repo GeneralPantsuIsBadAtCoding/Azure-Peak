@@ -241,7 +241,7 @@
 	D = new D
 	if(number > D.importexport_amt)
 		return
-	testing("number1 is [number]")
+
 	if(!number)
 		number = 1
 	var/area/A = GLOB.areas_by_type[/area/rogue/indoors/town/warehouse]
@@ -255,7 +255,7 @@
 	I.forceMove(T)
 	playsound(T, 'sound/misc/hiss.ogg', 100, FALSE, -1)
 	number += 1
-	testing("number2 is [number]")
+
 	addtimer(CALLBACK(src, PROC_REF(do_import), D.type, number), 3 SECONDS)
 
 /obj/structure/roguemachine/steward/attack_hand(mob/living/user)
