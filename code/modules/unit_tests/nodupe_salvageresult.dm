@@ -12,6 +12,8 @@
 	for(var/datum/crafting_recipe/recipe as anything in GLOB.crafting_recipes)
 		var/list/required_items = recipe.reqs
 		var/list/results = recipe.result
+		if(recipe.bypass_dupe_test)
+			continue
 		
 		// Handle both single result and list of results
 		if(!islist(results))
@@ -42,11 +44,12 @@
 
 			// Count how many items with the same salvage material the recipe requires
 			var/required_count = 0
-			for(var/obj/item/req_item_type in required_items)
+			for(var/my_item in required_items)
+				var/obj/item/req_item_type = my_item
 				// Check if the required item IS the salvage material (direct match)
 				var/canonical_req_type = material_equivalents[req_item_type] || req_item_type
 				if(canonical_req_type == canonical_salvage_type)
-					required_count += 1
+					required_count += required_items[req_item_type]
 					continue
 				
 				// Check if the required item SALVAGES INTO the salvage material
@@ -54,7 +57,7 @@
 				if(req_salvage)
 					var/canonical_req_salvage = material_equivalents[req_salvage] || req_salvage
 					if(canonical_req_salvage == canonical_salvage_type)
-						required_count += 1
+						required_count += required_items[req_item_type]
 			
 			// Check for duping: salvaging gives MORE items than recipe consumed
 			if(salvage_total > required_count && required_count > 0)
