@@ -5,7 +5,7 @@
 
 /datum/map_config
 	// Metadata
-	var/config_filename = "_maps/dun_manor.json"
+	var/config_filename = "_maps/dun_world.json"
 	var/defaulted = TRUE  // set to FALSE by LoadConfig() succeeding
 	// Config from maps.txt
 	var/config_max_users = 0
@@ -13,10 +13,10 @@
 	var/voteweight = 1
 	var/votable = FALSE
 
-	// Config actually from the JSON - should default to Dun Manor
-	var/map_name = "Dun Manor"
-	var/map_path = "map_files/dun_manor"
-	var/map_file = "dun_manor.dmm"
+	// Config actually from the JSON - should default to Dun World
+	var/map_name = "Dun World"
+	var/map_path = "map_files/dun_world"
+	var/map_file = "dun_world.dmm"
 
 	var/traits = null
 	var/space_ruin_levels = 7
@@ -142,8 +142,23 @@
 			continue
 		LAZYADD(skipped_tests, path_real)
 #endif
-	// Cherry-pick 1218
-	// src.other_z = final_z
+	var/list/other_z = json["other_z"]
+	if(!islist(other_z) || !other_z.len)
+		defaulted = FALSE
+		return TRUE
+
+	var/list/final_z
+	for(var/map_path in other_z)
+		var/map_file = file(map_path)
+		if(!map_file)
+			stack_trace("tried to load another z-level that didn't exist")
+			continue
+		if(map_path in final_z)
+			stack_trace("tried to add two of the same z-level")
+			continue
+		LAZYOR(final_z, map_path)
+
+	src.other_z = final_z
 	defaulted = FALSE
 	return TRUE
 #undef CHECK_EXISTS

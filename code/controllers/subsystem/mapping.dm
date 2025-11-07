@@ -195,13 +195,12 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/otherZ = list()
 
-	#ifdef ROGUEWORLD
-	otherZ += load_map_config("_maps/map_files/otherz/rogueworld.json")
-	#endif
-
 	#ifndef NO_DUNGEON
 	otherZ += load_map_config("_maps/map_files/otherz/dungeon.json")
 	#endif
+
+	for(var/map_json in config.other_z)
+		otherZ += load_map_config(map_json)
 
 	if(otherZ.len)
 		for(var/datum/map_config/OtherZ in otherZ)

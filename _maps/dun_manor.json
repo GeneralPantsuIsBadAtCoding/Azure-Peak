@@ -11,6 +11,7 @@
 	{"Name": "Magma Crater"},
 	{"Name": "Azure Forest", "Up": true}, {"Up": true, "Down": true}, {"Up": true, "Down": true}, {"Down": true},
 	{"Name": "Azure Coast", "Up": true}, {"Up": true, "Down": true}, {"Up": true, "Down": true}, {"Down": true}],
+	"other_z": [],
 	"minetype": null,
 	"space_empty_levels": 0,
 	"space_ruin_levels": 0,
