@@ -46,10 +46,8 @@
 
 /datum/virtue/utility/resident/apply_to_human(mob/living/carbon/human/recipient)
 	var/mapswitch = 0
-	if(SSmapping.config.map_name == "Dun Manor")
+	if(SSmapping.config.map_name == "Dun World")
 		mapswitch = 1
-	else if(SSmapping.config.map_name == "Dun World")
-		mapswitch = 2
 
 	if(mapswitch == 0)
 		return
@@ -63,11 +61,8 @@
 
 		if(spawn_area)
 			var/target_z = 3 //ground floor of tavern for dun manor / world
-			var/target_y = 70 //dun manor
+			var/target_y = 234 //dun world huge
 			var/list/possible_chairs = list()
-
-			if(mapswitch == 2)
-				target_y = 234 //dun world huge
 
 			for(var/obj/structure/chair/C in spawn_area)
 				//z-level 3, wooden chair, and Y > north of tavern backrooms
