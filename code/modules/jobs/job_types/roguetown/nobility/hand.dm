@@ -131,7 +131,6 @@
 
 //Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff. 
 /datum/outfit/job/roguetown/hand/spymaster/pre_equip(mob/living/carbon/human/H)
-	l_hand = /obj/item/rogueweapon/huntingknife/idagger/dtace
 	r_hand = /obj/item/rogueweapon/sword/rapier/foldsword
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
