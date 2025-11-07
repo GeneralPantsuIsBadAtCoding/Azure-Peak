@@ -42,12 +42,8 @@
 		handle_embedded_objects()
 		handle_blood()
 		//passively heal even wounds with no passive healing
+		heal_wounds(1)
 
-	var/heal_amount = 1 + (blood_volume > BLOOD_VOLUME_SURVIVE ? 0.6 : 0)
-	// apparently this means NPCs should heal their wounds slowly over time,
-	// with a 60% bonus if they're not completely bled out.
-	// this is a strict replacement for two whole-ass block iteration things that did the same thing (or nothing at all)
-	heal_wounds(heal_amount)
 	/// ENDVRE AS HE DOES.
 	if(!stat && HAS_TRAIT(src, TRAIT_PSYDONITE) && !HAS_TRAIT(src, TRAIT_PARALYSIS))
 		handle_wounds()
