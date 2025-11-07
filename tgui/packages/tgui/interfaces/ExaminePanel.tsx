@@ -80,7 +80,7 @@ export const ExaminePanel = (props) => {
             </Stack.Item>
           </Stack>
           )}
-		  {(!img_gallery.length > 0 && is_naked && nsfw_headshot) && (
+		  {(!(img_gallery.length > 0) && is_naked && nsfw_headshot) && (
           <Stack>
             <Stack.Item grow>
               <PageButton
