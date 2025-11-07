@@ -13,6 +13,8 @@
 	)
 	
 	for(var/datum/anvil_recipe/recipe as anything in GLOB.anvil_recipes)
+		if(recipe.bypass_dupe_test)
+			continue
 		var/obj/item/created_item = recipe.created_item
 		var/createditem_num = recipe.createditem_num
 		var/smelt_result = initial(created_item.smeltresult)
