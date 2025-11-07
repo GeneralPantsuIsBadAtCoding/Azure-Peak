@@ -1116,14 +1116,16 @@
 	mob_effect_icon_state = "eff_riposte"
 	mob_effect_layer = MOB_EFFECT_LAYER_GUARD_CLASSIC
 
+//We have a lot of signals as the ability is meant to be interrupted by or interact with a lot of mechanics. 
 /datum/status_effect/buff/clash/on_creation(mob/living/new_owner, ...)
 	RegisterSignal(new_owner, COMSIG_MOB_ATTACKED_BY_HAND, PROC_REF(process_touch))
 	RegisterSignal(new_owner, COMSIG_MOB_ITEM_ATTACK, PROC_REF(process_attack))
 	RegisterSignal(new_owner, COMSIG_MOB_ITEM_BEING_ATTACKED, PROC_REF(process_attack))
 	RegisterSignal(new_owner, COMSIG_MOB_ON_KICK, PROC_REF(guard_disrupted))
 	RegisterSignal(new_owner, COMSIG_MOB_KICKED, PROC_REF(guard_disrupted))
-	RegisterSignal(new_owner, COMSIG_ITEM_GUN_PROCESS_FIRE, PROC_REF(guard_disrupted_cheesy))
+	RegisterSignal(new_owner, COMSIG_LIVING_ONJUMP, PROC_REF(guard_disrupted))
 	RegisterSignal(new_owner, COMSIG_CARBON_SWAPHANDS, PROC_REF(guard_disrupted))
+	RegisterSignal(new_owner, COMSIG_ITEM_GUN_PROCESS_FIRE, PROC_REF(guard_disrupted_cheesy))
 	RegisterSignal(new_owner, COMSIG_ATOM_BULLET_ACT, PROC_REF(guard_struck_by_projectile))
 	RegisterSignal(new_owner, COMSIG_LIVING_IMPACT_ZONE, PROC_REF(guard_struck_by_projectile))
 	. = ..()
@@ -1150,7 +1152,7 @@
 	if(bad_guard)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.bad_guard(span_suicide("I switched stances too quickly! It drains me!"), cheesy = TRUE)
+			H.bad_guard(span_suicide("I tried to strike while focused on defense whole! It drains me!"), cheesy = TRUE)
 
 //Mostly here so the child (limbguard) can have special behaviour.
 /datum/status_effect/buff/clash/proc/guard_struck_by_projectile()
@@ -1162,7 +1164,7 @@
 		var/mob/living/carbon/human/H = owner
 		H.bad_guard("My focus was disrupted!")
 
-//We tried to cheese it. Generally reserved for egregious things, like attacking / casting with its active.
+//We tried to cheese it. Generally reserved for egregious things, like attacking / casting while its active.
 /datum/status_effect/buff/clash/proc/guard_disrupted_cheesy()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
@@ -1198,17 +1200,23 @@
 	UnregisterSignal(owner, COMSIG_ITEM_GUN_PROCESS_FIRE)
 	UnregisterSignal(owner, COMSIG_CARBON_SWAPHANDS)
 	UnregisterSignal(owner, COMSIG_LIVING_IMPACT_ZONE)
+	UnregisterSignal(owner, COMSIG_LIVING_ONJUMP)
 
 /atom/movable/screen/alert/status_effect/buff/clash
 	name = "Ready to Clash"
 	desc = span_notice("I am on guard, and ready to clash. If I am hit, I will successfully defend. Attacking will make me lose my focus.")
 	icon_state = "clash"
 
+/atom/movable/screen/alert/status_effect/buff/clash
+	name = "Limb Guard"
+	desc = span_notice("I have focused my attention to guarding one limb. I shall deflect projectiles and blows to that limb with ease. I am particularly susceptible to feints to that area.")
+	icon_state = "limbguard"
 
 /datum/status_effect/buff/clash/limbguard
 	id = "guard"
 	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/buff/clash //!
+	sfx_on_apply = 'sound/combat/limbguard.ogg'
 
 	var/protected_zone
 
@@ -1254,18 +1262,13 @@
 /datum/status_effect/buff/clash/limbguard/process_attack(mob/living/parent, mob/living/target, mob/user, obj/item/I)
 	if(ishuman(user) && target == owner)
 		var/mob/living/carbon/human/HM = user
-		var/mob/living/carbon/human/HO = owner
-		var/obj/item/IM = target.get_active_held_item()
-		var/obj/item/IU 
 		if(check_zone(HM.zone_selected) == protected_zone)	//User has struck the exact limb that was being protected. Bad!
-			if(user.used_intent.masteritem)
-				IU = user.used_intent.masteritem
-			if(!IU)
-				HO.process_clash(user, IM, IU)	//We gore their hand same as regular riposte if they try to grab the protected limb.
 			HM.Immobilize(3 SECONDS)
 			HM.OffBalance(3 SECONDS)
 			HM.apply_status_effect(/datum/status_effect/debuff/exposed, 10 SECONDS)
+			HM.remove_status_effect(/datum/status_effect/buff/clash/limbguard)
 			HM.emote("gasp")
+			playsound(owner, 'sound/combat/limbguard_struck.ogg', 100, TRUE)
 			if(HM.mind)
 				owner.stamina_add(-(owner.max_stamina / 3))
 				owner.energy_add((owner.max_energy / 5))
@@ -1279,7 +1282,7 @@
 /datum/status_effect/buff/clash/limbguard/guard_struck_by_projectile(mob/living/target, obj/P, hit_zone)
 	var/obj/IP = P
 	if(istype(P, /obj/projectile/bullet/reusable))
-		var/obj/projectile/bullet/reusable/RP = P	//This will ensure it gets dropped as an item first. Otherwise the non-reusable projectile will get poofed in a cloud of sparks.
+		var/obj/projectile/bullet/reusable/RP = P	//This will ensure it gets dropped as an item first. Otherwise a non-reusable projectile will get poofed in a cloud of sparks.
 		IP = RP.handle_drop()
 	if(check_zone(hit_zone) == protected_zone)
 		var/turnangle = (prob(50) ? 270 : 90)
@@ -1299,8 +1302,26 @@
 		'sound/combat/parry/deflect_6.ogg')
 		playsound(target, pick(deflect_sounds), 100, TRUE)
 		target.visible_message(span_warning("[target] deflects \the [IP]!"))
-		P.safe_throw_at(target_turf, dist, 1, spin = TRUE)
+		IP.safe_throw_at(target_turf, dist, 3, spin = TRUE)
 		return COMPONENT_CANCEL_THROW //Also returns COMPONENT_ATOM_BLOCK_BULLET
+
+
+/datum/status_effect/buff/precise_strike
+	id = "precisestrike"
+	duration = 4 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/buff/clash
+
+	//Due to the dynamic nature of the overlay, we can't use the built-in mob_effect system as it doesn't like it when the refs are deleted / altered
+	mob_effect_layer = MOB_EFFECT_LAYER_PRECISE_STRIKE
+	var/chargetime = 0.75 SECONDS
+	var/is_active
+
+/datum/status_effect/buff/precise_strike/on_apply()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(update_status)), chargetime)
+
+/datum/status_effect/buff/precise_strike/proc/update_status()
+	is_active = TRUE
 
 #define BLOODRAGE_FILTER "bloodrage"
 

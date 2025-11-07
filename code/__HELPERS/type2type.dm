@@ -475,6 +475,35 @@
 
 	return covered_parts
 
+///Takes a single-area readable zone and abbreviates it. For tooltip / examine use, mainly.
+///Does not have cases for combined flags like ARMS, LEGS, FEET, etc, it's meant to be granular.
+/proc/readablezone2abbreviated(zone)
+	switch(zone)
+		if(READABLE_ZONE_CHEST)
+			return "CH"
+		if(READABLE_ZONE_VITALS)
+			return "STM"
+		if(READABLE_ZONE_GROIN)
+			return "GR"
+		if(READABLE_ZONE_L_ARM)
+			return "LA"
+		if(READABLE_ZONE_R_ARM)
+			return "RA"
+		if(READABLE_ZONE_L_LEG)
+			return "LL"
+		if(READABLE_ZONE_R_LEG)
+			return "RL"
+		if(READABLE_ZONE_NECK)
+			return "NK"
+		if(READABLE_ZONE_L_HAND)
+			return "LH"
+		if(READABLE_ZONE_R_HAND)
+			return "RH"
+		if(READABLE_ZONE_L_FOOT)
+			return "LF"
+		if(READABLE_ZONE_R_FOOT)
+			return "RF"
+
 
 /// Takes a user-targeted zone and returns a readable version of it.
 /proc/bodyzone2readablezone(zone)

@@ -558,7 +558,10 @@ BLIND     // can't see anything
 		filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, -20, y_offset)
 	. = ..()
 
-/obj/item/clothing/proc/generate_tooltip(examine_text, showcrits)
+/obj/proc/generate_tooltip(examine_text, showcrits)
+	return
+
+/obj/item/clothing/generate_tooltip(examine_text, showcrits)
 	if(!armor)	// No armor
 		return examine_text
 	

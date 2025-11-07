@@ -35,74 +35,7 @@
 	if(!user.cmode)
 		return
 	
-	var/mob/living/carbon/human/HT = target
-	var/mob/living/carbon/human/HU = user
-	var/target_zone = HT.zone_selected
-	var/user_zone = HU.zone_selected
-
-	if(HT.has_status_effect(/datum/status_effect/debuff/baited) || user.has_status_effect(/datum/status_effect/debuff/baitcd))
-		return	//We don't do anything if either of us is affected by bait statuses
-
-	HU.visible_message(span_danger("[HU] baits an attack from [HT]!"))
-	HU.apply_status_effect(/datum/status_effect/debuff/baitcd)
-
-	if((target_zone != user_zone) || ((target_zone == BODY_ZONE_CHEST) || (user_zone == BODY_ZONE_CHEST))) //Our zones do not match OR either of us is targeting chest.
-		var/guaranteed_fail = TRUE
-		switch(target_zone)
-			if(BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_R_EYE)
-				if(user_zone == BODY_ZONE_PRECISE_L_EYE || user_zone == BODY_ZONE_PRECISE_R_EYE)
-					guaranteed_fail = FALSE
-		if(guaranteed_fail)
-			to_chat(HU, span_danger("It didn't work! [HT.p_their(TRUE)] footing returned!"))
-			to_chat(HT, span_notice("I fooled [HU.p_them()]! I've regained my footing!"))
-			HU.emote("groan")
-			HU.stamina_add(HU.max_stamina * 0.2)
-			HT.bait_stacks = 0
-			return
-
-	var/fatiguemod	//The heavier the target's armor, the more fatigue (green bar) we drain.
-	var/targetac = HT.highest_ac_worn()
-	switch(targetac)
-		if(ARMOR_CLASS_NONE)
-			fatiguemod = 5
-		if(ARMOR_CLASS_LIGHT, ARMOR_CLASS_MEDIUM)
-			fatiguemod = 4
-		if(ARMOR_CLASS_HEAVY)
-			fatiguemod = 3
-
-
-	HT.apply_status_effect(/datum/status_effect/debuff/baited)
-	HT.apply_status_effect(/datum/status_effect/debuff/exposed)
-	HT.apply_status_effect(/datum/status_effect/debuff/clickcd, 5 SECONDS)
-	HT.bait_stacks++
-	if(HT.bait_stacks <= 1)
-		HT.Immobilize(0.5 SECONDS)
-		HT.stamina_add(HT.max_stamina / fatiguemod)
-		HT.Slowdown(3)
-		HT.emote("huh")
-		HU.purge_peel(BAIT_PEEL_REDUCTION)
-		HU.changeNext_move(0.1 SECONDS, override = TRUE)
-		to_chat(HU, span_notice("[HT.p_they(TRUE)] fell for my bait <b>perfectly</b>! One more!"))
-		to_chat(HT, span_danger("I fall for [HU.p_their()]'s bait <b>perfectly</b>! I'm losing my footing! <b>I can't let this happen again!</b>"))
-	
-	if(HU.has_duelist_ring() && HT.has_duelist_ring() || HT.bait_stacks >= 2)	//We're explicitly (hopefully non-lethally) dueling. Flavor.
-		HT.emote("gasp")
-		HT.OffBalance(2 SECONDS)
-		HT.Immobilize(2 SECONDS)
-		to_chat(HU, span_notice("[HT.p_they(TRUE)] fell for it again and is off-balanced! NOW!"))
-		to_chat(HT, span_danger("I fall for [HU.p_their()] bait <b>perfectly</b>! My balance is GONE!</b>"))
-		HT.bait_stacks = 0
-
-
-	if(!HT.pulling)
-		return
-
-	HT.stop_pulling()
-	to_chat(HU, span_notice("[HT.p_they(TRUE)] fell for my dirty trick! I am loose!"))
-	to_chat(HT, span_danger("I fall for [HU.p_their()] dirty trick! My hold is broken!"))
-	HU.OffBalance(2 SECONDS)
-	HT.OffBalance(2 SECONDS)
-	playsound(user, 'sound/combat/riposte.ogg', 100, TRUE)
+	user.apply_status_effect(/datum/status_effect/buff/precise_strike)
 
 /datum/rmb_intent/strong
 	name = "strong"

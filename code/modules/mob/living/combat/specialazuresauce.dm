@@ -32,15 +32,10 @@
 			IU.take_damage(integdam, BRUTE, IM.d_type)
 		visible_message(span_suicide("[src] ripostes [H] with \the [IM]!"))
 		playsound(src, 'sound/combat/clash_struck.ogg', 100)
-		var/staminadef = (stamina * 100) / max_stamina
-		var/staminaatt = (H.stamina * 100) / H.max_stamina
-		if(staminadef > staminaatt) 
-			H.apply_status_effect(/datum/status_effect/debuff/exposed, 2 SECONDS)
-			H.apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
-			H.Slowdown(3)
-			to_chat(src, span_notice("[capitalize(H.p_theyre())] exposed!"))
-		else
-			H.changeNext_move(CLICK_CD_MELEE)
+		H.apply_status_effect(/datum/status_effect/debuff/exposed, 2 SECONDS)
+		H.apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
+		H.Slowdown(3)
+		to_chat(src, span_notice("[capitalize(H.p_theyre())] exposed!"))
 		remove_status_effect(/datum/status_effect/buff/clash)
 		apply_status_effect(/datum/status_effect/buff/adrenaline_rush)
 		purge_peel(GUARD_PEEL_REDUCTION)
