@@ -247,7 +247,7 @@
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_STEELHEARTED = span_info("I have hardened nerves, and do not waiver from the sight of violence in battle."),
 	TRAIT_OUTLAW = span_info("This land's meisters and castificos reject my touch."),
-	TRAIT_ALERT = span_info("I am aware of the dangers of this place and remember bandits by sight. At least for now."),
+	TRAIT_ALERT = span_info("I am aware of the dangers of this place and remember outlaws by sight. At least for now."),
 	TRAIT_RALERT = span_info("I remember all the damned. I'd tell if the person in front of me had a bounty on their head. At least for now."),
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
 	TRAIT_UNDIVIDED = span_info("I have seen past petty squabbles, and am a true follower of the Ten Undivided. I feel most comfortable around churchmen."),
