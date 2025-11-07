@@ -40,7 +40,7 @@ export const SexSession = () => {
   };
 
   return (
-    <Window title="Sate Desires" width={500} height={600}>
+    <Window title="Утолить Желания" width={500} height={600}>
       <Window.Content scrollable>
         <Stack vertical fill>
           <Stack.Item>
@@ -223,7 +223,7 @@ export const SexSession = () => {
           <Stack.Item>
             <Input
               fluid
-              placeholder="Search for an interaction..."
+              placeholder="Поиск взаимодействия..."
               value={searchText}
               onChange={setSearchText}
             />

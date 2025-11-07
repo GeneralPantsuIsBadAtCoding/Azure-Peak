@@ -322,7 +322,7 @@
 /datum/sex_session/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SexSession", "Sate Desires")
+		ui = new(user, src, "SexSession", "Утолить Желания")
 		ui.open()
 
 /datum/sex_session/ui_state(mob/user)
