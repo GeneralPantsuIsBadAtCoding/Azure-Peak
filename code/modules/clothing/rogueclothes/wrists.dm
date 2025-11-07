@@ -36,6 +36,8 @@
 	blocksound = PLATEHIT
 	resistance_flags = FIRE_PROOF
 	max_integrity = ARMOR_INT_SIDE_STEEL
+	pickup_sound = 'sound/foley/equip/equip_armor_plate.ogg'
+	equip_sound = 'sound/foley/equip/equip_armor_plate.ogg'
 	anvilrepair = /datum/skill/craft/armorsmithing
 	sewrepair = FALSE
 	smeltresult = /obj/item/ingot/steel
@@ -259,4 +261,7 @@
 	item_state = "jackchain"
 	armor = ARMOR_LEATHER_STUDDED // Please help me make this make sense this has the same stab protection vro.
 	max_integrity = ARMOR_INT_SIDE_LEATHER // Make it slightly worse
+	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
+	pickup_sound = 'sound/foley/equip/equip_armor_chain.ogg'
+	equip_sound = 'sound/foley/equip/equip_armor_chain.ogg'
 	smeltresult = null

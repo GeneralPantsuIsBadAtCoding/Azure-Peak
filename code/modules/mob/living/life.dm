@@ -48,6 +48,21 @@
 	// with a 60% bonus if they're not completely bled out.
 	// this is a strict replacement for two whole-ass block iteration things that did the same thing (or nothing at all)
 	heal_wounds(heal_amount)
+	/// ENDVRE AS HE DOES.
+	if(!stat && HAS_TRAIT(src, TRAIT_PSYDONITE) && !HAS_TRAIT(src, TRAIT_PARALYSIS))
+		handle_wounds()
+		//passively heal wounds, but not if you're skullcracked OR DEAD.
+		if(blood_volume > BLOOD_VOLUME_SURVIVE)
+			for(var/datum/wound/wound as anything in get_wounds())
+				wound.heal_wound(0.6)
+
+	if(!stat && HAS_TRAIT(src, TRAIT_LYCANRESILENCE) && !HAS_TRAIT(src, TRAIT_PARALYSIS))
+		if(src.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder) || src.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
+			return
+		handle_wounds()
+		if(blood_volume > BLOOD_VOLUME_SURVIVE)
+			for(var/datum/wound/wound as anything in get_wounds())
+				wound.heal_wound(3)		
 
 	if (QDELETED(src)) // diseases can qdel the mob via transformations
 		return

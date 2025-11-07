@@ -412,6 +412,11 @@
 	desc = span_red("That fermented crab was truly rancid, abhorrent and disgusting.")
 	timer = 3 MINUTES
 
+/datum/stressevent/vampiric_reality
+	stressadd = 3
+	desc = span_boldred("The holy sun returns, it's only a matter of time until I turn to ash. I wish to be Mortal again.")
+	timer = 30 SECONDS
+
 /datum/stressevent/dimwitted
 	timer = 10 MINUTES
 	stressadd = -4

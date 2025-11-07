@@ -1768,6 +1768,10 @@
 			should_be_lying = buckled.buckle_lying
 
 	if(should_be_lying)
+		// Track when we transition from standing to prone for dismemberment grace period
+		if(mobility_flags & MOBILITY_STAND) 
+			if(mob_timers)
+				mob_timers["last_standing"] = world.time
 		resting = TRUE
 		mobility_flags &= ~MOBILITY_STAND
 		if(buckled)

@@ -134,8 +134,7 @@
 				var/datum/physiology/phy = human_target.physiology
 				phy.bleed_mod *= 1.5
 				phy.pain_mod *= 1.5
-				addtimer(VARSET_CALLBACK(phy, bleed_mod, phy.bleed_mod /= 1.5), 19 SECONDS)
-				addtimer(VARSET_CALLBACK(phy, pain_mod, phy.pain_mod /= 1.5), 19 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(restore_modifiers), phy), 19 SECONDS)
 				human_target.visible_message(span_danger("[target]'s wounds become inflammed as their vitality is sapped away!"), span_userdanger("Ravox inflammes my wounds and weakens my body!"))
 				return ..()
 			return FALSE
@@ -164,6 +163,13 @@
 					bleeder.set_bleed_rate(max(bleeder.clotting_threshold, bleeder.bleed_rate - difference * situational_bonus))
 		return TRUE
 	return FALSE
+
+/obj/effect/proc_holder/spell/invoked/persistence/proc/restore_modifiers(datum/physiology/physiology)
+	if(!physiology)
+		return
+
+	physiology.bleed_mod /= 1.5
+	physiology.pain_mod /= 1.5
 
 /atom/movable/screen/alert/status_effect/buff/divine_strike
 	name = "Divine Strike"
