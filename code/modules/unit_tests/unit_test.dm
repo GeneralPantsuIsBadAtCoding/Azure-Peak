@@ -182,7 +182,7 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 
 	var/file_name = "data/unit_tests.json"
 	fdel(file_name)
-	file(file_name) << json_encode(test_results)
+	file(file_name) << json_encode(test_results, JSON_PRETTY_PRINT)
 
 	SSticker.force_ending = 1
 	//We have to call this manually because del_text can preceed us, and SSticker doesn't fire in the post game

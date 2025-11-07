@@ -2659,6 +2659,7 @@
 #include "code\modules\tgui_panel\tgui_panel.dm"
 #include "code\modules\underworld\underworld.dm"
 #include "code\modules\unit_tests\_unit_tests.dm"
+#include "code\modules\unit_tests\no_duping_and_transmutation.dm"
 #include "code\modules\vampire_neu\_actions.dm"
 #include "code\modules\vampire_neu\bloodsuck.dm"
 #include "code\modules\vampire_neu\coven_action.dm"
