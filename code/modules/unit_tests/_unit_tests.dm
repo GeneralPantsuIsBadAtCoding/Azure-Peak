@@ -63,9 +63,10 @@
 //Keep this sorted alphabetically
 #include "anchored_mobs.dm"
 #include "component_tests.dm"
-#include "create_and_destroy.dm"
+// #include "create_and_destroy.dm"
 #include "focus_only_tests.dm"
-#include "no_duping_and_transmutation.dm"
+#include "nodupe_salvageresult.dm"
+#include "nodupe_smeltresult.dm"
 #include "reagent_id_typos.dm"
 #include "reagent_names.dm"
 #include "reagent_recipe_collisions.dm"

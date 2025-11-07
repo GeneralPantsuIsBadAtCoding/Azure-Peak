@@ -4,14 +4,14 @@
 /area/misc/testroom)
 "b" = (
 /obj/effect/landmark/unit_test_top_right,
-/turf/open/floor/blocks,
+/turf/open/floor/rogue,
 /area/misc/testroom)
 "y" = (
 /obj/effect/landmark/unit_test_bottom_left,
-/turf/open/floor/blocks,
+/turf/open/floor/rogue,
 /area/misc/testroom)
 "I" = (
-/turf/open/floor/blocks,
+/turf/open/floor/rogue,
 /area/misc/testroom)
 
 (1,1,1) = {"

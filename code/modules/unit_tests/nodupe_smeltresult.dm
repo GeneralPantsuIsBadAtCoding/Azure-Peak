@@ -1,10 +1,11 @@
-// Tests meant to ensure that we don't end up with material duping exploits.
+// Tests meant to ensure that we don't end up with material duping exploits for smelting
 /*
 	Checks for:
-	- Smeltresult 
+	- Smeltresult
 */
-/datum/unit_test/no_duping_and_transmutation/Run()
+/datum/unit_test/nodupe_smeltresult/Run()
 	// Material equivalence mapping - treat these materials as equivalent for transmutation checking
+	// Smeltresult Checking Section //
 	var/list/material_equivalents = list(
 		/obj/item/ingot/silverblessed = /obj/item/ingot/silver,  // blessed silver counts as silver
 		/obj/item/ingot/purifiedaalloy = /obj/item/ingot/aaslag, // purified alloy counts as slag
