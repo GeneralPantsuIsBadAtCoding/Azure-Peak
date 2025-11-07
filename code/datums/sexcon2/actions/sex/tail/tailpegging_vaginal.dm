@@ -1,5 +1,5 @@
 /datum/sex_action/sex/tailpegging_vaginal
-	name = "Fuck their pussy with tail"
+	name = "Трахнуть хвостом"
 	stamina_cost = 1.0
 
 /datum/sex_action/sex/tailpegging_vaginal/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -26,7 +26,7 @@
 	return TRUE
 
 /datum/sex_action/sex/tailpegging_vaginal/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return span_warning("[user] slides [user.p_their()] tail into [target]'s pussy!")
+	return span_warning("[user] раздвигая половые губы, проскальзывает кончиком хвоста внутрь лона [target]!")
 
 /datum/sex_action/sex/tailpegging_vaginal/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
@@ -43,4 +43,4 @@
 	sex_session.handle_passive_ejaculation(target)
 
 /datum/sex_action/sex/tailpegging_vaginal/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return span_warning("[user] pulls [user.p_their()] tail out of [target]'s pussy.")
+	return span_warning("[user] вынимает отросток из лона [target].")

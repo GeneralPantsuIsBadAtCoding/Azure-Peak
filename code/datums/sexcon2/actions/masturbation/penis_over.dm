@@ -1,5 +1,5 @@
 /datum/sex_action/masturbate/penis_over
-	name = "Jerk over them"
+	name = "Вздрочнуть на кого-то"
 	check_same_tile = FALSE
 	user_priority = 20
 
@@ -28,23 +28,23 @@
 
 /datum/sex_action/masturbate/penis_over/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] starts jerking over [target]..."))
+	user.visible_message(span_warning("[user] надрачивает на [target]..."))
 
 /datum/sex_action/masturbate/penis_over/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	var/chosen_verb = pick(list("jerks [user.p_their()] cock", "strokes [user.p_their()] cock", "masturbates", "jerks off"))
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] [chosen_verb] over [target]"))
+	var/chosen_verb = pick(list("дрочит свой хер", "ублажает свой член", "мастурбирует", "дрочит"))
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] [chosen_verb] над [target]"))
 	playsound(user, 'sound/misc/mat/fingering.ogg', 30, TRUE, -2, ignore_walls = FALSE)
 
 	sex_session.perform_sex_action(user, 2, 4, TRUE)
 
 /datum/sex_action/masturbate/penis_over/handle_climax_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	user.visible_message(span_love("[user] cums over [target]'s body!"))
+	user.visible_message(span_love("[user] кончает на [target]!"))
 	return "onto"
 
 /datum/sex_action/masturbate/penis_over/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] stops jerking off."))
+	user.visible_message(span_warning("[user] заканчивает наяривать."))
 
 /datum/sex_action/masturbate/penis_over/lock_sex_object(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()

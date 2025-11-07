@@ -1,5 +1,5 @@
 /datum/sex_action/masturbate/anus
-	name = "Finger butt"
+	name = "Фингеринг ануса"
 
 /datum/sex_action/masturbate/anus/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user != target)
@@ -20,11 +20,11 @@
 
 /datum/sex_action/masturbate/anus/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] starts fingering [user.p_their()] butt..."))
+	user.visible_message(span_warning("[user] проталкивает пальчик в свою попку..."))
 
 /datum/sex_action/masturbate/anus/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] fingers [user.p_their()] butt..."))
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] двигает пальчиком внутри своей задницы..."))
 	playsound(user, 'sound/misc/mat/fingering.ogg', 30, TRUE, -2, ignore_walls = FALSE)
 
 	sex_session.perform_sex_action(user, 2, 6, TRUE)
@@ -32,4 +32,4 @@
 
 /datum/sex_action/masturbate/anus/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] stops fingering [user.p_their()] butt."))
+	user.visible_message(span_warning("[user] вытаскивает пальчик из своей попки."))

@@ -74,5 +74,5 @@
 	..()
 	var/obj/item/organ/vagina/vagina_organ = organ
 	vagina_organ.fertility = fertility
-	if(vagina_organ.accessory_type == /datum/sprite_accessory/vagina/cloaca)
-		vagina_organ.monohole = TRUE
+	//if(vagina_organ.accessory_type == /datum/sprite_accessory/vagina/cloaca)
+	//	vagina_organ.monohole = TRUE

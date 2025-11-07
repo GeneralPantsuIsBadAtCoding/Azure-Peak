@@ -1,5 +1,5 @@
 /datum/sex_action/suck_balls
-	name = "Suck their balls"
+	name = "Вылизать яйца"
 
 /datum/sex_action/suck_balls/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -28,11 +28,11 @@
 
 /datum/sex_action/suck_balls/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] starts sucking [target]'s balls..."))
+	user.visible_message(span_warning("[user] помещает мешочек с яичками [target] в свой рот..."))
 
 /datum/sex_action/suck_balls/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] sucks [target]'s balls..."))
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] обсасывает шары [target]..."))
 	user.make_sucking_noise()
 
 	sex_session.perform_sex_action(target, 1, 3, TRUE)
@@ -40,7 +40,7 @@
 
 /datum/sex_action/suck_balls/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] stops sucking [target]'s balls ..."))
+	user.visible_message(span_warning("[user] вынимает из собственной пасти шары [target]..."))
 
 /datum/sex_action/suck_balls/lock_sex_object(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	sex_locks |= new /datum/sex_session_lock(user, BODY_ZONE_PRECISE_MOUTH)

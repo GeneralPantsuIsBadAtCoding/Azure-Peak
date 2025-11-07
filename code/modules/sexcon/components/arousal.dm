@@ -15,6 +15,7 @@
 	var/charge = SEX_MAX_CHARGE
 	/// Last ejaculation time
 	var/last_ejaculation_time = 0
+	var/aphrodisiac = 0
 
 /datum/component/arousal/Initialize(...)
 	. = ..()
@@ -141,7 +142,6 @@
 		if(action.knot_on_finish)
 			action.try_knot_on_climax(mob, highest_priority.target)
 
-
 /datum/component/arousal/proc/handle_climax(climax_type, mob/living/carbon/human/user, mob/living/carbon/human/target)
 	switch(climax_type)
 		if("onto")
@@ -149,9 +149,22 @@
 			playsound(target, 'sound/misc/mat/endout.ogg', 50, TRUE, ignore_walls = FALSE)
 			var/turf/turf = get_turf(target)
 			new /obj/effect/decal/cleanable/coom(turf)
+			if(target)
+				var/datum/status_effect/facial/facial = target.has_status_effect(/datum/status_effect/facial)
+				if(!facial)
+					target.apply_status_effect(/datum/status_effect/facial)
+				else
+					facial.refresh_cum()
 		if("into")
 			log_combat(user, target, "Came inside the target")
 			playsound(target, 'sound/misc/mat/endin.ogg', 50, TRUE, ignore_walls = FALSE)
+			if(target)
+				var/status_type = /datum/status_effect/facial/internal
+				var/datum/status_effect/facial/internal_effect = target.has_status_effect(status_type)
+				if(!internal_effect)
+					target.apply_status_effect(status_type)
+				else
+					internal_effect.refresh_cum()
 		if("self")
 			log_combat(user, user, "Ejaculated")
 			user.visible_message(span_love("[user] makes a mess!"))

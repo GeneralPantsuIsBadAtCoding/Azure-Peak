@@ -2909,7 +2909,6 @@
 #include "modular_twilight_axis\code\modules\roguetown\roguejobs\alchemist\reagents.dm"
 #include "modular_twilight_axis\code\modules\roguetown\roguejobs\blacksmith\anvil_recipes\armor.dm"
 #include "modular_twilight_axis\code\modules\roguetown\roguemachine\hoardmaster.dm"
-#include "modular_twilight_axis\code\modules\surgery\organs\feature_organs\genitals.dm"
 #include "modular_twilight_axis\code\modules\surgery\organs\feature_organs\tails.dm"
 #include "modular_twilight_axis\code\modules\surgery\organs\feature_organs\wings.dm"
 #include "modular_twilight_axis\code\onclick\click.dm"
