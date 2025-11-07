@@ -13,8 +13,8 @@
   --color-text: #d0d4cc;
   --line-height: 170%;
 
-  /* Semantic colors */ 
-  --color-label: #d0d4cc;
+  /* Semantic colors */
+  --color-label: #8a9b7a;
 
 
   // Basics
@@ -47,6 +47,18 @@
   --button-background-default: #343f35;
   --button-background-selected: #447544;
   }
+  .Button--color--transparent {
+    --button-background-hover: #343f35;
+    --button-background-active: #343f35;
+    --button-background-disabled: transparent;
+    --button-color: #a0b08d;
+  }
+
+  .Button--color--transparent.Button--disabled {
+    --button-color: #5a6850;
+  }
+
+  --color-border: #343f35;
 
   .input-button {
     &__submit, &__cancel {

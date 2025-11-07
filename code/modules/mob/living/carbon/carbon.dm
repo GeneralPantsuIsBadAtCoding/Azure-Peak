@@ -88,7 +88,6 @@
 	update_a_intents()
 
 	givingto = null
-
 	return TRUE
 
 

@@ -20,17 +20,7 @@
 	var/stump_type = /obj/structure/flora/roguetree/stump
 
 /obj/structure/flora/roguetree/attack_right(mob/user)
-	if(user.mind && isliving(user))
-		if(user.mind.special_items && user.mind.special_items.len)
-			var/item = input(user, "What will I take?", "STASH") as null|anything in user.mind.special_items
-			if(item)
-				if(user.Adjacent(src))
-					if(user.mind.special_items[item])
-						var/path2item = user.mind.special_items[item]
-						user.mind.special_items -= item
-						var/obj/item/I = new path2item(user.loc)
-						user.put_in_hands(I)
-			return
+	handle_special_items_retrieval(user, src)
 
 /obj/structure/flora/roguetree/attacked_by(obj/item/I, mob/living/user)
 	var/was_destroyed = obj_destroyed
@@ -461,18 +451,7 @@
 	dir = SOUTH
 
 /obj/structure/flora/rogueshroom/attack_right(mob/user)
-	if(user.mind && isliving(user))
-		if(user.mind.special_items && user.mind.special_items.len)
-			var/item = input(user, "What will I take?", "STASH") as null|anything in user.mind.special_items
-			if(item)
-				if(user.Adjacent(src))
-					if(user.mind.special_items[item])
-						var/path2item = user.mind.special_items[item]
-						user.mind.special_items -= item
-						var/obj/item/I = new path2item(user.loc)
-						user.put_in_hands(I)
-			return
-
+	handle_special_items_retrieval(user, src)
 
 /obj/structure/flora/rogueshroom/Initialize()
 	. = ..()

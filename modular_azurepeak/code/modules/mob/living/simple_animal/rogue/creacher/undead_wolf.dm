@@ -19,15 +19,15 @@
 	base_intents = list(/datum/intent/simple/bite/volf)
 	botched_butcher_results = list(/obj/item/alch/viscera = 1, /obj/item/alch/sinew = 1, /obj/item/natural/bone = 2)
 	butcher_results = list(/obj/item/natural/hide = 1,
-						/obj/item/alch/sinew = 1, 
-						/obj/item/alch/bone = 1, 
+						/obj/item/alch/sinew = 1,
+						/obj/item/alch/bone = 1,
 						/obj/item/alch/viscera = 1,
 						/obj/item/natural/bone = 3)
 	perfect_butcher_results = list(/obj/item/natural/hide = 1,
-						/obj/item/alch/sinew = 2, 
-						/obj/item/alch/bone = 1, 
+						/obj/item/alch/sinew = 2,
+						/obj/item/alch/bone = 1,
 						/obj/item/alch/viscera = 1,
-						/obj/item/natural/fur/wolf = 1, 
+						/obj/item/natural/fur/wolf = 1,
 						/obj/item/natural/bone = 4)
 
 	faction = list("zombie")
@@ -62,12 +62,33 @@
 	var/is_downed = FALSE
 	var/legs_broken = FALSE
 
+	var/chomp_cd = 0
+	var/chomp_roll = 0
+
 	retreat_health = 0
 	attack_sound = list('sound/vo/mobs/vw/attack (1).ogg','sound/vo/mobs/vw/attack (2).ogg','sound/vo/mobs/vw/attack (3).ogg','sound/vo/mobs/vw/attack (4).ogg')
 
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/undead/wolf
+
+/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead/AttackingTarget() //7+1d6 vs con to knock ppl down
+	. = ..()
+
+	if(. && prob(8) && iscarbon(target))
+		var/mob/living/carbon/C = target
+		if(world.time >= chomp_cd + 120 SECONDS) //they can do it Once basically
+			src.chomp_roll = STASTR + (rand(1,6))
+			if(src.chomp_roll > C.STACON)
+				C.Knockdown(20)
+				C.visible_message(span_danger("\The [src] chomps \the [C]'s legs, knocking them down!"))
+				span_danger("\The [src] tugs me to the ground! I'm winded!")
+				C.adjustOxyLoss(10) //less punishing than zfall bc simplemob
+				C.emote("gasp")
+				playsound(C, 'sound/foley/zfall.ogg', 100, FALSE)
+			else
+				C.visible_message(span_danger("\The [src] fails to drag \the [C] down!"))
+		src.chomp_cd = world.time //this goes here i think? ...sure
 
 /mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead/Initialize()
 	. = ..()

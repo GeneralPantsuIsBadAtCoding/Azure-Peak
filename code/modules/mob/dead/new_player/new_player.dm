@@ -379,6 +379,15 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 				return "You must wait [remaining_time] seconds before playing as an [jobtitle] again."
 		if(JOB_UNAVAILABLE_VIRTUESVICE)
 			return "[jobtitle] is restricted by your Virtues or Vices."
+		if(JOB_UNAVAILABLE_PQ)
+			var/datum/job/job = SSjob.GetJob(jobtitle)
+			if(job && !isnull(job.min_pq))
+				var/player_pq = get_playerquality(usr?.ckey)
+				return "You do not meet the Player Quality requirement for [jobtitle]. (Required: [job.min_pq], Your PQ: [player_pq])"
+			else if(job && !isnull(job.max_pq))
+				var/player_pq = get_playerquality(usr?.ckey)
+				return "You exceed the Player Quality requirement for [jobtitle]. (Maximum: [job.max_pq], Your PQ: [player_pq])"
+			return "You do not meet the Player Quality requirement for [jobtitle]."
 	return "Error: Unknown job availability."
 
 //used for latejoining
@@ -424,9 +433,9 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	#ifdef USES_PQ
 	if(!job.required || latejoin)
 		if(!isnull(job.min_pq) && (get_playerquality(ckey) < job.min_pq))
-			return JOB_UNAVAILABLE_GENERIC
+			return JOB_UNAVAILABLE_PQ
 		if(!isnull(job.max_pq) && (get_playerquality(ckey) > job.max_pq))
-			return JOB_UNAVAILABLE_GENERIC
+			return JOB_UNAVAILABLE_PQ
 	#endif
 	var/datum/species/pref_species = client.prefs.pref_species
 	if(length(job.allowed_races) && !(pref_species.type in job.allowed_races))

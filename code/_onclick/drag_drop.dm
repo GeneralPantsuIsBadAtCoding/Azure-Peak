@@ -13,8 +13,10 @@
 	if(!Adjacent(usr) || !over.Adjacent(usr))
 		return // should stop you from dragging through windows
 	var/list/L = params2list(params)
-	if (L["middle"])
-		over.MiddleMouseDrop_T(src,usr)
+	if (L["right"])
+		over.RightMouseDrop_T(src, usr)
+	else if (L["middle"])
+		over.MiddleMouseDrop_T(src, usr)
 	else
 		if(over == src)
 			return usr.client.Click(src, src_location, src_control, params)
@@ -35,12 +37,13 @@
 
 // receive a mousedrop
 /atom/proc/MouseDrop_T(atom/dropping, mob/user)
-	SEND_SIGNAL(src, COMSIG_MOUSEDROPPED_ONTO, dropping, user)
-	return
+	SEND_SIGNAL(src, COMSIG_MOUSEDROPPED_ONTO, dropping, user, "left")
+
+/atom/proc/RightMouseDrop_T(atom/dropping, mob/user)
+	SEND_SIGNAL(src, COMSIG_MOUSEDROPPED_ONTO, dropping, user, "right")
 
 /atom/proc/MiddleMouseDrop_T(atom/dropping, mob/user)
-	SEND_SIGNAL(src, COMSIG_MOUSEDROPPED_ONTO, dropping, user)
-	return
+	SEND_SIGNAL(src, COMSIG_MOUSEDROPPED_ONTO, dropping, user, "middle")
 
 /client
 	var/list/atom/selected_target[2]
@@ -117,7 +120,10 @@
 
 	var/list/L = params2list(params)
 	if (L["right"])
-		mob.face_atom(object, location, control, params)
+		if(mob.buckled)
+			mob.buckled.face_atom(object, location, control, params)
+		else
+			mob.face_atom(object, location, control, params)
 		if(L["left"])
 			return
 		mob.atkswinging = "right"
@@ -151,7 +157,10 @@
 			mouse_pointer_icon = 'icons/effects/mousemice/human_looking.dmi'
 		else
 			if(mob.mmb_intent.get_chargetime() && mob.mmb_intent.can_charge() && !AD.blockscharging)
-				mob.face_atom(object, location, control, params)
+				if(mob.buckled)
+					mob.buckled.face_atom(object, location, control, params)
+				else
+					mob.face_atom(object, location, control, params)
 				updateprogbar()
 			else
 				mouse_pointer_icon = mob.mmb_intent.pointer
@@ -356,7 +365,11 @@
 		else
 			middragtime = 0
 			middragatom = null
-	mob.face_atom(over_object, over_location, over_control, params)
+
+	if(mob.buckled)
+		mob.buckled.face_atom(over_object, over_location, over_control, params)
+	else
+		mob.face_atom(over_object, over_location, over_control, params)
 
 	mouseParams = params
 	mouseLocation = over_location

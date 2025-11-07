@@ -546,7 +546,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	//Healing while sleeping in a bed
 	if(IsSleeping())
 		var/sleepy_mod = 0.5
-		var/yess = HAS_TRAIT(src, TRAIT_NOHUNGER)
+		var/doesnt_hunger = HAS_TRAIT(src, TRAIT_NOHUNGER)
 		if(HAS_TRAIT(src, TRAIT_BETTER_SLEEP))
 			energy_add(sleepy_mod * 4)
 		if(buckled?.sleepy)
@@ -555,9 +555,14 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			var/obj/structure/bed/rogue/bed = locate() in loc
 			if(bed)
 				sleepy_mod = bed.sleepy
-		if(nutrition > 0 || yess)
+			else
+				if(HAS_TRAIT(src, TRAIT_OUTDOORSMAN))
+					var/obj/structure/flora/newbranch/branch = locate() in loc
+					if(branch)
+						sleepy_mod = 2 // just equivalent to a bedroll
+		if(nutrition > 0 || doesnt_hunger)
 			energy_add(sleepy_mod * 15)
-		if(hydration > 0 || yess)
+		if(hydration > 0 || doesnt_hunger)
 			if(!bleed_rate)
 				blood_volume = min(blood_volume + (4 * sleepy_mod), BLOOD_VOLUME_NORMAL)
 			for(var/obj/item/bodypart/affecting as anything in bodyparts)
@@ -587,7 +592,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 				if(HAS_TRAIT(src, TRAIT_OUTDOORSMAN))
 					var/obj/structure/flora/newbranch/branch = locate() in loc
 					if(branch)
-						sleepy_mod = 1.5 //Worse than a bedroll, better than nothing.
+						sleepy_mod = 0.5 // equivalent to leaning against a wall, since you get this while NOT asleep
 		if(sleepy_mod > 0)
 			if(eyesclosed)
 				var/armor_blocked = FALSE

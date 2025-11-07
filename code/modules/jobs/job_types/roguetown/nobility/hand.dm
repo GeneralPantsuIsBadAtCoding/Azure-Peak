@@ -33,17 +33,13 @@
 	id = /obj/item/scomstone/garrison
 	job_bitflag = BITFLAG_ROYALTY
 
+/datum/outfit/job/roguetown/hand/pre_equip(mob/living/carbon/human/H)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/agent)
+	H.verbs |= /datum/job/roguetown/hand/proc/remember_agents
+
 /datum/job/roguetown/hand/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(know_agents), L), 5 SECONDS)
-
-/datum/job/roguetown/hand/proc/know_agents(var/mob/living/carbon/human/H)
-	if(!GLOB.court_agents.len)
-		to_chat(H, span_notice("You begun the week with no agents."))
-	else
-		to_chat(H, span_notice("We begun the week with these agents:"))
-		for(var/name in GLOB.court_agents)
-			to_chat(H, span_notice(name))
 
 ///////////
 //CLASSES//
@@ -214,3 +210,40 @@
 		H.change_stat(STATKEY_INT, 1)
 		H.change_stat(STATKEY_PER, 1)
 		H.mind?.adjust_spellpoints(3)
+
+////////////////////
+///SPELLS & VERBS///
+////////////////////
+
+/datum/job/roguetown/hand/proc/know_agents(var/mob/living/carbon/human/H)
+	if(!GLOB.court_agents.len)
+		to_chat(H, span_boldnotice("You begun the week with no agents."))
+	else
+		to_chat(H, span_boldnotice("We begun the week with these agents:"))
+		for(var/name in GLOB.court_agents)
+			to_chat(H, span_greentext(name))
+
+/datum/job/roguetown/hand/proc/remember_agents()
+	set name = "Remember Agents"
+	set category = "Voice of Command"
+
+	to_chat(usr, span_boldnotice("I have these agents present:"))
+	for(var/name in GLOB.court_agents)
+		to_chat(usr, span_greentext(name))
+	return
+
+/obj/effect/proc_holder/spell/self/convertrole/agent
+	name = "Recruit Agent"
+	new_role = "Court Agent"//They get shown as adventurers either way.
+	overlay_state = "recruit_servant"
+	recruitment_faction = "Agents"
+	recruitment_message = "Serve the crown, %RECRUIT!"
+	accept_message = "FOR THE CROWN!"
+	refuse_message = "I refuse."
+	recharge_time = 100
+
+/obj/effect/proc_holder/spell/self/convertrole/agent/convert(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
+	. = ..()
+	if(!.)
+		return
+	GLOB.court_agents += recruit.real_name

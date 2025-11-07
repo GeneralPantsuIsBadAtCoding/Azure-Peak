@@ -51,7 +51,12 @@
 	var/not_handled = FALSE
 	switch(slot)
 		if(SLOT_BACK)
-			back = I
+			if(!backl && (I.slot_flags & ITEM_SLOT_BACK_L))
+				backl = I
+			else if(!backr && (I.slot_flags & ITEM_SLOT_BACK_R))
+				backr = I
+			else
+				not_handled = TRUE
 			update_inv_back()
 		if(SLOT_WEAR_MASK)
 			wear_mask = I

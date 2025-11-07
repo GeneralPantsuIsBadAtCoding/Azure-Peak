@@ -605,11 +605,10 @@
 			mmb_intent.glow_color = ranged_ability.glow_color
 			mmb_intent.mob_charge_effect = ranged_ability.mob_charge_effect
 			mmb_intent.update_chargeloop()
-	
-	if(hud_used)		
+
+	if(hud_used)
 		hud_used.quad_intents?.switch_intent(input)
 		hud_used.give_intent?.switch_intent(input)
-	givingto = null
 
 /mob/verb/def_intent_change(input as num)
 	set name = "def-change"
