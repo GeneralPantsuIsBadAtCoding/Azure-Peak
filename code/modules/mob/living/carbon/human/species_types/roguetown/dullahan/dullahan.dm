@@ -231,7 +231,8 @@
 	..()
 	RegisterSignal(user, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	RegisterSignal(user, COMSIG_MOB_SAY_POSTPROCESS, PROC_REF(on_say_postprocess))
-	RegisterSignal(user, COMSIG_ERP_LOCATION_ACCESSIBLE, PROC_REF(on_erp_location_accessible))
+	// TODO SEXCON2: Re-enable Dullahan detached head ERP support
+	//RegisterSignal(user, COMSIG_ERP_LOCATION_ACCESSIBLE, PROC_REF(on_erp_location_accessible))
 	RegisterSignal(user, COMSIG_LIVING_REVIVE, PROC_REF(on_aheal))
 	my_head = user.get_bodypart(BODY_ZONE_HEAD)
 	RegisterSignal(my_head, COMSIG_QDELETING, PROC_REF(on_head_destroyed))
@@ -241,7 +242,7 @@
 
 	UnregisterSignal(user, COMSIG_MOB_SAY)
 	UnregisterSignal(user, COMSIG_MOB_SAY_POSTPROCESS)
-	UnregisterSignal(user, COMSIG_ERP_LOCATION_ACCESSIBLE)
+	//UnregisterSignal(user, COMSIG_ERP_LOCATION_ACCESSIBLE) // TODO SEXCON2
 	if(my_head.owner ~= user)
 		// Give their head back instead?
 		// In TG Dullahan heads are always off, thus they give back heads.
@@ -305,6 +306,8 @@
 	my_head.say(speech_args[SPEECH_MESSAGE], spans = speech_args[SPEECH_SPANS], sanitize = FALSE, message_range = message_range, message_mode = speech_args[SPEECH_MODE])
 	speech_args[SPEECH_MESSAGE] = ""
 
+// TODO SEXCON2: Reimplement for sexcon2 system
+/*
 /datum/species/dullahan/proc/on_erp_location_accessible(datum/source, list/check_args)
 	// Allows Dullahan heads but not necro.
 	var/obj/item/bodypart/bodypart = check_args[ERP_BODYPART]
@@ -343,6 +346,7 @@
 		success_flags |= SKIP_GRAB_CHECK
 
 	return success_flags
+*/
 
 /datum/species/dullahan/proc/get_nodrop_head()
 	var/obj/item/bodypart/head/dullahan/head = my_head

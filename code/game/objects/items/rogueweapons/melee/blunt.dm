@@ -26,6 +26,8 @@
 	item_d_type = "blunt"
 	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 	desc = "A powerful, charged up strike that deals normal damage but can throw a standing opponent back and slow them down, based on your strength. Ineffective below 10 strength. Slowdown & Knockback scales to your Strength up to 14 (1 - 4 tiles). Cannot be used consecutively more than every 5 seconds on the same target. Prone targets halve the knockback distance. Not fully charging the attack limits knockback to 1 tile."
+	var/maxrange = 4
+
 
 /datum/intent/mace/smash/spec_on_apply_effect(mob/living/H, mob/living/user, params)
 	var/chungus_khan_str = user.STASTR 
@@ -33,7 +35,7 @@
 		return // Recently knocked back, cannot be knocked back again yet
 	if(chungus_khan_str < 10)
 		return // Too weak to have any effect
-	var/scaling = CLAMP((chungus_khan_str - 10), 1, 4)
+	var/scaling = CLAMP((chungus_khan_str - 10), 1, maxrange)
 	H.apply_status_effect(/datum/status_effect/debuff/yeetcd)
 	H.Slowdown(scaling)
 	// Copypasta from knockback proc cuz I don't want the math there
@@ -161,8 +163,8 @@
 /obj/item/rogueweapon/mace/steel/silver
 	force = 30
 	force_wielded = 35
-	name = "silver mace"
-	desc = "A heavy flanged mace, forged from pure silver. For a lord, it's the perfect symbol of authority; a decorative piece for the courts. For a paladin, however, there's no better implement for shattering avantyne-maille into a putrid pile of debris."
+	name = "silver-plated mace"
+	desc = "A long and heavy flanged mace, forged from pure silver covering a dense blacksteel core. For a lord, it's the perfect symbol of authority; a decorative piece for the courts. For a paladin, however, there's no better implement for shattering avantyne-maille into a putrid pile of debris."
 	icon_state = "silvermace"
 	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/silver
