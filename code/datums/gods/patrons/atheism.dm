@@ -1,5 +1,8 @@
 /datum/patron/godless
 	name = "Science"
+	rusgodnames = list(
+	"Наука", "Науки", "Науке", "Науку", "Наукой", "Науке" // Чумба, ты че ебанутый молиться науке?
+	)
 	domain = "Ontological Reality"
 	desc = "No gods or kings, only man! Gods exist but you give them the finger."
 	worshippers = "Madmen, beasts and some dwarves"
@@ -7,10 +10,10 @@
 	preference_accessible = FALSE
 	undead_hater = FALSE
 	confess_lines = list(
-		"Gods are WORTHLESS!",
-		"I DON'T NEED GODS!",
-		"I AM MY OWN GOD!",
-		"NO GODS, NO MASTERS!",
+		"Боги не нужны!",
+		"МНЕ НЕ НУЖНЫ БОГИ!",
+		"Я ЛИШЬ СЕБЕ БОГ!",
+		"НЕТ БОГОВ - НЕТ ХОЗЯЕВ!",
 	)
 
 /datum/patron/godless/can_pray(mob/living/follower)

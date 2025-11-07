@@ -30,10 +30,9 @@
 		for(var/obj/item/natural/dirtclod/D in T)
 			dirtcount++
 			dirts += D
-		if(dirtcount >=5)
+		if(dirtcount >= 5)
 			for(var/obj/item/I in dirts)
 				qdel(I)
-			qdel(src)
 			new /obj/structure/fluff/clodpile(T)
 
 /obj/item/natural/dirtclod/attack_self(mob/living/user)

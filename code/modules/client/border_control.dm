@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 //////////////////////////////////////////////////////////////////////////////////
 //ADMIN_VERB_ADD(/client/proc/BC_WhitelistKeyVerb, R_ADMIN, FALSE)
 ///client/proc/BC_WhitelistKeyVerb()
-/datum/admins/proc/BC_WhitelistKeyVerb()
+/*/datum/admins/proc/BC_WhitelistKeyVerb()
 
 	set name = "BC - Whitelist Key"
 	set category = "-Server-"
@@ -60,9 +60,9 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 	if(key)
 		var/confirm = alert("Add [key] to the border control whitelist?", , "Yes", "No")
 		if(confirm == "Yes")
-			message_admins("[key_name(usr)] added [key] to the border whitelist.")
-			log_admin("[key_name(usr)] added [key] to the border whitelist.")
-			BC_WhitelistKey(key)
+			message_admins("added [key] to the border whitelist.")
+			log_admin("added [key] to the border whitelist.")
+			BC_WhitelistKey(key)*/
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -91,10 +91,9 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 //////////////////////////////////////////////////////////////////////////////////
 //ADMIN_VERB_ADD(/client/proc/BC_RemoveKeyVerb, R_ADMIN, FALSE)
 ///client/proc/BC_RemoveKeyVerb()
-/datum/admins/proc/BC_RemoveKeyVerb()
-	set name = "BC - Remove Whitelist Key"
-	set category = "-Server-"
-
+/*/datum/admins/proc/BC_RemoveKeyVerb()
+	set name = "Border Control - Remove Key"
+	set category = "Admin.Border Control"
 	var/keyToRemove = input("CKey to Remove", "Remove Key") as null|anything in GLOB.whitelistedCkeys
 
 	if(keyToRemove)
@@ -104,7 +103,7 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 			log_admin("[key_name(usr)] removed [keyToRemove] from the border whitelist.")
 			BC_RemoveKey(keyToRemove)
 
-	return
+	return*/
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -125,7 +124,7 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 //////////////////////////////////////////////////////////////////////////////////
 //ADMIN_VERB_ADD(/client/proc/BC_ToggleState, R_ADMIN, FALSE)
 ///client/proc/BC_ToggleState()
-/datum/admins/proc/BC_ToggleState()
+/*/datum/admins/proc/BC_ToggleState()
 
 	set name = "BC - Toggle Mode"
 	set category = "-Server-"
@@ -161,7 +160,7 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 
 	CONFIG_SET(number/border_control, borderControlMode)
 
-	return
+	return*/
 
 
 //////////////////////////////////////////////////////////////////////////////////

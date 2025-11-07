@@ -154,7 +154,7 @@
 	var/turf/focalpoint = target_turf
 	for (var/turf/open/visual in view(1, focalpoint))
 		new /obj/effect/temp_visual/marker(visual)
-	sleep(1.5 SECONDS)
+	stoplag(1.5 SECONDS)
 	for (var/mob/living/screenshaken in view(1, focalpoint))
 		shake_camera(screenshaken, 5, 5)
 	for (var/mob/living/shaken in view(1, focalpoint))
