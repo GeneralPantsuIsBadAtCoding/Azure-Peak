@@ -47,12 +47,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/book/rogue/loadoutbook
 
 //TOOLS
-/*
 /datum/loadout_item/bauernwehr
 	name = "Bauernwehr (-3 TRI)"
+	category = "Триумфы"
 	path = /obj/item/rogueweapon/huntingknife/throwingknife/bauernwehr
 	triumph_cost = 3
-*/
+
 //HATS
 /datum/loadout_item/shalal
 	name = "Keffiyeh"
