@@ -838,12 +838,16 @@
 	icon_state = "bear_cloak"
 	item_state = "bear_cloak"
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	salvage_result = /obj/item/natural/hide/cured
+	salvage_amount = 3
 
 /obj/item/clothing/cloak/darkcloak/bear/light
 	name = "light direbear cloak"
 	icon_state = "bbear_cloak"
 	item_state = "bbear_cloak"
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	salvage_result = /obj/item/natural/hide/cured
+	salvage_amount = 3
 
 /obj/item/clothing/cloak/apron
 	name = "apron"
@@ -1053,6 +1057,8 @@
 /obj/item/clothing/cloak/cape/puritan
 	icon_state = "puritan_cape"
 	allowed_race = CLOTHED_RACES_TYPES
+	salvage_result = /obj/item/natural/silk
+	salvage_amount = 1
 
 /obj/item/clothing/cloak/cape/archivist
 	icon_state = "puritan_cape"
@@ -1396,6 +1402,8 @@
 	inhand_mod = FALSE
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
 	flags_inv = HIDECROTCH|HIDEBOOB
+	salvage_result = /obj/item/natural/hide/cured
+	salvage_amount = 1
 
 /obj/item/clothing/cloak/wickercloak
 	name = "wicker cloak"
@@ -1409,6 +1417,8 @@
 	sleevetype = "shirt"
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
+	salvage_result = /obj/item/natural/fibers
+	salvage_amount = 2
 
 /obj/item/clothing/cloak/tribal
 	name = "tribal pelt"

@@ -342,6 +342,7 @@
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 	adjustable = CAN_CADJUST
 	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL - ARMOR_INT_HELMET_HEAVY_ADJUSTABLE_PENALTY
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/getonmobprop(tag)
 	if(tag)
@@ -450,6 +451,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
 	bloody_icon = 'icons/effects/blood64.dmi'
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
 	name = "psydonic bucket helmet"
@@ -459,6 +461,7 @@
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 	adjustable = CAN_CADJUST
 	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psysallet
 	name = "psydonic sallet"
@@ -467,7 +470,8 @@
 	item_state = "psysallet"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 	adjustable = CAN_CADJUST
-	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL	
+	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
 	name = "noc helmet"

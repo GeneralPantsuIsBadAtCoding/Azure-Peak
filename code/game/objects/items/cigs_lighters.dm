@@ -339,6 +339,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 50
 	list_reagents = null
 	muteinmouth = FALSE
+	salvage_result = null
 
 /obj/item/clothing/mask/cigarette/rollie/Initialize()
 	. = ..()
@@ -462,6 +463,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/mouth_items.dmi'
 	icon = 'icons/roguetown/items/lighting.dmi'
 	muteinmouth = FALSE
+	salvage_result = null
 
 /obj/item/clothing/mask/cigarette/pipe/westman
 	name = "westman pipe"

@@ -434,7 +434,7 @@
 	anchored = TRUE
 	can_buckle = TRUE
 	buckle_lying = 90
-	sleepy = 3
+	sleepy = 2
 	debris = list(/obj/item/grown/log/tree/small = 1)
 
 /obj/structure/bed/rogue/inn/wool
@@ -452,4 +452,4 @@
 	anchored = TRUE
 	can_buckle = TRUE
 	buckle_lying = 90
-	sleepy = 3
+	sleepy = 1

@@ -536,6 +536,9 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 */
 
 /mob/living/carbon/proc/handle_sleep()
+	var/datum/charflaw/sleepless/sleepless_flaw = get_flaw()
+	if(!istype(sleepless_flaw, /datum/charflaw/sleepless))
+		sleepless_flaw = null
 	if(HAS_TRAIT(src, TRAIT_NOSLEEP))
 		if(!(mobility_flags & MOBILITY_STAND))
 			energy_add(5)
@@ -543,7 +546,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(!(mobility_flags & MOBILITY_STAND))
 				energy_add(10)
 			energy_add(4)
-		return
 	//Healing while sleeping in a bed
 	if(IsSleeping())
 		var/sleepy_mod = 0.5
@@ -577,25 +579,31 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						continue
 					wound.heal_wound(wound.sleep_healing * sleepy_mod)
 			adjustToxLoss(-sleepy_mod)
-			if(eyesclosed && !HAS_TRAIT(src, TRAIT_NOSLEEP))
-				teleport_to_dream(src, 10000, 2)
-				Sleeping(300)
-	else if(!IsSleeping() && !HAS_TRAIT(src, TRAIT_NOSLEEP))
-		// Resting on a bed or something
+	else
 		var/sleepy_mod = 0
+		var/sleep_threshold = 30
+		var/message = "I'll fall asleep soon..."
+		var/dream_prob = 2
 		if(buckled?.sleepy)
 			sleepy_mod = buckled.sleepy
-		else if(isturf(loc) && !(mobility_flags & MOBILITY_STAND))
+		if(isturf(loc) && !(mobility_flags & MOBILITY_STAND))
 			var/obj/structure/bed/rogue/bed = locate() in loc
 			if(bed)
 				sleepy_mod = bed.sleepy
 			else
+				sleepy_mod = 1
 				if(HAS_TRAIT(src, TRAIT_OUTDOORSMAN))
 					var/obj/structure/flora/newbranch/branch = locate() in loc
 					if(branch)
-						sleepy_mod = 0.5 // equivalent to leaning against a wall, since you get this while NOT asleep
+						sleepy_mod = 2 //Worse than a bedroll, better than nothing.
 		if(sleepy_mod > 0)
 			if(eyesclosed)
+				if(HAS_TRAIT(src, TRAIT_NOSLEEP) && !sleepless_flaw)
+					message = "I am completely unable to sleep. I should just get up."
+					if(!fallingas)
+						to_chat(src, span_warning(message))
+					fallingas = TRUE
+					return
 				var/armor_blocked = FALSE
 				if(ishuman(src) && stat == CONSCIOUS)
 					var/mob/living/carbon/human/H = src
@@ -607,42 +615,44 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						to_chat(src, span_warning("I can't sleep like this. My armor is burdening me."))
 						fallingas = TRUE
 				if(!armor_blocked)
+					if (sleepy_mod > 1)
+						sleep_threshold = 30
+					else
+						sleep_threshold = 45 
+						message = "I'll fall asleep soon, although a proper bed would be more comfortable..."
+					if(sleepless_flaw) 
+						if(!sleepless_flaw.drugged_up)
+							message = "I am unable to sleep. I should just get up."
+							if(!fallingas)
+								to_chat(src, span_warning(message))
+							fallingas = TRUE
+						else
+							sleep_threshold = 45
+							message = "I'll fall asleep soon, although it's still very hard for me to..."
 					if(!fallingas)
-						to_chat(src, span_warning("I'll fall asleep soon..."))
-					fallingas++
+						to_chat(src, span_warning(message))
+					fallingas += sleepy_mod
 					if(HAS_TRAIT(src, TRAIT_FASTSLEEP))
-						fallingas++
-					if(fallingas > 15)
-						teleport_to_dream(src, 10000, 2)
-						Sleeping(300)
+						fallingas += sleepy_mod
+					if(fallingas >= sleep_threshold)
+						if(!is_asleep) //to not spam chat
+							to_chat(src, span_blue("I've fallen asleep."))
+							is_asleep = TRUE
+						if(sleepless_flaw) // If you're sleepless, you have a higher chance of going to a nightmare. Every time you sleep, the chance gets higher for the rest of the round.
+							teleport_to_dream(src, 10000, sleepless_flaw.dream_prob, FALSE)
+							sleepless_flaw.dream_prob += 500
+							sleepless_flaw.drugged_up = FALSE
+							Sleeping(250)
+						else 
+							teleport_to_dream(src, 10000, dream_prob)
+							Sleeping(300)
+						
 			else
+				is_asleep = FALSE
+				fallingas = FALSE
 				energy_add(sleepy_mod * 10)
-		// Resting on the ground (not sleeping or with eyes closed and about to fall asleep)
-		else if(!(mobility_flags & MOBILITY_STAND))
-			if(eyesclosed)
-				var/armor_blocked = FALSE
-				if(ishuman(src) && stat == CONSCIOUS)
-					var/mob/living/carbon/human/H = src
-					if(H.head && H.head.armor?.stab > 70)
-						armor_blocked = TRUE
-					if(H.wear_armor && (H.wear_armor.armor_class in list(ARMOR_CLASS_HEAVY, ARMOR_CLASS_MEDIUM)))
-						armor_blocked = TRUE
-					if(armor_blocked && !fallingas)
-						to_chat(src, span_warning("I can't sleep like this. My armor is burdening me."))
-						fallingas = TRUE
-				if(!armor_blocked)
-					if(!fallingas)
-						to_chat(src, span_warning("I'll fall asleep soon, although a bed would be more comfortable..."))
-					fallingas++
-					if(HAS_TRAIT(src, TRAIT_FASTSLEEP))
-						fallingas++
-					if(fallingas > 25)
-						teleport_to_dream(src, 10000, 2)
-						Sleeping(300)
-			else
-				energy_add(10)
 		else if(fallingas)
-			fallingas = 0
+			fallingas = FALSE
 
 	// Leaning against a wall: slowly regain stamina
 	if(mobility_flags & MOBILITY_STAND && wallpressed && !IsSleeping() && !buckled && !lying && !climbing)

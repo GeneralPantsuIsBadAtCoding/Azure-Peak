@@ -100,6 +100,7 @@
 	icon_state = "asickle"
 	color = "#bb9696"
 	sellprice = 15
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/rogueweapon/sickle/copper
 	name = "copper sickle"
