@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
 	var/topjob = "Hero!"
 	flags_1 = NONE
-
+	hud_type = /datum/hud/new_player
 	invisibility = INVISIBILITY_ABSTRACT
 
 //	hud_type = /datum/hud/new_player
@@ -21,8 +21,6 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	var/ineligible_for_roles = FALSE
 
 	var/brohand
-
-	hud_type = /datum/hud/new_player
 
 /mob/dead/new_player/Initialize()
 //	if(client && SSticker.state == GAME_STATE_STARTUP)
