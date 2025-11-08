@@ -27,6 +27,10 @@
 	abstract_type = /datum/anvil_recipe/tools/tin
 	craftdiff = SKILL_LEVEL_NOVICE
 
+/datum/anvil_recipe/tools/blacksteel
+	abstract_type = /datum/anvil_recipe/tools/blacksteel
+	craftdiff = SKILL_LEVEL_MASTER
+
 // --------- Copper -----------
 /datum/anvil_recipe/tools/copper/sickle
 	name = "Sickle, Copper (+1 Stick)"
@@ -511,3 +515,24 @@
 	created_item = /obj/item/heart_canister
 	craftdiff = SKILL_LEVEL_APPRENTICE
 	createditem_num = 3
+/datum/anvil_recipe/tools/bowl/aalloy
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/reagent_containers/glass/bowl/aalloy
+
+//black steel tools
+/datum/anvil_recipe/tools/blacksteel/hammer
+	name = "Blacksteel hammer (+1 Stick)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/hammer/blacksteel
+
+/datum/anvil_recipe/tools/blacksteel/pick
+	name = "Blacksteel Pickaxe (+1 Stick)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/pick/blacksteel
+
+/datum/anvil_recipe/tools/blacksteel/tongs
+	name = "Blacksteel Tongs"
+	req_bar = /obj/item/ingot/blacksteel
+	created_item = /obj/item/rogueweapon/tongs/blacksteel

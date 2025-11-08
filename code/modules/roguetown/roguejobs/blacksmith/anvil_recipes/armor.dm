@@ -436,7 +436,14 @@
 	req_bar = /obj/item/ingot/iron
 	req_blade = /obj/item/blade/iron_plate
 	created_item = /obj/item/clothing/head/roguetown/helmet/horned
+	craftdiff = 2
 
+/datum/anvil_recipe/armor/helmetgoblin
+	name = "Goblin Helmet (+1 Iron)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/ingot/iron)
+	created_item = /obj/item/clothing/head/roguetown/helmet/goblin
+	craftdiff = 2
 
 // STEEL
 /datum/anvil_recipe/armor/steel/haubergeon
@@ -829,7 +836,7 @@
 	created_item = /obj/item/storage/belt/rogue/leather/steel/tasset
 
 /datum/anvil_recipe/armor/steel/splintarms
-	name = "Brigandine Bracers (+1 leather bracers)"
+	name = "Brigandine Bracers (+1 Leather Bracers)"
 	req_bar = /obj/item/ingot/steel
 	req_blade = /obj/item/blade/steel_plate
 	additional_items = list(/obj/item/clothing/wrists/roguetown/bracers/leather)
@@ -1009,6 +1016,14 @@
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/modern/blacksteel_full_plate
+	craftdiff = 5
+
+/datum/anvil_recipe/armor/blacksteel/halfplatechest
+	name = "Blacksteel Half Plate Armor (+2 Blacksteel, +1 Cured Hide)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel, /obj/item/natural/hide/cured)
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_halfplate
+	craftdiff = 5
 
 /datum/anvil_recipe/armor/blacksteel/modern/plategloves
 	name = "Plate Gauntlets, Blacksteel"

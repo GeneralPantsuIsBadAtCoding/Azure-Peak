@@ -58,6 +58,17 @@
 	max_integrity = 600
 	smeltresult = /obj/item/ingot/steel
 
+/obj/item/rogueweapon/pick/blacksteel
+	name = "blacksteel pick"
+	desc = "Glimmering with silver-y black, this is a pretigious tool for miners delving in the darkness."
+	force_wielded = 28
+	icon_state = "blacksteelpick"
+	item_state = "blacksteelpick"
+	possible_item_intents = list(/datum/intent/pick)
+	gripped_intents = list(/datum/intent/pick)
+	max_integrity = 800
+	smeltresult = /obj/item/ingot/blacksteel
+
 /obj/item/rogueweapon/pick/stone
 	name = "stone pick"
 	desc = "Stone versus sharp stone, who wins?"

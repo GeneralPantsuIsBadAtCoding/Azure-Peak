@@ -243,6 +243,15 @@
 			return
 	..()
 */
+/obj/item/rogueweapon/hammer/blacksteel
+	force = 25
+	name = "blacksteel hammer"
+	desc = "BlackSteel to drive even the hardest metal into submission."
+	icon = 'icons/roguetown/weapons/tools.dmi'
+	icon_state = "bs_masterhammer"
+	item_state = "bs_masterhammer"
+	quality = 2
+	smeltresult = /obj/item/ingot/blacksteel
 
 /obj/item/rogueweapon/hammer/getonmobprop(tag)
 	. = ..()
@@ -404,3 +413,11 @@
 			icon_state = "atongsi1"
 		else
 			icon_state = "atongsi0"
+
+/obj/item/rogueweapon/tongs/blacksteel
+	name = "blacksteel tongs"
+	desc = "A pair of blacksteel jaws almost certainly used as a sign of prestige."
+	icon_state = "bs_tongs"
+	wdefense = 2
+	icon = 'icons/roguetown/weapons/tools.dmi'
+	smeltresult = /obj/item/ingot/blacksteel
