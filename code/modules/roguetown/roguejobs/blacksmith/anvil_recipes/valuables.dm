@@ -202,7 +202,7 @@
 	additional_items = list(/obj/item/ingot/gold, /obj/item/roguegem/blue, /obj/item/roguegem/violet, /obj/item/clothing/neck/roguetown/psicross/silver)
 	created_item = /obj/item/clothing/ring/dragon_ring
 	craftdiff = SKILL_LEVEL_LEGENDARY
-	skip_dupe_test = TRUE // Transmutation into draconic ingot is fine
+	bypass_dupe_test = TRUE // Transmutation into draconic ingot is fine
 
 /datum/anvil_recipe/valuables/hope
 	name = "Ring Of Omnipotence (Secret!)"
@@ -211,7 +211,7 @@
 	additional_items = list(/obj/item/clothing/ring/statgemerald, /obj/item/clothing/ring/statonyx, /obj/item/clothing/ring/statamythortz, /obj/item/clothing/ring/statrontz)
 	created_item = /obj/item/clothing/ring/statdorpel
 	craftdiff = SKILL_LEVEL_LEGENDARY
-	skip_dupe_test = TRUE // Transmutation into riddle of steel is fine if you smelt this.
+	bypass_dupe_test = TRUE // Transmutation into riddle of steel is fine if you smelt this.
 
 /datum/anvil_recipe/valuables/daemonslayer
 	name = "Daemonslayer (Secret!)"
@@ -221,4 +221,4 @@
 	created_item = /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
 	appro_skill = /datum/skill/craft/weaponsmithing
 	craftdiff = SKILL_LEVEL_LEGENDARY
-	skip_dupe_test = TRUE // Smelting into a kriegmesser is fine
+	bypass_dupe_test = TRUE // Smelting into a kriegmesser is fine
