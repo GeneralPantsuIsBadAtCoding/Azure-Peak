@@ -312,18 +312,18 @@ SUBSYSTEM_DEF(triumphs)
 	triumph_leaderboard = list()
 
 /// Wipe the entire list and adjust the season up by 1 too so anyone behind gets wiped if they rejoin later
-/datum/controller/subsystem/triumphs/proc/wipe_all_triumphs()
-	triumph_amount_cache = list()
+// /datum/controller/subsystem/triumphs/proc/wipe_all_triumphs()
+// 	triumph_amount_cache = list()
 
-	var/target_file = file("data/triumph_wipe_season.json")
-	GLOB.triumph_wipe_season += 1
-	var/list/wipe_season = list("current_wipe_season" = GLOB.triumph_wipe_season)
-	fdel(target_file)
-	WRITE_FILE(target_file, json_encode(wipe_season))
+// 	var/target_file = file("data/triumph_wipe_season.json")
+// 	GLOB.triumph_wipe_season += 1
+// 	var/list/wipe_season = list("current_wipe_season" = GLOB.triumph_wipe_season)
+// 	fdel(target_file)
+// 	WRITE_FILE(target_file, json_encode(wipe_season))
 
-	// Wipe the leaderboard list, time for a fresh season.
-	// But leave the old leaderboard file in, we mite do somethin w it later
-	reset_leaderboard()
+// 	// Wipe the leaderboard list, time for a fresh season.
+// 	// But leave the old leaderboard file in, we mite do somethin w it later
+// 	reset_leaderboard()
 
 /// Gets the legacy triumph value to inherit the old triumphs for the first season, assuming legacy data was converted to ckeys
 /datum/controller/subsystem/triumphs/proc/get_legacy_triumph_value(target_ckey)
