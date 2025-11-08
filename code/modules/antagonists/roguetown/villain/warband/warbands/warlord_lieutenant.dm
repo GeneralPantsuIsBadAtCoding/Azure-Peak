@@ -55,6 +55,7 @@
 ///////////////
 ///////////////
 /datum/antagonist/warlord_lieutenant/greet()
+	SEND_SOUND(owner.current, sound(null)) // stops the title music if we pulled them from the lobby
 	if(src.aspirant)
 		owner.special_role = "Aspirant Lieutenant"	
 		to_chat(owner.current, span_userdanger("Again, my Warlord calls me forth. I mustn't forget: my service is simply a means to an end."))	
@@ -87,6 +88,7 @@
 
 
 /datum/antagonist/warlord_grunt/greet()
+	SEND_SOUND(owner.current, sound(null)) // stops the title music if we pulled them from the lobby
 	owner.special_role = name
 	to_chat(owner.current, span_userdanger("My Lieutenant calls upon my service."))
 

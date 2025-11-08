@@ -1,8 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/grunt_order
 	name = "Order Grunts"
-	desc = "Cast on turf to head in that direction ignoring all else. \
-	Cast on a grunt to set to aggressive, cast on self to passive and follow, cast on target to focus them. \
-	Does not work on greater skeletons."
+	desc = "Cast once to order your Grunts to follow you. Cast it again to release them - at which point they'll attack anything unmarked as an ally."
 	range = 12
 	associated_skill = /datum/skill/misc/athletics
 	chargedrain = 1
@@ -10,6 +8,7 @@
 	releasedrain = 0 
 	recharge_time = 3 SECONDS
 	var/order_range = 12
+	overlay_state = "recruit_titlegrant"
 
 	/*
 	//FIXNOTE: 

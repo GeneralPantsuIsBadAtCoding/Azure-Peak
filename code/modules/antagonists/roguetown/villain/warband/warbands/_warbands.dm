@@ -43,6 +43,7 @@
 #define WARBANDS 	list(/datum/warbands/standard,  /datum/warbands/mercenary, /datum/warbands/sect, \
 					/datum/warbands/storyteller/peasant, /datum/warbands/storyteller/wizard)
 
+#define WARBAND_BASE_RESPAWNS 400
 #define RESPAWNS_MINIMAL 25
 #define RESPAWNS_LOW 50
 #define RESPAWNS_MEDIUM 100

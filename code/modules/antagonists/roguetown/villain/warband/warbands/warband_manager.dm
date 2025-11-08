@@ -17,8 +17,11 @@
 	var/list/datum/warbands/aspects/selected_aspects = list()
 
 	var/list/members = list()				// players in the warband
+	var/list/allies = list()				// players marked as allies
 	var/list/importantfigures = list()		// important figures in town | used in the 'know thy enemy' list in the creation menu | helps in plotting an initial gimmick
 
+	var/busy_summoning = FALSE				// active while the warband is polling for ghosts
+	var/spawned_lieutenants = 0				// how many lieutenants have been spawned
 	var/warband_ID = 0						// identifying number for the warband |
 	var/disorder = 1						// multiplies costs from the campaign planner, disables communication options and Outskirts responses, and determines how many spawns an aspirant steals during a schism | increased by other antagonists being marked as allies
 	var/aspirant_chance = 50				// chance that a lieutenant spawns as an aspirant
@@ -27,7 +30,7 @@
 	var/outskirts_established = FALSE		// whether or not the warband has spawned an outskirts map
 	var/warcamp_established = FALSE
 
-	var/spawns = 400						// lost when an NPC is spawned | combined with spawn contributions from the warband/subtypes/aspects
+	var/spawns = WARBAND_BASE_RESPAWNS		// 400 | lost when an NPC is spawned | combined with spawn contributions from the warband/subtypes/aspects
 											// might seem very generous, but this can be reduced in massive chunks by aspirants going rogue & outskirts fights
 
 	var/schism_level = 0					// warbands can split/schism | this number = how many schisms away the warband is from its progenitor warband
@@ -66,7 +69,9 @@
 	18 - STAT WIPE				// performs a full stat & trait wipe on the target mob
 	19 - RANDOM CLASSES			// generates 3 random classes for the Wildcard class
 
-	20 - Aspect Tweaks
+	20 - ASPECT TWEAKS
+	21 - EXILE					// kicks a character from the warband
+	22 - CLEANUP				// combs through the member & ally list for null entries
 
 */
 
@@ -464,11 +469,17 @@
 */
 		if("view_vip")
 			var/returned_vip = params["enemy"]
+			var/returned_ally = params["ally"]
+
 			var/mob/living/carbon/human/matched_vip
 
 			for(var/mob/living/carbon/human/vip in src.importantfigures)
-				if(vip.name == returned_vip)
+				if(vip.real_name == returned_vip)
 					matched_vip = vip
+					break
+			for(var/mob/living/carbon/human/pal in src.members)
+				if(pal.real_name == returned_ally)
+					matched_vip = pal
 					break
 
 			if(matched_vip)
@@ -810,12 +821,17 @@
 
 	user.faction |= list("warband_[src.warband_ID]")
 
-
-	if(user.mind.special_role == "Lieutenant" || user.mind.special_role == "Aspirant Lieutenant")
-		user.verbs += /mob/living/carbon/human/proc/abandon_warband	
+	if(user.mind.special_role == "Lieutenant" || user.mind.special_role == "Aspirant Lieutenant" || is_leader)
+		user.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/exile)
+		user.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/associate)
+		user.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/grunt_order)
+		if(!is_leader)
+			user.verbs += /mob/living/carbon/human/proc/desert
+			user.verbs += /mob/living/carbon/human/proc/accept_kick
+			
 	user.verbs += /mob/living/carbon/human/proc/shortcut
 	user.verbs += /mob/living/carbon/human/proc/communicate
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/grunt_order)
+
 	src.members += user
 	return
 
@@ -837,7 +853,7 @@
 		we'll do this if:
 		a recruitment point holding a stored character is captured
 
-	2. USING A WARBAND ID
+	2. USING A CLIENT
 		we'll do this if:
 		an Envoy uses their ABANDON ENVOY verb
 		an Envoy interacts with a recruitment point
@@ -866,10 +882,10 @@
 					returning_character.key = ghost.key
 					returning_character.loc = return_recruitmentpoint.loc
 
-	// USING A WARBAND ID
+	// USING A CLIENT
 	else
 		for(var/obj/structure/fluff/warband/warband_recruit/recruitment_point in SSwarbands.warband_machines)
-			if(recruitment_point.warband_ID == envoy.mind.warband_ID)
+			if(recruitment_point.contents.len)
 				for(var/mob/living/stored_character in recruitment_point.contents)
 					if(stored_character.canon_client.key == envoy.canon_client.key)
 						stored_character.loc = recruitment_point.loc
@@ -1035,14 +1051,16 @@
 
 /atom/movable/screen/warband/manager/proc/statwipe(mob/living/carbon/human/user)
 // skillwipe
-	if(!user.skills || !user.skills.known_skills) return 
+	if(!user.skills || !user.skills.known_skills) 
+		return 
 	user.skills.known_skills = list()
 	user.skills.skill_experience = list()
 
 // traitwipe
-	if(!user.status_traits) return
+	if(!user.status_traits) 
+		return
 	for(var/trait in user.status_traits)
-		if(trait != "hearing_sensitive")
+		if(trait != "hearing_sensitive") // they can keep their ears. As A Treat
 			user.status_traits -= trait
 
 // statwipe
@@ -1143,3 +1161,138 @@
 	if(ASPECT_CULT in src.selected_aspects)
 		src.faithlocks = list(warlord.patron)
 
+// 21
+///////////////////////////////////////////////////////
+///////////////////////////////////////////////// EXILE
+/* 21
+	kicks someone out of the warband
+	varies depending on whether or not they were just an ally, or an Actual Member of the warband
+
+*/
+/atom/movable/screen/warband/manager/proc/exile(mob/initial_target, mob/living/carbon/human/user, menu_name, personal = FALSE)
+	var/faction_tag = "warband_[src.warband_ID]"
+	var/personal_faction_tag
+	var/mob/exiled_creecher = initial_target
+	if(menu_name)	// get the mob w/the name given from the exile menu
+		for(var/mob/living/member in src.members)
+			if(member.real_name == menu_name)
+				exiled_creecher = member
+				break
+	if(user)
+		personal_faction_tag = "[user.real_name]_faction"
+
+	if(exiled_creecher == user)
+		to_chat(user, span_warning("I shouldn't exile myself."))
+		return FALSE
+
+	if(exiled_creecher.stat == DEAD)
+		to_chat(user, span_warning("They're dead. That's exile enough."))
+		return
+
+	// for warlords exiling a re-associated exiled lieutenant or grunt
+	if(user.mind && user.mind.special_role == "Warlord" && exiled_creecher.mind && (user.mind.warband_ID in exiled_creecher.mind.warband_exile_IDs))
+		if(exiled_creecher in user.mind.warband_manager.allies)
+			to_chat(user, span_red("[exiled_creecher.real_name] is branded as an exile yet again."))
+			if(faction_tag in exiled_creecher.faction)
+				exiled_creecher.faction -= faction_tag		
+			if(personal_faction_tag in exiled_creecher.faction)
+				exiled_creecher.faction -= personal_faction_tag
+			if(personal)
+				user.say("HOSTIS DECLARATUS ES!")
+				user.linepoint(exiled_creecher)
+			user.mind.warband_manager.allies -= exiled_creecher
+			user.mind.warband_manager.disorder ++ 	// adds a permanent stack of disorder. Something has to be going horribly wrong
+		return TRUE									// The Boss Has Lost His Fucking Mind
+
+	// if they're a lieutenant's exiled subordinate, this confirms they want them gone
+	if(exiled_creecher.real_name in user.mind.unresolved_exile_names)
+		if(exiled_creecher.real_name in user.mind.unresolved_exile_names)
+			user.mind.unresolved_exile_names -= exiled_creecher.real_name
+			user.mind.subordinates -= exiled_creecher
+
+	if(istype(exiled_creecher, /mob/living/simple_animal))
+		if(personal_faction_tag in exiled_creecher.faction)
+			exiled_creecher.faction -= personal_faction_tag
+			to_chat(user, span_warning("I have released the [exiled_creecher.name] from my protection."))
+			return TRUE
+		return
+
+	else if(istype(exiled_creecher, /mob/living/carbon/human))
+		var/mob/living/carbon/human/target = exiled_creecher
+
+
+		// against allies
+		if(target.mind && (target in src.allies))
+			if((faction_tag in target.faction))
+				if(personal) // if the exile's being done manually via the spell
+					user.say("Hostis declaratus es.")
+					user.linepoint(target)
+				target.mind.current.faction -= faction_tag
+				if(personal_faction_tag && (personal_faction_tag in target.faction))
+					target.mind.current.faction -= personal_faction_tag
+
+				src.allies -= target
+				target.mind.recruiter_name = null
+
+				// if they were an antagonist (and not a warband member), reduce disorder
+				if(target.mind.special_role && target.mind.warband_ID != user.mind.warband_ID)
+					to_chat(user, span_warning("I have exiled [target.name] from our ranks. Some measure of order has been restored."))
+					src.disorder --
+					return
+				else
+					to_chat(user, span_warning("I have exiled [target.name] from our ranks."))
+					return
+
+		// against other warband members
+		if(target.mind && (target in src.members))
+			if(user.mind.special_role == "Warlord" || (target in user.mind.subordinates))
+				var/readycheck = input(user, "Am I sure I want to exile [target.real_name]? This will be final.") in list("EXILE", "Cancel")
+				if(readycheck == "EXILE")
+					if(target.mind.special_role == "Grunt")
+						if(target in user.mind.subordinates) // if they're exiled by their own boss, ignore the deliberation phase
+							target.abandon_warband(grunt_kick = TRUE, autoresolve = TRUE)
+							target.faction -= personal_faction_tag
+							if(target.real_name in user.mind.unresolved_exile_names) // if they were an unresolved exile we consider them resolved
+								user.mind.unresolved_exile_names -= target.real_name
+							return
+						else
+							target.abandon_warband(grunt_kick = TRUE)
+							to_chat(user, span_warning("I've branded [target.real_name] as an exile but unless their Lieutenant, [target.mind.recruiter_name], approves of this, [target.real_name] will remain associated with them."))
+							return
+					else
+						target.abandon_warband(kicked = TRUE)
+						return
+			else
+				to_chat(user, span_warning("I don't bear the authority to exile the [target.job]."))
+
+
+		if((personal_faction_tag in target.faction)) // you should always be able to remove your personal faction tag from someone
+			target.faction -= personal_faction_tag
+			if(target.mind.recruiter_name == user.real_name)
+				target.mind.recruiter_name = null
+			if(personal)
+				user.say("Hostis declaratus es.")
+				user.linepoint(exiled_creecher)
+
+		if(!(faction_tag in target.faction)) // if you're completely unrelated to them
+			to_chat(user, span_warning("They're not with us. Exile would be pointless."))
+			return FALSE
+		return
+	return
+
+// 21
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////// CLEAN MEMBERS
+/* 21
+	cleans nulls out of the members & ally list 
+	(someone getting gibbed leaves behind a null, but only sometimes??)
+	(i don't know what the fuck's going on anymore bro)
+
+*/
+/atom/movable/screen/warband/manager/proc/clean_members()
+	for(var/member in src.members)
+		if(member == null)
+			src.members -= member
+	for(var/ally in src.allies)
+		if(ally == null)
+			src.allies -= ally

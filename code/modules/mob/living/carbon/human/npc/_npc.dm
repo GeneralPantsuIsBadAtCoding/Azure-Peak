@@ -20,7 +20,6 @@
 	var/del_on_deaggro = null
 	var/last_aggro_loss = null
 	var/wander = TRUE
-	var/follow = FALSE
 	var/ai_when_client = FALSE
 	var/next_idle = 0
 	var/next_seek = 0
@@ -124,8 +123,9 @@
 	if(length(myPath))
 		steps_moved_this_turn += move_along_path()
 		// We could return here if we wanted to make moving use your turn.
-	if(follow)
+	if(mode == NPC_AI_FOLLOW)
 		npc_follow()
+
 	// Special case: Taunt people hiding in trees directly above us.
 	var/turf/my_turf = get_turf(src)
 	var/turf/their_turf = get_turf(target)
@@ -170,6 +170,18 @@
 /mob/living/carbon/human/proc/npc_follow()
 	// we'll want to get the distance between them and the target
 	// if they're further than 2 tiles away, get them closer
+	if(!target)
+		mode = NPC_AI_IDLE
+		return TRUE
+	m_intent = MOVE_INTENT_WALK
+	validate_path()
+	var/turf/my_turf = get_turf(src)
+	var/turf/target_turf = get_turf(target)
+	// only path if we're more than one tile away
+	if(my_turf.Distance_cardinal_3d(target_turf, src) > 2)
+		if(!length(myPath)) // create a new path to the target
+			start_pathing_to(target)
+
 
 	return TRUE
 

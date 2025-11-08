@@ -1085,6 +1085,7 @@
 /obj/structure/table/wood{
 	icon_state = "map5"
 	},
+/obj/structure/fluff/warband/campaign_planner,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/warcamp)
 "xR" = (
@@ -2157,10 +2158,6 @@
 	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/warcamp)
-"Tq" = (
-/turf/open/floor/rogue/cobble,
-/turf/open/floor/rogue/cobble/mossy,
-/area/rogue/outdoors/warcamp)
 "Tu" = (
 /obj/structure/fluff/railing/fence{
 	max_integrity = 800;
@@ -3116,8 +3113,8 @@ CG
 CG
 JE
 Df
-Tq
-Tq
+oT
+oT
 oT
 oT
 jK
@@ -3163,8 +3160,8 @@ oT
 oT
 oT
 oT
-Tq
-Tq
+oT
+oT
 oT
 oT
 oT
@@ -3210,7 +3207,7 @@ oT
 oT
 oT
 oT
-Tq
+oT
 oT
 ex
 oT
@@ -3257,7 +3254,7 @@ oT
 oT
 oT
 oT
-Tq
+oT
 ji
 tt
 oT
@@ -3302,7 +3299,7 @@ vp
 mW
 oT
 oT
-Tq
+oT
 ex
 IM
 IM

@@ -8,7 +8,7 @@
 	d_intent = INTENT_PARRY
 	possible_rmb_intents = list()
 	var/is_silent = FALSE
-	var/warbandID
+	var/warband_ID
 	var/warband = "FEUD"
 	var/subtype
 	var/faith

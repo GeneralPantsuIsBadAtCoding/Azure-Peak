@@ -149,10 +149,8 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/warcamp/outskirts/standard)
 "J" = (
-/obj/structure/flora/newbranch/connector{
-	dir = 1
-	},
-/turf/open/floor/rogue/grassyel,
+/obj/structure/fluff/railing/wood/west,
+/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/warcamp/outskirts/standard)
 "K" = (
 /obj/effect/decal/cobble/mossy{
@@ -365,9 +363,9 @@ j
 b
 b
 K
-a
+j
 q
-m
+j
 l
 o
 o
@@ -400,7 +398,7 @@ m
 m
 m
 m
-m
+d
 a
 r
 j
@@ -409,13 +407,13 @@ j
 j
 j
 b
-a
-a
+J
+J
 a
 m
 m
 d
-I
+o
 o
 o
 o
@@ -454,8 +452,8 @@ j
 j
 j
 K
-a
-a
+J
+J
 a
 m
 m
@@ -463,7 +461,7 @@ d
 d
 Z
 I
-d
+o
 o
 o
 "}
@@ -511,8 +509,8 @@ I
 m
 d
 d
-I
-G
+o
+o
 "}
 (7,1,1) = {"
 N
@@ -557,9 +555,9 @@ d
 d
 d
 G
-s
-J
-c
+d
+d
+o
 "}
 (8,1,1) = {"
 y

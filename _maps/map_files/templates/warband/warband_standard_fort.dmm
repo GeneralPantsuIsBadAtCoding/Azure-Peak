@@ -660,6 +660,9 @@
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/warcamp/fort)
+"jQ" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp)
 "jS" = (
 /obj/machinery/light/rogue/lanternpost,
 /turf/open/floor/rogue/dirt/road,
@@ -1014,7 +1017,7 @@
 /obj/effect/decal/cobble/mossy{
 	dir = 4
 	},
-/turf/open/floor/rogue/dirt/road,
+/turf/closed/mineral/rogue/bedrock,
 /area/rogue/outdoors/warcamp)
 "rD" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -1491,7 +1494,7 @@
 /area/rogue/outdoors/warcamp)
 "Ak" = (
 /obj/effect/baseturf_helper,
-/turf/open/floor/rogue/dirt/road,
+/turf/closed/mineral/rogue/bedrock,
 /area/rogue/outdoors/warcamp)
 "Aw" = (
 /obj/effect/decal/herringbone{
@@ -2511,8 +2514,9 @@
 	},
 /obj/item/candle/candlestick/gold/lit{
 	pixel_y = 12;
-	pixel_x = -15
+	pixel_x = -34
 	},
+/obj/structure/fluff/warband/campaign_planner,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/warcamp/fort)
 "So" = (
@@ -3073,17 +3077,17 @@ Kw
 Di
 Kw
 PB
-PB
-PB
-gh
-gh
-gh
-hf
+jQ
+jQ
+jQ
+jQ
+jQ
+jQ
 ON
 Rs
 Rs
 Rs
-Qc
+jQ
 rC
 Ak
 "}
@@ -3121,18 +3125,18 @@ Kw
 PB
 PB
 gh
-PB
-PB
-PB
-hf
+jQ
+jQ
+jQ
+jQ
 VC
 Qc
 Qc
 Qc
 EH
-EH
-hf
-hf
+jQ
+jQ
+jQ
 "}
 (3,1,1) = {"
 KJ
@@ -3176,10 +3180,10 @@ Qc
 Qc
 Qc
 Qc
-hf
 zL
-PB
-PB
+hf
+jQ
+jQ
 "}
 (4,1,1) = {"
 KJ
@@ -3225,8 +3229,8 @@ Qc
 EH
 PB
 PB
-PB
-DN
+jQ
+jQ
 "}
 (5,1,1) = {"
 KJ
@@ -3272,8 +3276,8 @@ EH
 PB
 PB
 PB
-DN
-gh
+jQ
+jQ
 "}
 (6,1,1) = {"
 KJ
@@ -3320,7 +3324,7 @@ PB
 PB
 zw
 gh
-gh
+jQ
 "}
 (7,1,1) = {"
 KJ

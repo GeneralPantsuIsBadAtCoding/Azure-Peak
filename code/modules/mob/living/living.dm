@@ -112,37 +112,37 @@
 
 		// one-way swap: players can switch with grunts, but not vice versa
 		if(istype(src, /mob/living/carbon/human) && istype(M, /mob/living/carbon/human/species/human/northern/grunt))
-			var/mob/living/L = M 
+			var/mob/living/carbon/human/species/human/northern/grunt/L = M 
+			if(src.mind.warband_ID == L.warband_ID)	// check if they're in the same warband
+				if(!L.buckled && !buckled)
+					var/oldloc = loc
+					var/oldMloc = L.loc
+					var/now_pushing_M = L.now_pushing
 
-			if(!L.buckled && !buckled)
-				var/oldloc = loc
-				var/oldMloc = L.loc
-				var/now_pushing_M = L.now_pushing
+					now_pushing = 1
+					L.now_pushing = 1
 
-				now_pushing = 1
-				L.now_pushing = 1
+					var/M_passmob = (L.pass_flags & PASSMOB)
+					var/src_passmob = (pass_flags & PASSMOB)
+					L.pass_flags |= PASSMOB
+					pass_flags |= PASSMOB
 
-				var/M_passmob = (L.pass_flags & PASSMOB)
-				var/src_passmob = (pass_flags & PASSMOB)
-				L.pass_flags |= PASSMOB
-				pass_flags |= PASSMOB
+					var/move_failed = FALSE
+					if(!L.Move(oldloc) || !Move(oldMloc))
+						L.forceMove(oldMloc)
+						forceMove(oldloc)
+						move_failed = TRUE
+					
+					if(!src_passmob)
+						pass_flags &= ~PASSMOB
+					if(!M_passmob)
+						L.pass_flags &= ~PASSMOB
 
-				var/move_failed = FALSE
-				if(!L.Move(oldloc) || !Move(oldMloc))
-					L.forceMove(oldMloc)
-					forceMove(oldloc)
-					move_failed = TRUE
-				
-				if(!src_passmob)
-					pass_flags &= ~PASSMOB
-				if(!M_passmob)
-					L.pass_flags &= ~PASSMOB
+					now_pushing = 0
+					L.now_pushing = now_pushing_M
 
-				now_pushing = 0
-				L.now_pushing = now_pushing_M
-
-				if(!move_failed)
-					return TRUE
+					if(!move_failed)
+						return TRUE
 
 	var/they_can_move = TRUE
 	if(isliving(M))

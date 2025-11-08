@@ -33,36 +33,7 @@
 	"Mercenary",
 	"Adventurer")
 
-	restricted_roles = list(
-		"Grand Duke",
-		"Grand Duchess",
-		"Consort",
-		"Suitor",
-		"Dungeoneer",
-		"Sergeant",
-		"Men-at-arms",
-		"Marshal",
-		"Merchant",
-		"Priest",
-		"Acolyte",
-		"Martyr",
-		"Templar",
-		"Prince",
-		"Princess",
-		"Hand",
-		"Steward",
-		"Court Physician",
-		"Captain",
-		"Knight",
-		"Court Magician",
-		"Inquisitor",
-		"Orthodoxist",
-		"Warden",
-		"Squire",
-		"Councillor",
-		"Veteran"
-	)
-
+	restricted_roles = DEFAULT_ANTAG_BLACKLISTED_ROLES
 	typepath = /datum/round_event/antagonist/solo/warlord
 	antag_datum = /datum/antagonist/warlord
 

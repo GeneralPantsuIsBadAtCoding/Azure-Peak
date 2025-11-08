@@ -15,21 +15,20 @@
 	var/rearguard = 0			// how many NPC respawns are dedicated to the warcamp
 	var/outskirts_waves = 3		// how many waves of NPCs are dedicated to the outskirts
 
-
-
 /obj/structure/fluff/warband/campaign_planner/attack_hand(mob/user)
 	. = ..()
 	if(user.mind.special_role == "Warlord" || user.mind.special_role == "Lieutenant" || user.mind.special_role == "Aspirant Lieutenant" || user.mind.special_role == "Grunt" || user.mind.special_role == "Warlord's Envoy")
 		if(user.mind.warband_ID == src.warband_ID)
-			var/list/campaign_options = list()
+			var/list/campaign_options = list()		
+			campaign_options += "HELP"		
+			campaign_options += "View Troops"
+			campaign_options += "View Allies"
+			campaign_options += "View Morale"		
 			if(user.mind.special_role == "Warlord" || user.mind.special_role == "Lieutenant" || user.mind.special_role == "Aspirant Lieutenant")
-				campaign_options += "HELP"
 				campaign_options += "Prepare Treaty"
-				campaign_options += "View Troops"				
 				campaign_options += "View War Chest"
-			if(user.mind.special_role == "Warlord" && !linked_warband.outskirts_established)
-				campaign_options += "Select Random Exit Point"
-				campaign_options += "Exile Lieutenant"
+			if(user.mind.special_role == "Warlord")
+				campaign_options += "Exile Member"
 
 			var/campaign_choice = input(user, "What shall I do?", "Warband Recruitment") as null|anything in campaign_options
 
@@ -40,14 +39,55 @@
 					new /obj/item/treaty(src) //FIXNOTE: add a cooldown to spawns
 					return
 				if("View Troops")
-					to_chat(user, span_warning("[src.linked_warband.spawns] soldiers remain at our disposal."))
+					to_chat(user, span_warning("[src.linked_warband.spawns] soldiers remain at our disposal. Our finest are..."))
+					for(var/mob/living/member in src.linked_warband.members)
+						to_chat(user, span_warning("- [member.real_name], the [member.job]."))
 					return
 				if("View War Chest & Territories")
 					to_chat(user, span_warning("There is [src.warchest] mammon in the warchest, and you control [user.mind.personal_territories.len] territories."))
 					return
-				if("Select Random Exit Point")
-					return
-				if("Exile Lieutenant")
+				if("Exile Member")
+					var/list/viable_member_list = list()
+					for(var/mob/living/member in src.linked_warband.members)
+						if(member.real_name != user.real_name)
+							viable_member_list += member.real_name
+					
+					if(!viable_member_list.len)
+						to_chat(user, span_warning("There are no other members to exile."))
+						return
+					var/mob/living/exile_choice = input(user, "Who must go?", "EXILE") as null|anything in viable_member_list
+					if(exile_choice)
+						src.linked_warband.exile(null, user, exile_choice)
+						return
+					else
+						to_chat(user, span_warning("I've changed my mind."))
+						return
+				if("View Morale")
+					if(src.linked_warband.disorder <= 1)
+						to_chat(user, span_green("The men are calm and our work continues."))
+						return
+					if(src.linked_warband.disorder <= 2)
+						to_chat(user, span_warning("There's some strain weighing upon our legion's spirit, but we're holding out well enough."))
+						return
+					if(src.linked_warband.disorder <= 3)
+						to_chat(user, span_warning("More than a few instances of insubordination have been reported."))
+						return
+					if(src.linked_warband.disorder <= 4)
+						to_chat(user, span_warning("If discipline isn't restored, we shall be found in dire straits."))
+						return
+					if(src.linked_warband.disorder <= 8)
+						to_chat(user, span_warning("Unrest is rampant in our ranks. We won't hold together for much longer."))
+						return
+					if(src.linked_warband.disorder <= 10)
+						to_chat(user, span_warning("Order has completely broken down. We are akin to bandits."))
+
+				if("View Allies")
+					if(!src.linked_warband.allies.len)
+						to_chat(user, span_warning("We are without allies."))
+						return
+					for(var/mob/living/ally in src.linked_warband.allies)
+						to_chat(user, span_warning("There is [ally.real_name], the [ally.job]. They were joined with us by decree of [ally.mind.recruiter_name]"))
+
 					return
 			return
 	return
@@ -97,16 +137,25 @@
 			to_chat(user, span_userdanger("I've driven off the sentries defending the Shortcut."))
 			return
 
-
-
 /obj/structure/fluff/warband/warband_recruit/proc/summon_lieutenant(mob/user)
 	var/given_warband_ID = user.mind.warband_ID
+	if(src.linked_warband.spawns <= 0)
+		to_chat(user, span_warning("We've been completely decimated. No one remains to heed my call."))
+		return FALSE 
+	if(src.linked_warband.busy_summoning == TRUE)
+		to_chat(user, span_warning("There's already been a call for our men to rally. I'll need to wait for a moment."))
+		return FALSE
+	if(src.linked_warband.spawned_lieutenants >= 4)
+		to_chat(user, span_warning("There are no more capable Lieutenants left."))
+		return FALSE 
 	to_chat(user, span_green("The summons are sent."))
+	src.linked_warband.busy_summoning = TRUE
 	sleep(60)	//FIXNOTE: don't leave this in
 	var/spawnpoint = src.loc
 	var/list/candidates = pollGhostCandidates("Do you want to play as one of the [user.advjob]'s Lieutenants?", ROLE_WARLORD_LIEUTENANT, null, null, 10 SECONDS, POLL_IGNORE_WARBAND_LIEUTENANT)
 	if(!LAZYLEN(candidates))
 		to_chat(user, span_warning("The summons go unanswered."))
+		src.linked_warband.busy_summoning = FALSE
 		return TRUE
 
 	var/mob/candidate = pick(candidates)
@@ -126,6 +175,9 @@
 	target.mind.warband_manager.create_HUD_instance(target)
 	SSjob.AssignRole(target, "Warlord's Lieutenant")
 	target.mind.add_antag_datum(/datum/antagonist/warlord_lieutenant)
+	src.linked_warband.spawned_lieutenants++
+	src.linked_warband.spawns--
+	src.linked_warband.busy_summoning = FALSE
 	return TRUE
 
 
@@ -229,13 +281,24 @@
 */
 /obj/structure/fluff/warband/warband_recruit/proc/summon_veteran(mob/user)
 	var/given_warband_ID = user.mind.warband_ID
+	if(src.linked_warband.spawns <= 0)
+		to_chat(user, span_warning("We've been completely decimated. No one remains to heed my call."))
+		return FALSE 
+	if(length(user.mind.subordinates) >= 2)
+		to_chat(user, span_warning("I have no Veterans left to call."))
+		return FALSE
+	if(src.linked_warband.busy_summoning == TRUE)
+		to_chat(user, span_warning("There's already been a call for our men to rally. I'll need to wait for a moment."))
+		return FALSE
+	src.linked_warband.busy_summoning = TRUE
 	to_chat(user, span_green("The summons are sent."))	
 	sleep(60)	//FIXNOTE: don't leave this in
 	var/spawnpoint = src.loc
 	var/list/candidates = pollGhostCandidates("Do you want to play as one of the [user.advjob]'s Veteran Soldiers?", ROLE_WARLORD_GRUNT, null, null, 10 SECONDS, POLL_IGNORE_WARBAND_VETERAN)
 	if(!LAZYLEN(candidates))
 		to_chat(user, span_warning("The summons go unanswered."))
-		return TRUE
+		src.linked_warband.busy_summoning = FALSE
+		return FALSE
 
 	var/mob/candidate = pick(candidates)
 	if(!candidate || !istype(candidate, /mob/dead))
@@ -254,6 +317,12 @@
 	target.mind.warband_manager.create_HUD_instance(target)
 	SSjob.AssignRole(target, "Grunt")
 	target.mind.add_antag_datum(/datum/antagonist/warlord_grunt)
+	if(user && user.mind)
+		user.mind.subordinates += target
+		target.mind.recruiter_name = user.real_name
+		target.faction |= "[user.real_name]_faction" // included in their lieutenant's personal faction
+	src.linked_warband.spawns--
+	src.linked_warband.busy_summoning = FALSE
 	return TRUE
 
 
@@ -275,7 +344,7 @@
 				summon_options += "Summon ENVOY"
 			if(user.mind.special_role == "Lieutenant" || user.mind.special_role == "Aspirant Lieutenant")
 				summon_options += "Summon VETERAN SOLDIER"
-			if(user.mind.special_role == "Warlord" || user.mind.special_role == "Lieutenant" || user.mind.special_role == "Grunt")
+			if(user.mind.special_role == "Warlord" || user.mind.special_role == "Lieutenant" || user.mind.special_role == "Aspirant Lieutenant" || user.mind.special_role == "Grunt")
 				summon_options += "Summon GRUNT SQUAD (NPCs)"
 			if(user.mind.special_role == "Warlord's Envoy")
 				summon_options += "Stow Envoy"
@@ -324,8 +393,10 @@
 						for(var/grunts_spawned = 1, grunts_spawned <= 4 && src.linked_warband.spawns > 0, grunts_spawned++)
 							var/mob/living/carbon/human/species/human/northern/grunt/new_grunt = new /mob/living/carbon/human/species/human/northern/grunt(src.loc, user)
 							new_grunt.warband = src.linked_warband.selected_warband.name
-							new_grunt.subtype = !src.linked_warband.selected_subtype.name
+							if(src.linked_warband.selected_subtype)
+								new_grunt.subtype = src.linked_warband.selected_subtype.name
 							new_grunt.faction |= list("warband_[src.warband_ID]", "[user.real_name]_faction")
+							new_grunt.warband_ID = user.mind.warband_ID
 							user.friends += new_grunt
 							src.linked_warband.spawns--
 						to_chat(user, span_userdanger("There are [src.linked_warband.spawns] soldiers remaining."))
@@ -352,19 +423,16 @@
 				to_chat(user, span_userdanger("You have claimed this recruitment point for your Warband."))
 				return
 
-
 //// when a rally point is disabled, we also attempt to pull out any characters stored inside w/return_envoy
 	user.visible_message(span_info("[user] [src.destruction_doafter]"))
 	if(do_after(user, 90, target = src))
-		if(src.contents)
-			for(var/mob/living/stored_character)
+		if(src.contents.len)
+			for(var/mob/living/stored_character in src.contents)
 				src.linked_warband.return_envoy(null, TRUE, stored_character, src)
 				to_chat(user, span_nicegreen("[stored_character] is pulled out!"))
-			return
 		src.disabled = TRUE
 		src.alpha = 50
 		to_chat(user, span_nicegreen("[destruction_msg]"))
-
 
 /obj/effect/landmark/warband_grunt_spawner
 	name = "outskirts encounter spawner"
