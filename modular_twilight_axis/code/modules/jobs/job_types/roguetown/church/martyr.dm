@@ -1,6 +1,6 @@
 /datum/outfit/job/roguetown/martyr/basic/pre_equip(mob/living/carbon/human/H)
 	..()
-	ADD_TRAIT(H, TRAIT_TEMPLAR, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_CLERGY, TRAIT_GENERIC)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/martyr_guidance)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/martyr_expedite)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/martyr_onfeet)

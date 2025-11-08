@@ -11,13 +11,13 @@
 
 /atom/movable/screen/alert/status_effect/buff/templarbuff
 	name = "Decem Dii Vult"
-	desc = "I am a Paladin Templar, sworn to defend the House of the Ten until my very dying breath."
+	desc = "I am a member of this temple, sworn to defend the House of the Ten until my very dying breath."
 	icon_state = "buff"
 
 /datum/status_effect/buff/templarbuff
 	id = "templarbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/templarbuff
-	effectedstats = list(STATKEY_STR = 1,STATKEY_WIL = 2,STATKEY_INT = 1)
+	effectedstats = list(STATKEY_STR = 1,STATKEY_WIL = 2,STATKEY_INT = 1,STATKEY_SPD = 1,STATKEY_CON = 2,STATKEY_LCK = 1)
 	var/lastcheck = 0
 
 /datum/status_effect/buff/templarbuff/process()
@@ -45,30 +45,11 @@
 	if((src.mind?.assigned_role == "Bishop") && !(world.time < priest_timer_check + 10 SECONDS))
 		priest_timer_check = world.time
 		for(var/mob/living/carbon/human/H in view(7, src))
-			if(HAS_TRAIT(H, TRAIT_TEMPLAR) && !H.has_status_effect(/datum/status_effect/buff/templarbuff))
+			if(HAS_TRAIT(H, TRAIT_CLERGY) && !H.has_status_effect(/datum/status_effect/buff/templarbuff))
 				H.apply_status_effect(/datum/status_effect/buff/templarbuff)
-
-/atom/movable/screen/alert/status_effect/buff/chosenbuff
-	name = "Astrata's Chosen"
-	desc = "This temple is my sanctum. Within its walls, Astrata grants me strength."
-	icon_state = "buff"
-
-/datum/status_effect/buff/chosenbuff
-	id = "chosenbuff"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/chosenbuff
-	effectedstats = list(STATKEY_STR = 2,STATKEY_CON = 2)
-
-/datum/status_effect/buff/chosenbuff/process()
-
-	.=..()
-	var/area/rogue/our_area = get_area(owner)
-	if(!(our_area.holy_area))
-		owner.remove_status_effect(/datum/status_effect/buff/chosenbuff)
 
 /area/rogue/Entered(mob/living/carbon/human/guy)
 
 	.=..()
-	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_TEMPLAR) && !guy.has_status_effect(/datum/status_effect/buff/templarbuff))
+	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_CLERGY) && !guy.has_status_effect(/datum/status_effect/buff/templarbuff))
 		guy.apply_status_effect(/datum/status_effect/buff/templarbuff)
-	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_CHOSEN) && !guy.has_status_effect(/datum/status_effect/buff/chosenbuff))
-		guy.apply_status_effect(/datum/status_effect/buff/chosenbuff)
