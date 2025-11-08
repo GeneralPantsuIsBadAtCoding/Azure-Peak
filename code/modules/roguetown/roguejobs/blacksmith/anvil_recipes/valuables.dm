@@ -229,11 +229,6 @@
 	created_item = /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
 	appro_skill = /datum/skill/craft/weaponsmithing
 	craftdiff = SKILL_LEVEL_LEGENDARY
-/datum/anvil_recipe/valuables/zcross_iron
-	name = "Inverted Psycross"
-	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/clothing/neck/roguetown/zcross/iron
-	craftdiff = 1
 
 //blacksteel Rings
 /datum/anvil_recipe/valuables/emeringbs

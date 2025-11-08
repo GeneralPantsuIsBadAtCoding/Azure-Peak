@@ -839,7 +839,17 @@
 			if("onback") 
 				return list("shrink" = 0.5,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 
-
+/// Ported from Scarlet Reach's Glaive. We're avoiding force increase because I hate roguepen. It can have better blade integrity and defense instead.
+/obj/item/rogueweapon/halberd/glaive/knightcaptain
+	name = "'Deliverance'"
+	desc = "A masterwork glaive with a seasoned ashwood shaft reinforced by brass-sheathed steel bands. The blacksteel blade bears inscriptions on both side. One reads, \"QUIS CUSTODIET\" while the other reads, \"IPSOS CUSTODES\"."
+	icon = 'icons/roguetown/weapons/special/captainglaive.dmi'
+	icon_state = "capglaive"
+	smeltresult = /obj/item/ingot/blacksteel
+	max_integrity = 300 //blacksteel, so its gotta be more durable
+	max_blade_int = 200
+	wdefense = 10
+	sellprice = 250
 
 /obj/item/rogueweapon/eaglebeak
 	force = 15
