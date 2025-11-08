@@ -208,9 +208,9 @@
 
 		if (HAS_TRAIT(src, TRAIT_BEAUTIFUL))
 			switch (pronouns)
-				if (HE_HIM)
+				if (HE_HIM, SHE_HER_M)
 					. += span_beautiful_masc("[m1] handsome!")
-				if (SHE_HER)
+				if (SHE_HER, HE_HIM_F)
 					. += span_beautiful_fem("[m1] beautiful!")
 				if (THEY_THEM, THEY_THEM_F, IT_ITS)
 					. += span_beautiful_nb("[m1] good-looking!")
