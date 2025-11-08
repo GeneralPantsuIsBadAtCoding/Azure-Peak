@@ -51,5 +51,5 @@
 /area/rogue/Entered(mob/living/carbon/human/guy)
 
 	.=..()
-	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_CLERGY) && !guy.has_status_effect(/datum/status_effect/buff/templarbuff))
+	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_CLERGY) && !guy.has_status_effect(/datum/status_effect/buff/templarbuff) && !HAS_TRAIT(guy, TRAIT_EXCOMMUNICATED) && !HAS_TRAIT(guy, TRAIT_HERESIARCH))
 		guy.apply_status_effect(/datum/status_effect/buff/templarbuff)
