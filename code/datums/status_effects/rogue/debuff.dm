@@ -669,9 +669,6 @@
 	name = "Vampire biten"
 	desc = "You are feeling something... Interesting.."
 	icon_state = "acid"
-	if(iscarbon(owner))
-		var/mob/living/carbon/C = owner
-		C.remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
 
 /datum/status_effect/debuff/hobbled
 	id = "hobbled"

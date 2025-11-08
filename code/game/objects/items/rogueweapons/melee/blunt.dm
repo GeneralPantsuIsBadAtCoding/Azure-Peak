@@ -627,7 +627,7 @@
 	force = 12 //Don't one-hand this.
 	force_wielded = 32 //-3 compared to grand mace(steel goden). Better intents.
 	possible_item_intents = list(/datum/intent/mace/strike)
-	gripped_intents = list(/datum/intent/maul, /datum/intent/maul/crush, /datum/intent/effect/daze, /datum/intent/effect/hobble)
+	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/effect/daze, /datum/intent/effect/hobble)
 	name = "maul"
 	desc = "Who would need something this large? It looks like it was made for tearing down walls, rather than men."
 	icon_state = "sledge"
@@ -638,8 +638,8 @@
 	smelt_bar_num = 2
 	minstr = 14
 	wdefense = 2
-	wdefense_wbonus = 1//3
-	demolition_mod = 1.25//Oh, yes...
+	wdefense_wbonus = 1 //3
+	demolition_mod = 1.25 //Oh, yes...
 	pixel_y = -16
 	pixel_x = -16
 	inhand_x_dimension = 64
@@ -647,7 +647,7 @@
 	dropshrink = 0.6
 	bigboy = TRUE
 	gripsprite = TRUE
-	minstr_req = TRUE//You MUST have the required strength. No exceptions.
+	minstr_req = TRUE //You MUST have the required strength. No exceptions.
 	max_integrity = 300
 
 /obj/item/rogueweapon/mace/maul/getonmobprop(tag)
@@ -688,7 +688,7 @@
 	desc = "Covered in spikes, such is the weapon of a Dwarvish smith. \
 	This one has been well balanced, allowing for a weaker wielder to make use of it."
 	icon_state = "spiky"
-	gripped_intents = list(/datum/intent/maul/spiked, /datum/intent/maul/crush, /datum/intent/effect/daze, /datum/intent/effect/hobble)
+	gripped_intents = list(/datum/intent/maul/spiked, /datum/intent/mace/smash, /datum/intent/effect/daze, /datum/intent/effect/hobble)
 	wdefense_wbonus = 2 //4
 	minstr = 10 //+1 STR from Grudgebearer Smith. It should be fine.
 	smelt_bar_num = 3 //Please don't...
@@ -710,9 +710,13 @@
 	intent_effect = /datum/status_effect/debuff/hobbled
 	target_parts = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG) //Intentionally leaving out feet. If you know, you know.
 
+
 /datum/intent/maul/spiked
 	name = "perforating strike"
+	blade_class = BCLASS_STAB
 	attack_verb = list("rends", "hammers", "wallops")
-	blade_class = BCLASS_PIERCE
-	hitsound = list('sound/combat/hits/bladed/genthrust (1).ogg', 'sound/combat/hits/bladed/genthrust (2).ogg')
+	animname = "stab"
 	icon_state = "intear"
+	warnie = "mobwarning"
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	item_d_type = "stab"

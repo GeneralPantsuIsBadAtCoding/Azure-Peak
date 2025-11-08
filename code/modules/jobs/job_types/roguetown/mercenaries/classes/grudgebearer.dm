@@ -109,11 +109,11 @@
 			/obj/item/natural/feather,
 			)
 		if(H.mind)
-			var/weapons = list("Handaxe", "Grand Mace", "Maul")
+			var/weapons = list("Axe", "Grand Mace", "Maul")
 			var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
 			switch(wepchoice)
-				if("Handaxe")
-					backr = /obj/item/rogueweapon/stoneaxe/battle/dwarf
+				if("Axe")
+					backr = /obj/item/rogueweapon/stoneaxe/battle
 				if("Grand Mace")
 					backr = /obj/item/rogueweapon/mace/goden/steel
 				if("Maul")
