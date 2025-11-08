@@ -13,6 +13,8 @@
 	if(HAS_TRAIT(src, TRAIT_UNSEEMLY) && user != src)
 		if(!HAS_TRAIT(user, TRAIT_UNSEEMLY))
 			user.add_stress(/datum/stressevent/unseemly)
+	if(HAS_TRAIT(src, TRAIT_LEPROSY) && user != src)
+		user.add_stress(/datum/stressevent/leprosy)
 	if(HAS_TRAIT(src, TRAIT_BEAUTIFUL_UNCANNY) && user != src)
 		if(prob(50) && !user.has_stress_event(/datum/stressevent/uncanny))
 			user.add_stress(/datum/stressevent/beautiful)
@@ -232,7 +234,7 @@
 		if(inquisition_text)
 			. +=span_notice(inquisition_text)
 
-		if(leprosy == 1)
+		if (HAS_TRAIT(src, TRAIT_LEPROSY))
 			. += span_necrosis("A LEPER...")
 
 		if (HAS_TRAIT(src, TRAIT_BEAUTIFUL))

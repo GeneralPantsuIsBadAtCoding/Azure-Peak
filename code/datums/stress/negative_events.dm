@@ -326,6 +326,11 @@
 	desc = span_red("Their face is unbearable!")
 	timer = 3 MINUTES
 
+/datum/stressevent/leprosy
+	stressadd = 1
+	desc = span_red("A disgusting leper. Better keep my distance.")
+	timer = 3 MINUTES
+
 /datum/stressevent/uncanny
 	stressadd = 2
 	desc = span_red("Their face is.. wrong!")

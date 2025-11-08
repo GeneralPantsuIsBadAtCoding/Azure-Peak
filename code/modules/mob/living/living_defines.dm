@@ -196,3 +196,6 @@
 
 	/// If the character has prominent mob descriptors, they'll make extra noise
 	var/loud_sneaking = FALSE
+
+	/// Parry timer for projectiles post-attack. Hooks into the attack animation, so is fairly clunky.
+	var/projectile_parry_timer
