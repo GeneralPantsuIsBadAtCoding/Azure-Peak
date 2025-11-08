@@ -88,14 +88,87 @@ SUBSYSTEM_DEF(migrants)
 	/// Shuffle assignments so role rolling is not consistent
 	assignments = shuffle(assignments)
 
+	/// Get active migrants
 	var/list/active_migrants = get_active_migrants()
 	active_migrants = shuffle(active_migrants)
 
 	var/list/picked_migrants = list()
+	var/list/random_role_candidates = list() // clients who lost a contested pref and need random assignment
 
 	if(!length(active_migrants))
 		return FALSE
-	/// Try to assign priority players to positions
+	/// Try to assign priority players to positions		active_migrants = list()
+
+	/// Build player role preference map: role_type -> list(clients)
+	var/list/role_preferences_map = list()
+	for(var/client/player as anything in active_migrants)
+		if(!player?.prefs?.migrant?.role_preferences)
+			continue
+		for(var/role_type in player.prefs.migrant.role_preferences)
+			if(!role_preferences_map[role_type])
+				role_preferences_map[role_type] = list()
+			role_preferences_map[role_type] += player
+
+	/// Resolve duplicates using get_triumph_selection_bonus
+	/// If multiple candidates for the same role, pick highest triumph contributor (tie -> random).
+	/// Losers are removed from other role lists and queued for random assignment later.
+	for(var/role_type in list(role_preferences_map)) // iterate over a copy of keys
+		var/list/candidates = role_preferences_map[role_type]
+		if(!length(candidates))
+			continue
+		if(length(candidates) == 1)
+			continue
+
+		/// determine max triumph for this wave among candidates
+		var/max_triumph = -1
+		for var/client/candidate as anything in candidates)
+			var/val = get_triumph_selection_bonus(candidate, current_wave)
+			if(val > max_triumph)
+				max_triumph = val
+
+		/// collect all with max_triumph (tie possible)
+		var/list/winners = list()
+		for(var/client/candidate as anything in candidates)
+			if(get_triumph_selection_bonus(candidate, current_wave) == max_triumph)
+				winners += candidate
+
+		/// pick a single winner (random if tie)
+		var/client/winner = pick(winners)
+
+		/// replace entry with the single winner
+		role_preferences_map[role_type] = list(winner)
+
+		/// remove losers from all other role lists and mark them for random assignment
+		for(var/client/candidate as anything in candidates)
+			if(candidate == winner)
+				continue
+			/// remove candidate from every role list present
+			for(var/other_role in list(role_preferences_map))
+				role_preferences_map[other_role] -= candidate
+				if (!role_preferences_map[other_role])
+					role_preferences_map[other_role] = list()
+			/// queue candidate for later random assignment if still active and not already queued
+			if((candidate in active_migrants) && !(candidate in random_role_candidates))
+				random_role_candidates += candidate
+
+	/// FIRST PASS: assign players who explicitly prefer a specific role (resolved winners)
+	for(var/datum/migrant_assignment/assignment as anything in assignments)
+		var/role_type = assignment.role_type
+		var/list/candidates = role_preferences_map[role_type]
+		if (!length(candidates))
+			continue
+		candidates = shuffle(candidates)
+		for(var/client/candidate as anything in candidates)
+			if(!(candidate in active_migrants))
+				continue
+			if(!can_be_role(candidate, role_type))
+				continue
+			assignment.client = candidate
+			picked_migrants += candidate
+			active_migrants -= candidate
+			break
+
+	/// SECOND PASS: assign remaining roles using existing triumph-weighted priority (fallback)
 	for(var/datum/migrant_assignment/assignment as anything in assignments)
 		if(!length(active_migrants))
 			break // Out of migrants, we're screwed and will fail
@@ -113,18 +186,33 @@ SUBSYSTEM_DEF(migrants)
 			break
 		if(!picked)
 			continue
-
 		active_migrants -= picked
 		assignment.client = picked
 		picked_migrants += picked
 
-	/// Assign rest of the players to positions
-	for(var/datum/migrant_assignment/assignment as anything in assignments)
-		if(!length(active_migrants))
-			break // Out of migrants, we're screwed and will fail
-		if(assignment.client)
+	/// THIRD PASS: assign players who lost their preferred role to any remaining free assignment
+	for (var/client/player as anything in list(random_role_candidates))
+		if (!(player in active_migrants))
 			continue
+		var/datum/migrant_assignment/free_assignment = null
+		for (var/datum/migrant_assignment/A as anything in assignments)
+			if (!A.client)
+				free_assignment = A
+				break
+		if (!free_assignment)
+			break
+		free_assignment.client = player
+		picked_migrants += player
+		active_migrants -= player
+		/// remove from queue so we don't reassign
+		random_role_candidates -= player
 
+	/// FOURTH PASS: fill remaining empty slots randomly
+	for (var/datum/migrant_assignment/assignment as anything in assignments)
+		if (!length(active_migrants))
+			break
+		if (assignment.client)
+			continue
 		var/client/picked
 		for(var/client/client as anything in active_migrants)
 			if(!can_be_role(client, assignment.role_type))
@@ -149,6 +237,11 @@ SUBSYSTEM_DEF(migrants)
 			break
 		var/datum/migrant_assignment/assignment = assignments[i]
 		assignment.spawn_location = turf
+
+	/// Fallback spawn locations if something is missing
+	for (var/datum/migrant_assignment/assignment as anything in assignments)
+		if (!assignment.spawn_location)
+			assignment.spawn_location = fallback_location
 
 	/// See if anything went wrong and return FALSE if it did
 	for(var/datum/migrant_assignment/assignment as anything in assignments)
