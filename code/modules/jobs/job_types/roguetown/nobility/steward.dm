@@ -72,6 +72,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	belt = /obj/item/storage/belt/rogue/leather/plaquegold/steward
 	beltr = /obj/item/storage/keyring/steward
+	beltl = /obj/item/storage/belt/rogue/pouch/merchant/coins
 	backr = /obj/item/storage/backpack/rogue/satchel
 	id = /obj/item/scomstone
 	H.mind.special_items["Steward Tights"] = /obj/item/clothing/under/roguetown/tights/black
