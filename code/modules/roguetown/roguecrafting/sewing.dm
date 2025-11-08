@@ -1194,6 +1194,12 @@
 	reqs = list(/obj/item/natural/silk = 5)
 	craftdiff = 6
 
+/datum/crafting_recipe/roguetown/sewing/desertbra
+	name = "desert bra"
+	result = list (/obj/item/clothing/suit/roguetown/shirt/desertbra)
+	reqs = list(/obj/item/natural/fibers = 5)
+	craftdiff = 2
+
 /datum/crafting_recipe/roguetown/sewing/anklets
 	name = "exotic silk anklets"
 	result = list (/obj/item/clothing/shoes/roguetown/anklets)

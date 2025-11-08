@@ -284,6 +284,30 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Exotic Silk Bra"
 	path = /obj/item/clothing/suit/roguetown/shirt/exoticsilkbra
 
+/datum/loadout_item/desertbra
+	name = "Desert Bra"
+	path = /obj/item/clothing/suit/roguetown/shirt/desertbra
+
+/datum/loadout_item/deserthood
+	name = "Desert Hood"
+	path = /obj/item/clothing/head/roguetown/deserthood
+
+/datum/loadout_item/desertskirt
+	name = "Desert Skirt"
+	path = /obj/item/clothing/under/roguetown/skirt/desert
+
+/datum/loadout_item/explorerhat
+	name = "Explorer Hat"
+	path = /obj/item/clothing/head/roguetown/explorerhat
+
+/datum/loadout_item/explorervest
+	name = "Explroer Vest"
+	path = /obj/item/clothing/suit/roguetown/shirt/explorer
+
+/datum/loadout_item/explorerpants
+	name = "Explorer Pants"
+	path = /obj/item/clothing/under/roguetown/tights/explorerpants
+
 /datum/loadout_item/bottomtunic
 	name = "Low-cut Tunic"
 	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/lowcut
