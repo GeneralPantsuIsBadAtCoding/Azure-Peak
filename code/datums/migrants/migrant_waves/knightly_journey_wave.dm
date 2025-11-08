@@ -23,7 +23,16 @@
 	name = "The Knightly journey"
 	can_roll = FALSE
 	shared_wave_type = /datum/migrant_wave/knightly_journey
+	downgrade_wave = /datum/migrant_wave/knightly_journey_down_three
 	roles = list(
 		/datum/migrant_role/kj_knight = 1,
 		/datum/migrant_role/kj_squire = 1,
+	)
+
+/datum/migrant_wave/knightly_journey_down_three
+	name = "The Knightly journey"
+	can_roll = FALSE
+	shared_wave_type = /datum/migrant_wave/knightly_journey
+	roles = list(
+		/datum/migrant_role/kj_knight = 1,
 	)

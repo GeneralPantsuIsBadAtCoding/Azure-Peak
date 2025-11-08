@@ -69,7 +69,6 @@
 	roles = list(
 		/datum/migrant_role/ranesheni/emir = 1,
 		/datum/migrant_role/ranesheni/amirah = 1,
-		/datum/migrant_role/ranesheni/janissary = 1,
 	)
 	greet_text = "You are far from home on missive from the Ranesheni Empire."
 
@@ -80,7 +79,7 @@
 	downgrade_wave = /datum/migrant_wave/ranesheni_noble_down_seven
 	roles = list(
 		/datum/migrant_role/ranesheni/emir = 1,
-		/datum/migrant_role/ranesheni/amirah = 1,
+		/datum/migrant_role/ranesheni/advisor = 1,
 	)
 	greet_text = "You are far from home on missive from the Ranesheni Empire."
 
@@ -91,7 +90,7 @@
 	downgrade_wave = /datum/migrant_wave/ranesheni_noble_down_eight
 	roles = list(
 		/datum/migrant_role/ranesheni/emir = 1,
-		/datum/migrant_role/ranesheni/advisor = 1,
+		/datum/migrant_role/ranesheni/janissary = 1,
 	)
 	greet_text = "You are far from home on missive from the Ranesheni Empire."
 
@@ -101,6 +100,5 @@
 	can_roll = FALSE
 	roles = list(
 		/datum/migrant_role/ranesheni/emir = 1,
-		/datum/migrant_role/ranesheni/janissary = 1,
 	)
 	greet_text = "You are far from home on missive from the Ranesheni Empire."

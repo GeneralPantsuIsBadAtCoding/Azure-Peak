@@ -33,8 +33,17 @@
 	name = "Runaway Prisoners"
 	can_roll = FALSE
 	shared_wave_type = /datum/migrant_wave/runaway_prisoners
+	downgrade_wave = /datum/migrant_wave/runaway_prisoners_down_four
 	roles = list(
 		/datum/migrant_role/runaway_prisoner = 2
+	)
+
+/datum/migrant_wave/runaway_prisoners_down_four
+	name = "Runaway Prisoners"
+	can_roll = FALSE
+	shared_wave_type = /datum/migrant_wave/runaway_prisoners
+	roles = list(
+		/datum/migrant_role/runaway_prisoner = 1
 	)
 
 /datum/migrant_role/runaway_prisoner
