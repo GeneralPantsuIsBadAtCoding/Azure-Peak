@@ -50,6 +50,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 /mob/dead/new_player/proc/lobby_refresh()
 	set waitfor = 0
+//	src << browse(null, "window=lobby_window")
 
 	if(!client)
 		return
@@ -61,29 +62,8 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		src << browse(null, "window=lobby_window")
 		return
 
-	var/list/job_prefs = list()  // job_title -> list of ready players who prefer it high
-	var/list/wanderers = list()  // list of wanderer names
-	var/list/hand_lords = list()  // ckey -> is_grand_duke (for hand logic)
-	var/list/brohands = list()    // ckey -> brohand_ckey (for hand logic)
-
-	for(var/mob/dead/new_player/player in GLOB.new_player_list)
-		if(!player.client || !player.client.prefs)
-			continue
-		if(player.client.prefs.job_preferences["Grand Duke"] == JP_HIGH)
-			hand_lords[player.ckey] = TRUE
-		if(player.brohand)
-			brohands[player.ckey] = player.brohand
-
-	for(var/mob/dead/new_player/player in GLOB.new_player_list)
-		if(!player.client || !player.client.prefs || player.ready != PLAYER_READY_TO_PLAY)
-			continue
-		for(var/job_title in player.client.prefs.job_preferences)
-			if(player.client.prefs.job_preferences[job_title] == JP_HIGH)
-				if(!job_prefs[job_title])
-					job_prefs[job_title] = list()
-				job_prefs[job_title] += player
-
 	var/list/dat = list("<center>")
+
 	var/time_remaining = SSticker.GetTimeLeft()
 	if(time_remaining > 0)
 		dat += "Time To Start: [round(time_remaining/10)]s<br>"
@@ -98,40 +78,68 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	else
 		dat += (span_highlight("No bonus! Ready up!") + "<a href='?src=[REF(src)];explainreadyupbonus=1'>(?)</a><br>")
 	dat += "<B>Classes:</B><br>"
+
 	dat += "</center>"
 
+	var/list/wanderers = list()
 	var/list/job_list = list()
 
 	for(var/datum/job/job in SSjob.occupations)
+		var/wanderer_job = FALSE
+		if(istype(job, /datum/job/roguetown/adventurer) || istype(job, /datum/job/roguetown/wretch) || istype(job, /datum/job/roguetown/adventurer/courtagent))
+			wanderer_job = TRUE
 		if(!job)
 			continue
-		var/job_title = job.title
-		var/list/players_for_job = job_prefs[job_title] || list()
-		var/readiedas = length(players_for_job)
-		if(!readiedas)
-			continue
-
+		var/readiedas = 0
 		var/list/PL = list()
-		for(var/mob/dead/new_player/player in players_for_job)
-			var/thing = player.client.prefs.real_name || "Unknown"
-			if(istype(job, /datum/job/roguetown/hand) && player != src && hand_lords[src.ckey])
-				thing = "<a href='byond://?src=[REF(src)];sethand=[player.ckey]'>[thing]</a>"
-			if(brohands[player.ckey])
-				thing = "*[thing]*"
-			if(istype(job, /datum/job/roguetown/adventurer) || istype(job, /datum/job/roguetown/wretch) || istype(job, /datum/job/roguetown/adventurer/courtagent))
-				wanderers += thing
+		for(var/mob/dead/new_player/player in GLOB.player_list)
+			if(!player)
 				continue
-			PL += thing
+			if(player.client.prefs.job_preferences[job.title] == JP_HIGH)
+				if(player.ready == PLAYER_READY_TO_PLAY)
+					readiedas++
+					if(!(player.client.ckey in GLOB.hiderole))
+						if(player.client.prefs.real_name)
+							var/thing = "[player.client.prefs.real_name]"
+							if(istype(job, /datum/job/roguetown/hand))
+								if(player != src)
+									if(client.prefs.job_preferences["Grand Duke"] == JP_HIGH)
+										thing = "<a href='byond://?src=[REF(src)];sethand=[player.client.ckey]'>[player.client.prefs.real_name]</a>"
+								for(var/mob/dead/new_player/Lord in GLOB.player_list)
+									if(Lord.client.prefs.job_preferences["Grand Duke"] == JP_HIGH)
+										if(Lord.brohand == player.ckey)
+											thing = "*[thing]*"
+											break
+							if(wanderer_job)
+								wanderers += thing
+							else
+								PL += thing
+		if(wanderer_job)
+			continue
+		var/list/PL2 = list()
+		for(var/i in 1 to PL.len)
+			if(i == PL.len)
+				PL2 += "[PL[i]]"
+			else
+				PL2 += "[PL[i]], "
 
-		if(PL.len)
-			job_list += "<B>[job_title]</B> ([readiedas]) - [PL.Join(", ")]<br>"
+		var/str_job = job.title
 
-	if(wanderers.len)
-		var/wanderers_listing = "<B>Wanderers</B> ([wanderers.len]) - [wanderers.Join(", ")]<br>"
+		if(readiedas)
+			if(PL2.len)
+				job_list += "<B>[str_job]</B> ([readiedas]) - [PL2.Join()]<br>"
+			else
+				job_list += "<B>[str_job]</B> ([readiedas])<br>"
+	if(length(wanderers))
+		var/wanderers_listing = "<B>Wanderers</B> ([wanderers.len]) - "
+		for(var/i in 1 to wanderers.len)
+			if(i == wanderers.len)
+				wanderers_listing += "[wanderers[i]]"
+			else
+				wanderers_listing += "[wanderers[i]], "
+		wanderers_listing += "<br>"
 		job_list.Insert(1, wanderers_listing)
-
 	dat += job_list
-
 	var/datum/browser/popup = new(src, "lobby_window", "<div align='center'>LOBBY</div>", 330, 430)
 	popup.set_window_options("can_close=1;can_minimize=0;can_maximize=0;can_resize=1;")
 	popup.set_content(dat.Join())
