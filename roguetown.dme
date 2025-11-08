@@ -435,7 +435,6 @@
 #include "code\controllers\subsystem\rogue\triumphs\triumph_buy_datums\communal\_preround.dm"
 #include "code\controllers\subsystem\rogue\triumphs\triumph_buy_datums\communal\psydon_retirement_fund.dm"
 #include "code\controllers\subsystem\rogue\triumphs\triumph_buy_datums\misc\psydon_favorite.dm"
-#include "code\controllers\subsystem\rogue\triumphs\triumph_buy_datums\misc\wipe_triumphs.dm"
 #include "code\controllers\subsystem\rogue\triumphs\triumph_buy_datums\storyteller\bonus_influence.dm"
 #include "code\datums\action.dm"
 #include "code\datums\antag_retainer.dm"
