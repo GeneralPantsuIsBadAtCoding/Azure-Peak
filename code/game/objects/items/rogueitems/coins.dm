@@ -41,13 +41,24 @@
 
 /obj/item/roguecoin/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	playsound(loc, 'sound/foley/coins1.ogg', 100, TRUE, -2)
+	scatter(get_turf(src))
 	..() 
 
-/obj/item/roguecoin/Crossed(atom/movable/AM)
-	. = ..()
-	if(istype(AM, /obj/item/roguecoin) && isturf(loc)) // Only on floor
-		merge(AM, null)
+/obj/item/roguecoin/proc/scatter(turf/T)
+	if(istransparentturf(T))
+		scatter(GET_TURF_BELOW(T))
 		return
+	pixel_x = rand(-8, 8)
+	pixel_y = rand(-5, 5)
+	if(isturf(T) && quantity > 1 && quantity <= 20)
+		var/obj/structure/table/TA = locate() in T
+		if(!TA) //no table
+			for(var/i in 2 to quantity)
+				var/obj/item/roguecoin/new_coin = new type(T)
+				new_coin.set_quantity(1) // prevent exploits with coin piles
+				new_coin.pixel_x = rand(-8, 8)
+				new_coin.pixel_y = rand(-5, 5)
+				set_quantity(quantity - 1)
 
 /obj/item/roguecoin/get_real_price()
 	return sellprice * quantity
@@ -77,11 +88,10 @@
 	G.set_quantity(G.quantity - amt_to_merge)
 	rigged_outcome = 0
 	G.rigged_outcome = 0
-	if(user && G.quantity <= 0)
-		user.doUnEquip(G)
-		user.update_inv_hands()
 	if(G.quantity <= 0)
+		user.doUnEquip(G)
 		qdel(G)
+	user.update_inv_hands()
 	playsound(loc, 'sound/foley/coins1.ogg', 100, TRUE, -2)
 
 /obj/item/roguecoin/attack_right(mob/user)

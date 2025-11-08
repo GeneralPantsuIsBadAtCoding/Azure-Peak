@@ -84,7 +84,20 @@
 	H.icon = 'icons/roguetown/mob/monster/werewolf.dmi'
 	H.base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB)
 	if(H.gender == MALE)
-		H.icon_state = "wwolf_m"
+		var/list/arousal_data = list()
+		SEND_SIGNAL(H, COMSIG_SEX_GET_AROUSAL, arousal_data)
+
+		var/max_arousal = MAX_AROUSAL || 120
+		var/current_arousal = arousal_data["arousal"] || 0
+		var/arousal_percent = min(100, (current_arousal / max_arousal) * 100)
+
+		switch(arousal_percent)
+			if(0 to 10)
+				H.icon_state = "wwolf_m"  //  (ERECT_STATE_NONE)
+			if(11 to 35)
+				H.icon_state = "wwolf_m-p"  //  (ERECT_STATE_PARTIAL)
+			if(36 to 100)
+				H.icon_state = "wwolf_m-e"  // (ERECT_STATE_HARD)
 	else
 		H.icon_state = "wwolf_f"
 	H.update_damage_overlays()

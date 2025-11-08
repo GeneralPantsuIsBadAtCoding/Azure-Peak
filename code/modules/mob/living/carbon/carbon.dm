@@ -113,7 +113,8 @@
 	// Special case for scissors with snip intent targeting the head or skull
 	if(istype(I, /obj/item/rogueweapon/huntingknife/scissors) && user.used_intent.type == /datum/intent/snip && (user.zone_selected == BODY_ZONE_HEAD || user.zone_selected == BODY_ZONE_PRECISE_SKULL))
 		return I.attack(src, user)
-
+	if(istype(I, /obj/item/leash))
+		return I.attack(src, user)
 	if(!user.cmode)
 		var/try_to_fail = istype(user.rmb_intent, /datum/rmb_intent/strong)
 		var/list/possible_steps = list()
@@ -403,6 +404,17 @@
 /mob/living/carbon/proc/check_try_extinguish()
 	if(!has_status_effect(/datum/status_effect/fire_handler))
 		extinguish_mob(TRUE)
+
+/mob/living/carbon/resist_leash()
+	to_chat(src, span_notice("I reach for the hook on my collar..."))
+	//Determine how long it takes to remove the leash
+	var/deleash = 15
+	if(src.handcuffed)
+		deleash = 60
+	if(move_after(src, deleash, 0, target = src))
+		if(!QDELETED(src))
+			to_chat(src, "<span class='warning'>[src] has removed their leash!</span>")
+			src.remove_status_effect(/datum/status_effect/leash_pet)
 
 /mob/living/carbon/resist_restraints()
 	var/obj/item/I = null
@@ -894,6 +906,9 @@
 	protection *= INVERSE(target_zones.len)
 	return protection
 
+/mob/living
+	var/succumb_timer = 0
+
 //this handles hud updates
 /mob/living/carbon/update_damage_hud()
 
@@ -945,10 +960,14 @@
 			overlay_fullscreen("critvision", /atom/movable/screen/fullscreen/crit/vision, visionseverity)
 		else
 			clear_fullscreen("critvision")
+		if(!succumb_timer)
+			succumb_timer = world.time
 		overlay_fullscreen("crit", /atom/movable/screen/fullscreen/crit, severity)
 		overlay_fullscreen("DD", /atom/movable/screen/fullscreen/crit/death)
 		overlay_fullscreen("DDZ", /atom/movable/screen/fullscreen/crit/zeth)
 	else
+		if(succumb_timer)
+			succumb_timer = 0
 		clear_fullscreen("crit")
 		clear_fullscreen("critvision")
 		clear_fullscreen("DD")
@@ -1347,6 +1366,16 @@
 	if(istype(loc, /turf/open/water) && !(mobility_flags & MOBILITY_STAND))
 		return FALSE
 
+/mob/living/carbon/resist_leash()
+	to_chat(src, span_notice("I reach for the hook on my collar..."))
+	//Determine how long it takes to remove the leash
+	var/deleash = 5 SECONDS
+	if(src.handcuffed)
+		deleash = 20 SECONDS
+	if(move_after(src, deleash, 0, target = src))
+		if(!QDELETED(src))
+			to_chat(src, "<span class='warning'>[src] has removed their leash!</span>")
+			src.remove_status_effect(/datum/status_effect/leash_pet)
 
 /mob/living/carbon/can_buckle()
 	if((cmode) && (mind) && (!handcuffed) && (stat == CONSCIOUS))

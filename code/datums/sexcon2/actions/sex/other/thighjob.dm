@@ -1,5 +1,5 @@
 /datum/sex_action/sex/other/thighjob
-	name = "Jerk them off with thighs"
+	name = "Вздрочнуть ляжками"
 
 /datum/sex_action/sex/other/thighjob/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -23,11 +23,11 @@
 	return TRUE
 
 /datum/sex_action/sex/other/thighjob/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return span_warning("[user] moves [user.p_their()] thighs between [target]'s cock...")
+	return span_warning("[user] обхватывает своими ляхами пенис [target]...")
 
 /datum/sex_action/sex/other/thighjob/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] jerks [target]'s cock with [user.p_their()] thighs..."))
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] вздрачивает член [target] при помощи своих бедрышек..."))
 	playsound(user, 'sound/misc/mat/fingering.ogg', 30, TRUE, -2, ignore_walls = FALSE)
 	do_thrust_animate(target, user)
 
@@ -35,5 +35,5 @@
 	sex_session.handle_passive_ejaculation(target)
 
 /datum/sex_action/sex/other/thighjob/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return span_warning("[user] stops jerking [target] off with [user.p_their()] thighs...")
+	return span_warning("[user] перестает надрачивать [target] бедрами...")
 

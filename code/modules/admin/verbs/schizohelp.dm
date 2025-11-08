@@ -15,6 +15,8 @@ GLOBAL_LIST_EMPTY_TYPED(schizohelps, /datum/schizohelp)
 	var/display_name = get_schizo_name()
 	var/message = span_info("<i>[display_name] meditates...</i>\n[msg]")
 	var/message_admins = span_info("<i>[display_name] ([key || "NO KEY"]) [ADMIN_FLW(src)] [ADMIN_SM(src)] meditates...</i>\n[msg]")
+	var/log_entry = "[display_name] ([key || "NO KEY"]) (FLW) (SM) meditates...\n[msg] (ANSWER via schizohelp)"
+
 	for(var/client/voice in (GLOB.clients - client))
 		if(!(voice.prefs.toggles & SCHIZO_VOICE) || check_rights_for(voice, R_ADMIN))
 			continue
@@ -26,6 +28,8 @@ GLOBAL_LIST_EMPTY_TYPED(schizohelps, /datum/schizohelp)
 			continue
 		var/answer_button = span_info("(<a href='?src=[admin];schizohelp=[REF(ticket)];'>ANSWER</a>)")
 		to_chat(admin, "[message_admins] [answer_button]")
+	
+	log_game("[log_entry]")
 	COOLDOWN_START(src, schizohelp_cooldown, 1 MINUTES)
 
 /mob/proc/get_schizo_name()
@@ -105,7 +109,8 @@ GLOBAL_LIST_EMPTY_TYPED(schizohelps, /datum/schizohelp)
 			if(!(listener.prefs.toggles & SCHIZO_VOICE))
 				continue
 			to_chat(listener, span_info("Someone answers:<i>[answer]</i>"))
-
+	var/log_entry = "[voice] ([voice.key || "NO KEY"]) answered [owner]'s ([owner.key || "NO KEY"]) schizohelp meditation:\n[answer] (ANSWER via schizohelp))"
+	log_game("[log_entry]")
 	answers[voice.key] = answer
 	if(length(answers) >= max_answers)
 		qdel(src)

@@ -918,7 +918,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		qdel(O)
 	personal_objectives.Cut()
 
-/proc/handle_special_items_retrieval(mob/user, atom/host_object)
+/* /proc/handle_special_items_retrieval(mob/user, atom/host_object)
 	// Attempts to retrieve an item from a player's stash, and applies any base colors, where preferable.
 	if(user.mind && isliving(user))
 		if(user.mind.special_items && user.mind.special_items.len)
@@ -933,4 +933,4 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 						if (istype(I, /obj/item/clothing)) // commit any pref dyes to our item if it is clothing and we have them available
 							var/dye = user.client?.prefs.resolve_loadout_to_color(path2item)
 							if (dye)
-								I.add_atom_colour(dye, FIXED_COLOUR_PRIORITY)
+								I.add_atom_colour(dye, FIXED_COLOUR_PRIORITY) */

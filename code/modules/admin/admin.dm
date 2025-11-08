@@ -95,16 +95,6 @@
 			patron = initial(living.patron.name)
 		body += "<br><br>Current Patron: [patron]"
 
-		var/idstatus = "<br>ID Status: "
-		if(!M.ckey)
-			idstatus += "No key!"
-		else if(!M.check_agevet())
-			idstatus += "Unverified"
-		else
-			var/vetadmin = LAZYACCESS(GLOB.agevetted_list, M.ckey)
-			idstatus += "<b>Age Verified</b> by [vetadmin]"
-		body += idstatus
-
 		//Azure port. Incompatibility.
 		/*var/curse_string = ""
 		if(ishuman(M))
@@ -264,6 +254,8 @@
 		return
 
 	show_player_panel_next(M)
+	message_admins("Admin [key_name_admin(usr)] checked the player panel of [key_name_admin(M)]!")
+	log_admin("Admin [key_name(usr)] checked the player panel of [key_name_admin(M)]!")
 
 /client/proc/show_player_panel_next(mob/M)
 	holder?.show_player_panel_next(M)
@@ -350,12 +342,15 @@
 
 	var/ckey = lowertext(M.ckey)
 	var/admin = lowertext(usr.key)
+	var/canonical_ckey = replacetext(replacetext(replacetext(replacetext(lowertext(ckey), " ", ""), "_", ""), ".", ""), "-", "")
+	var/folder_prefix = copytext(canonical_ckey, 1, 2)
+	var/full_path = "data/player_saves/[folder_prefix]/[canonical_ckey]/preferences.sav"
 
 	/*if(ckey == admin)
 		to_chat(src, span_boldwarning("That's you!"))
 		return
 	*/
-	if(!fexists("data/player_saves/[copytext(ckey,1,2)]/[ckey]/preferences.sav"))
+	if(!fexists(full_path))
 		to_chat(src, span_boldwarning("User does not exist."))
 		return
 	var/amt2change = input("How much to modify the PQ by? (20 to -20, or 0 to just add a note)") as null|num
@@ -363,6 +358,9 @@
 		amt2change = CLAMP(amt2change, -20, 20)
 	var/raisin = stripped_input("State a short reason for this change", "Game Master", "", null)
 	if(!amt2change && !raisin)
+		return
+	if(ckey == admin)
+		to_chat(src, span_boldwarning("Самому себе PQ менять нельзя."))
 		return
 	adjust_playerquality(amt2change, ckey, admin, raisin)
 	to_chat(M.client, "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">Your PQ has been adjusted by [amt2change] by [admin] for reason: [raisin]</span></span>")
