@@ -658,6 +658,7 @@
 #include "code\datums\components\storage\storage.dm"
 #include "code\datums\components\storage\storage_types.dm"
 #include "code\datums\components\storage\concrete\_concrete.dm"
+#include "code\datums\components\wise_tree_alert.dm"
 #include "code\datums\dungeon_generator\dungeon_direction_helpers.dm"
 #include "code\datums\dungeon_generator\dungeon_entry_exit.dm"
 #include "code\datums\dungeon_generator\dungeon_templates\_base.dm"

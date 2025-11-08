@@ -521,7 +521,7 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
-
+	H.AddComponent(/datum/component/wise_tree_alert)
 
 /obj/item/rogueweapon/sword/long/martyr
 	force = 30
