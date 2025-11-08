@@ -1711,6 +1711,7 @@
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\hedgemage.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\heretic.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\licker.dm"
+#include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\munitioneer.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\necromancer.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\outlaw.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\plaguebearer.dm"

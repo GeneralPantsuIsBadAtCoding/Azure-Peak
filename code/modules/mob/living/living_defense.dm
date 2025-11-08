@@ -124,7 +124,7 @@
 		if(SEND_SIGNAL(src, COMSIG_LIVING_IMPACT_ZONE, I, zone) & COMPONENT_CANCEL_THROW)
 			return FALSE
 		if(!blocked)
-			var/ap = (damage_flag == "blunt") ? BLUNT_DEFAULT_PENFACTOR : I.armor_penetration 
+			var/ap = (damage_flag == "blunt") ? BLUNT_DEFAULT_PENFACTOR : I.armor_penetration
 			var/armor = run_armor_check(zone, damage_flag, "", "", armor_penetration = ap, damage = I.throwforce, used_weapon = I)
 			next_attack_msg.Cut()
 			var/nodmg = FALSE
@@ -151,6 +151,16 @@
 			next_attack_msg.Cut()
 			if(I.thrownby)
 				log_combat(I.thrownby, src, "threw and hit", I)
+			var/volume = I.get_volume_by_throwforce_and_or_w_class()
+			if (I.throwforce > 0)
+				if (I.mob_throw_hit_sound)
+					playsound(src, I.mob_throw_hit_sound, volume, TRUE, -1)
+				else if(I.hitsound)
+					playsound(src, pick(I.hitsound), volume, TRUE, -1)
+				else
+					playsound(src, 'sound/blank.ogg',volume, TRUE, -1)
+			else
+				playsound(src, 'sound/blank.ogg', volume, -1)
 		else
 			return 1
 

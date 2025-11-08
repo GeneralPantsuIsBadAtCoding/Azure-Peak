@@ -8,6 +8,7 @@
 	sleevetype = "skirt"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
 	alternate_worn_layer = (SHIRT_LAYER)
+	salvage_amount = 1
 
 /obj/item/clothing/under/roguetown/skirt/random
 	name = "skirt"

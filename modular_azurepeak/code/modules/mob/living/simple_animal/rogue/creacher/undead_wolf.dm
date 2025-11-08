@@ -78,24 +78,26 @@
 	if(. && prob(8) && iscarbon(target))
 		var/mob/living/carbon/C = target
 		if(world.time >= chomp_cd + 120 SECONDS) //they can do it Once basically
-			src.chomp_roll = STASTR + (rand(1,6))
-			if(src.chomp_roll > C.STACON)
+			chomp_roll = STASTR + (rand(1,6))
+			if(chomp_roll > C.STACON)
 				C.Knockdown(20)
-				C.visible_message(span_danger("\The [src] chomps \the [C]'s legs, knocking them down!"))
-				span_danger("\The [src] tugs me to the ground! I'm winded!")
+				C.visible_message(
+					span_danger("\The [src] chomps \the [C]'s legs, knocking them down!"),
+					span_danger("\The [src] tugs me to the ground! I'm winded!")
+				)
 				C.adjustOxyLoss(10) //less punishing than zfall bc simplemob
 				C.emote("gasp")
 				playsound(C, 'sound/foley/zfall.ogg', 100, FALSE)
 			else
 				C.visible_message(span_danger("\The [src] fails to drag \the [C] down!"))
-		src.chomp_cd = world.time //this goes here i think? ...sure
+		chomp_cd = world.time //this goes here i think? ...sure
 
 /mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead/Initialize()
 	. = ..()
 	REMOVE_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_RIGIDMOVEMENT, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
-	src.AddComponent(/datum/component/infection_spreader)
+	AddComponent(/datum/component/infection_spreader)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead/death()
 	if(is_downed)
