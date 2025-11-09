@@ -17,7 +17,7 @@
 	f_title = "Soilbride"
 	outfit = /datum/outfit/job/roguetown/farmer
 	display_order = 24
-	give_bank_account = 17
+	give_bank_account = TRUE
 	min_pq = -10
 	max_pq = null
 	round_contrib_points = 3
