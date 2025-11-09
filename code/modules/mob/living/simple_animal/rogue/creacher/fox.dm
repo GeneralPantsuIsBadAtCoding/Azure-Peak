@@ -145,3 +145,4 @@
 	name = "Mimi the Fox"
 	desc = "An adorable creechur adopted by the Guild of Craft as their mascot."
 	density = 0 // You can walk through them
+	aggressive = FALSE
