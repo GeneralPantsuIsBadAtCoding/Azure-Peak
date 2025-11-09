@@ -5,7 +5,6 @@
     allowed_races = RACES_NO_CONSTRUCT
     outfit = /datum/outfit/job/roguetown/vagabond/unraveled
     category_tags = list(CTAG_VAGABOND)
-	give_bank_account = TRUE
     traits_applied = list(TRAIT_PSYCHOSIS, TRAIT_NOSTINK)
     subclass_stats = list(
         STATKEY_INT = -2,
@@ -32,4 +31,3 @@
         gloves = /obj/item/clothing/gloves/roguetown/fingerless
 
     human.hallucination = INFINITY
-	SStreasury.give_money_account(ECONOMIC_DESTITUTE, H, "Savings.")
