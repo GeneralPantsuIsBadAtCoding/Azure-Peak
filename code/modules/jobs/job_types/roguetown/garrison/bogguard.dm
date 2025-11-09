@@ -19,7 +19,7 @@
 	outfit = /datum/outfit/job/roguetown/bogguardsman
 	advclass_cat_rolls = list(CTAG_WARDEN = 20)
 
-	give_bank_account = 16
+	give_bank_account = TRUE
 	min_pq = 0
 	max_pq = null
 	round_contrib_points = 2
@@ -40,6 +40,9 @@
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	id = /obj/item/scomstone/bad/garrison
 	job_bitflag = BITFLAG_GARRISON
+
+/datum/outfit/job/roguetown/bogguardsman/pre_equip(mob/living/carbon/human/H)
+	SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
 
 /datum/advclass/bogguardsman/ranger
 	name = "Ranger"
