@@ -54,6 +54,9 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
 	)
 
+/datum/outfit/job/roguetown/servant/pre_equip(mob/living/carbon/human/H)
+	SStreasury.give_money_account(ECONOMIC_WORKING_CLASSS, H, "Savings.")
+
 /datum/outfit/job/roguetown/servant/servant/pre_equip(mob/living/carbon/human/H)
 	..()
 	pants = /obj/item/clothing/under/roguetown/trou
