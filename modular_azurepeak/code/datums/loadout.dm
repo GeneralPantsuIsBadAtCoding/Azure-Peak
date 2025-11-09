@@ -301,8 +301,12 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/head/roguetown/explorerhat
 
 /datum/loadout_item/explorervest
-	name = "Explroer Vest"
+	name = "Explorer Vest"
 	path = /obj/item/clothing/suit/roguetown/shirt/explorer
+
+/datum/loadout_item/fancycoat
+	name = "Fancy Coat"
+	path = /obj/item/clothing/cloak/poncho/fancycoat
 
 /datum/loadout_item/explorerpants
 	name = "Explorer Pants"
