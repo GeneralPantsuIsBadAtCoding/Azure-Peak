@@ -52,10 +52,5 @@
 	item_state = "bs_halfplate"
 	armor = ARMOR_PLATE_BSTEEL
 	max_integrity = ARMOR_INT_CHEST_PLATE_BLACKSTEEL
-	allowed_race = CLOTHED_RACES_TYPES
 	nodismemsleeves = TRUE
-	blocking_behavior = null
 	smeltresult = /obj/item/ingot/blacksteel
-	equip_delay_self = 4 SECONDS
-	unequip_delay_self = 4 SECONDS
-	armor_class = ARMOR_CLASS_HEAVY
