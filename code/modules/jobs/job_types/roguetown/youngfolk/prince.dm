@@ -15,7 +15,7 @@
 	tutorial = "You've never felt the gnawing of the winter, never known the bite of hunger and certainly have never known a honest day's work. You are as free as any bird in the sky, and you may revel in your debauchery for as long as your parents remain upon the throne: But someday you'll have to grow up, and that will be the day your carelessness will cost you more than a few mammons."
 
 	display_order = JDO_PRINCE
-	give_bank_account = 30
+	give_bank_account = TRUE
 	noble_income = 20
 	min_pq = 1
 	max_pq = null
@@ -74,6 +74,7 @@
 	beltr = /obj/item/storage/keyring/heir
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 	backr = /obj/item/storage/backpack/rogue/satchel
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 /datum/advclass/heir/bookworm
 	name = "Introverted Bookworm"
