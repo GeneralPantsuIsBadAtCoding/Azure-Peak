@@ -41,9 +41,6 @@
 	id = /obj/item/scomstone/bad/garrison
 	job_bitflag = BITFLAG_GARRISON
 
-/datum/outfit/job/roguetown/bogguardsman/pre_equip(mob/living/carbon/human/H)
-	SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
-
 /datum/advclass/bogguardsman/ranger
 	name = "Ranger"
 	tutorial = "You are a ranger, a hunter who volunteered to become a part of the wardens. You have experience using bows and daggers."
@@ -57,7 +54,7 @@
 	)
 	subclass_skills = list(
 		/datum/skill/combat/bows = SKILL_LEVEL_EXPERT,
-		/datum/skill/combat/slings = SKILL_LEVEL_EXPERT, 
+		/datum/skill/combat/slings = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
@@ -116,6 +113,7 @@
 		var/hoodchoice = input(H, "Choose your Shroud.", "HOOD SELECTION") as anything in hoods
 		if(helmchoice != "None")
 			mask = hoods[hoodchoice]
+	SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
 
 /datum/advclass/bogguardsman/forester
 	name = "Forester"
@@ -192,3 +190,4 @@
 		var/hoodchoice = input(H, "Choose your Shroud.", "HOOD SELECTION") as anything in hoods
 		if(helmchoice != "None")
 			mask = hoods[hoodchoice]
+	SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")

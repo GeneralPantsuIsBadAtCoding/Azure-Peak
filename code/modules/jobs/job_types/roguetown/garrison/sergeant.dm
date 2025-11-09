@@ -13,7 +13,7 @@
 	display_order = JDO_SERGEANT
 	whitelist_req = TRUE
 	round_contrib_points = 3
-	
+
 
 	outfit = /datum/outfit/job/roguetown/sergeant
 	advclass_cat_rolls = list(CTAG_SERGEANT = 20)
@@ -58,9 +58,6 @@
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	id = /obj/item/scomstone/garrison
 
-/datum/outfit/job/roguetown/sergeant/pre_equip(mob/living/carbon/human/H)
-	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
-
 //Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
 /datum/advclass/sergeant/sergeant
 	name = "Sergeant-at-Arms"
@@ -84,7 +81,7 @@
 		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,	
+		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
@@ -142,6 +139,7 @@
 		)
 		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
 		armor = armors[armorchoice]
+	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
 
 /obj/effect/proc_holder/spell/invoked/order
 	name = ""
@@ -178,7 +176,7 @@
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				revert_cast()
-				return		
+				return
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
 			revert_cast()
@@ -244,7 +242,7 @@
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				revert_cast()
-				return		
+				return
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
 			revert_cast()
@@ -279,7 +277,7 @@
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				revert_cast()
-				return		
+				return
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
 			revert_cast()
@@ -341,7 +339,7 @@
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				revert_cast()
-				return		
+				return
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
 			revert_cast()
@@ -389,7 +387,7 @@
 			return
 		if(HAS_TRAIT(target, TRAIT_CRITICAL_WEAKNESS))
 			to_chat(user, span_alert("They are already vulnerable!"))
-			return	
+			return
 		user.say("[msg]")
 		target.apply_status_effect(/datum/status_effect/debuff/order/focustarget)
 		return TRUE

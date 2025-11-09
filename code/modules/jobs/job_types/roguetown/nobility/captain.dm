@@ -39,9 +39,6 @@
 	id = /obj/item/scomstone/garrison
 	job_bitflag = BITFLAG_ROYALTY | BITFLAG_GARRISON
 
-/datum/outfit/job/roguetown/captain/pre_equip(mob/living/carbon/human/H)
-	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
-
 /datum/job/roguetown/captain/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))
@@ -119,8 +116,8 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/focustarget)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.verbs |= list(
-		/mob/living/carbon/human/proc/request_outlaw, 
-		/mob/proc/haltyell, 
+		/mob/living/carbon/human/proc/request_outlaw,
+		/mob/proc/haltyell,
 		/mob/living/carbon/human/mind/proc/setorders
 	)
 	H.adjust_blindness(-3)
@@ -235,6 +232,7 @@
 		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 /obj/effect/proc_holder/spell/self/convertrole
 	name = "Recruit Beggar"

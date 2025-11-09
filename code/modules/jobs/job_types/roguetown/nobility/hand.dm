@@ -36,7 +36,6 @@
 /datum/outfit/job/roguetown/hand/pre_equip(mob/living/carbon/human/H)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/agent)
 	H.verbs |= /datum/job/roguetown/hand/proc/remember_agents
-	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 /datum/job/roguetown/hand/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
@@ -94,6 +93,7 @@
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
 		H.change_stat(STATKEY_LCK, 2)
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 
 //Spymaster start
@@ -129,7 +129,7 @@
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_MASTER, // not like they're gonna break into the vault.
 	)
 
-//Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff. 
+//Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff.
 /datum/outfit/job/roguetown/hand/spymaster/pre_equip(mob/living/carbon/human/H)
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
@@ -153,6 +153,7 @@
 		H.adjust_skillrank_up_to(/datum/skill/misc/sneaking, 6, TRUE)
 		H.adjust_skillrank_up_to(/datum/skill/misc/stealing, 6, TRUE)
 		H.adjust_skillrank_up_to(/datum/skill/misc/lockpicking, 6, TRUE)
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 //Advisor Start
 /datum/advclass/hand/advisor
@@ -166,7 +167,7 @@
 		STATKEY_INT = 4,
 		STATKEY_PER = 3,
 		STATKEY_WIL = 2,
-		STATKEY_LCK = 2,		
+		STATKEY_LCK = 2,
 	)
 	subclass_spellpoints = 15
 	subclass_skills = list(
@@ -187,7 +188,7 @@
 		/datum/skill/magic/arcane = SKILL_LEVEL_APPRENTICE,
 	)
 
-//Advisor start. Trades combat skills for more knowledge and skills - for older hands, hands that don't do combat - people who wanna play wizened old advisors. 
+//Advisor start. Trades combat skills for more knowledge and skills - for older hands, hands that don't do combat - people who wanna play wizened old advisors.
 /datum/outfit/job/roguetown/hand/advisor/pre_equip(mob/living/carbon/human/H)
 	r_hand = /obj/item/rogueweapon/sword/rapier/dec
 	beltr = /obj/item/rogueweapon/scabbard/sword
@@ -211,6 +212,7 @@
 		H.change_stat(STATKEY_INT, 1)
 		H.change_stat(STATKEY_PER, 1)
 		H.mind?.adjust_spellpoints(3)
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 ////////////////////
 ///SPELLS & VERBS///

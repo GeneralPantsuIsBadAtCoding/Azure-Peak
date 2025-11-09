@@ -53,9 +53,6 @@
 /datum/outfit/job/roguetown/seneschal
 	has_loadout = TRUE
 
-/datum/outfit/job/roguetown/seneschal/pre_equip(mob/living/carbon/human/H)
-	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
-
 //This applies to all Seneschal subclasses
 /datum/outfit/job/roguetown/seneschal/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
@@ -81,6 +78,7 @@
 	id = /obj/item/scomstone/bad
 	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/armor/silkcoat
+	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
 
 /datum/advclass/seneschal/headmaid
 	name = "Head Maid"
@@ -116,7 +114,7 @@
 	beltr = /obj/item/storage/keyring/servant
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	id = /obj/item/scomstone/bad
-
+	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
 
 /datum/advclass/seneschal/chiefbutler
 	name = "Chief Butler"
@@ -152,3 +150,4 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
 	id = /obj/item/scomstone/bad
+	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
