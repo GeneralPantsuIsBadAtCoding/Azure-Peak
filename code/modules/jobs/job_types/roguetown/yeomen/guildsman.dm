@@ -18,7 +18,7 @@
 	outfit = /datum/outfit/job/roguetown/guildsman
 	selection_color = JCOLOR_YEOMAN
 	display_order = JDO_GUILDSMAN
-	give_bank_account = 15
+	give_bank_account = TRUE
 	min_pq = 0
 	max_pq = null
 	round_contrib_points = 3
@@ -30,6 +30,9 @@
 		/datum/advclass/guildsman/architect
 	)
 	spells = list(/obj/effect/proc_holder/spell/invoked/takeapprentice)
+
+/datum/outfit/job/roguetown/guildsman/pre_equip(mob/living/carbon/human/H)
+	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
 
 /datum/advclass/guildsman/blacksmith
 	name = "Guild Blacksmith"
