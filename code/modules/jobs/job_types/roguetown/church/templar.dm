@@ -32,6 +32,9 @@
 	has_loadout = TRUE
 	allowed_patrons = ALL_DIVINE_PATRONS
 
+/datum/outfit/job/roguetown/templar/pre_equip(mob/living/carbon/human/H)
+	SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Church Funding.")
+
 /datum/advclass/templar/monk
 	name = "Monk"
 	tutorial = "You are a monk of the Church, trained in pugilism and acrobatics. You bear no armor but your faith, and your hands are lethal weapons in service to your God."
