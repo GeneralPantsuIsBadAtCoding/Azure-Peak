@@ -7,6 +7,7 @@
 	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 	category_tags = list(CTAG_VAGABOND)
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/goatmale/tame
+	give_bank_account = TRUE
 	subclass_stats = list(
 		STATKEY_WIL = 2,
 		STATKEY_INT = -1,
