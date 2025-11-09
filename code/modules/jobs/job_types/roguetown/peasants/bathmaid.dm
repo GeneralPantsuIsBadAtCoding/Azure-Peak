@@ -85,7 +85,7 @@
 		pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/massage)
-	SStreasury.give_money_account(ECONOMIC_LOWER_CLAS, H, "Savings.")
+	SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
 
 /datum/advclass/nightmaiden/concubine
 	name = "Concubine"
