@@ -110,3 +110,10 @@
 	var/obj/effect/decal/cleanable/molten_object/I = new (get_turf(src))
 	I.desc = ""
 	qdel(src)
+
+/obj/structure/glowshroom/bright
+
+
+/obj/structure/glowshroom/bright/Initialize()
+	..()
+	src.light_outer_range = 12

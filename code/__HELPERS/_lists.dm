@@ -752,3 +752,20 @@ GLOBAL_LIST_EMPTY(string_lists)
 		return (call(cmp)(L[i],A) > 0) ? i : i+1
 	else
 		return i
+		
+///A wrapper for baseturf string lists, to offer support of non list values, and a stack_trace if we have major issues
+/proc/baseturfs_string_list(list/values, turf/baseturf_holder)
+	if(!islist(values))
+		return values //baseturf things
+	// return values
+	if(length(values) > 10)
+		stack_trace("The baseturfs list of [baseturf_holder] at [baseturf_holder.x], [baseturf_holder.y], [baseturf_holder.x] is [length(values)], it should never be this long, investigate. I've set baseturfs to a flashing wall as a visual queue")
+		baseturf_holder.ChangeTurf(/turf/closed/indestructible/baseturfs_ded, list(/turf/closed/indestructible/baseturfs_ded), flags = CHANGETURF_FORCEOP)
+		return string_list(list(/turf/closed/indestructible/baseturfs_ded))
+
+	return string_list(values)
+
+/turf/closed/indestructible/baseturfs_ded
+	name = "Report this"
+	icon = 'icons/effects/mapping_helpers.dmi'
+	icon_state = ""

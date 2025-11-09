@@ -500,6 +500,26 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	delete_after_roundstart = FALSE
 	jobspawn_override = list("Wretch")
 
+/obj/effect/landmark/start/warlord
+	var/warband
+	icon_state = "arrow"
+	delete_after_roundstart = FALSE
+	jobspawn_override = list("Warlord","Warlord's Lieutenant","Grunt")
+
+/obj/effect/landmark/start/warlordlate
+	var/warband
+	icon_state = "arrow"
+	delete_after_roundstart = FALSE
+	jobspawn_override = list("Warlord","Warlord's Lieutenant","Grunt")
+
+/obj/effect/landmark/start/gruntlate
+	var/warband
+	icon_state = "arrow"
+	delete_after_roundstart = FALSE
+	jobspawn_override = list("Grunt")
+
+/obj/effect/landmark/territory_import
+
 /obj/effect/landmark/start/nukeop_leader
 	name = "nukeop leader"
 	icon = 'icons/effects/landmarks_static.dmi'

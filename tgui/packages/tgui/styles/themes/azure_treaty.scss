@@ -1,0 +1,140 @@
+@font-face {
+  font-family: 'Pterra';
+  src: url('~roguefont/pterra.ttf');
+}
+
+
+.theme-azure_treaty:root {
+  --color-base: #ae9470;
+  --color-base-start: transparent;
+  --color-base-end: transparent;
+
+  --font-size: 12px;
+  --font-family: 'Pterra';
+
+
+  .TopDecorLeft {
+    background-image: url('../assets/azure_treaty/leftknob.svg');
+    background-repeat: no-repeat;
+    pointer-events: none;
+    background-size: 64px;
+    width: 64px;
+    height: 128px;
+    position: absolute;
+    z-index: 500;
+    left: 0px;
+    top: 0px
+  }
+
+  .TopDecorRight {
+    background-image: url('../assets/azure_treaty/rightknob.svg');
+    background-repeat: no-repeat;
+    pointer-events: none;
+    background-size: 64px;
+    width: 64px;
+    height: 128px;
+    position: absolute;
+    z-index: 500;
+    right: 0px;
+    left: auto;
+    top: 0px
+  }
+
+  .TopDecorMiddle {
+    background-image: url('../assets/azure_treaty/roll.svg');
+    background-repeat: repeat-x;
+    pointer-events: none;
+    height: 128px;
+    background-size: 178px;
+    position: absolute;
+    border: none;
+    pointer-events: none;
+    box-shadow: none;
+    z-index: 700;
+    top: 0px;
+    left: 64px;
+    right: 64px;
+  }
+
+
+  .LowerDecorMiddle {
+    background-image: url('../assets/azure_treaty/roll.svg');
+    background-repeat: repeat-x;
+    height: 31px;
+    background-size: 178px;
+    position: fixed;
+    border: none;
+    box-shadow: none;
+    pointer-events: none;
+    z-index: 700;
+    bottom: 0px;
+    left: 64px;
+    right: 64px;
+  }
+
+    .LowerDecorRight {
+    background-image: url('../assets/azure_treaty/rightknob.svg');
+    background-repeat: no-repeat;
+    pointer-events: none;
+    background-size: 64px;
+    width: 64px;
+    height: 31px;
+    position: fixed;
+    z-index: 500;
+    right: 0px;
+    left: auto;
+    bottom: 0px
+  }
+
+    .LowerDecorLeft {
+    background-image: url('../assets/azure_treaty/leftknob.svg');
+    background-repeat: no-repeat;
+    background-size: 64px;
+    width: 64px;
+    height: 31px;
+    position: fixed;
+    z-index: 500;
+    left: 0px;
+    bottom: 0px
+  }
+
+
+  // Basics
+  .Layout__content {
+    background-image: none;
+    padding-left: 64px;
+    padding-right: 64px;
+    font-size: 14px;
+  }
+
+  // .TitleBar {
+  //   background-image: url('../assets/azure_default/topbar_red.svg');
+  //   opacity: 0;
+  //   background-repeat: repeat-x;
+  //   background-size: 64px;
+  //   pointer-events: auto;
+  //   border: none;
+  //   box-shadow: none;
+  //   z-index: 200;
+  //   top: 0px;
+  //   &__title {
+  //     font-size: 1.6rem;
+  //   }
+  // }
+
+  // Component overrides
+
+  // Section
+  --section-separator-color: #ae9470;
+
+  // Button
+  --button-background-default: #29332b;
+  --button-background-selected: #404744;
+  .Button {
+    margin-bottom: 2px;
+    transition: all 0.5s;
+  }
+
+  // Input
+  --input-border-color: #56853e;
+}

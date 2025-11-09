@@ -208,6 +208,20 @@
 		if (HAS_TRAIT(src, TRAIT_LEPROSY))
 			. += span_necrosis("A LEPER...")
 
+		if((HAS_TRAIT(user, TRAIT_FORMATIONFIGHTER) || user.job == "Councillor") && !istype(src, /mob/living/carbon/human/species/human/northern/grunt))
+			if(HAS_TRAIT(src, TRAIT_FORMATIONFIGHTER))
+				if(src.mind.special_role == "Warlord")
+					. += span_danger(user.job == "Councillor" ? "<b>[m1] a foreign Warlord.</b>" : "<b>[m1] our Warlord!</b>")
+
+				if(src.mind.special_role == "Lieutenant")
+					. += span_danger(user.job == "Councillor" ? "<b>[m1] a loyal Lieutenant of a foreign army.</b>" : "<b>[m1] one of our Lieutenants.</b>")
+
+				if(src.mind.special_role == "Aspirant Lieutenant")
+					. += span_danger(user.job == "Councillor" ? "<b>[m1] known for [m2] questionable loyalty.</b>" : "<b>[m1] full of aspirations and questionable loyalties.</b>")
+
+				if(src.mind.special_role == "Grunt")
+					. += span_danger(user.job == "Councillor" ? "<b>[m1] a known, hardened veteran of a foreign army.</b>" : "<b>[m1] one of our Veterans.</b>")
+
 		if (HAS_TRAIT(src, TRAIT_BEAUTIFUL))
 			switch (pronouns)
 				if (HE_HIM, SHE_HER_M)

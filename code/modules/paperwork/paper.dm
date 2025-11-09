@@ -426,6 +426,25 @@
 
 	if(is_blind(user))
 		return ..()
+	
+	// // FIXNOTE
+	// if(istype(P, /obj/item/clothing/ring/signet) && !istype(src, /obj/item/paper/inqslip))
+
+	// 	if(P.tallowed)
+
+	// 		var/list/territory_options = list()
+	// 		for(var/territory in user.mind.personal_territories)
+	// 			territory += territory_options
+
+	// 		if(!user.mind.personal_territories.len)
+	// 			to_chat(user, span_warning("There's no point. I'd have nowhere to send this."))
+
+	// 		var/territory_choice = input(user, "Which territory should this be addressed to?", "IMPORT ORDER") as null|anything in territory_options
+	// 		// get the chosen territory's vault and set an import amount
+	// 		// create an import writ with the chosen value
+	// 		var/obj/item/import_writ
+	// 		// and we let them select a spawn location when they're feeding it into a HERMES
+
 
 	if(istype(P, /obj/item/natural/feather/infernal))
 		if(trapped)

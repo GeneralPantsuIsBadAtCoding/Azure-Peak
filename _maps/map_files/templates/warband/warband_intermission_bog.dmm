@@ -1,0 +1,273 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"c" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"f" = (
+/turf/open/water/swamp/deep,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"i" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/water/swamp/deep,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"j" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/water/swamp,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"k" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_outskirts,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"m" = (
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"o" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_azure,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"w" = (
+/obj/item/reagent_containers/food/snacks/crow{
+	dir = 8;
+	pixel_x = -13;
+	pixel_y = -17
+	},
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"y" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"B" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"D" = (
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"G" = (
+/obj/item/reagent_containers/food/snacks/crow{
+	dir = 8
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"I" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/obj/effect/baseturf_helper,
+/turf/open/water/swamp/deep,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"J" = (
+/obj/machinery/light/rogue/firebowl/stump,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"S" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_azure,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"X" = (
+/turf/open/water/swamp,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+"Y" = (
+/obj/effect/decal/remains/wolf,
+/obj/item/reagent_containers/food/snacks/crow{
+	pixel_y = 16
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/terrorbog)
+
+(1,1,1) = {"
+I
+f
+f
+i
+i
+f
+y
+y
+y
+J
+a
+m
+o
+"}
+(2,1,1) = {"
+i
+i
+i
+i
+f
+a
+a
+y
+a
+a
+m
+a
+S
+"}
+(3,1,1) = {"
+f
+f
+f
+f
+D
+y
+a
+y
+a
+m
+a
+S
+B
+"}
+(4,1,1) = {"
+f
+f
+D
+c
+c
+y
+a
+a
+a
+m
+m
+S
+B
+"}
+(5,1,1) = {"
+B
+y
+y
+y
+y
+a
+m
+a
+m
+a
+a
+B
+B
+"}
+(6,1,1) = {"
+B
+X
+X
+a
+a
+a
+a
+m
+a
+a
+y
+B
+B
+"}
+(7,1,1) = {"
+B
+Y
+a
+a
+a
+m
+a
+a
+a
+y
+y
+B
+B
+"}
+(8,1,1) = {"
+w
+G
+a
+a
+m
+m
+a
+a
+D
+y
+c
+c
+B
+"}
+(9,1,1) = {"
+k
+m
+a
+a
+a
+a
+a
+D
+D
+X
+X
+D
+X
+"}
+(10,1,1) = {"
+k
+a
+m
+m
+D
+a
+D
+y
+c
+X
+j
+j
+i
+"}
+(11,1,1) = {"
+B
+k
+k
+B
+J
+a
+D
+D
+j
+j
+f
+f
+i
+"}
+(12,1,1) = {"
+B
+B
+B
+B
+B
+a
+X
+j
+f
+i
+f
+i
+i
+"}
+(13,1,1) = {"
+B
+B
+B
+B
+B
+B
+X
+i
+f
+i
+i
+f
+f
+"}

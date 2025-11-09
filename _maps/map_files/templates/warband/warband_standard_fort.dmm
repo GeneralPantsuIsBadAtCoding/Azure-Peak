@@ -1,0 +1,5161 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ah" = (
+/obj/structure/mineral_door/wood/fancywood,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"aQ" = (
+/turf/closed/wall/mineral/rogue/decostone/mossy/cand,
+/area/rogue/indoors/warcamp/fort)
+"aY" = (
+/obj/machinery/light/rogue/wallfire/candle{
+	pixel_y = -32
+	},
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"bk" = (
+/obj/structure/lever{
+	pixel_y = -20;
+	redstone_id = "battlementshutters"
+	},
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"bB" = (
+/obj/structure/fluff/railing/border{
+	dir = 9
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"bC" = (
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"bF" = (
+/obj/structure/closet/crate/chest/wicker,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"bG" = (
+/turf/closed/wall/mineral/rogue/decostone/mossy/cand,
+/area/rogue/outdoors/warcamp)
+"bU" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"bY" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"cb" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	pixel_y = 1
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"cc" = (
+/obj/structure/table/wood{
+	icon_state = "largetable"
+	},
+/obj/item/storage/belt/rogue/surgery_bag/full,
+/obj/item/storage/belt/rogue/surgery_bag/full{
+	pixel_x = 4
+	},
+/obj/structure/fluff/walldeco/med{
+	pixel_y = 32
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/fort)
+"cm" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"cn" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/halberd/bardiche,
+/obj/item/rogueweapon/halberd/bardiche,
+/obj/item/rogueweapon/halberd/bardiche,
+/obj/item/rogueweapon/halberd/bardiche,
+/obj/effect/decal/herringbone,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"co" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"cr" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"cA" = (
+/obj/structure/table/wood{
+	icon_state = "map1"
+	},
+/obj/item/cooking/platter/silver{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/cooking/platter/silver,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"cC" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"cF" = (
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"dv" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"dy" = (
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-sread"
+	},
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"dA" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow,
+/obj/item/quiver/bodkin,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"dB" = (
+/obj/machinery/light/rogue/wallfire/candle/r,
+/obj/structure/fermentation_keg/water,
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"dH" = (
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"dI" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"dL" = (
+/obj/structure/table/wood{
+	icon_state = "map6"
+	},
+/obj/item/reagent_containers/glass/cup/silver{
+	desc = "A pewter goblet, cheaper than silver, but with a similar shine!";
+	name = "pewter goblet";
+	pixel_x = -11
+	},
+/obj/item/candle/silver/lit,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"dR" = (
+/obj/machinery/light/rogue/wallfire/candle/l,
+/obj/structure/fluff/railing/corner/north_east,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"eI" = (
+/turf/closed/wall/mineral/rogue/decostone/cand,
+/area/rogue/indoors/warcamp/fort)
+"eN" = (
+/obj/structure/fluff/railing/border{
+	icon_state = "border";
+	dir = 8
+	},
+/turf/closed/wall/mineral/rogue/stone,
+/area/rogue/indoors/warcamp/fort)
+"eO" = (
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"fc" = (
+/obj/structure/fluff/railing/border{
+	icon_state = "border";
+	dir = 4
+	},
+/turf/closed/wall/mineral/rogue/stone,
+/area/rogue/indoors/warcamp/fort)
+"fh" = (
+/obj/structure/table/wood,
+/obj/item/cooking/platter/silver,
+/obj/item/cooking/platter/silver,
+/obj/item/cooking/platter/silver,
+/obj/item/cooking/platter/silver,
+/obj/item/cooking/platter/silver,
+/obj/item/cooking/platter/silver,
+/obj/item/reagent_containers/peppermill,
+/obj/item/reagent_containers/food/snacks/rogue/meat/poultry/baked,
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"fi" = (
+/obj/structure/glowshroom{
+	icon_state = "glowshroom2"
+	},
+/turf/open/water/swamp/deep,
+/area/rogue/outdoors/warcamp)
+"fx" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 1
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"fA" = (
+/turf/closed/wall/mineral/rogue/wooddark/horizontal,
+/area/rogue/indoors/warcamp/fort)
+"fH" = (
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"fQ" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/bomb,
+/obj/item/bomb,
+/obj/item/bomb,
+/obj/item/bomb,
+/obj/item/bomb,
+/obj/item/bomb,
+/obj/item/bomb,
+/obj/item/bomb,
+/obj/item/bomb,
+/obj/item/bomb,
+/obj/item/flashlight/flare/torch,
+/obj/item/flashlight/flare/torch,
+/obj/item/flashlight/flare/torch,
+/obj/item/flashlight/flare/torch,
+/obj/item/flashlight/flare/torch,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"fW" = (
+/obj/structure/gate{
+	gid = "warbandfort_final";
+	redstone_id = "warbandfort_final"
+	},
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/warcamp/fort)
+"gh" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"gs" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/bucket/pot{
+	pixel_x = -12;
+	pixel_y = 17
+	},
+/obj/item/cooking/pan{
+	pixel_y = 16;
+	pixel_x = 3
+	},
+/obj/item/natural/bundle/stick{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/glass/bowl/iron{
+	pixel_x = -13
+	},
+/obj/item/reagent_containers/glass/bowl/iron{
+	pixel_x = -13
+	},
+/obj/item/reagent_containers/glass/bowl/iron{
+	pixel_x = -13
+	},
+/obj/item/reagent_containers/glass/bowl/iron{
+	pixel_x = -13
+	},
+/obj/item/reagent_containers/glass/bowl/iron{
+	pixel_x = -13
+	},
+/obj/item/reagent_containers/glass/bowl/iron{
+	pixel_x = -13
+	},
+/obj/item/reagent_containers/glass/bowl/iron{
+	pixel_x = -13
+	},
+/obj/item/reagent_containers/glass/bowl/iron{
+	pixel_x = -13
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/kitchen/spoon/iron{
+	pixel_x = -17;
+	pixel_y = 4
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/kitchen/spoon/iron{
+	pixel_x = -17;
+	pixel_y = 4
+	},
+/obj/item/kitchen/spoon/iron{
+	pixel_x = -17;
+	pixel_y = 4
+	},
+/obj/item/kitchen/spoon/iron{
+	pixel_x = -17;
+	pixel_y = 4
+	},
+/obj/item/kitchen/spoon/iron{
+	pixel_x = -17;
+	pixel_y = 4
+	},
+/obj/item/kitchen/spoon/iron{
+	pixel_x = -17;
+	pixel_y = 4
+	},
+/obj/item/natural/bundle/stick{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/obj/item/natural/bundle/stick{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/obj/item/natural/bundle/stick{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/obj/item/natural/bundle/stick{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/obj/item/natural/bundle/stick{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/obj/item/natural/bundle/stick{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"gy" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"gC" = (
+/turf/closed/wall/mineral/rogue/decostone/mossy,
+/area/rogue/indoors/warcamp/fort)
+"gD" = (
+/turf/closed/wall/mineral/rogue/decostone/mossy/end,
+/area/rogue/indoors/warcamp/fort)
+"gU" = (
+/obj/structure/table/wood,
+/obj/structure/bars{
+	icon_state = "barsbent";
+	layer = 2.81
+	},
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/warcamp/fort)
+"gW" = (
+/obj/effect/decal/cobble/mossy,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"hd" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"hf" = (
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"hl" = (
+/turf/closed/wall/mineral/rogue/craftstone{
+	max_integrity = 0
+	},
+/area/rogue/indoors/warcamp/fort)
+"hq" = (
+/turf/closed/wall/mineral/rogue/decostone/mossy/long,
+/area/rogue/indoors/warcamp/fort)
+"hv" = (
+/turf/closed/wall/mineral/rogue/decostone/end{
+	dir = 8
+	},
+/area/rogue/indoors/warcamp/fort)
+"hx" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 8
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"hz" = (
+/obj/structure/fluff/walldeco/stone{
+	icon_state = "walldec6";
+	pixel_y = -32
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"hG" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"hN" = (
+/obj/structure/table/wood{
+	icon_state = "largetable"
+	},
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n"
+	},
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"hP" = (
+/obj/structure/roguewindow,
+/obj/structure/curtain/red,
+/turf/closed/wall/mineral/rogue/craftstone{
+	name = "high wall"
+	},
+/area/rogue/indoors/warcamp/fort)
+"ii" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"in" = (
+/turf/closed/wall/mineral/rogue/decostone/long{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"iq" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 10
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"iY" = (
+/obj/item/reagent_containers/food/snacks/smallrat,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"ja" = (
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"jb" = (
+/obj/structure/curtain/red,
+/obj/structure/roguewindow,
+/turf/closed/wall/mineral/rogue/craftstone{
+	name = "high wall"
+	},
+/area/rogue/indoors/warcamp/fort)
+"je" = (
+/obj/machinery/light/rogue/wallfire/candle/r,
+/obj/structure/fluff/railing/corner,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"jj" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"jq" = (
+/obj/structure/roguewindow,
+/obj/structure/curtain/black,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/fort)
+"jr" = (
+/obj/structure/fluff/statue/knight/r,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"jz" = (
+/obj/structure/table/wood{
+	icon_state = "longtable"
+	},
+/obj/structure/table/wood{
+	icon_state = "longtable";
+	dir = 1;
+	pixel_x = 9
+	},
+/obj/item/millstone{
+	pixel_y = 11
+	},
+/obj/item/rogueweapon/huntingknife/cleaver{
+	pixel_x = 14
+	},
+/obj/item/rogueweapon/huntingknife/chefknife{
+	pixel_x = 15;
+	pixel_y = 8
+	},
+/obj/item/kitchen/rollingpin,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"jA" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/obj/machinery/light/rogue/wallfire/candle/l,
+/obj/effect/decal/herringbone,
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"jN" = (
+/obj/structure/fluff/grindwheel,
+/obj/effect/decal/herringbone,
+/obj/machinery/light/rogue/wallfire/candle,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"jQ" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp)
+"jS" = (
+/obj/machinery/light/rogue/lanternpost,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"jY" = (
+/obj/structure/stairs/stone{
+	dir = 1
+	},
+/obj/structure/fluff/warband/shortcut,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/fort)
+"kj" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/effect/decal/herringbone,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"kp" = (
+/obj/structure/gate/bars/preopen{
+	gid = "warbandfortouter";
+	redstone_id = "warbandfortouter";
+	max_integrity = 19600
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"kq" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 8
+	},
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"kK" = (
+/obj/structure/bars/passage{
+	density = 0;
+	icon_state = "passage1";
+	redstone_id = "warbandfort_sbarr"
+	},
+/obj/structure/mineral_door/wood/fancywood,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"kP" = (
+/obj/machinery/light/rogue/wallfire/candle/r,
+/turf/open/floor/rogue/concrete{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp/fort)
+"kQ" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"lb" = (
+/turf/closed/wall/mineral/rogue/decostone/long,
+/area/rogue/indoors/warcamp/fort)
+"ls" = (
+/obj/item/chair/stool/bar/rogue,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"lu" = (
+/obj/machinery/light/rogue/lanternpost,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"lD" = (
+/turf/closed/wall/mineral/rogue/stone{
+	icon = 'icons/roguetown/misc/doors.dmi';
+	icon_state = "fancy_wood";
+	name = "door";
+	desc = null;
+	max_integrity = 0
+	},
+/area/rogue/indoors/warcamp/fort)
+"mc" = (
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"mf" = (
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/fort)
+"mh" = (
+/obj/structure/fluff/statue/knight,
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"mp" = (
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"mx" = (
+/obj/structure/fluff/statue/knight/r,
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"my" = (
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"mC" = (
+/obj/machinery/light/rogue/wallfire/candle/r,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"mH" = (
+/obj/structure/chair/wood/rogue/fancy,
+/obj/effect/landmark/start/warlordlate,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"mJ" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 1
+	},
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-sread"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"mQ" = (
+/obj/structure/closet/crate/chest/neu,
+/obj/effect/decal/herringbone{
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"mY" = (
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"ng" = (
+/obj/structure/bars,
+/obj/machinery/light/rogue/wallfire/candle{
+	pixel_y = -32
+	},
+/turf/open/floor/rogue/concrete{
+	dir = 8
+	},
+/area/rogue/indoors/warcamp/fort)
+"no" = (
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"nr" = (
+/obj/structure/flora/roguegrass/bush/wall/tall,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"ns" = (
+/obj/structure/gate{
+	gid = "warbandfort_armory";
+	redstone_id = "warbandfort_armory"
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"nF" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"nG" = (
+/obj/structure/stairs/stone{
+	dir = 4
+	},
+/obj/structure/fluff/warband/warband_recruit,
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"nI" = (
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"oc" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/effect/decal/herringbone,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"oe" = (
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"om" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/bars/passage{
+	max_integrity = 4000;
+	name = "heavily reinforced bars";
+	redstone_id = "warbandfort_sally"
+	},
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/warcamp/fort)
+"on" = (
+/obj/structure/fluff/walldeco/chains,
+/obj/structure/bed/rogue/shit,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"oS" = (
+/obj/structure/winch{
+	gid = "warbandfortinner";
+	redstone_id = "warbandfortinner";
+	name = "inner gate winch";
+	dir = 4;
+	pixel_x = -6
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"pl" = (
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"po" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"pu" = (
+/obj/structure/bars/cemetery,
+/turf/open/floor/rogue/cobble,
+/area/rogue/outdoors/warcamp)
+"pC" = (
+/obj/structure/fluff/railing/border{
+	dir = 5;
+	pixel_y = 0
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"pV" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"qf" = (
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"qh" = (
+/obj/structure/flora/roguegrass/bush,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"qD" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	pixel_y = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"qF" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/cup/silver{
+	desc = "A pewter goblet, cheaper than silver, but with a similar shine!";
+	name = "pewter goblet";
+	pixel_x = -11
+	},
+/obj/item/reagent_containers/glass/cup/silver{
+	desc = "A pewter goblet, cheaper than silver, but with a similar shine!";
+	name = "pewter goblet";
+	pixel_x = -11
+	},
+/obj/item/reagent_containers/glass/cup/silver{
+	desc = "A pewter goblet, cheaper than silver, but with a similar shine!";
+	name = "pewter goblet";
+	pixel_x = -11
+	},
+/obj/item/reagent_containers/glass/cup/silver/small,
+/obj/item/reagent_containers/glass/cup/silver/small,
+/obj/item/reagent_containers/glass/cup/silver/small,
+/obj/item/reagent_containers/glass/cup/silver/small,
+/obj/machinery/light/rogue/wallfire/candle{
+	pixel_y = -32
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"qI" = (
+/obj/effect/baseturf_helper,
+/turf/closed/wall/mineral/rogue/craftstone,
+/area/rogue/indoors/warcamp/fort)
+"qT" = (
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"qV" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"qW" = (
+/turf/closed/wall/mineral/rogue/decostone/end{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp/fort)
+"rp" = (
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"rC" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 4
+	},
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp)
+"rD" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"rK" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"rQ" = (
+/obj/structure/rack/rogue,
+/obj/item/quiver/javelin/iron,
+/obj/item/quiver/javelin/iron,
+/obj/item/quiver/javelin/iron,
+/obj/item/quiver/javelin/iron,
+/obj/effect/decal/herringbone,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"rR" = (
+/obj/structure/bars/passage{
+	redstone_id = "warbandfort_sallyent"
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"rW" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"sb" = (
+/obj/machinery/light/rogue/wallfire/candle,
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"sh" = (
+/turf/closed/wall/mineral/rogue/wooddark/end{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp/fort)
+"sF" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"sW" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"tj" = (
+/obj/effect/decal/herringbone,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"to" = (
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"tT" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"uu" = (
+/obj/effect/decal/herringbone{
+	dir = 1
+	},
+/obj/effect/decal/herringbone{
+	dir = 1
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"uw" = (
+/obj/structure/mineral_door/bars,
+/turf/open/floor/rogue/cobble,
+/area/rogue/outdoors/warcamp)
+"ux" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"uC" = (
+/obj/structure/fluff/walldeco/wallshield{
+	pixel_y = 32
+	},
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"uD" = (
+/obj/structure/fluff/warband/warband_recruit,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"uL" = (
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"uW" = (
+/obj/machinery/light/rogue/wallfire/candle/r,
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"va" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"vh" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"vq" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"vy" = (
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"vH" = (
+/obj/structure/fluff/railing/border{
+	dir = 6
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"vK" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 8
+	},
+/turf/open/floor/rogue/wood/nosmooth,
+/area/rogue/indoors/warcamp/fort)
+"vN" = (
+/obj/effect/decal/herringbone{
+	dir = 1
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"vT" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/effect/decal/herringbone,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"vX" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/obj/structure/roguemachine/scomm,
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"wd" = (
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"wf" = (
+/obj/structure/bars/passage/shutter/open{
+	redstone_id = "battlementshutters"
+	},
+/turf/closed/wall/mineral/rogue/wooddark/window{
+	icon = 'icons/turf/Rougewall_mossy.dmi';
+	icon_state = "decostone-cand-green";
+	name = "arrow slit";
+	desc = null
+	},
+/area/rogue/indoors/warcamp/fort)
+"wj" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"wq" = (
+/obj/structure/table/wood,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/effect/decal/herringbone{
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"wr" = (
+/obj/machinery/light/rogue/hearth,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"ws" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"wL" = (
+/obj/structure/fluff/statue/knight/r,
+/obj/structure/flora/ausbushes/brflowers,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"wT" = (
+/obj/machinery/light/rogue/firebowl/standing,
+/obj/effect/decal/herringbone{
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"xb" = (
+/obj/machinery/light/rogue/wallfire/candle/r,
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"xd" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"xe" = (
+/obj/structure/closet/crate/chest{
+	storage_capacity = 60;
+	name = "onager supplies"
+	},
+/obj/item/rogueweapon/hammer/iron,
+/obj/item/rogueweapon/handsaw,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/bundle/plank{
+	amount = 10
+	},
+/obj/item/ingot/iron,
+/obj/item/ingot/iron,
+/obj/item/ingot/iron,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/roguegear,
+/obj/item/roguegear,
+/obj/item/roguegear,
+/obj/item/ingot/steel,
+/obj/item/ingot/steel,
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"xu" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"xw" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"xB" = (
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/fort)
+"xE" = (
+/obj/machinery/light/rogue/firebowl/stump,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"xI" = (
+/obj/machinery/light/rogue/firebowl/stump{
+	light_outer_range = 12
+	},
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"xN" = (
+/obj/structure/chair/bench/couch{
+	icon_state = "redcouch2";
+	color = "#4f4d63"
+	},
+/obj/structure/chair/bench/couch{
+	icon_state = "redcouch2";
+	pixel_x = 21;
+	color = "#4f4d63"
+	},
+/obj/structure/fluff/walldeco/bigpainting/lake,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"xT" = (
+/obj/structure/fluff/warband/warband_recruit,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"xV" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"yc" = (
+/obj/structure/stairs/stone{
+	dir = 8
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"ye" = (
+/obj/structure/bars{
+	max_integrity = 4000;
+	name = "reinforced bars"
+	},
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"ym" = (
+/turf/open/floor/rogue/cobble,
+/area/rogue/outdoors/warcamp)
+"yJ" = (
+/obj/structure/fluff/warband/warband_recruit,
+/obj/machinery/light/rogue/wallfire/candle/l,
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"yR" = (
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"yX" = (
+/obj/structure/fluff/railing/border{
+	dir = 4
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"zb" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n"
+	},
+/obj/structure/fluff/railing/border{
+	dir = 9;
+	pixel_y = 0
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"zd" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/halberd,
+/obj/item/rogueweapon/halberd,
+/obj/item/rogueweapon/halberd,
+/obj/item/rogueweapon/spear/partizan,
+/obj/item/rogueweapon/spear/partizan,
+/turf/open/floor/rogue/concrete{
+	dir = 8
+	},
+/area/rogue/indoors/warcamp/fort)
+"zi" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"zw" = (
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"zJ" = (
+/obj/structure/fluff/psycross/psycrucifix/stone,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"zL" = (
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"zQ" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"zX" = (
+/obj/machinery/light/rogue/wallfire/candle/l,
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"Ac" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	pixel_y = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Ak" = (
+/obj/effect/baseturf_helper,
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp)
+"Aw" = (
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"Ax" = (
+/obj/structure/table/wood{
+	icon_state = "map4"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"AI" = (
+/obj/structure/bed/rogue/inn/hay,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"AW" = (
+/obj/structure/chair/arrestchair,
+/obj/structure/fluff/railing/border{
+	icon_state = "border";
+	dir = 4
+	},
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/warcamp/fort)
+"Bj" = (
+/obj/structure/stairs/stone,
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile{
+	icon_state = "bfloorz"
+	},
+/area/rogue/indoors/warcamp/fort)
+"Bx" = (
+/obj/structure/table/wood{
+	icon_state = "largetable"
+	},
+/obj/item/quiver/javelin/iron,
+/obj/item/quiver/javelin/iron,
+/obj/item/quiver/javelin/iron,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n"
+	},
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"BE" = (
+/obj/structure/bars/cemetery,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"BL" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 5
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"BS" = (
+/obj/structure/roguemachine/scomm{
+	pixel_y = -32
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"Ci" = (
+/obj/structure/mineral_door/bars,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"CF" = (
+/obj/structure/lever/wall{
+	dir = 1;
+	pixel_x = -20;
+	name = "sally lever";
+	redstone_id = "warbandfort_sally"
+	},
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"CU" = (
+/turf/closed/wall/mineral/rogue/stone{
+	icon = 'icons/roguetown/misc/doors.dmi';
+	icon_state = "fancy_wood";
+	name = "door";
+	desc = null
+	},
+/area/rogue/indoors/warcamp/fort)
+"CW" = (
+/obj/structure/winch{
+	dir = 2;
+	redstone_id = "warbandfort_armory";
+	gid = "warbandfort_armory"
+	},
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"Da" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"Db" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"Dd" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/spear/billhook,
+/obj/item/rogueweapon/spear/billhook,
+/turf/open/floor/rogue/concrete{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp/fort)
+"Di" = (
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"Dz" = (
+/turf/closed/wall/mineral/rogue/decostone/mossy/long{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"DA" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/flail/sflail,
+/obj/item/rogueweapon/flail/sflail,
+/obj/item/rogueweapon/mace/steel,
+/obj/item/rogueweapon/mace/steel,
+/turf/open/floor/rogue/concrete{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp/fort)
+"DG" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/mace/wsword,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/effect/decal/herringbone,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"DN" = (
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"DU" = (
+/obj/structure/bars,
+/obj/machinery/light/rogue/wallfire/candle,
+/turf/open/floor/rogue/concrete{
+	dir = 8
+	},
+/area/rogue/indoors/warcamp/fort)
+"DW" = (
+/obj/effect/decal/herringbone{
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"DY" = (
+/obj/structure/flora/newtree,
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Ea" = (
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/indoors/warcamp/fort)
+"Eb" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Ei" = (
+/obj/structure/fluff/statue/knight,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Ep" = (
+/turf/closed/wall/mineral/rogue/craftstone,
+/area/rogue/indoors/warcamp/fort)
+"Er" = (
+/obj/structure/mineral_door/bars,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"Et" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Ex" = (
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"EE" = (
+/obj/structure/lever/wall{
+	pixel_x = 18;
+	redstone_id = "warbandfort_westbars"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"EH" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 6
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"EN" = (
+/obj/structure/fluff/statue/knight,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"EW" = (
+/obj/structure/chair/bench/couch{
+	color = "#4f4d63"
+	},
+/obj/machinery/light/rogue/wallfire/candle{
+	pixel_x = -6
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"Fk" = (
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/obj/item/roguebin/water{
+	pixel_x = 3;
+	name = "cook's bin"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"Fr" = (
+/obj/structure/flora/roguegrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"FI" = (
+/obj/structure/flora/roguegrass/bush/wall/tall,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"FJ" = (
+/obj/structure/roguewindow,
+/obj/structure/curtain/red,
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/fort)
+"FL" = (
+/obj/structure/fermentation_keg/water{
+	pixel_y = 19
+	},
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_y = 4;
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_y = -1;
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_y = 5;
+	pixel_x = -9
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_y = -2;
+	pixel_x = -9
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_y = -2
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"FY" = (
+/obj/structure/stairs{
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"FZ" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"Ga" = (
+/turf/open/floor/rogue/church,
+/area/rogue/indoors/warcamp/fort)
+"Go" = (
+/obj/structure/glowshroom,
+/turf/open/water/swamp/deep,
+/area/rogue/outdoors/warcamp)
+"Gs" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Gy" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Gz" = (
+/obj/structure/fluff/railing/border{
+	dir = 10
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"GI" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/dirt/ambush,
+/area/rogue/outdoors/warcamp)
+"GK" = (
+/obj/structure/winch{
+	redstone_id = "warbandfortouter";
+	gid = "warbandfortouter";
+	name = "outer gate winch";
+	dir = 4;
+	pixel_x = -6
+	},
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"GW" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"GY" = (
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"Ha" = (
+/turf/closed/wall/mineral/rogue/decostone/end{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"He" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Hg" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Hj" = (
+/obj/structure/toilet{
+	pixel_y = 18;
+	pixel_x = 2
+	},
+/obj/machinery/light/rogue/wallfire/candle/weak{
+	pixel_y = 40
+	},
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/obj/effect/decal/herringbone{
+	dir = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/fort)
+"Hk" = (
+/turf/open/floor/rogue/concrete{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp/fort)
+"Hs" = (
+/obj/structure/chair/wood/rogue/fancy,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"Hw" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/indoors/warcamp/fort)
+"Hz" = (
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"HI" = (
+/obj/structure/closet/crate/chest/wicker,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"Ik" = (
+/obj/structure/stairs/stone,
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile{
+	icon_state = "bfloorz"
+	},
+/area/rogue/indoors/warcamp/fort)
+"Im" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"Ip" = (
+/obj/structure/fluff/railing/corner/south_east,
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"Iq" = (
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"II" = (
+/obj/structure/glowshroom/bright,
+/turf/open/water/swamp/deep,
+/area/rogue/outdoors/warcamp)
+"IX" = (
+/obj/structure/bars{
+	max_integrity = 2000;
+	name = "reinforced bars"
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"Jb" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"Jd" = (
+/obj/structure/flora/roguegrass/bush/wall/tall,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Jw" = (
+/obj/machinery/light/rogue/firebowl/stump{
+	light_outer_range = 12
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Jz" = (
+/obj/structure/bars,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"JB" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"JQ" = (
+/obj/structure/lever/wall{
+	name = "side barrier lever";
+	pixel_x = 18;
+	redstone_id = "warbandfort_sbarr"
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"JW" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Kh" = (
+/turf/closed/wall/mineral/rogue/stone/unbreakable,
+/area/rogue/indoors/warcamp/fort)
+"Kq" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"Kw" = (
+/turf/open/floor/rogue/dirt/ambush,
+/area/rogue/outdoors/warcamp)
+"KI" = (
+/obj/structure/stairs{
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"KJ" = (
+/turf/closed/wall/mineral/rogue/stone,
+/area/rogue/indoors/warcamp/fort)
+"Lp" = (
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-sread"
+	},
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/indoors/warcamp/fort)
+"Lq" = (
+/obj/effect/decal/herringbone{
+	dir = 1
+	},
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"Lz" = (
+/obj/structure/fluff/railing/border{
+	dir = 10
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"LG" = (
+/obj/machinery/gear_painter,
+/turf/open/floor/rogue/church,
+/area/rogue/indoors/warcamp/fort)
+"LP" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"LY" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Mf" = (
+/turf/closed/wall/mineral/rogue/decostone/center,
+/area/rogue/indoors/warcamp/fort)
+"Mp" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/floor/rogue/dirt/ambush,
+/area/rogue/outdoors/warcamp)
+"Mr" = (
+/obj/machinery/light/rogue/wallfire/candle/r,
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"MB" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"ME" = (
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"MP" = (
+/obj/machinery/light/rogue/wallfire/candle{
+	pixel_y = -32
+	},
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-sread"
+	},
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"MU" = (
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"MX" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n"
+	},
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"Nt" = (
+/obj/structure/bars,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"NR" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"NY" = (
+/obj/structure/table/wood{
+	icon_state = "map3"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"Ob" = (
+/obj/machinery/light/rogue/wallfire/candle/r,
+/turf/open/floor/rogue/concrete{
+	dir = 8
+	},
+/area/rogue/indoors/warcamp/fort)
+"Oc" = (
+/obj/structure/stairs/stone{
+	dir = 4
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"Or" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"OA" = (
+/obj/machinery/light/rogue/wallfire/candle/l,
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/paper,
+/obj/item/natural/feather,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"OL" = (
+/obj/structure/table/wood{
+	icon_state = "largetable"
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot{
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot{
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot{
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot{
+	pixel_y = 6
+	},
+/obj/item/natural/cloth{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/natural/cloth{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/natural/cloth{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/natural/cloth{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/natural/cloth{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/natural/cloth{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/natural/cloth{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/natural/cloth{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/natural/cloth{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/natural/cloth{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/needle{
+	pixel_x = 16
+	},
+/obj/item/needle{
+	pixel_x = 16
+	},
+/obj/item/needle{
+	pixel_x = 16
+	},
+/obj/item/needle{
+	pixel_x = 16
+	},
+/obj/item/needle{
+	pixel_x = 16
+	},
+/obj/item/needle{
+	pixel_x = 16
+	},
+/obj/item/needle{
+	pixel_x = 16
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/fort)
+"ON" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 8
+	},
+/obj/structure/fluff/traveltile/warband/camp_to_outskirts,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"OO" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"OP" = (
+/turf/closed/wall/mineral/rogue/decostone,
+/area/rogue/indoors/warcamp/fort)
+"OR" = (
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/warcamp/fort)
+"Pb" = (
+/obj/item/reagent_containers/food/snacks/squiresdelight,
+/turf/open/floor/rogue/dirt/ambush,
+/area/rogue/outdoors/warcamp)
+"Pn" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"Ps" = (
+/obj/structure/chair/wood/rogue/fancy{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"Pt" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"Pv" = (
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp)
+"Py" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bottle/rogue/wine/sourwine,
+/obj/item/reagent_containers/glass/bottle/rogue/whitewine{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/beer/whipwine{
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/redwine{
+	pixel_x = 5
+	},
+/obj/structure/fluff/walldeco/stone{
+	icon_state = "walldec6";
+	pixel_y = -32
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"PB" = (
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"PD" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"PM" = (
+/obj/machinery/light/rogue/oven/west,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"PQ" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"PZ" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"Qc" = (
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"Qz" = (
+/obj/structure/fluff/railing/border{
+	dir = 6
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"QJ" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"QX" = (
+/obj/structure/roguemachine/mail,
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"Rb" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/rogue/ccakeslice,
+/obj/item/reagent_containers/food/snacks/rogue/ccakeslice,
+/obj/item/reagent_containers/food/snacks/rogue/ccakeslice,
+/obj/item/reagent_containers/food/snacks/rogue/ccakeslice,
+/obj/item/reagent_containers/food/snacks/rogue/ccakeslice,
+/obj/item/reagent_containers/food/snacks/rogue/ccakeslice,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/kitchen/spoon/silver,
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"Rh" = (
+/obj/structure/roguemachine/scomm,
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"Rk" = (
+/turf/closed/wall/mineral/rogue/wooddark/window{
+	icon = 'icons/turf/Rougewall_mossy.dmi';
+	icon_state = "decostone-cand-green";
+	name = "arrow slit";
+	desc = null
+	},
+/area/rogue/indoors/warcamp/fort)
+"Rm" = (
+/obj/structure/stairs{
+	dir = 1
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"Ro" = (
+/obj/structure/roguemachine/bounty,
+/obj/structure/fluff/railing/border{
+	icon_state = "border";
+	dir = 8
+	},
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/warcamp/fort)
+"Rq" = (
+/obj/structure/fluff/walldeco/wantedposter/l{
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"Rr" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Rs" = (
+/obj/structure/fluff/traveltile/warband/camp_to_outskirts,
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"Rz" = (
+/obj/structure/stairs/stone{
+	dir = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"RC" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"RN" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/item/reagent_containers/glass/bucket,
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"RY" = (
+/obj/structure/table/wood{
+	icon_state = "map5"
+	},
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 12;
+	pixel_x = -34
+	},
+/obj/structure/fluff/warband/campaign_planner,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"So" = (
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"Sp" = (
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"SH" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"SK" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"SL" = (
+/obj/machinery/light/rogue/wallfire/candle/weak{
+	pixel_y = 40
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"Tb" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Tc" = (
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/obj/structure/chair/bench,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Tn" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"TB" = (
+/obj/structure/stairs/d{
+	dir = 4
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"TD" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/walldeco/psybanner/red{
+	pixel_y = 32
+	},
+/obj/machinery/light/rogue/firebowl/stump{
+	light_outer_range = 12
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"TE" = (
+/obj/machinery/light/rogue/wallfire/candle/l,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"Uc" = (
+/obj/structure/lever/wall{
+	pixel_x = 20;
+	redstone_id = "warbandfort_sallyent"
+	},
+/turf/open/floor/rogue/cobblerock{
+	name = "cobbled rock"
+	},
+/area/rogue/indoors/warcamp/fort)
+"Uf" = (
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Ui" = (
+/obj/structure/bars/passage{
+	max_integrity = 4000;
+	name = "heavily reinforced bars";
+	redstone_id = "warbandfort_westbars"
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"Ut" = (
+/obj/structure/fluff/railing/border{
+	dir = 4
+	},
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = -7
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Uu" = (
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"UI" = (
+/turf/open/floor/rogue/concrete{
+	dir = 8
+	},
+/area/rogue/indoors/warcamp/fort)
+"UN" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/effect/decal/herringbone,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"UX" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 6
+	},
+/obj/effect/decal/cobble/mossy{
+	dir = 10
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"UZ" = (
+/obj/structure/winch{
+	redstone_id = "warbandfort_final";
+	gid = "warbandfort_final"
+	},
+/turf/open/floor/rogue/concrete{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp/fort)
+"Va" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/obj/effect/decal/herringbone{
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"Vd" = (
+/obj/structure/closet/crate/chest/neu{
+	storage_capacity = 80
+	},
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/powder/salt,
+/obj/item/reagent_containers/powder/salt,
+/obj/item/reagent_containers/powder/salt,
+/obj/item/reagent_containers/powder/salt,
+/obj/item/reagent_containers/powder/salt,
+/obj/item/reagent_containers/powder/salt,
+/obj/item/reagent_containers/powder/salt,
+/obj/item/reagent_containers/powder/salt,
+/obj/item/reagent_containers/powder/salt,
+/obj/item/reagent_containers/food/snacks/butter,
+/obj/item/reagent_containers/food/snacks/butter,
+/obj/item/reagent_containers/food/snacks/butter,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"Ve" = (
+/obj/structure/fluff/railing/border{
+	dir = 4
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"Vg" = (
+/obj/structure/chair/wood/rogue/fancy{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"Vp" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/fort)
+"Vy" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n"
+	},
+/obj/structure/fluff/railing/border{
+	dir = 5
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"VC" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 9
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"VD" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"VG" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/quiver/bolts,
+/obj/item/quiver/bolts,
+/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow,
+/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"VI" = (
+/turf/open/water/swamp/deep,
+/area/rogue/outdoors/warcamp)
+"VV" = (
+/obj/structure/roguemachine/bounty,
+/turf/open/floor/rogue/concrete,
+/area/rogue/outdoors/warcamp)
+"We" = (
+/turf/closed/wall/mineral/rogue/decostone/end,
+/area/rogue/indoors/warcamp/fort)
+"Wt" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/dirt/ambush,
+/area/rogue/outdoors/warcamp)
+"WB" = (
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"WC" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/clothing/suit/roguetown/armor/plate/half,
+/obj/item/clothing/suit/roguetown/armor/plate/half,
+/obj/item/clothing/suit/roguetown/armor/plate/half,
+/obj/item/clothing/neck/roguetown/gorget/steel,
+/obj/item/clothing/neck/roguetown/gorget/steel,
+/obj/item/clothing/neck/roguetown/gorget/steel,
+/obj/item/clothing/head/roguetown/helmet/kettle/wide,
+/obj/item/clothing/head/roguetown/helmet/kettle/wide,
+/obj/item/clothing/head/roguetown/helmet/kettle/wide,
+/obj/item/rogueweapon/shield/tower/metal{
+	pixel_x = 13
+	},
+/obj/item/rogueweapon/shield/tower/metal{
+	pixel_x = 13
+	},
+/obj/item/rogueweapon/shield/tower/metal{
+	pixel_x = 13
+	},
+/obj/item/rogueweapon/shield/tower/metal{
+	pixel_x = 13
+	},
+/obj/item/rogueweapon/shield/tower/metal{
+	pixel_x = 13
+	},
+/obj/item/rogueweapon/shield/tower/metal{
+	pixel_x = 13
+	},
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/warcamp/fort)
+"WI" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"WL" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/water/swamp/deep,
+/area/rogue/outdoors/warcamp)
+"WM" = (
+/obj/structure/closet/crate/chest/wicker,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/turf/open/floor/rogue/concrete{
+	dir = 8
+	},
+/area/rogue/indoors/warcamp/fort)
+"WN" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n"
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"Xp" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"XA" = (
+/obj/structure/table/wood{
+	icon_state = "map2"
+	},
+/obj/structure/roguemachine/musicbox{
+	pixel_y = 12
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"XG" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/warcamp/fort)
+"XH" = (
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"XM" = (
+/obj/structure/gate/bars/preopen{
+	gid = "warbandfortinner";
+	redstone_id = "warbandfortinner"
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"XQ" = (
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/indoors/warcamp/fort)
+"XW" = (
+/obj/structure/glowshroom{
+	icon_state = "glowshroom3"
+	},
+/turf/open/water/swamp/deep,
+/area/rogue/outdoors/warcamp)
+"Ya" = (
+/obj/structure/fluff/railing/corner/south_west,
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+"YB" = (
+/obj/structure/well,
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/warcamp/fort)
+"YC" = (
+/obj/structure/roguemachine/scomm{
+	pixel_y = -32
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/fort)
+"YD" = (
+/obj/structure/flora/roguegrass/bush/wall/tall,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"YP" = (
+/turf/open/floor/rogue/metal,
+/area/rogue/indoors/warcamp/fort)
+"Ze" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/cup/golden,
+/obj/item/reagent_containers/glass/cup/golden/small,
+/obj/structure/fluff/walldeco/stone{
+	icon_state = "walldec6";
+	pixel_y = -32
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"Zl" = (
+/obj/structure/chair/bench/couch{
+	icon_state = "redcouch2";
+	pixel_x = -1;
+	color = "#4f4d63"
+	},
+/obj/machinery/light/rogue/wallfire/candle{
+	pixel_x = 6
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"Zv" = (
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/warcamp/fort)
+"Zx" = (
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp)
+"Zz" = (
+/obj/structure/roguemachine/mail{
+	pixel_y = -32
+	},
+/obj/effect/decal/herringbone{
+	dir = 4
+	},
+/obj/machinery/light/rogue/wallfire/candle/r,
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/warcamp/fort)
+"ZW" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"ZX" = (
+/obj/machinery/light/rogue/wallfire/candle/l,
+/obj/effect/decal/herringbone{
+	dir = 8
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors/warcamp/fort)
+
+(1,1,1) = {"
+KJ
+KJ
+KJ
+OP
+OP
+OP
+OP
+fA
+sh
+sh
+fA
+Mf
+fA
+sh
+fA
+Mf
+fA
+sh
+sh
+fA
+OP
+gh
+gh
+gh
+gh
+jS
+Qc
+gW
+Kw
+Di
+Kw
+PB
+jQ
+jQ
+jQ
+jQ
+jQ
+jQ
+ON
+Rs
+Rs
+Rs
+jQ
+rC
+Ak
+"}
+(2,1,1) = {"
+KJ
+on
+OA
+Jz
+WN
+SK
+SK
+PZ
+SK
+SK
+SK
+jj
+SK
+SK
+SK
+jj
+SK
+SK
+SK
+fQ
+OP
+Pn
+Pn
+gh
+hf
+VC
+Qc
+iq
+Kw
+Kw
+PB
+PB
+gh
+jQ
+jQ
+jQ
+jQ
+VC
+Qc
+Qc
+Qc
+EH
+jQ
+jQ
+jQ
+"}
+(3,1,1) = {"
+KJ
+SL
+ls
+Jz
+wj
+ME
+ME
+KI
+ME
+ME
+ME
+ME
+ME
+ME
+ME
+ME
+ME
+ME
+EE
+Vp
+OP
+Pn
+gC
+gC
+hf
+Qc
+Qc
+EH
+Kw
+PB
+PB
+PB
+qh
+PB
+PB
+hf
+hf
+Qc
+Qc
+Qc
+Qc
+zL
+hf
+jQ
+jQ
+"}
+(4,1,1) = {"
+KJ
+qT
+qT
+Jz
+wj
+ME
+ME
+bU
+PQ
+vh
+vh
+vh
+vh
+vh
+gC
+gC
+Ui
+Ui
+OP
+Mf
+OP
+gD
+Dz
+gC
+hf
+Qc
+Qc
+hf
+Kw
+PB
+PB
+gh
+PB
+PB
+PB
+hf
+VC
+Qc
+Qc
+Qc
+EH
+PB
+PB
+jQ
+jQ
+"}
+(5,1,1) = {"
+KJ
+iY
+qT
+Ci
+sW
+ME
+wT
+gC
+gC
+ah
+jq
+jq
+ah
+gC
+OP
+vX
+rp
+rp
+Ea
+OP
+rp
+dy
+Dz
+Wt
+hf
+Qc
+Qc
+Kw
+Kw
+PB
+PB
+qh
+PB
+PB
+hf
+hf
+Qc
+Qc
+Qc
+EH
+PB
+PB
+PB
+jQ
+jQ
+"}
+(6,1,1) = {"
+KJ
+KJ
+KJ
+fc
+AW
+Vy
+mQ
+Dz
+OL
+qT
+AI
+AI
+qT
+AI
+Dz
+nG
+rp
+rp
+rp
+hv
+rp
+my
+wf
+Wt
+hf
+Qc
+Qc
+Kw
+PB
+PB
+Di
+PB
+PB
+PB
+hf
+hf
+Qc
+Qc
+Qc
+PB
+PB
+PB
+zw
+gh
+jQ
+"}
+(7,1,1) = {"
+KJ
+KJ
+KJ
+eN
+Ro
+zb
+wq
+Dz
+cc
+qT
+AI
+AI
+qT
+AI
+Dz
+gC
+rp
+rp
+rp
+Ea
+rp
+my
+wf
+Wt
+hf
+Qc
+Qc
+Kw
+PB
+PB
+Di
+DN
+PB
+vH
+Ut
+hf
+Qc
+Qc
+EH
+PB
+PB
+PB
+DN
+gh
+gh
+"}
+(8,1,1) = {"
+KJ
+to
+to
+Er
+tj
+DW
+gC
+gC
+gC
+FL
+qT
+LP
+YC
+gC
+gC
+gC
+gC
+uL
+aY
+qW
+uL
+MP
+gC
+Wt
+hf
+Qc
+Qc
+Kw
+Kw
+PB
+PB
+gh
+PB
+vy
+VV
+hf
+Qc
+Qc
+hf
+PB
+zw
+PB
+PB
+gh
+gh
+"}
+(9,1,1) = {"
+KJ
+to
+to
+Nt
+tj
+DW
+Dz
+jz
+SK
+SK
+SK
+gC
+qT
+ah
+hf
+hf
+ah
+my
+bk
+Mf
+rp
+my
+wf
+Wt
+hf
+Qc
+Qc
+Kw
+Kw
+PB
+PB
+PB
+DN
+Gz
+VD
+hf
+Qc
+Qc
+hx
+hf
+PB
+DN
+PB
+gh
+gh
+"}
+(10,1,1) = {"
+KJ
+Hj
+to
+Nt
+tj
+DW
+Dz
+Fk
+ME
+ME
+Vd
+Dz
+qT
+ah
+hf
+hf
+ah
+my
+aY
+hv
+uL
+my
+wf
+Wt
+hf
+Qc
+Qc
+Kw
+Kw
+PB
+PB
+gh
+DN
+Di
+DN
+hf
+Qc
+Qc
+kq
+hf
+PB
+DN
+DN
+gh
+gh
+"}
+(11,1,1) = {"
+KJ
+FZ
+mC
+Nt
+tj
+Va
+Dz
+gs
+PM
+PM
+wr
+Dz
+gC
+gC
+Uf
+mJ
+gC
+uL
+rp
+rp
+rp
+Lp
+Dz
+Wt
+hf
+Qc
+Qc
+jS
+Kw
+PB
+PB
+PB
+PB
+gh
+Di
+hf
+BL
+Qc
+Qc
+iq
+PB
+PB
+DN
+gh
+gh
+"}
+(12,1,1) = {"
+KJ
+KJ
+KJ
+KJ
+ah
+gC
+gC
+hq
+hq
+hq
+hq
+gC
+hf
+Rr
+hf
+cC
+Dz
+rp
+rp
+rp
+gC
+wf
+Dz
+gC
+hf
+Qc
+Qc
+hf
+Kw
+PB
+PB
+PB
+PB
+PB
+PB
+PB
+hf
+Qc
+Qc
+hx
+hf
+PB
+PB
+zw
+GW
+"}
+(13,1,1) = {"
+GW
+KJ
+mY
+ZX
+yc
+aQ
+FI
+EN
+Gs
+ym
+rK
+RC
+hf
+hf
+Gy
+Eb
+Dz
+gC
+dy
+gC
+gC
+DN
+gC
+gC
+VC
+Qc
+Qc
+hf
+Kw
+DN
+DN
+DN
+DN
+PB
+gh
+DN
+hf
+BL
+Qc
+Qc
+iq
+PB
+PB
+PB
+gh
+"}
+(14,1,1) = {"
+PB
+FJ
+xu
+Ya
+Sp
+ah
+RC
+RC
+RC
+RC
+hf
+hf
+qD
+hf
+cC
+Tb
+Dz
+kQ
+rp
+kQ
+wf
+PB
+PB
+hf
+Qc
+Qc
+Qc
+hf
+Kw
+PB
+zw
+DN
+PB
+PB
+PB
+Di
+Di
+hf
+EH
+Qc
+hx
+hf
+DN
+PB
+zw
+"}
+(15,1,1) = {"
+PB
+FJ
+xu
+Ip
+Sp
+ah
+cm
+cm
+cm
+cm
+hf
+hf
+hf
+hf
+pl
+pV
+Dz
+my
+rp
+my
+wf
+PB
+PB
+hf
+Qc
+Qc
+Qc
+iq
+Kw
+Di
+PB
+PB
+PB
+PB
+gh
+DN
+DN
+DN
+hf
+Qc
+Qc
+hf
+PB
+PB
+zw
+"}
+(16,1,1) = {"
+PB
+OP
+Ex
+Mr
+Oc
+eI
+nr
+wL
+dI
+ii
+cb
+Xp
+hf
+hf
+cC
+xw
+Dz
+MX
+rp
+dy
+gC
+PB
+DN
+hf
+BL
+Qc
+Qc
+Qc
+hf
+Di
+PB
+PB
+PB
+PB
+PB
+gh
+DN
+DN
+hf
+Qc
+Qc
+hf
+PB
+DN
+gh
+"}
+(17,1,1) = {"
+OP
+lb
+lb
+OP
+ah
+OP
+lb
+OP
+BE
+BE
+bG
+Tc
+hf
+qD
+PB
+XH
+Dz
+my
+hG
+my
+Dz
+PB
+PB
+hf
+hf
+Qc
+Qc
+Qc
+iq
+hf
+PB
+PB
+PB
+PB
+Di
+PB
+Pn
+Rq
+hf
+Qc
+Qc
+hf
+PB
+PB
+gh
+"}
+(18,1,1) = {"
+in
+WB
+WB
+WB
+WB
+WB
+YP
+jb
+bY
+Zx
+BE
+Et
+hf
+hf
+PB
+fx
+gC
+Rk
+Rk
+Rk
+gC
+xI
+PB
+hf
+hf
+Qc
+Qc
+Qc
+Qc
+iq
+hf
+hf
+PB
+PB
+PB
+zw
+lu
+hf
+VC
+Qc
+Qc
+hf
+PB
+DN
+gh
+"}
+(19,1,1) = {"
+eI
+wd
+Hz
+OO
+ME
+ME
+YP
+hP
+bY
+Gy
+BE
+Et
+hf
+hf
+hf
+PB
+IX
+xB
+xB
+xB
+ye
+hf
+hf
+VC
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+iq
+hf
+hf
+hf
+hf
+VC
+Qc
+Qc
+Qc
+EH
+PB
+DN
+PB
+gh
+"}
+(20,1,1) = {"
+CU
+xT
+to
+FY
+ME
+sF
+eI
+OP
+bY
+pV
+BE
+Et
+cC
+hf
+hf
+hf
+XM
+xB
+xB
+xB
+kp
+VC
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+VC
+Qc
+Qc
+Qc
+Qc
+PB
+PB
+PB
+zw
+gh
+"}
+(21,1,1) = {"
+OP
+uC
+to
+FY
+ME
+hz
+OP
+YB
+Pv
+hf
+bG
+mp
+zJ
+pV
+hf
+hf
+mc
+xB
+xB
+xB
+mc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+Qc
+EH
+EH
+hf
+PB
+DN
+PB
+PB
+PB
+"}
+(22,1,1) = {"
+CU
+xT
+to
+FY
+ME
+sF
+eI
+OP
+RN
+hf
+BE
+Et
+co
+hf
+hf
+hf
+mc
+xB
+xB
+xB
+mc
+Qc
+Qc
+Qc
+EH
+Qc
+Qc
+Qc
+EH
+Qc
+Qc
+Qc
+Qc
+UX
+BL
+Qc
+EH
+hf
+hf
+zL
+PB
+DN
+DN
+PB
+GW
+"}
+(23,1,1) = {"
+eI
+So
+zi
+OO
+ME
+ME
+xe
+hP
+bY
+hf
+BE
+Et
+hf
+hf
+MU
+hf
+IX
+xB
+xB
+xB
+ye
+hf
+hf
+hf
+hf
+hf
+hf
+hf
+xE
+hf
+hf
+hf
+hf
+hf
+hf
+hf
+hf
+hf
+hf
+PB
+PB
+PB
+PB
+hf
+JW
+"}
+(24,1,1) = {"
+OP
+Or
+ME
+ME
+ME
+ME
+xe
+hP
+Fr
+cm
+BE
+MB
+hf
+hf
+hf
+JB
+gC
+gC
+gU
+gC
+gC
+Jw
+PB
+PB
+DN
+PB
+Kw
+Kw
+Kw
+Kw
+Kw
+PB
+PB
+PB
+PB
+PB
+PB
+PB
+PB
+PB
+PB
+hf
+hf
+QJ
+Mp
+"}
+(25,1,1) = {"
+in
+jY
+ME
+ME
+ME
+OP
+lb
+OP
+pu
+uw
+bG
+Tc
+hf
+hf
+hf
+xw
+Dz
+oS
+rp
+GK
+Dz
+PB
+PB
+DN
+Di
+PB
+PB
+Di
+VI
+VI
+VI
+VI
+PB
+DN
+DN
+PB
+PB
+PB
+PB
+hf
+hf
+hf
+Kw
+Kw
+Mp
+"}
+(26,1,1) = {"
+in
+jY
+ME
+ME
+ME
+OP
+Jd
+Ei
+gy
+ws
+ux
+MU
+hf
+hf
+Jb
+pV
+Dz
+sb
+rp
+aY
+Dz
+DN
+PB
+DN
+PB
+PB
+PB
+VI
+VI
+VI
+VI
+VI
+VI
+VI
+DN
+PB
+PB
+PB
+Kw
+VI
+VI
+Kw
+GI
+Kw
+ZW
+"}
+(27,1,1) = {"
+OP
+Aw
+Uu
+zQ
+ME
+ah
+ws
+ws
+ws
+ws
+ws
+hf
+hf
+PB
+dv
+rD
+Dz
+Rh
+rp
+my
+Rk
+PB
+PB
+PB
+PB
+PB
+PB
+Di
+PB
+PB
+PB
+DN
+DN
+VI
+VI
+VI
+Kw
+Kw
+VI
+VI
+DN
+DN
+DN
+Pn
+ZW
+"}
+(28,1,1) = {"
+Ep
+Ep
+Ep
+Ep
+Uu
+Ep
+YD
+jr
+Hg
+Hg
+cr
+Ac
+hf
+hf
+LY
+XH
+gC
+QX
+rp
+dA
+Rk
+PB
+PB
+gC
+gC
+SH
+hd
+hd
+hd
+hd
+SH
+gC
+gC
+oe
+hf
+VI
+Kw
+Kw
+DN
+DN
+gh
+DN
+DN
+DN
+DY
+"}
+(29,1,1) = {"
+Ep
+Ep
+Ep
+Ep
+ah
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+PD
+hf
+hf
+hf
+ah
+my
+rp
+VG
+gC
+Rk
+om
+gC
+gC
+Rk
+Rk
+gC
+gC
+Rk
+Rk
+Dz
+gC
+hf
+Kw
+VI
+Kw
+DN
+DN
+DN
+DN
+DN
+gh
+DN
+ZW
+"}
+(30,1,1) = {"
+Hw
+Ep
+jA
+Lq
+cF
+ja
+Ep
+Bx
+Tn
+eO
+eO
+hP
+Et
+hf
+MU
+hf
+ah
+my
+rp
+rp
+rR
+OR
+my
+CF
+gC
+my
+my
+rp
+rp
+my
+my
+Dz
+xd
+hf
+Kw
+VI
+DN
+DN
+DN
+gh
+DN
+DN
+DN
+gh
+gh
+"}
+(31,1,1) = {"
+Hw
+hP
+kj
+vN
+NR
+fH
+Ep
+hN
+Db
+Db
+Sp
+hP
+Et
+hf
+hf
+Eb
+gC
+rp
+rp
+rp
+rR
+OR
+UI
+Hk
+rR
+rp
+rp
+We
+Ha
+rp
+my
+Rk
+xd
+hf
+Kw
+VI
+hf
+DN
+gh
+DN
+DN
+DN
+DN
+DN
+gh
+"}
+(32,1,1) = {"
+Hw
+hP
+UN
+vN
+NR
+fH
+rW
+tT
+tT
+tT
+vK
+mf
+TD
+hf
+hf
+gC
+gC
+rp
+rp
+Uc
+rR
+Ob
+my
+kP
+rR
+Uc
+uW
+rp
+rp
+uW
+gC
+Dz
+gC
+hf
+Kw
+VI
+Kw
+DN
+DN
+DN
+DN
+gh
+DN
+DN
+DY
+"}
+(33,1,1) = {"
+Hw
+Ep
+DG
+ME
+Rm
+fH
+fH
+fH
+fH
+yX
+pC
+ns
+Rz
+qD
+hf
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+gC
+Dz
+gC
+hf
+Kw
+VI
+WL
+Kw
+hf
+DN
+gh
+DN
+DN
+hf
+Mp
+"}
+(34,1,1) = {"
+Hw
+Ep
+jN
+ME
+Rm
+fH
+fH
+fH
+fH
+CW
+Iq
+mc
+Rz
+hf
+hf
+hl
+WI
+mc
+mc
+Bj
+dR
+WB
+WB
+WB
+WB
+yJ
+lD
+Hw
+Hw
+Hw
+Hw
+Dz
+DN
+DN
+hf
+WL
+VI
+VI
+Kw
+hf
+DN
+DN
+hf
+Kw
+WL
+"}
+(35,1,1) = {"
+Hw
+Ep
+rQ
+ME
+Rm
+fH
+fH
+fH
+fH
+XG
+bB
+mc
+Rz
+hf
+hf
+hl
+WI
+mc
+mc
+dH
+bC
+Zv
+Ps
+Ps
+ME
+uD
+lD
+Hw
+Hw
+Hw
+Hw
+Dz
+DN
+DN
+hf
+WL
+VI
+II
+VI
+Kw
+hf
+hf
+Kw
+XW
+WL
+"}
+(36,1,1) = {"
+Hw
+hP
+vT
+uu
+NR
+fH
+po
+nF
+nF
+nF
+TB
+mf
+TD
+PB
+va
+hl
+EW
+Kq
+Zv
+Rb
+bC
+Hs
+Ax
+cA
+ME
+Py
+hl
+Hw
+Hw
+Hw
+Hw
+Dz
+gC
+DN
+DN
+hf
+VI
+VI
+gh
+VI
+Kw
+Kw
+VI
+VI
+WL
+"}
+(37,1,1) = {"
+Hw
+hP
+oc
+vN
+NR
+fH
+Ep
+nI
+nI
+nI
+Sp
+hP
+Et
+LY
+He
+hl
+xN
+Kq
+Zv
+dH
+bC
+mH
+RY
+XA
+ME
+qF
+hl
+Hw
+Hw
+Hw
+Hw
+Dz
+gC
+DN
+DN
+hf
+VI
+VI
+VI
+DN
+WL
+VI
+Go
+VI
+WL
+"}
+(38,1,1) = {"
+Hw
+Ep
+cn
+vN
+GY
+qf
+Ep
+yR
+vq
+yR
+yR
+hP
+Et
+va
+xV
+hl
+Zl
+Kq
+Zv
+fh
+bC
+Hs
+dL
+NY
+ME
+Ze
+hl
+Hw
+Hw
+Hw
+Hw
+Dz
+DN
+DN
+DN
+JW
+hf
+VI
+fi
+VI
+VI
+VI
+VI
+VI
+Hw
+"}
+(39,1,1) = {"
+Ep
+Ep
+DU
+ng
+Ep
+Ep
+Ep
+ah
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+hl
+WI
+mc
+mc
+dH
+bC
+Zv
+Vg
+Vg
+ME
+BS
+hl
+Hw
+Hw
+Hw
+Hw
+Dz
+DN
+DN
+DN
+DN
+JW
+VI
+VI
+VI
+XW
+VI
+VI
+Hw
+Hw
+"}
+(40,1,1) = {"
+Ep
+bF
+Ga
+Ga
+LG
+Ep
+mh
+YP
+Pt
+mc
+kK
+mc
+zX
+YP
+YP
+hl
+WI
+mc
+JQ
+Ik
+je
+Uu
+Uu
+Uu
+Uu
+Zz
+hl
+Hw
+Hw
+Hw
+Hw
+Dz
+DN
+DN
+DN
+DN
+JW
+JW
+VI
+VI
+VI
+fi
+VI
+Hw
+Hw
+"}
+(41,1,1) = {"
+Ep
+WM
+Ga
+Ga
+Ga
+Ep
+no
+mc
+mc
+mc
+fW
+Qz
+Ve
+mc
+mc
+hl
+hl
+kK
+hl
+hl
+hl
+qV
+Kh
+qV
+hl
+hl
+hl
+Hw
+Hw
+Hw
+Hw
+gC
+Hw
+DN
+DN
+DN
+DN
+Hw
+hf
+Kw
+VI
+VI
+Hw
+Hw
+Hw
+"}
+(42,1,1) = {"
+Ep
+DA
+Ga
+Ga
+Ga
+ah
+mc
+mc
+mc
+mc
+UI
+XQ
+UZ
+mc
+mc
+TE
+mc
+mc
+mc
+TE
+hl
+WB
+WB
+WB
+hl
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+DN
+DN
+Hw
+Hw
+hf
+Kw
+VI
+VI
+Hw
+Hw
+Hw
+"}
+(43,1,1) = {"
+Ep
+Ep
+zd
+Dd
+WC
+Ep
+no
+mc
+mc
+mc
+Hk
+Lz
+Im
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+hl
+HI
+dB
+HI
+hl
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Kw
+Pb
+Hw
+Hw
+Hw
+Hw
+"}
+(44,1,1) = {"
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+mx
+YP
+Da
+mc
+kK
+mc
+xb
+YP
+YP
+YP
+YP
+YP
+YP
+xb
+hl
+hl
+hl
+hl
+hl
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+"}
+(45,1,1) = {"
+qI
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+Ep
+hl
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+"}

@@ -59,6 +59,16 @@
 		for(var/datum/bounty/removing_bounty in GLOB.head_bounties)
 			if(removing_bounty.target == departing_mob.real_name)
 				GLOB.head_bounties -= removing_bounty
+		// if the departing mob was associated with a Warband
+		if(departing_mob.mind.warband_manager || departing_mob.mind.recruiter_name) 
+			var/atom/movable/screen/warband/manager/warband
+			for(var/mob/living/warband_member in warband.members)
+				if(departing_mob in warband_member.mind.subordinates)
+					warband_member.mind.subordinates -= departing_mob
+			if(departing_mob in warband.members)
+				warband.members -= departing_mob
+			if(departing_mob in warband.allies)
+				warband.allies -= departing_mob
 	GLOB.chosen_names -= departing_mob.real_name
 	LAZYREMOVE(GLOB.actors_list, departing_mob.mobid)
 	LAZYREMOVE(GLOB.roleplay_ads, departing_mob.mobid)

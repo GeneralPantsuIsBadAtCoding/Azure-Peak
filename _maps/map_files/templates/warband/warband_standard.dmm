@@ -1,0 +1,3991 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aq" = (
+/turf/open/water/swamp,
+/area/rogue/outdoors/warcamp)
+"au" = (
+/turf/closed/wall/mineral/rogue/wooddark/horizontal,
+/area/rogue/outdoors/warcamp)
+"aA" = (
+/obj/structure/roguetent,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"bI" = (
+/obj/structure/flora/newleaf,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"bM" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 1
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"bP" = (
+/obj/structure/flora/newleaf,
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"bW" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 8
+	},
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/warcamp)
+"ca" = (
+/obj/effect/decal/cobble/mossy,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"cX" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 6
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"dq" = (
+/turf/closed/wall/mineral/rogue/wood{
+	icon_state = "tent_door1";
+	icon = 'icons/turf/roguewall.dmi';
+	name = "tent door";
+	desc = null
+	},
+/area/rogue/indoors/warcamp)
+"dx" = (
+/turf/closed/wall/mineral/rogue/tent{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp)
+"dJ" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 9
+	},
+/obj/machinery/light/rogue/torchholder/hotspring,
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"dS" = (
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"dT" = (
+/obj/structure/roguemachine/noticeboard,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"dV" = (
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/warcamp)
+"ef" = (
+/obj/structure/bed/rogue/shit,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"ep" = (
+/turf/closed/wall/mineral/rogue/wooddark/end{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp)
+"er" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 6
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"ev" = (
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"eS" = (
+/obj/structure/fluff/psycross/crafted,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"eX" = (
+/turf/closed/wall/mineral/rogue/tent{
+	dir = 1
+	},
+/area/rogue/indoors/warcamp)
+"fo" = (
+/obj/machinery/light/rogue/firebowl/standing,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"gp" = (
+/obj/structure/fluff/pillow/red{
+	pixel_y = 9
+	},
+/obj/structure/fluff/pillow/magenta,
+/obj/structure/bed/rogue/inn/double{
+	alpha = 0;
+	name = "sleeping mat";
+	desc = null
+	},
+/obj/effect/landmark/start/warlordlate,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"gs" = (
+/obj/effect/decal/cobble/mossy,
+/obj/machinery/light/rogue/lanternpost,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"gu" = (
+/obj/structure/fluff/warband/warband_recruit,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"gD" = (
+/obj/structure/table/wood{
+	icon_state = "largetable_mid";
+	dir = 1
+	},
+/obj/machinery/light/rogue/torchholder/hotspring{
+	light_inner_range = 6;
+	light_outer_range = 8
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"gO" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"hi" = (
+/obj/structure/well,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"hn" = (
+/obj/item/reagent_containers/food/snacks/rogue/friedrat,
+/turf/open/water/swamp,
+/area/rogue/indoors/warcamp)
+"hT" = (
+/turf/closed/mineral/rogue,
+/area/rogue/indoors/warcamp)
+"il" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp)
+"iV" = (
+/turf/open/water/swamp,
+/area/rogue/indoors/warcamp)
+"jd" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"jh" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/rogueweapon/huntingknife/idagger{
+	pixel_x = 8;
+	pixel_y = -3
+	},
+/obj/item/ration{
+	pixel_x = -11;
+	pixel_y = 8
+	},
+/obj/item/ration{
+	pixel_x = -11;
+	pixel_y = 8
+	},
+/obj/item/ration{
+	pixel_x = -11;
+	pixel_y = 8
+	},
+/obj/item/ration{
+	pixel_x = -11;
+	pixel_y = 8
+	},
+/obj/item/ration{
+	pixel_x = -11;
+	pixel_y = 8
+	},
+/obj/item/ration{
+	pixel_x = -11;
+	pixel_y = 8
+	},
+/obj/item/ration{
+	pixel_x = -11;
+	pixel_y = 8
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"jt" = (
+/obj/effect/decal/cobble/mossy,
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"jF" = (
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = 6
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"jO" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 9
+	},
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"kP" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/flail/sflail,
+/obj/item/rogueweapon/flail/sflail,
+/obj/item/rogueweapon/mace/steel,
+/obj/item/rogueweapon/mace/steel,
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/warcamp)
+"kR" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/reagent_containers/glass/cup/wooden/crafted,
+/obj/item/reagent_containers/glass/cup/wooden/crafted,
+/obj/item/reagent_containers/glass/cup/wooden/crafted,
+/obj/item/reagent_containers/glass/cup/wooden/crafted,
+/obj/item/reagent_containers/glass/cup/wooden/crafted,
+/obj/item/reagent_containers/glass/cup/wooden/crafted,
+/obj/item/reagent_containers/glass/cup/wooden/crafted,
+/obj/item/reagent_containers/glass/cup/wooden/crafted,
+/obj/item/reagent_containers/glass/cup/wooden/crafted,
+/obj/item/reagent_containers/glass/cup/wooden/crafted,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"kV" = (
+/obj/structure/chair/stool/rogue,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"kW" = (
+/obj/structure/flora/newtree,
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"kY" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 10
+	},
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"lc" = (
+/obj/structure/fluff/traveltile/warband/camp_to_outskirts,
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"lA" = (
+/obj/structure/flora/newleaf,
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade"
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"lJ" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/grassred,
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"lP" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 4
+	},
+/obj/item/paper/scroll,
+/obj/item/natural/feather,
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"mm" = (
+/obj/structure/chair/wood/rogue/chair4{
+	dir = 4
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"mw" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/shield/tower/metal,
+/obj/item/rogueweapon/shield/tower/metal,
+/obj/item/rogueweapon/shield/tower/metal,
+/obj/item/rogueweapon/shield/tower/metal,
+/obj/item/rogueweapon/shield/tower/metal,
+/obj/item/rogueweapon/shield/tower/metal,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"mD" = (
+/obj/machinery/light/rogue/lanternpost{
+	pixel_y = 27;
+	pixel_x = -11
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"mZ" = (
+/obj/machinery/gear_painter,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"na" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
+/obj/machinery/light/rogue/torchholder{
+	dir = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"ni" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 10
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"nk" = (
+/turf/closed/mineral/rogue,
+/area/rogue/outdoors/warcamp)
+"nG" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"nQ" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/indoors/warcamp)
+"nY" = (
+/obj/structure/rack/rogue,
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/obj/item/rogueweapon/greatsword/iron{
+	pixel_x = -6
+	},
+/obj/item/rogueweapon/greatsword/iron{
+	pixel_x = -6
+	},
+/obj/item/rogueweapon/greatsword,
+/obj/item/rogueweapon/greatsword,
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/warcamp)
+"oc" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 4
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"oi" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/quiver/bolts,
+/obj/item/quiver/bolts,
+/obj/item/quiver/bolts,
+/obj/item/quiver/bolts,
+/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow,
+/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow,
+/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow,
+/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"oA" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = 3
+	},
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"pk" = (
+/obj/structure/table/wood{
+	icon_state = "largetable_mid";
+	dir = 1;
+	pixel_y = -2
+	},
+/obj/item/cooking/platter/pewter{
+	pixel_y = -9
+	},
+/obj/item/cooking/platter/pewter{
+	pixel_y = -9
+	},
+/obj/item/cooking/platter/pewter{
+	pixel_y = -9
+	},
+/obj/item/cooking/platter/pewter{
+	pixel_y = -9
+	},
+/obj/item/cooking/platter/pewter{
+	pixel_y = -9
+	},
+/obj/item/cooking/platter/pewter{
+	pixel_y = -9
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -12;
+	pixel_y = -5
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -12;
+	pixel_y = -5
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -12;
+	pixel_y = -5
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -12;
+	pixel_y = -5
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -12;
+	pixel_y = -5
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -12;
+	pixel_y = -5
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -12;
+	pixel_y = -5
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -12;
+	pixel_y = -5
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/item/candle/silver/lit{
+	pixel_y = 14
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"pv" = (
+/obj/structure/chair/wood/rogue/chair3{
+	dir = 8
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"pI" = (
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"pK" = (
+/turf/open/water/pond,
+/area/rogue/outdoors/warcamp)
+"pQ" = (
+/obj/machinery/light/rogue/lanternpost{
+	pixel_y = -5
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"pR" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"qc" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood2";
+	dir = 10
+	},
+/obj/structure/fluff/railing/border{
+	dir = 4;
+	pixel_y = -4
+	},
+/obj/item/roguekey/custom{
+	lockid = "warbandstandard";
+	name = "gaol key"
+	},
+/obj/item/roguekey/custom{
+	lockid = "warbandstandard";
+	name = "gaol key"
+	},
+/obj/item/roguekey/custom{
+	lockid = "warbandstandard";
+	name = "gaol key"
+	},
+/obj/item/roguekey/custom{
+	lockid = "warbandstandard";
+	name = "gaol key"
+	},
+/obj/item/roguekey/custom{
+	lockid = "warbandstandard";
+	name = "gaol key"
+	},
+/obj/item/roguekey/custom{
+	lockid = "warbandstandard";
+	name = "gaol key"
+	},
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"qn" = (
+/obj/structure/bars,
+/obj/structure/flora/newleaf/corner{
+	dir = 9
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"qR" = (
+/obj/structure/table/wood{
+	icon_state = "largetable_mid";
+	dir = 1
+	},
+/obj/machinery/light/rogue/torchholder/hotspring,
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"rd" = (
+/obj/structure/flora/roguetree/stump{
+	pixel_x = -8
+	},
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = -27;
+	pixel_y = 5
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"rz" = (
+/obj/structure/table/wood/long_table,
+/obj/item/candle/silver/lit{
+	pixel_y = 11;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/snacks/rogue/cheddarwedge/aged{
+	pixel_x = 5
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"rL" = (
+/obj/machinery/light/rogue/firebowl/standing{
+	pixel_y = 16
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"rO" = (
+/obj/machinery/light/rogue/hearth,
+/obj/item/cooking/pan,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"sa" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 1
+	},
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 8
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"sf" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"sj" = (
+/turf/closed/wall/mineral/rogue/tent{
+	dir = 8
+	},
+/area/rogue/indoors/warcamp)
+"sn" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"sS" = (
+/obj/structure/chair/wood/rogue/chair5{
+	dir = 1
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"tc" = (
+/obj/item/dice,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"te" = (
+/obj/effect/baseturf_helper,
+/turf/closed/wall/mineral/rogue/wood,
+/area/rogue/indoors/warcamp)
+"tk" = (
+/obj/structure/mineral_door/bars{
+	locked = 1;
+	lockid = "warbandstandard"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"tE" = (
+/obj/structure/table/wood/long_table/mid/alt,
+/obj/item/paper/scroll{
+	pixel_y = 6
+	},
+/obj/item/natural/feather{
+	pixel_x = 14
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"tF" = (
+/obj/effect/decal/cobble/mossy,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/warcamp)
+"tO" = (
+/obj/structure/flora/newleaf,
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"uB" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"uD" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 2
+	},
+/obj/structure/fluff/warband/campaign_planner,
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"vi" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 1
+	},
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 4
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"vC" = (
+/obj/structure/chair/stool/rogue,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"vE" = (
+/obj/structure/flora/newleaf,
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/grassred,
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"vI" = (
+/obj/machinery/light/rogue/lanternpost{
+	pixel_y = 27;
+	pixel_x = -4
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"vU" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 10
+	},
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade"
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"wb" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/spear/billhook,
+/obj/item/rogueweapon/spear/billhook,
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/warcamp)
+"wi" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 8
+	},
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"wy" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"wC" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 8
+	},
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"wK" = (
+/obj/item/cooking/platter/pewter,
+/obj/item/reagent_containers/food/snacks/rogue/peppersteak{
+	layer = 4
+	},
+/obj/item/kitchen/fork/iron{
+	pixel_x = -12
+	},
+/obj/item/rogueweapon/huntingknife/idagger/navaja,
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 4
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"wV" = (
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/garlick/rogue,
+/obj/item/reagent_containers/food/snacks/grown/garlick/rogue,
+/obj/item/reagent_containers/food/snacks/grown/garlick/rogue,
+/obj/item/reagent_containers/food/snacks/grown/garlick/rogue,
+/obj/structure/closet/crate/chest,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"wX" = (
+/obj/machinery/light/rogue/hearth,
+/obj/item/reagent_containers/glass/bucket/pot,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"xv" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 9
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"xy" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 9
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"xZ" = (
+/obj/structure/flora/newleaf,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"yf" = (
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = -16
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"yr" = (
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"yw" = (
+/obj/structure/flora/newleaf,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"zd" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 8
+	},
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade"
+	},
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"zf" = (
+/turf/closed/wall/mineral/rogue/wooddark/end,
+/area/rogue/indoors/warcamp)
+"zB" = (
+/obj/machinery/light/rogue/firebowl/standing,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"zD" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 4
+	},
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade"
+	},
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"zH" = (
+/obj/item/paper,
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 10
+	},
+/obj/item/natural/feather,
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"Ad" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 1
+	},
+/obj/item/paper/scroll,
+/obj/item/natural/feather,
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"AK" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/spear,
+/obj/item/rogueweapon/eaglebeak/lucerne{
+	pixel_x = -8
+	},
+/obj/item/rogueweapon/eaglebeak/lucerne{
+	pixel_x = -8
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"AS" = (
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"BS" = (
+/obj/item/cigbutt/roach,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"CH" = (
+/obj/structure/chair/stool/rogue,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"CX" = (
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"DV" = (
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Eb" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/cooking/platter,
+/obj/item/cooking/platter,
+/obj/item/cooking/platter,
+/obj/item/cooking/platter,
+/obj/item/cooking/platter,
+/obj/item/cooking/platter,
+/obj/item/cooking/platter,
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -12
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/glass/bowl{
+	pixel_y = 11
+	},
+/obj/item/kitchen/spoon{
+	pixel_x = 12;
+	pixel_y = 15
+	},
+/obj/item/kitchen/spoon{
+	pixel_x = 12;
+	pixel_y = 15
+	},
+/obj/item/kitchen/spoon{
+	pixel_x = 12;
+	pixel_y = 15
+	},
+/obj/item/kitchen/spoon{
+	pixel_x = 12;
+	pixel_y = 15
+	},
+/obj/item/kitchen/spoon{
+	pixel_x = 12;
+	pixel_y = 15
+	},
+/obj/item/kitchen/spoon{
+	pixel_x = 12;
+	pixel_y = 15
+	},
+/obj/item/kitchen/spoon{
+	pixel_x = 12;
+	pixel_y = 15
+	},
+/obj/item/kitchen/spoon{
+	pixel_x = 12;
+	pixel_y = 15
+	},
+/obj/item/kitchen/spoon{
+	pixel_x = 12;
+	pixel_y = 15
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Ec" = (
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp)
+"Ew" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/machinery/light/rogue/firebowl/standing{
+	pixel_y = 16;
+	pixel_x = 6
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"Ex" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/obj/item/rogueweapon/huntingknife/idagger,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"Ez" = (
+/obj/structure/chair/stool/rogue,
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"EB" = (
+/obj/machinery/light/rogue/campfire/longlived,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"EG" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 5
+	},
+/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"Fl" = (
+/obj/machinery/light/rogue/firebowl/standing,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Fu" = (
+/obj/structure/roguemachine/scomm{
+	pixel_y = 0
+	},
+/turf/closed/wall/mineral/rogue/wooddark/slitted,
+/area/rogue/outdoors/warcamp)
+"FH" = (
+/obj/structure/chair/wood/rogue/chair3{
+	dir = 4
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"FN" = (
+/turf/closed/wall/mineral/rogue/wooddark/end{
+	dir = 2
+	},
+/area/rogue/indoors/warcamp)
+"Gd" = (
+/turf/closed/wall/mineral/rogue/wooddark/end{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp)
+"Gh" = (
+/obj/machinery/light/rogue/torchholder/r,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Hc" = (
+/obj/machinery/light/rogue/torchholder/l,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Hg" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/water/pond,
+/area/rogue/outdoors/warcamp)
+"Ht" = (
+/obj/machinery/light/rogue/torchholder/r,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"HI" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade"
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Ii" = (
+/turf/closed/wall/mineral/rogue/wooddark/end/east,
+/area/rogue/indoors/warcamp)
+"Iy" = (
+/obj/effect/decal/cobble/mossy,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp)
+"IH" = (
+/obj/structure/bars,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"IM" = (
+/obj/structure/stairs{
+	dir = 8
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/warcamp)
+"IN" = (
+/obj/machinery/light/rogue/lanternpost,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"IX" = (
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = 6;
+	pixel_y = 20
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"JL" = (
+/obj/structure/chair/stool/rogue,
+/obj/item/cigbutt/roach,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"JP" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 8
+	},
+/obj/item/cooking/platter/aalloy,
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/lobster{
+	pixel_y = 4;
+	pixel_x = -1;
+	layer = 4
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"JQ" = (
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"Kj" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 4
+	},
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade"
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Kp" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 5
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Kq" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 4
+	},
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/warcamp)
+"Ks" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/spear/partizan,
+/obj/item/rogueweapon/spear/partizan,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"KL" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 9
+	},
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp)
+"KR" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/tower,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/obj/item/rogueweapon/shield/wood,
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/warcamp)
+"KS" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/mace/wsword,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/obj/item/rogueweapon/sword/iron,
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/warcamp)
+"KY" = (
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/obj/machinery/light/rogue/firebowl/standing{
+	pixel_y = 16
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Ll" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/neck/roguetown/gorget,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/obj/item/clothing/head/roguetown/helmet/kettle/iron,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"LD" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 1
+	},
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"LY" = (
+/obj/effect/decal/carpet/kover_darkred{
+	pixel_x = 19;
+	pixel_y = 5
+	},
+/obj/structure/bed/rogue/inn/double{
+	alpha = 0;
+	name = "sleeping mat";
+	desc = null
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"MI" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/halberd,
+/obj/item/rogueweapon/halberd,
+/obj/item/rogueweapon/halberd,
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/warcamp)
+"MW" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"Nb" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 5
+	},
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp)
+"Nd" = (
+/obj/structure/fluff/railing/border{
+	dir = 4;
+	pixel_y = -4
+	},
+/obj/structure/fluff/railing/border{
+	dir = 1;
+	pixel_x = -8
+	},
+/obj/structure/fluff/railing/border{
+	dir = 10;
+	pixel_x = 21;
+	pixel_y = 21
+	},
+/obj/structure/closet/crate/chest/neu_iron,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"Np" = (
+/obj/structure/flora/newleaf,
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 4
+	},
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Nt" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 8
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Nw" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/clothing/suit/roguetown/armor/plate/half,
+/obj/item/clothing/suit/roguetown/armor/plate/half,
+/obj/item/clothing/suit/roguetown/armor/plate/half,
+/obj/item/clothing/neck/roguetown/gorget/steel,
+/obj/item/clothing/neck/roguetown/gorget/steel,
+/obj/item/clothing/neck/roguetown/gorget/steel,
+/obj/item/clothing/head/roguetown/helmet/kettle/wide,
+/obj/item/clothing/head/roguetown/helmet/kettle/wide,
+/obj/item/clothing/head/roguetown/helmet/kettle/wide,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"Nx" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 10
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"NN" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade"
+	},
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"Op" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 10;
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 6;
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/structure/fermentation_keg/water{
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/glass/cup{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/glass/cup{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/glass/cup{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/glass/cup{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/glass/cup{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/glass/cup{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/glass/cup{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/glass/cup{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"OZ" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/halberd/bardiche,
+/obj/item/rogueweapon/halberd/bardiche,
+/obj/item/rogueweapon/halberd/bardiche,
+/obj/item/rogueweapon/halberd/bardiche,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"Pb" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 8
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Pe" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 8
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"Pk" = (
+/obj/machinery/light/rogue/campfire/longlived,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Pm" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 5
+	},
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"Po" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/machinery/light/rogue/firebowl/standing{
+	pixel_y = 16;
+	pixel_x = -6
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"Pp" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 4
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"PA" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 10
+	},
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = 1
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"PE" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 10
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"QA" = (
+/turf/open/floor/rogue/grassred,
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"QI" = (
+/obj/structure/flora/newleaf{
+	layer = 1
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"QZ" = (
+/obj/structure/fluff/warband/warband_recruit,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Rl" = (
+/obj/structure/fluff/railing/border{
+	dir = 4;
+	pixel_y = -4
+	},
+/obj/structure/fermentation_keg/random/water,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"Rt" = (
+/turf/closed/wall/mineral/rogue/tent,
+/area/rogue/indoors/warcamp)
+"Rw" = (
+/obj/structure/flora/newtree,
+/obj/structure/flora/newleaf{
+	layer = 1
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"RG" = (
+/obj/structure/fluff/customsign{
+	icon_state = "shitsign";
+	wrotesign = "AZURE ENCLAVE - WEST"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"RR" = (
+/obj/structure/fluff/warband/shortcut,
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"RY" = (
+/turf/closed/wall/mineral/rogue/wood,
+/area/rogue/indoors/warcamp)
+"Se" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 4
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"Sk" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Sl" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow,
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow,
+/obj/item/quiver/bodkin,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/obj/item/quiver/arrows,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"Sm" = (
+/turf/closed/wall/mineral/rogue/wooddark/end{
+	dir = 8
+	},
+/area/rogue/indoors/warcamp)
+"SA" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 9
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"SI" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 8
+	},
+/obj/item/paper/scroll,
+/obj/item/natural/feather,
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"SR" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 4
+	},
+/obj/item/cooking/platter/pewter,
+/obj/item/kitchen/fork/iron{
+	pixel_x = -12
+	},
+/obj/item/reagent_containers/food/snacks/rogue/jelliedeel{
+	pixel_y = 3;
+	layer = 4
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"SU" = (
+/turf/closed/wall/mineral/rogue/wooddark/slitted,
+/area/rogue/outdoors/warcamp)
+"Ty" = (
+/obj/item/cigbutt/roach{
+	pixel_x = -4
+	},
+/obj/item/cigbutt/roach{
+	pixel_x = 16;
+	pixel_y = -9
+	},
+/obj/item/cigbutt/roach{
+	pixel_y = 7;
+	pixel_x = -4
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Tz" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 5
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"TA" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 4
+	},
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"TF" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/obj/item/flashlight/flare/torch/lantern,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"TK" = (
+/obj/machinery/light/rogue/lanternpost{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"TL" = (
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = -19;
+	pixel_y = 27
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"TT" = (
+/turf/closed/wall/mineral/rogue/wood{
+	icon_state = "tent_door1";
+	icon = 'icons/turf/roguewall.dmi';
+	name = "lieutenants' quarters";
+	desc = null
+	},
+/area/rogue/indoors/warcamp)
+"Ue" = (
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade";
+	dir = 8
+	},
+/obj/structure/fluff/railing/fence{
+	max_integrity = 800;
+	name = "reinforced palisade"
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"UH" = (
+/turf/closed/wall/mineral/rogue/wooddark/slitted,
+/area/rogue/indoors/warcamp)
+"UP" = (
+/obj/structure/chair/wood/rogue/chair4{
+	dir = 8
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"Vj" = (
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Vq" = (
+/obj/structure/roguetent,
+/turf/open/floor/rogue/grassred,
+/area/rogue/indoors/warcamp)
+"VN" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 10
+	},
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"Wq" = (
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"WQ" = (
+/obj/structure/table/wood{
+	icon_state = "largetable_mid";
+	dir = 1
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"Xi" = (
+/obj/structure/flora/newtree,
+/obj/effect/baseturf_helper,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"XD" = (
+/obj/structure/bed/rogue/bedroll,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"XE" = (
+/turf/closed/wall/mineral/rogue/wooddark/horizontal,
+/area/rogue/indoors/warcamp)
+"XO" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp)
+"XU" = (
+/obj/structure/flora/newleaf/corner{
+	dir = 5
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+"Yd" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 6
+	},
+/obj/item/candle/skull/lit,
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"Ym" = (
+/obj/structure/bed/rogue/bedroll{
+	dir = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp)
+"Yt" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 6
+	},
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/warcamp)
+"YI" = (
+/obj/structure/table/wood{
+	icon_state = "largetable";
+	dir = 8
+	},
+/obj/item/cooking/platter/pewter,
+/obj/item/reagent_containers/food/snacks/rogue/raisinbreadslice{
+	layer = 4
+	},
+/turf/open/floor/carpet/red{
+	name = "rug"
+	},
+/area/rogue/indoors/warcamp)
+"YT" = (
+/turf/open/floor/rogue/cobblerock,
+/turf/open/floor/rogue/cobble/mossy,
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/outdoors/warcamp)
+"Zm" = (
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1;
+	light_outer_range = 16;
+	light_inner_range = 8;
+	pixel_x = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"Zn" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 6
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp)
+"ZN" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/warcamp)
+
+(1,1,1) = {"
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+pR
+pR
+pR
+pR
+pR
+pR
+pR
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+hT
+eX
+dq
+Rt
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nG
+lc
+lc
+lc
+PE
+Wq
+pR
+"}
+(2,1,1) = {"
+nQ
+nQ
+nQ
+nQ
+nQ
+Wq
+ep
+aq
+pR
+pR
+sf
+ev
+DV
+DV
+hT
+hT
+hT
+hT
+hT
+hT
+rO
+wX
+DV
+Wq
+Fl
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+pQ
+nG
+pI
+pI
+pI
+gs
+Wq
+pR
+"}
+(3,1,1) = {"
+nQ
+nQ
+dx
+dx
+dx
+ep
+aq
+aq
+aq
+ev
+ev
+DV
+DV
+SA
+Nx
+hT
+hT
+Vj
+wV
+jh
+DV
+DV
+Wq
+Wq
+Wq
+Eb
+kR
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+Wq
+nG
+pI
+Nt
+pI
+ca
+Wq
+SA
+"}
+(4,1,1) = {"
+nQ
+Rt
+Ym
+Ym
+Ym
+eX
+Wq
+Wq
+DV
+DV
+DV
+DV
+SA
+bI
+bI
+vU
+DV
+DV
+DV
+DV
+DV
+Wq
+Wq
+Wq
+Wq
+DV
+DV
+DV
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+DV
+Wq
+pI
+pI
+Zn
+Wq
+DV
+tO
+"}
+(5,1,1) = {"
+nQ
+Rt
+dS
+dS
+dS
+eX
+Wq
+DV
+DV
+DV
+ev
+ev
+bI
+bI
+Rw
+lA
+Nx
+DV
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+DV
+DV
+DV
+DV
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+Nx
+DV
+Wq
+pI
+pI
+Wq
+DV
+DV
+bI
+"}
+(6,1,1) = {"
+nQ
+Rt
+XD
+dS
+XD
+eX
+Wq
+DV
+DV
+ev
+ev
+DV
+Kp
+yw
+bI
+lA
+bI
+DV
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+DV
+Wq
+Wq
+Wq
+Ec
+Ec
+nQ
+nQ
+nQ
+nQ
+nQ
+bI
+DV
+Wq
+Tz
+pI
+PE
+Wq
+DV
+XU
+"}
+(7,1,1) = {"
+nQ
+Gd
+sj
+aA
+sj
+FN
+Wq
+DV
+ev
+QA
+QA
+xy
+pI
+Pm
+yw
+Np
+cX
+Wq
+Wq
+SA
+Nx
+DV
+Wq
+jd
+Wq
+Wq
+Wq
+Wq
+Wq
+Ty
+Ec
+aq
+nQ
+nQ
+nQ
+nQ
+er
+DV
+Wq
+Wq
+pI
+pI
+Wq
+Wq
+pR
+"}
+(8,1,1) = {"
+Gd
+Wq
+Wq
+Wq
+Wq
+zB
+FN
+DV
+DV
+QA
+mD
+pI
+pI
+zd
+pI
+pI
+pI
+PE
+Wq
+XU
+bP
+Nx
+DV
+hi
+Wq
+DV
+Wq
+CH
+Wq
+Wq
+Ec
+aq
+nQ
+nQ
+nQ
+nQ
+nQ
+DV
+DV
+Wq
+Tz
+pI
+PE
+Wq
+pR
+"}
+(9,1,1) = {"
+pR
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+DV
+DV
+QA
+Wq
+pI
+pI
+NN
+tF
+pI
+pI
+pI
+PE
+Wq
+XU
+er
+DV
+DV
+DV
+DV
+CH
+EB
+tc
+Wq
+Wq
+aq
+aq
+nQ
+nQ
+nQ
+nQ
+nQ
+DV
+Wq
+Wq
+pI
+pI
+Wq
+pR
+"}
+(10,1,1) = {"
+eX
+zB
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+DV
+QA
+xy
+pI
+pI
+NN
+pI
+pI
+pI
+tF
+pI
+Wq
+vC
+DV
+DV
+DV
+Ec
+Wq
+Wq
+CH
+Wq
+CH
+Wq
+Ec
+aq
+aq
+nQ
+nQ
+nQ
+nQ
+nQ
+DV
+Wq
+pI
+pI
+Wq
+DV
+"}
+(11,1,1) = {"
+dq
+QZ
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+DV
+Wq
+pI
+pI
+pI
+zD
+pI
+pI
+pI
+pI
+pI
+Wq
+Pk
+vC
+DV
+DV
+Ec
+Ec
+Wq
+Wq
+BS
+EB
+CH
+Wq
+Ec
+aq
+aq
+aq
+aq
+nQ
+nQ
+nQ
+IX
+pI
+pI
+Wq
+pR
+"}
+(12,1,1) = {"
+dq
+QZ
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+pI
+pI
+pI
+pI
+pI
+wi
+pI
+pI
+pI
+PE
+JL
+DV
+DV
+bI
+DV
+aq
+Ec
+Wq
+Wq
+CH
+Wq
+Wq
+Wq
+Ec
+aq
+aq
+DV
+Fl
+nQ
+nQ
+nQ
+pI
+pI
+Wq
+DV
+"}
+(13,1,1) = {"
+eX
+zB
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+pI
+pI
+pI
+pI
+Wq
+HI
+yr
+pI
+pI
+pI
+PE
+DV
+DV
+DV
+DV
+aq
+Ec
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Ec
+DV
+DV
+ev
+DV
+nQ
+nQ
+Kq
+pI
+Wq
+pR
+"}
+(14,1,1) = {"
+pR
+pR
+Wq
+Wq
+Wq
+Wq
+Wq
+DV
+Wq
+xy
+pI
+pI
+pI
+pI
+Wq
+nQ
+DV
+Tz
+pI
+pI
+pI
+Wq
+bI
+DV
+sf
+DV
+aq
+Ec
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Ec
+DV
+DV
+ev
+ev
+nQ
+nQ
+pI
+pI
+Wq
+pR
+"}
+(15,1,1) = {"
+pR
+Wq
+Wq
+Wq
+zB
+ep
+DV
+DV
+Wq
+pI
+pI
+pI
+pI
+Wq
+DV
+nQ
+nQ
+Wq
+LD
+pI
+pI
+PE
+DV
+DV
+DV
+DV
+aq
+Ec
+Wq
+CH
+EB
+CH
+Wq
+Wq
+Ec
+DV
+DV
+DV
+nQ
+nQ
+Nx
+pI
+pI
+Wq
+DV
+"}
+(16,1,1) = {"
+UH
+dx
+aA
+dx
+ep
+DV
+DV
+DV
+Wq
+pI
+pI
+pI
+Pp
+Zm
+DV
+nQ
+nQ
+DV
+Tz
+pI
+pI
+pI
+IN
+DV
+bI
+DV
+DV
+DV
+DV
+Wq
+CH
+Wq
+Wq
+DV
+DV
+DV
+ev
+nQ
+nQ
+nQ
+bI
+pI
+pI
+Wq
+pR
+"}
+(17,1,1) = {"
+Rt
+Ym
+dS
+Ym
+eX
+DV
+Nx
+DV
+Wq
+pI
+pI
+Zn
+Wq
+DV
+DV
+nQ
+nQ
+nQ
+Wq
+LD
+pI
+pI
+PE
+DV
+DV
+DV
+DV
+DV
+DV
+DV
+Wq
+Wq
+DV
+DV
+DV
+ev
+Wq
+Wq
+Wq
+DV
+Wq
+pI
+pI
+Wq
+pR
+"}
+(18,1,1) = {"
+Rt
+dS
+dS
+dS
+Vq
+Nx
+QI
+DV
+Wq
+pI
+pI
+Wq
+Wq
+DV
+DV
+nQ
+nQ
+nQ
+DV
+Tz
+pI
+pI
+pI
+Wq
+mZ
+DV
+Wq
+Wq
+xy
+Nt
+Wq
+Wq
+TK
+Wq
+xy
+Nt
+Nt
+PE
+Wq
+Wq
+Wq
+pI
+pI
+Wq
+DV
+"}
+(19,1,1) = {"
+Rt
+XD
+dS
+XD
+eX
+QI
+QI
+DV
+Wq
+Pp
+Zn
+Wq
+Wq
+DV
+DV
+DV
+nQ
+nQ
+nQ
+Wq
+Tz
+pI
+pI
+PE
+Wq
+Wq
+xy
+bW
+YT
+wC
+wC
+wC
+xy
+Nt
+pI
+pI
+pI
+pI
+pI
+PE
+xy
+pI
+Yt
+Wq
+DV
+"}
+(20,1,1) = {"
+UH
+sj
+aA
+sj
+zf
+XU
+Rw
+PA
+Wq
+Nt
+Nt
+Wq
+Wq
+DV
+DV
+DV
+DV
+nQ
+nQ
+DV
+Wq
+LD
+pI
+ca
+Wq
+Nt
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+Wq
+DV
+DV
+"}
+(21,1,1) = {"
+Hg
+pK
+Wq
+Wq
+DV
+zf
+XU
+er
+Nt
+pI
+pI
+Sm
+Wq
+DV
+DV
+DV
+DV
+DV
+nQ
+nQ
+Wq
+LD
+pI
+pI
+wC
+Iy
+LD
+pI
+pI
+pI
+pI
+pI
+pI
+TA
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+Zn
+DV
+DV
+DV
+"}
+(22,1,1) = {"
+Hg
+pK
+Wq
+Wq
+Wq
+DV
+DV
+Wq
+pI
+pI
+pI
+Wq
+Sm
+dx
+dx
+dx
+dx
+dx
+ep
+nQ
+DV
+Tz
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+Kq
+Zn
+Tz
+Zn
+Wq
+Tz
+Pp
+pI
+pI
+pI
+pI
+Zn
+DV
+DV
+DV
+sf
+"}
+(23,1,1) = {"
+Hg
+pK
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+pI
+pI
+pI
+Wq
+aA
+dS
+dS
+Ex
+KR
+ep
+eX
+nQ
+nQ
+DV
+Tz
+TA
+TA
+TA
+TA
+Zn
+Wq
+Wq
+Wq
+DV
+DV
+Pb
+Ue
+Wq
+Tz
+pI
+pI
+pI
+rd
+DV
+DV
+sf
+sf
+"}
+(24,1,1) = {"
+Hg
+pK
+Wq
+Wq
+ev
+DV
+DV
+Wq
+pI
+pI
+pI
+Wq
+Rt
+dV
+dS
+dS
+dS
+Nw
+eX
+nQ
+nQ
+ev
+DV
+Wq
+Wq
+yf
+Wq
+DV
+ev
+DV
+sa
+ev
+vC
+DV
+HI
+DV
+Wq
+Tz
+pI
+pI
+jt
+DV
+DV
+DV
+sf
+"}
+(25,1,1) = {"
+zf
+zB
+Wq
+DV
+ep
+ev
+Wq
+pI
+pI
+pI
+pI
+Wq
+aA
+dS
+dS
+dS
+dS
+Ll
+eX
+nQ
+nQ
+DV
+bI
+DV
+DV
+DV
+DV
+bI
+xZ
+kY
+bM
+kV
+Pk
+vC
+HI
+DV
+DV
+Wq
+Tz
+pI
+jt
+Wq
+DV
+DV
+DV
+"}
+(26,1,1) = {"
+UH
+sj
+dx
+ep
+DV
+QA
+RG
+pI
+pI
+pI
+pI
+Wq
+Rt
+mw
+dS
+kP
+dS
+KS
+eX
+nQ
+nQ
+DV
+ev
+sf
+bI
+DV
+ev
+XU
+bI
+xZ
+vi
+ev
+vC
+DV
+HI
+DV
+AS
+Wq
+Wq
+Tz
+pI
+PE
+Wq
+DV
+sf
+"}
+(27,1,1) = {"
+Rt
+Ym
+Ym
+eX
+DV
+QA
+Wq
+pI
+pI
+pI
+pI
+Wq
+UH
+nY
+dS
+oi
+dS
+na
+UH
+nQ
+hT
+nk
+DV
+ev
+ev
+DV
+Ht
+ev
+DV
+DV
+eS
+ev
+AS
+oc
+Kj
+AS
+ev
+DV
+ev
+Wq
+Tz
+pI
+PE
+pR
+il
+"}
+(28,1,1) = {"
+Rt
+dS
+dS
+aA
+DV
+Wq
+Wq
+pI
+pI
+pI
+vI
+Wq
+Rt
+wb
+dS
+Sl
+dS
+uB
+eX
+nQ
+hT
+hT
+XE
+IH
+IH
+IH
+UH
+au
+SU
+ev
+DV
+ev
+DV
+DV
+ev
+DV
+ev
+ev
+hT
+Wq
+Wq
+Tz
+pI
+il
+il
+"}
+(29,1,1) = {"
+Rt
+dS
+dS
+aA
+DV
+Wq
+pI
+pI
+pI
+pI
+Wq
+Wq
+Rt
+AK
+dS
+dS
+dS
+TF
+eX
+nQ
+nQ
+aq
+aq
+dV
+dV
+dV
+IH
+Hc
+Fu
+ev
+DV
+ev
+ev
+DV
+Gh
+DV
+ev
+hT
+hT
+hT
+Wq
+Wq
+pI
+il
+il
+"}
+(30,1,1) = {"
+Rt
+XD
+XD
+eX
+DV
+Wq
+pI
+pI
+pI
+pI
+Wq
+Wq
+Rt
+ep
+MI
+Ks
+OZ
+Sm
+eX
+nQ
+nQ
+aq
+aq
+dV
+dV
+ef
+IH
+Wq
+Wq
+Nd
+IM
+IM
+qc
+Rl
+nQ
+nQ
+nQ
+nQ
+nQ
+hT
+pR
+Wq
+pI
+Wq
+il
+"}
+(31,1,1) = {"
+UH
+sj
+sj
+zf
+DV
+Wq
+pI
+pI
+pI
+pI
+Wq
+Wq
+ep
+sj
+sj
+sj
+sj
+sj
+Sm
+nQ
+nQ
+aq
+aq
+dV
+dV
+dS
+qn
+ni
+Wq
+Wq
+Wq
+Wq
+Wq
+il
+nQ
+nQ
+nQ
+nQ
+nQ
+hT
+hT
+Wq
+pI
+PE
+il
+"}
+(32,1,1) = {"
+ep
+pR
+pR
+aq
+zf
+Wq
+pI
+pI
+pI
+Zn
+Wq
+ep
+Ec
+Ec
+aq
+iV
+iV
+iV
+iV
+hT
+hT
+aq
+hT
+dV
+dS
+ef
+XE
+tk
+tk
+XE
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+hT
+hT
+Wq
+pI
+pI
+ev
+"}
+(33,1,1) = {"
+pR
+pR
+aq
+aq
+Ec
+Ec
+pI
+pI
+pI
+Wq
+Wq
+DV
+Ec
+il
+il
+iV
+iV
+iV
+iV
+hT
+hT
+hT
+hT
+hn
+dS
+dS
+dS
+dS
+dS
+iV
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+hT
+hT
+Wq
+pI
+pI
+DV
+"}
+(34,1,1) = {"
+pR
+pR
+aq
+aq
+aq
+aq
+Nb
+pI
+pI
+Wq
+Wq
+DV
+DV
+fo
+il
+nQ
+nQ
+nQ
+iV
+hT
+hT
+hT
+nQ
+ef
+dS
+dS
+iV
+iV
+nQ
+nQ
+nQ
+RY
+sj
+sj
+sj
+sj
+RY
+nQ
+nQ
+hT
+hT
+Wq
+pI
+pI
+DV
+"}
+(35,1,1) = {"
+pR
+pR
+aq
+Ec
+aq
+aq
+KL
+pI
+pI
+Wq
+Wq
+Wq
+DV
+DV
+ev
+SA
+il
+nQ
+nQ
+hT
+hT
+hT
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+eX
+Sm
+pk
+Op
+ep
+Rt
+nQ
+nQ
+hT
+hT
+DV
+pI
+pI
+XO
+"}
+(36,1,1) = {"
+pR
+aq
+aq
+Ec
+Wq
+KL
+pI
+pI
+Zn
+Wq
+Wq
+Wq
+Wq
+DV
+DV
+bI
+sf
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+RY
+sj
+sj
+sj
+sj
+RY
+RY
+sj
+wy
+JQ
+JQ
+CX
+Rt
+nQ
+nQ
+hT
+hT
+ev
+pI
+PE
+DV
+"}
+(37,1,1) = {"
+pR
+pR
+Ec
+Wq
+xy
+pI
+pI
+pI
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+DV
+XU
+bP
+bP
+nQ
+nQ
+nQ
+ev
+DV
+il
+eX
+Sm
+MW
+MW
+MW
+MW
+MW
+MW
+dS
+dS
+dS
+CX
+Rt
+nQ
+hT
+hT
+Nx
+Wq
+pI
+pI
+XO
+"}
+(38,1,1) = {"
+pR
+pR
+Wq
+xy
+pI
+pI
+pI
+pI
+Wq
+DV
+DV
+DV
+Wq
+Wq
+Wq
+DV
+XU
+bP
+bP
+nQ
+sf
+DV
+DV
+rL
+RY
+Ew
+JQ
+mm
+mm
+JQ
+JQ
+Ez
+FH
+JQ
+dS
+CX
+Rt
+nQ
+nQ
+hT
+bP
+jF
+pI
+pI
+DV
+"}
+(39,1,1) = {"
+pR
+DV
+Wq
+LD
+pI
+pI
+pI
+pI
+Wq
+DV
+ev
+DV
+DV
+DV
+Wq
+Wq
+DV
+XU
+bP
+sf
+DV
+Wq
+Wq
+Wq
+aA
+dS
+JQ
+dJ
+YI
+SI
+Pe
+JP
+zH
+JQ
+dS
+CX
+Rt
+nQ
+nQ
+nQ
+er
+RG
+pI
+pI
+Kp
+"}
+(40,1,1) = {"
+pR
+sf
+ev
+LD
+pI
+pI
+pI
+TL
+DV
+DV
+SA
+nQ
+bI
+DV
+DV
+Wq
+Wq
+DV
+DV
+DV
+Wq
+Wq
+Wq
+Wq
+aA
+dS
+JQ
+Ad
+gD
+WQ
+WQ
+qR
+uD
+sS
+dS
+CX
+Rt
+nQ
+nQ
+nQ
+nQ
+nQ
+pI
+pI
+Wq
+"}
+(41,1,1) = {"
+pR
+oA
+DV
+LD
+pI
+pI
+pI
+Wq
+QA
+jO
+bP
+nQ
+nQ
+DV
+DV
+DV
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+aA
+dS
+JQ
+EG
+SR
+Se
+lP
+wK
+Yd
+JQ
+dS
+CX
+RY
+sj
+sj
+sj
+RY
+nQ
+pI
+Zn
+Wq
+"}
+(42,1,1) = {"
+pR
+dT
+ZN
+pI
+pI
+pI
+pI
+Wq
+ev
+bP
+nQ
+nQ
+nQ
+nQ
+SA
+bI
+sf
+DV
+DV
+DV
+DV
+DV
+DV
+KY
+RY
+Po
+JQ
+pv
+UP
+JQ
+JQ
+pv
+pv
+JQ
+dS
+dS
+aA
+dS
+dS
+dS
+Rt
+nQ
+pI
+Wq
+xv
+"}
+(43,1,1) = {"
+pR
+DV
+Sk
+pI
+pI
+pI
+Wq
+ev
+jO
+bP
+nQ
+nQ
+nQ
+nQ
+nQ
+bI
+il
+Fl
+DV
+ev
+ev
+DV
+DV
+il
+eX
+Ii
+gO
+gO
+gO
+gu
+gu
+gO
+gO
+gO
+gO
+Sm
+Rt
+rz
+dS
+LY
+Rt
+nQ
+pI
+PE
+DV
+"}
+(44,1,1) = {"
+pR
+pR
+sn
+pI
+pI
+Wq
+Wq
+jO
+vE
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+sf
+kW
+il
+DV
+il
+RY
+dx
+dx
+dx
+dx
+TT
+TT
+dx
+dx
+dx
+dx
+dx
+RY
+tE
+dS
+gp
+Rt
+il
+pI
+pI
+VN
+"}
+(45,1,1) = {"
+Xi
+pR
+sf
+RR
+RR
+Wq
+DV
+vE
+lJ
+lJ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+RY
+dx
+dx
+dx
+te
+il
+il
+pI
+pI
+"}

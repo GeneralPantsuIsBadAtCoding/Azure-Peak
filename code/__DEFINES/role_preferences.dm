@@ -19,6 +19,9 @@
 #define ROLE_DREAMWALKER		"Dreamwalker"
 #define ROLE_ASCENDANT			"Ascendant"
 #define ROLE_WRETCH				"Wretch"
+#define ROLE_WARLORD			"Warlord"
+#define ROLE_WARLORD_LIEUTENANT "Warlord's Lieutenant"
+#define ROLE_WARLORD_GRUNT		"Grunt"
 #define ROLE_UNBOUND_DEATHKNIGHT "Unbound Death Knight"
 #define ROLE_DARK_ITINERANT "Dark Itinerant"
 
@@ -66,6 +69,7 @@ GLOBAL_LIST_INIT(special_roles_rogue, list(
 	ROLE_LICH = /datum/antagonist/lich,
 	ROLE_DREAMWALKER = /datum/antagonist/dreamwalker,
 	ROLE_ASSASSIN = /datum/antagonist/assassin,
+	ROLE_WARLORD = /datum/antagonist/warlord
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

@@ -125,6 +125,19 @@
 	start_lit = TRUE
 	icon_state = "skullcandle_lit"
 
+/obj/item/candle/skull/blue
+	icon = 'icons/roguetown/items/lighting.dmi'
+	icon_state = "skullcandle"
+	light_color = "#7b60f3"
+	infinite = TRUE
+
+/obj/item/candle/skull/blue/update_icon()
+	icon_state = "skullcandle[lit ? "_lit" : ""]_blue"
+
+/obj/item/candle/skull/blue/lit
+	start_lit = TRUE
+	icon_state = "skullcandle_lit_blue"
+
 /obj/item/candle/candlestick/gold
 	name = "three-stick gold candlestick"
 	icon = 'icons/roguetown/items/lighting.dmi'
