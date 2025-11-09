@@ -320,13 +320,6 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
-/datum/crafting_recipe/roguetown/sewing/abyssortemplartabard
-	name = "tabard, abyssorite templar"
-	result = list(/obj/item/clothing/cloak/abyssortabard)
-	reqs = list(/obj/item/natural/cloth = 3,
-				/obj/item/natural/fibers = 1)
-	craftdiff = 3
-
 /datum/crafting_recipe/roguetown/sewing/psydon
 	name = "tabard, psydon"
 	result = list(/obj/item/clothing/cloak/templar/psydon)
@@ -344,6 +337,13 @@
 /datum/crafting_recipe/roguetown/sewing/astrata
 	name = "tabard, astrata"
 	result = list(/obj/item/clothing/cloak/templar/astrata)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/astratatemplar
+	name = "tabard, astratan templar"
+	result = list(/obj/item/clothing/cloak/templar/astratan)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
@@ -369,9 +369,23 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
+/datum/crafting_recipe/roguetown/sewing/necratemplar
+	name = "tabard, necra templar"
+	result = list(/obj/item/clothing/cloak/templar/necran)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
 /datum/crafting_recipe/roguetown/sewing/abyssor
 	name = "tabard, abyssor"
 	result = list(/obj/item/clothing/cloak/templar/abyssor)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/abyssortemplartabard
+	name = "tabard, abyssorite templar"
+	result = list(/obj/item/clothing/cloak/abyssortabard)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
@@ -383,6 +397,13 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
+/datum/crafting_recipe/roguetown/sewing/malumtemplar
+	name = "tabard, malum templar"
+	result = list(/obj/item/clothing/cloak/templar/malumite)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
 /datum/crafting_recipe/roguetown/sewing/eora
 	name = "tabard, eora"
 	result = list(/obj/item/clothing/cloak/templar/eora)
@@ -390,9 +411,30 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
+/datum/crafting_recipe/roguetown/sewing/eoratemplar
+	name = "tabard, eoran templar"
+	result = list(/obj/item/clothing/cloak/templar/eoran)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
 /datum/crafting_recipe/roguetown/sewing/pestra
 	name = "tabard, pestra"
 	result = list(/obj/item/clothing/cloak/templar/pestra)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/pestratemplar
+	name = "tabard, pestran templar"
+	result = list(/obj/item/clothing/cloak/templar/pestran)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/pestratemplar
+	name = "tabard, undivided templar"
+	result = list(/obj/item/clothing/cloak/templar/undivided)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
@@ -428,6 +470,13 @@
 /datum/crafting_recipe/roguetown/sewing/xylixian
 	name = "tabard, xylix templar"
 	result = list(/obj/item/clothing/cloak/templar/xylixian)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/battlenun
+	name = "tabard, battle-nun"
+	result = list(/obj/item/clothing/cloak/battlenun)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
@@ -1193,6 +1242,12 @@
 	result = list (/obj/item/clothing/suit/roguetown/shirt/exoticsilkbra)
 	reqs = list(/obj/item/natural/silk = 5)
 	craftdiff = 6
+
+/datum/crafting_recipe/roguetown/sewing/desertbra
+	name = "desert bra"
+	result = list (/obj/item/clothing/suit/roguetown/shirt/desertbra)
+	reqs = list(/obj/item/natural/fibers = 5)
+	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/sewing/anklets
 	name = "exotic silk anklets"

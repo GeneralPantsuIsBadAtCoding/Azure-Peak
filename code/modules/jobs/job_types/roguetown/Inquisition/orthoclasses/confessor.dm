@@ -65,9 +65,9 @@
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
 				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
 				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
-			if("Arbalist - Crossbow, Lightweight Brigandine")
+			if("Arbalist - Crossbow, Psydonic Chestplate")
 				head = /obj/item/clothing/head/roguetown/headband/bloodied
-				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fencer/psydon
 				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 				REMOVE_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 5, TRUE)
