@@ -31,3 +31,4 @@
         gloves = /obj/item/clothing/gloves/roguetown/fingerless
 
     human.hallucination = INFINITY
+	SStreasury.give_money_account(ECONOMIC_DESTITUTE, H, "Savings.")
