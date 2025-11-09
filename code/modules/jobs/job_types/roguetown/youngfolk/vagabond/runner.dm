@@ -35,3 +35,4 @@
 	if(prob(10))
 		r_hand = /obj/item/rogue/instrument/flute
 
+	SStreasury.give_money_account(ECONOMIC_DESTITUTE, H, "Savings.")
