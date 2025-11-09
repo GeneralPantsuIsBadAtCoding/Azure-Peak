@@ -13,7 +13,7 @@
 	display_order = JDO_TAILOR
 	job_traits = list(TRAIT_SEWING_EXPERT)
 	outfit = /datum/outfit/job/roguetown/tailor
-	give_bank_account = 16
+	give_bank_account = TRUE
 	min_pq = 0
 	max_pq = null
 	round_contrib_points = 3
@@ -69,3 +69,4 @@
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fittedclothing)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/takeapprentice)
+	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
