@@ -64,4 +64,4 @@
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mineroresight)
-	SStreasury.give_money_account(ECONOMIC_WORKING_CLASSS, H, "Savings.")
+	SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")
