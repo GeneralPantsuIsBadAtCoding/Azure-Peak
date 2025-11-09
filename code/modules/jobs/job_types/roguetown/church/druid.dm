@@ -93,3 +93,4 @@
 /datum/outfit/job/roguetown/druid/basic/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
 	H.put_in_hands(new /obj/item/rogueweapon/woodstaff(H)) //To encourage them to wander the forests and to help defend themselves
+SStreasury.give_money_account(ECONOMIC_DESTITUTE, H, "Church Funding.")
