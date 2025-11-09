@@ -63,6 +63,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/huntersyell)
+	SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
 
 /datum/advclass/hunter/spear
 	name = "Spear-Hunter"
