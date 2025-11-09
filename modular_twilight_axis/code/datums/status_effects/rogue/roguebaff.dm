@@ -9,18 +9,19 @@
 	desc = "Some good loving has left me feeling very fortunate."
 	icon_state = "stressg"
 
-/atom/movable/screen/alert/status_effect/buff/templarbuff
+/atom/movable/screen/alert/status_effect/buff/clergybuff
 	name = "Decem Dii Vult"
 	desc = "I am a member of this temple, sworn to defend the House of the Ten until my very dying breath."
-	icon_state = "buff"
+	icon = 'modular_twilight_axis/icons/mob/screen_alert.dmi'
+	icon_state = "tenbless"
 
-/datum/status_effect/buff/templarbuff
-	id = "templarbuff"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/templarbuff
+/datum/status_effect/buff/clergybuff
+	id = "clergybuff"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/clergybuff
 	effectedstats = list(STATKEY_STR = 1,STATKEY_WIL = 2,STATKEY_INT = 1,STATKEY_SPD = 1,STATKEY_CON = 2,STATKEY_LCK = 1)
 	var/lastcheck = 0
 
-/datum/status_effect/buff/templarbuff/process()
+/datum/status_effect/buff/clergybuff/process()
 
 	.=..()
 	var/area/rogue/our_area = get_area(owner)
@@ -35,7 +36,7 @@
 			if(H.mind?.assigned_role == "Bishop")
 				preserve = TRUE
 		if(!preserve)
-			owner.remove_status_effect(/datum/status_effect/buff/templarbuff)
+			owner.remove_status_effect(/datum/status_effect/buff/clergybuff)
 	
 /mob/living/carbon/human
 	var/priest_timer_check = 0
@@ -45,11 +46,11 @@
 	if((src.mind?.assigned_role == "Bishop") && !(world.time < priest_timer_check + 10 SECONDS))
 		priest_timer_check = world.time
 		for(var/mob/living/carbon/human/H in view(7, src))
-			if(HAS_TRAIT(H, TRAIT_CLERGY) && !H.has_status_effect(/datum/status_effect/buff/templarbuff))
-				H.apply_status_effect(/datum/status_effect/buff/templarbuff)
+			if(HAS_TRAIT(H, TRAIT_CLERGY) && !H.has_status_effect(/datum/status_effect/buff/clergybuff))
+				H.apply_status_effect(/datum/status_effect/buff/clergybuff)
 
 /area/rogue/Entered(mob/living/carbon/human/guy)
 
 	.=..()
-	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_CLERGY) && !guy.has_status_effect(/datum/status_effect/buff/templarbuff) && !HAS_TRAIT(guy, TRAIT_EXCOMMUNICATED) && !HAS_TRAIT(guy, TRAIT_HERESIARCH))
-		guy.apply_status_effect(/datum/status_effect/buff/templarbuff)
+	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_CLERGY) && !guy.has_status_effect(/datum/status_effect/buff/clergybuff) && !HAS_TRAIT(guy, TRAIT_EXCOMMUNICATED) && !HAS_TRAIT(guy, TRAIT_HERESIARCH))
+		guy.apply_status_effect(/datum/status_effect/buff/clergybuff)
