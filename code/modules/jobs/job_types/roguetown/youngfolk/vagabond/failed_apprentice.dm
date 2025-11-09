@@ -6,7 +6,6 @@
 	outfit = /datum/outfit/job/roguetown/vagabond/mage
 	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3, TRAIT_ALCHEMY_EXPERT)
 	category_tags = list(CTAG_VAGABOND)
-	give_bank_account = TRUE
 	subclass_stats = list(
 		STATKEY_INT = 2,
 		STATKEY_CON = -2,
@@ -36,7 +35,7 @@
 	if(prob(33))
 		cloak = /obj/item/clothing/cloak/half/brown
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
-	
+
 	r_hand = /obj/item/rogueweapon/woodstaff
 
 	SStreasury.give_money_account(ECONOMIC_DESTITUTE, H, "Savings.")

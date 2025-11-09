@@ -6,7 +6,6 @@
 	outfit = /datum/outfit/job/roguetown/vagabond/scholar
 	category_tags = list(CTAG_VAGABOND)
 	traits_applied = list(TRAIT_CICERONE, TRAIT_SEEDKNOW)
-	give_bank_account = TRUE
 	subclass_stats = list(
 		STATKEY_INT = 2,
 		STATKEY_CON = -1,
@@ -36,7 +35,7 @@
 	if(prob(33))
 		cloak = /obj/item/clothing/cloak/half/brown
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
-	
+
 	if(prob(10))
 		r_hand = /obj/item/rogue/instrument/flute
 

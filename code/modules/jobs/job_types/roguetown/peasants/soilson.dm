@@ -59,7 +59,7 @@
 		/datum/skill/labor/butchering = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 	)
-	
+
 /datum/outfit/job/roguetown/farmer/basic/pre_equip(mob/living/carbon/human/H)
 	..()
 	head = /obj/item/clothing/head/roguetown/armingcap
@@ -88,4 +88,4 @@
 		pants = /obj/item/clothing/under/roguetown/tights/random
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
-	SStreasury.give_money_account(ECONOMIC_WORKING_CLASSS, H, "Savings.")
+	SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")

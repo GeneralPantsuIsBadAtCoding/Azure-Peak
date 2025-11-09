@@ -51,7 +51,7 @@
 			S.name = "squire's tabard ([index])"
 
 /datum/outfit/job/roguetown/squire/pre_equip(mob/living/carbon/human/H)
-	SStreasury.give_money_account(ECONOMIC_WORKING_CLASSS, H, "Savings.")
+	SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")
 
 
 /datum/advclass/squire/lancer

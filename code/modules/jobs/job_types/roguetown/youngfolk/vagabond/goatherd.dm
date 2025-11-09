@@ -7,7 +7,6 @@
 	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 	category_tags = list(CTAG_VAGABOND)
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/goatmale/tame
-	give_bank_account = TRUE
 	subclass_stats = list(
 		STATKEY_WIL = 2,
 		STATKEY_INT = -1,
@@ -36,7 +35,7 @@
 	if(prob(33))
 		cloak = /obj/item/clothing/cloak/half/brown
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
-	
+
 	if(prob(10))
 		r_hand = /obj/item/rogue/instrument/flute
 	SStreasury.give_money_account(ECONOMIC_DESTITUTE, H, "Savings.")

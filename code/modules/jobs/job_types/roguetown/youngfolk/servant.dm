@@ -55,7 +55,7 @@
 	)
 
 /datum/outfit/job/roguetown/servant/pre_equip(mob/living/carbon/human/H)
-	SStreasury.give_money_account(ECONOMIC_WORKING_CLASSS, H, "Savings.")
+	SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")
 
 /datum/outfit/job/roguetown/servant/servant/pre_equip(mob/living/carbon/human/H)
 	..()
