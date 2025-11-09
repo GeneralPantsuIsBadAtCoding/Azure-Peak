@@ -170,7 +170,7 @@
 	devotion_cost = 30
 	recharge_time = 30 MINUTES
 
-obj/effect/proc_holder/spell/invoked/goodberry/cast(list/targets, mob/user = usr)
+/obj/effect/proc_holder/spell/invoked/goodberry/cast(list/targets, mob/user = usr)
 	. = ..()
 	if(istype(targets[1], /obj/structure/flora/roguegrass/bush))
 		var/baseyield = rand(1,3)
