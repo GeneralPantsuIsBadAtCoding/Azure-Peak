@@ -7,7 +7,6 @@
 	subclass_languages = list(/datum/language/thievescant)
 	category_tags = list(CTAG_VAGABOND)
 	traits_applied = list(TRAIT_NOSTINK, TRAIT_NASTY_EATER)
-	give_bank_account = TRUE
 	subclass_stats = list(
 		STATKEY_STR =  1,
 		STATKEY_CON = -3,
