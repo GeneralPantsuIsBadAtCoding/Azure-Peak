@@ -52,3 +52,22 @@
     /datum/advclass/mercenary/twilight_grenzelhoft_jager
 	)
 	same_job_respawn_delay = 30 MINUTES
+
+/proc/update_mercenary_slots()
+	var/datum/job/mercenary_job = SSjob.GetJob("Mercenary")
+	if(!mercenary_job)
+		return
+
+	var/player_count = length(GLOB.joined_player_list)
+	var/slots = 4
+	
+	if(player_count >= 80)
+		slots = 6
+	else if(player_count >= 50)
+		slots = 5
+
+	//4 slots minimum, 6 maximum.
+	slots = min(slots, 6)
+
+	mercenary_job.total_positions = slots
+	mercenary_job.spawn_positions = slots
