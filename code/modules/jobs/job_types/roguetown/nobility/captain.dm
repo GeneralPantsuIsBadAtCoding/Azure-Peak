@@ -18,7 +18,7 @@
 	spells = list(/obj/effect/proc_holder/spell/self/convertrole/guard)
 	outfit = /datum/outfit/job/roguetown/captain
 
-	give_bank_account = 26
+	give_bank_account = TRUE
 	noble_income = 16
 	min_pq = 9
 	max_pq = null
@@ -38,6 +38,9 @@
 	belt = /obj/item/storage/belt/rogue/leather/plaquesilver
 	id = /obj/item/scomstone/garrison
 	job_bitflag = BITFLAG_ROYALTY | BITFLAG_GARRISON
+
+/datum/outfit/job/roguetown/captain/pre_equip(mob/living/carbon/human/H)
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 /datum/job/roguetown/captain/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
