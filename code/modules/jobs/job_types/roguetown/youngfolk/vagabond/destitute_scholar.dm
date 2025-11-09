@@ -6,6 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/vagabond/scholar
 	category_tags = list(CTAG_VAGABOND)
 	traits_applied = list(TRAIT_CICERONE, TRAIT_SEEDKNOW)
+	give_bank_account = TRUE
 	subclass_stats = list(
 		STATKEY_INT = 2,
 		STATKEY_CON = -1,
