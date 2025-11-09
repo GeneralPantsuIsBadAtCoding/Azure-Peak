@@ -5,6 +5,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/vagabond/deprived
 	category_tags = list(CTAG_VAGABOND)
+	give_bank_account = TRUE
 	subclass_stats = list(
 		STATKEY_LCK = 3
 	)
