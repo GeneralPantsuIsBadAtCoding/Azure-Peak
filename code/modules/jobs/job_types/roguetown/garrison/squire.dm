@@ -50,6 +50,10 @@
 				index = H.real_name
 			S.name = "squire's tabard ([index])"
 
+/datum/outfit/job/roguetown/squire/pre_equip(mob/living/carbon/human/H)
+	SStreasury.give_money_account(ECONOMIC_WORKING_CLASSS, H, "Savings.")
+
+
 /datum/advclass/squire/lancer
 	name = "Lancer Squire"
 	tutorial = "A hopeful for the next generation of knightly mounted lancers and infantry pike specialists, \
