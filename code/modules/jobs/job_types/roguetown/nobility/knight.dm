@@ -15,7 +15,7 @@
 	outfit = /datum/outfit/job/roguetown/knight
 	advclass_cat_rolls = list(CTAG_ROYALGUARD = 20)
 	job_traits = list(TRAIT_NOBLE, TRAIT_STEELHEARTED, TRAIT_GOODTRAINER, TRAIT_GUARDSMAN)
-	give_bank_account = 22
+	give_bank_account = TRUE
 	noble_income = 10
 	min_pq = 8
 	max_pq = null
@@ -72,6 +72,9 @@
 		/obj/item/storage/keyring/guardknight = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 	)
+
+/datum/outfit/job/roguetown/knight/pre_equip(mob/living/carbon/human/H)
+	SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Savings.")
 
 /datum/advclass/knight/heavy
 	name = "Heavy Knight"
