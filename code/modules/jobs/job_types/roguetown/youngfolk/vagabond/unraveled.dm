@@ -5,8 +5,8 @@
     allowed_races = RACES_NO_CONSTRUCT
     outfit = /datum/outfit/job/roguetown/vagabond/unraveled
     category_tags = list(CTAG_VAGABOND)
-    traits_applied = list(TRAIT_PSYCHOSIS, TRAIT_NOSTINK)
 	give_bank_account = TRUE
+    traits_applied = list(TRAIT_PSYCHOSIS, TRAIT_NOSTINK)
     subclass_stats = list(
         STATKEY_INT = -2,
         STATKEY_LCK = -2,
