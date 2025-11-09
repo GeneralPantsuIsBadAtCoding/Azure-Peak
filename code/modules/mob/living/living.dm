@@ -366,12 +366,12 @@
 	if(CZ)
 		if( !(check_zone(L.zone_selected) in acceptable) )
 			to_chat(L, span_warning("I can't reach that."))
-			testing("reach2")
+
 			return FALSE
 	else
 		if( !(L.zone_selected in acceptable) )
 			to_chat(L, span_warning("I can't reach that."))
-			testing("reach2")
+
 			return FALSE
 	return TRUE
 
@@ -478,6 +478,9 @@
 				C.grippedby(src)
 			if(!supress_message)
 				send_pull_message(target)
+			var/signal_result = SEND_SIGNAL(target, COMSIG_LIVING_GRAB_SELF_ATTEMPT, target, used_limb)
+			if(signal_result & COMPONENT_CANCEL_GRAB_ATTACK)
+				return FALSE
 		else
 			var/obj/item/grabbing/O = new()
 			O.name = "[target.name]"
@@ -494,6 +497,9 @@
 				target.grippedby(src)
 			if(!supress_message)
 				send_pull_message(target)
+			var/signal_result = SEND_SIGNAL(target, COMSIG_LIVING_GRAB_SELF_ATTEMPT, target, zone_selected)
+			if(signal_result & COMPONENT_CANCEL_GRAB_ATTACK)
+				return FALSE
 
 		update_pull_movespeed()
 		set_pull_offsets(target, state)

@@ -120,6 +120,22 @@
 	else
 		added_skills = list(list(/datum/skill/combat/bows, 1, 6))
 
+
+/datum/virtue/combat/xbowman
+	name = "Marksman"
+	desc = "Warfare is changing, and the crossbow is the next pedestal. I have always been ahead of the curve, as compared to my peers."
+	custom_text = "+1 to Crossbows, Up to Legendary, Minimum Apprentice"
+	added_stashed_items = list(
+		"Quiver (Bolts)" = /obj/item/quiver/bolts
+	)
+
+/datum/virtue/combat/bowman/apply_to_human(mob/living/carbon/human/recipient)
+	if(recipient.get_skill_level(/datum/skill/combat/crossbows) < SKILL_LEVEL_APPRENTICE)
+		recipient.adjust_skillrank_up_to(/datum/skill/combat/crossbows, SKILL_LEVEL_APPRENTICE, silent = TRUE)
+	else
+		added_skills = list(list(/datum/skill/combat/crossbows, 1, 6))
+
+
 /datum/virtue/combat/shepherd
 	name = "Capable Shepherd"
 	desc = "Years of protecting my herd from brigands and thieves have taught me how to use the simplest of weapons in self-defense."

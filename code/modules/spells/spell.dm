@@ -252,7 +252,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			return FALSE
 	else
 		if(!(src in user.mob_spell_list))
-			testing("cast1")
+
 			return FALSE
 
 	var/turf/T = get_turf(user)
@@ -262,7 +262,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	if(!skipcharge)
 		if(!charge_check(user))
-			testing("cast2")
+
 			return FALSE
 
 	if(user.stat && !stat_allowed)

@@ -54,12 +54,12 @@
 					if(!R.subtype_reqs && (B in subtypesof(A)))
 						continue
 					if (R.blacklist.Find(B))
-						testing("foundinblacklist")
+
 						continue
 					if(contents[B] >= R.reqs[A])
 						continue main_loop
 					else
-						testing("removecontent")
+
 						needed_amount -= contents[B]
 						if(needed_amount <= 0)
 							continue main_loop

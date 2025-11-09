@@ -70,7 +70,7 @@
 	return mutable_appearance(GLOB.inhand_icons[index], layer = -layer)
 
 /proc/generate_inhand_icon(/obj/item/I)
-	testing("GDC [index]")
+
 	if(sleevetype)
 		var/icon/dismembered		= icon("icon"=icon, "icon_state"=t_color)
 		var/icon/r_mask				= icon("icon"='icons/roguetown/clothing/onmob/helpers/dismemberment.dmi', "icon_state"="r_[sleevetype]")
@@ -84,7 +84,7 @@
 			if(3)
 				dismembered.Blend(r_mask, ICON_MULTIPLY)
 		dismembered 			= fcopy_rsc(dismembered)
-		testing("GDC added [index]")
+
 		GLOB.dismembered_clothing_icons[index] = dismembered*/
 
 /mob/living/carbon/update_inv_hands(hide_experimental = FALSE)
