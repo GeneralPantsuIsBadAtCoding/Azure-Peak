@@ -55,6 +55,9 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	id = /obj/item/scomstone/bad/garrison
 
+/datum/outfit/job/roguetown/manorguard/pre_equip(mob/living/carbon/human/H)
+	SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
+
 // Melee goon
 /datum/advclass/manorguard/footsman
 	name = "Footman"
