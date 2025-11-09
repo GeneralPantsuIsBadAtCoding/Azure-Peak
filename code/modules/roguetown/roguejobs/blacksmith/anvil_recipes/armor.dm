@@ -1026,20 +1026,20 @@
 	name = "Cuirass, Blacksteel (+1 Blacksteel)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel)
-	created_item = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel
 
 /datum/anvil_recipe/armor/blacksteel/modern/platechest
 	name = "Full-Plate, Blacksteel (+3 Blacksteel)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel)
-	created_item = /obj/item/clothing/suit/roguetown/armor/plate/modern/blacksteel_full_plate
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/blacksteel/modern
 	craftdiff = 5
 
 /datum/anvil_recipe/armor/blacksteel/halfplatechest
 	name = "Blacksteel Half Plate Armor (+2 Blacksteel, +1 Cured Hide)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel, /obj/item/natural/hide/cured)
-	created_item = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_halfplate
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/half/blacksteel
 	craftdiff = 5
 
 /datum/anvil_recipe/armor/blacksteel/modern/plategloves
@@ -1070,7 +1070,7 @@
 	name = "Ancient Blacksteel Plate Armor (+3 Blacksteel)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel)
-	created_item = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_full_plate
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/blacksteel
 
 /datum/anvil_recipe/armor/blacksteel/platelegs
 	name = "Ancient Blacksteel Plate Chausses (+1 Blacksteel)"
