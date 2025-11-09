@@ -367,7 +367,7 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	heal_wound(whp)
 
 /datum/wound/dynamic/proc/armor_check(armor, cap)
-	if(armor)
+	if(armor > 0)
 		if(!bodypart_owner.unlimited_bleeding)
 			if(bleed_rate >= cap)
 				bleed_rate = cap

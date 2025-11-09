@@ -78,6 +78,17 @@
 		playsound(src, soundin, 100, FALSE, extrarange = -1, ignore_walls = FALSE)
 	return appearance
 
+///Flick variant that returns something that can be animated after being made.
+/mob/living/proc/play_overhead_indicator_flick(icon_path, overlay_name, clear_time, overlay_layer = ABOVE_MOB_LAYER, soundin = null, y_offset = 0, x_offset = 0)
+	var/mutable_appearance/appearance = mutable_appearance(icon_path, overlay_name, overlay_layer)
+	appearance.pixel_x += x_offset
+	appearance.pixel_y += y_offset
+	appearance.appearance_flags = RESET_COLOR
+	var/atom/visual = flick_overlay_view(appearance, clear_time)
+	if(soundin)
+		playsound(src, soundin, 100, FALSE, extrarange = -1, ignore_walls = FALSE)
+	return visual
+
 /obj/effect/temp_visual/stress_event
 	icon = 'icons/mob/overhead_effects.dmi'
 	duration = 20

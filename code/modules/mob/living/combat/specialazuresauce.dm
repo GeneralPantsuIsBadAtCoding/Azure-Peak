@@ -137,8 +137,10 @@
 	
 	remove_status_effect(/datum/status_effect/buff/clash)
 	remove_status_effect(/datum/status_effect/buff/clash/limbguard)
+	remove_status_effect(/datum/status_effect/buff/precise_strike)
 	HU.remove_status_effect(/datum/status_effect/buff/clash)
 	HU.remove_status_effect(/datum/status_effect/buff/clash/limbguard)
+	HU.remove_status_effect(/datum/status_effect/buff/precise_strike)
 
 
 /mob/living/carbon/human/proc/disarmed(obj/item/I)

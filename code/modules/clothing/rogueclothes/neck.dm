@@ -273,6 +273,7 @@
 	desc = "Frayed bronze plates, shingled together to shroud the neck. Primitive scrapes line the flanks, yet the center seems to've been cored out by a spear's thrust."
 	icon_state = "ancientgorget"
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
+	prevent_crits = list()
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null

@@ -22,6 +22,7 @@
 	desc = "Your attacks are more precise but have a longer recovery time. Higher critrate with precise attacks.\n(TIP HERE FOR AIMED RCLICK)."
 	icon_state = "rmbaimed"
 	adjacency = FALSE
+	bypasses_click_cd = FALSE
 
 /datum/rmb_intent/aimed/special_attack(mob/living/user, atom/target)
 	if(!user)
@@ -33,6 +34,8 @@
 	if(!user.get_active_held_item()) //Nothing in our hand to strike with.
 		return 
 	if(!user.cmode)
+		return
+	if(user.has_status_effect(/datum/status_effect/buff/clash) || user.has_status_effect(/datum/status_effect/buff/clash/limbguard))	//No stacking these!
 		return
 	
 	user.apply_status_effect(/datum/status_effect/buff/precise_strike)

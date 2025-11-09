@@ -21,6 +21,7 @@
 	desc = "Frayed bronze rings, interlinked together to form sagging mittens. Fingers, talons, claws; they're all the same, when smothered beneath maille and left to rot away."
 	icon_state = "acgloves"
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
+	prevent_crits = list()
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null

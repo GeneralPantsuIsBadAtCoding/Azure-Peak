@@ -120,6 +120,7 @@
 	icon_state = "achainkilt"
 	sleevetype = "achainkilt"
 	max_integrity = ARMOR_INT_LEG_DECREPIT_CHAIN
+	prevent_crits = list()
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null

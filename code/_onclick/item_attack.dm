@@ -93,12 +93,29 @@
 	var/construct = 0
 	var/burialrited = FALSE
 
+#define ATTACK_OVERRIDE_NODEFENSE 2
+
 /obj/item/proc/attack(mob/living/M, mob/living/user)
+	var/override_status
+	//Item signal for override
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
 		return FALSE
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user, src)
-	if(SEND_SIGNAL(M, COMSIG_MOB_ITEM_BEING_ATTACKED, M, user, src) & COMPONENT_ITEM_NO_ATTACK)
+
+	//Receiver signal for overrides
+	var/_receiver_signal = SEND_SIGNAL(M, COMSIG_MOB_ITEM_BEING_ATTACKED, M, user, src)
+	if(_receiver_signal & COMPONENT_ITEM_NO_ATTACK)
 		return FALSE
+	else if(_receiver_signal & COMPONENT_ITEM_NO_DEFENSE)
+		override_status = ATTACK_OVERRIDE_NODEFENSE
+
+	//Attacker signal generic + override for no defense
+	var/_attacker_signal = SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user, src)
+	if(_attacker_signal & COMPONENT_ITEM_NO_ATTACK)
+		return FALSE
+	else if(_attacker_signal & COMPONENT_ITEM_NO_DEFENSE)
+		override_status = ATTACK_OVERRIDE_NODEFENSE
+
+
 	if(item_flags & NOBLUDGEON)
 		return FALSE	
 
@@ -122,12 +139,18 @@
 
 //	if(force)
 //		user.emote("attackgrunt")
+
+	var/swingdelay = user.used_intent.swingdelay
+	var/_swingdelay_mod = SEND_SIGNAL(src, COMSIG_LIVING_SWINGDELAY_MOD)
+	if(_swingdelay_mod)
+		swingdelay += _swingdelay_mod
+
 	var/datum/intent/cached_intent = user.used_intent
-	if(user.used_intent.swingdelay)
+	if(swingdelay)
 		if(!user.used_intent.noaa && isnull(user.mind))
 			if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
 				user.do_attack_animation(M, user.used_intent.animname, user.used_intent.masteritem, used_intent = user.used_intent, simplified = TRUE)
-		sleep(user.used_intent.swingdelay)
+		sleep(swingdelay)
 	if(user.a_intent != cached_intent)
 		return
 	if(QDELETED(src) || QDELETED(M))
@@ -140,7 +163,7 @@
 		return
 	if((M.mobility_flags & MOBILITY_STAND))
 		if(M.checkmiss(user))
-			if(!user.used_intent.swingdelay)
+			if(!swingdelay)
 				if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
 					user.do_attack_animation(M, user.used_intent.animname, used_item = src, used_intent = user.used_intent, simplified = TRUE)
 			return
@@ -164,10 +187,21 @@
 			user.adjust_blurriness(3)
 			user.adjustBruteLoss(5)
 			user.apply_status_effect(/datum/status_effect/churned, M)
-	if(M.checkdefense(user.used_intent, user))
-		return
+	
+	//Niche signal for post-swingdelay attacks when we want to care about those.
+	_attacker_signal = null
+	_attacker_signal = SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK_POST_SWINGDELAY, M, user, src)
+	if(_attacker_signal & COMPONENT_ITEM_NO_ATTACK)
+		return FALSE
+	else if(_attacker_signal & COMPONENT_ITEM_NO_DEFENSE)
+		override_status = ATTACK_OVERRIDE_NODEFENSE
+
+	if(override_status != ATTACK_OVERRIDE_NODEFENSE)
+		if(M.checkdefense(user.used_intent, user))
+			return
 
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SUCCESS, M, user)
+	SEND_SIGNAL(M, COMSIG_ITEM_ATTACKED_SUCCESS, src, user)
 	if(user.zone_selected == BODY_ZONE_PRECISE_R_INHAND)
 		var/offh = 0
 		var/obj/item/W = M.held_items[1]

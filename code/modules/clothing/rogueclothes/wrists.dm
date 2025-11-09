@@ -83,6 +83,7 @@
 	name = "decrepit bracers"
 	desc = "Frayed bronze cuffings, bound across the wrists. Don't bother counting the tallies left behind by their former legionnaires; none of them ever returned from the battlefields."
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
+	prevent_crits = list()
 	icon_state = "ancientbracers"
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag

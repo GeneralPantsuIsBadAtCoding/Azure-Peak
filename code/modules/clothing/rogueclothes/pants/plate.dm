@@ -38,6 +38,7 @@
 	desc = "Frayed bronze plates, shingled over chausses of rotting leather-and-maille. Voided bowels are all that remains of its former legionnaire."
 	icon_state = "ancientplate_legs"
 	max_integrity = ARMOR_INT_LEG_DECREPIT_PLATE
+	prevent_crits = list()
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
