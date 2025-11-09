@@ -84,8 +84,7 @@
 	name = "Barbute, Decrepit (+1 Alloy)"
 	req_bar = /obj/item/ingot/purifiedaalloy
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
-	additional_items = /obj/item/ingot/aalloy
-
+	additional_items = list(/obj/item/ingot/aalloy)
 
 /datum/anvil_recipe/armor/aalloy/savoyard
 	name = "Savoyard, Decrepit (+1 Alloy)"
@@ -96,7 +95,7 @@
 	name = "Savoyard, Ancient (+1 Purified Alloy)"
 	req_bar = /obj/item/ingot/purifiedaalloy
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
-	additional_items = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy)
 
 /datum/anvil_recipe/armor/aalloy/mask
 	name = "Mask, Decrepit"

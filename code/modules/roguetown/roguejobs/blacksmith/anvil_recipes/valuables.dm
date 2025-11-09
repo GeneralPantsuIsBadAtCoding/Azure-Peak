@@ -201,4 +201,24 @@
 	hides_from_books = TRUE
 	additional_items = list(/obj/item/ingot/gold, /obj/item/roguegem/blue, /obj/item/roguegem/violet, /obj/item/clothing/neck/roguetown/psicross/silver)
 	created_item = /obj/item/clothing/ring/dragon_ring
-	craftdiff = 6
+	craftdiff = SKILL_LEVEL_LEGENDARY
+	bypass_dupe_test = TRUE // Transmutation into draconic ingot is fine
+
+/datum/anvil_recipe/valuables/hope
+	name = "Ring Of Omnipotence (Secret!)"
+	req_bar = /obj/item/ingot/silver
+	hides_from_books = TRUE
+	additional_items = list(/obj/item/clothing/ring/statgemerald, /obj/item/clothing/ring/statonyx, /obj/item/clothing/ring/statamythortz, /obj/item/clothing/ring/statrontz)
+	created_item = /obj/item/clothing/ring/statdorpel
+	craftdiff = SKILL_LEVEL_LEGENDARY
+	bypass_dupe_test = TRUE // Transmutation into riddle of steel is fine if you smelt this.
+
+/datum/anvil_recipe/valuables/daemonslayer
+	name = "Daemonslayer (Secret!)"
+	req_bar = /obj/item/ingot/silver
+	hides_from_books = TRUE
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver/, /obj/item/ingot/draconic, /obj/item/ingot/weeping, /obj/item/riddleofsteel, /obj/item/grown/log/tree)
+	created_item = /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
+	appro_skill = /datum/skill/craft/weaponsmithing
+	craftdiff = SKILL_LEVEL_LEGENDARY
+	bypass_dupe_test = TRUE // Smelting into a kriegmesser is fine

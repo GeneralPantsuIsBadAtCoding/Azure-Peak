@@ -243,7 +243,7 @@
 	if(!I?.force)
 		return 0
 	var/newforce = I.force_dynamic
-	testing("startforce [newforce]")
+
 	if(!istype(user))
 		return newforce
 	
@@ -467,17 +467,17 @@
 			if(prob(33))
 				to_chat(user, span_info("The blade is dull..."))
 			newforce *= (lerpratio * 2)
-	testing("endforce [newforce]")
+
 	return newforce
 
 /obj/attacked_by(obj/item/I, mob/living/user)
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/newforce = (get_complex_damage(I, user, blade_dulling) * I.demolition_mod)
 	if(!newforce)
-		testing("dam33")
+
 		return 0
 	if(newforce < damage_deflection)
-		testing("dam44")
+
 		return 0
 	if(user.used_intent.no_attack)
 		return 0
@@ -501,10 +501,10 @@
 /turf/proc/attacked_by(obj/item/I, mob/living/user, multiplier)
 	var/newforce = get_complex_damage(I, user, blade_dulling)
 	if(!newforce)
-		testing("attack6")
+
 		return 0
 	if(newforce < damage_deflection)
-		testing("attack7")
+
 		return 0
 	if(user.used_intent.no_attack)
 		return 0
@@ -601,7 +601,7 @@
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	var/hitlim = simple_limb_hit(user.zone_selected)
-	testing("[src] attacked_by")
+
 	I.funny_attack_effects(src, user)
 	if(I.force_dynamic)
 		var/newforce = get_complex_damage(I, user)

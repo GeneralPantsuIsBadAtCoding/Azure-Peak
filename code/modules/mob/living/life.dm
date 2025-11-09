@@ -45,10 +45,11 @@
 	/// ENDVRE AS HE DOES.
 	if(!stat && HAS_TRAIT(src, TRAIT_PSYDONITE) && !HAS_TRAIT(src, TRAIT_PARALYSIS))
 		handle_wounds()
-		//passively heal wounds, but not if you're skullcracked OR DEAD.
+		//passively heal wounds, when you're in trouble..
 		if(blood_volume > BLOOD_VOLUME_SURVIVE)
 			for(var/datum/wound/wound as anything in get_wounds())
-				wound.heal_wound(0.6)
+				if(wound.severity <= WOUND_SEVERITY_MODERATE)
+					wound.heal_wound(0.4)
 
 	if(!stat && HAS_TRAIT(src, TRAIT_LYCANRESILENCE) && !HAS_TRAIT(src, TRAIT_PARALYSIS))
 		if(src.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder) || src.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))

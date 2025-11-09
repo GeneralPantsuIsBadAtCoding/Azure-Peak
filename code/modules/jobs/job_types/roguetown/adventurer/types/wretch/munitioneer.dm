@@ -38,7 +38,7 @@
 	)
 
 /datum/outfit/job/roguetown/wretch/munitioneer/pre_equip(mob/living/carbon/human/H)
-	to_chat(H, span_warning("You are a passable warrior- though week- but your true strength lies in your ability to bend the resources of Azuria to your will."))
+	to_chat(H, span_warning("You are a passable warrior- though weak- but your true strength lies in your ability to bend the resources of Azuria to your will."))
 	has_loadout = TRUE
 	head = /obj/item/clothing/head/roguetown/roguehood/warden/munitioneer
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/paalloy
@@ -55,6 +55,7 @@
 	wrists = /obj/item/clothing/neck/roguetown/psicross/malum
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch/lantern/prelit = 1,
+		/obj/item/ritechalk = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,
 		/obj/item/rogueweapon/huntingknife/combat = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1,

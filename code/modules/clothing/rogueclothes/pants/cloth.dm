@@ -44,6 +44,12 @@
 	icon_state = "sailorpants"
 	salvage_amount = 1
 
+/obj/item/clothing/under/roguetown/tights/explorerpants
+	name = "explorer's pants"
+	desc = "Practical and modest, you hope that it will survive the next cavedive."
+	icon_state = "explorerpants"
+	item_state = "explorerpants"
+
 /obj/item/clothing/under/roguetown/tights/puritan
 	name = "formal breeches"
 	icon_state = "monkpants"

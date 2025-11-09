@@ -284,7 +284,7 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 	harmful = TRUE
 
 /datum/reagent/strongpoison/on_mob_life(mob/living/carbon/M)
-	testing("Someone was poisoned")
+
 	if(volume > 0.09)
 		if(isdwarf(M))
 			M.add_nausea(1)

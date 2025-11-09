@@ -14,20 +14,12 @@
 	damage = max(damage-blocked,0)
 //	var/hit_percent = (100-blocked)/100
 	if(!damage || (!forced && hit_percent <= 0))
-		testing("faildam")
+
 		return 0
 	clear_typing_indicator()
 	var/damage_amount =  forced ? damage : damage * hit_percent
 	switch(damagetype)
 		if(BRUTE)
-//			if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
-//				if(stat != DEAD && def_zone)
-//					testing("def_zone check [def_zone] [src]")
-//					if((health - damage_amount) <= 0)
-//						var/list/acceptable_death_zones = list("body", "chest", "stomach", "belly", "head", "torso")
-//						if(!(def_zone in acceptable_death_zones))
-//							testing("[def_zone] is not an acceptable death zone for [src]")
-//							return 1
 			adjustBruteLoss(damage_amount, forced = forced)
 		if(BURN)
 			adjustFireLoss(damage_amount, forced = forced)

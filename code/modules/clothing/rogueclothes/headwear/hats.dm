@@ -93,6 +93,19 @@
 	item_state = "flathat"
 	sewrepair = TRUE
 
+/obj/item/clothing/head/roguetown/explorerhat
+	name = "explorer's hat"
+	desc = "How many secrets can I uncover this week?"
+	icon_state = "explorerhat"
+	item_state = "explorerhat"
+	sewrepair = TRUE
+
+/obj/item/clothing/head/roguetown/deserthood
+	name = "desert hood"
+	desc = "If only it was this warm."
+	icon_state = "deserthood"
+	item_state = "deserthood"
+	sewrepair = TRUE
 
 /obj/item/clothing/head/roguetown/chaperon
 	name = "chaperon hat"

@@ -535,14 +535,11 @@
 			final_y = screen_y+current_y
 			final_coordinates = "[final_x],[final_y]"
 			if(final_x >= (screen_max_columns*grid_box_ratio))
-				testing("validate_grid_coordinates FAILED, final_x >= screen_max_columns, final_coordinates: ([final_coordinates])")
 				return FALSE
 			if(final_y >= (screen_max_rows*grid_box_ratio))
-				testing("validate_grid_coordinates FAILED, final_y >= screen_max_rows, final_coordinates: ([final_coordinates])")
 				return FALSE
 			var/existing_item = LAZYACCESS(grid_coordinates_to_item, final_coordinates)
 			if(existing_item && (!dragged_item || (existing_item != dragged_item)))
-				testing("validate_grid_coordinates FAILED, coordinates already occupied, final_coordinates: ([final_coordinates])")
 				return FALSE
 	return TRUE
 /datum/component/storage/proc/get_bound_underlay(grid_width = world.icon_size, grid_height = world.icon_size, enchanted)
@@ -626,7 +623,6 @@
 			final_x = coordinate_x+current_x
 			final_y = coordinate_y+current_y
 			calculated_coordinates = "[final_x],[final_y]"
-			testing("handle_item_insertion SUCCESS calculated_coordinates: ([calculated_coordinates])")
 			LAZYADDASSOC(grid_coordinates_to_item, calculated_coordinates, storing)
 			LAZYINITLIST(item_to_grid_coordinates)
 			LAZYINITLIST(item_to_grid_coordinates[storing])
@@ -815,7 +811,7 @@
 		storage_master.screen_pixel_y = initial(storage_master.screen_pixel_y)
 		storage_master.orient2hud()
 		storage_master.show_to(usr)
-		testing("storage screen variables reset.")
+
 		to_chat(usr, span_notice("Storage window position has been reset."))
 	else if(LAZYACCESS(modifiers, "ctrl"))
 		locked = !locked
@@ -841,7 +837,6 @@
 	var/minimum_y_pixels = (16 - storage_master.screen_max_rows) * world.icon_size
 
 	var/screen_loc = LAZYACCESS(modifiers, "screen-loc")
-	testing("storage close button MouseDrop() screen_loc: ([screen_loc])")
 
 	var/screen_x = copytext(screen_loc, 1, findtext(screen_loc, ","))
 	var/screen_pixel_x = text2num(copytext(screen_x, findtext(screen_x, ":") + 1))
@@ -864,7 +859,7 @@
 	storage_master.screen_start_y = screen_y
 	storage_master.screen_pixel_y = screen_pixel_y
 	storage_master.orient2hud()
-	testing("[screen_x]:[screen_pixel_x],[screen_y]:[screen_pixel_y]")
+
 
 /atom/movable/screen/storage
 	icon = 'icons/hud/storage.dmi'
