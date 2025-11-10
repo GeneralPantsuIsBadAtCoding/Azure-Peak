@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { PageButton } from 'tgui/components/PageButton';
 import { Window } from 'tgui/layouts';
-import { BlockQuote, DmIcon, Button, Icon, Box, Section, ProgressBar, Stack, Tabs } from 'tgui-core/components';
-
+import { DmIcon, Button, Icon, Box, ProgressBar, Stack, Tabs, Input } from 'tgui-core/components';
 
 interface Data {
   categories: Category[];
@@ -26,15 +24,17 @@ interface Item {
 }
 
 export const LoadoutPanel = (props) => {
-  const { data, act} = useBackend<Data>();
+  const { data, act } = useBackend<Data>();
   const [tabIndex, setTabIndex] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [confirmReset, setConfirmReset] = useState(false);
 
   const categoriesArray = Object.entries(data.categories ?? {}).map(([name, items]) => ({
     name,
     items,
   }));
 
-   const fallback = (
+  const fallback = (
     <Icon m='32px' name="spinner" spin />
   );
 
@@ -51,6 +51,20 @@ export const LoadoutPanel = (props) => {
   ];
 
   const [authored, setAuthored] = useState(easter[0]);
+
+  const filteredItems = Object.values(categoriesArray[tabIndex]?.items || {}).filter(item =>
+    (item?.name?.toLowerCase() || '').includes(searchQuery.toLowerCase())
+  );
+
+  const handleResetClick = () => {
+    if (confirmReset) {
+      act('clear', {});
+      setTimeout(() => setConfirmReset(false), 100);
+    } else {
+      setConfirmReset(true);
+      setTimeout(() => setConfirmReset(false), 5000);
+    }
+  };
 
   return (
     <Window title={"Лодаут"} width={1000} height={700}>
@@ -96,11 +110,34 @@ export const LoadoutPanel = (props) => {
                 average: [0.25, 0.75],
                 good: [-Infinity, 0.25],
               }}
-              value={data.curLoadoutSlots/data.maxLoadoutSlots}
+              value={data.curLoadoutSlots / data.maxLoadoutSlots}
               width="300px"
-              
             />
           </Stack.Item>
+          <Stack.Item
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginTop: '10px',
+            }}
+          >
+            <Input
+              placeholder="Поиск предметов..."
+              value={searchQuery}
+              onChange={setSearchQuery}
+              width="300px"
+            />
+            <Button 
+              onClick={handleResetClick}
+              style={{ marginTop: '10px' }} 
+              color={confirmReset ? 'good' : 'danger'}
+            >
+              <span style={{ color: 'white' }}>
+                {confirmReset ? 'Точно?' : 'Сбросить все'}
+              </span>
+            </Button>
+          </Stack.Item>          
           <Stack.Item>
             <Tabs>
               {categoriesArray.map((cat, i) => (
@@ -109,7 +146,7 @@ export const LoadoutPanel = (props) => {
                   selected={i === tabIndex}
                   onClick={() => setTabIndex(i)}
                   style={{
-                    flex:1,
+                    flex: 1,
                     backgroundColor: i === tabIndex ? "#444" : "#222",
                     color: "white",
                   }}
@@ -119,14 +156,14 @@ export const LoadoutPanel = (props) => {
               ))}
             </Tabs>
           </Stack.Item>
-          <Stack.Item 
-           style={{
+          <Stack.Item
+            style={{
               overflow: 'auto',
             }}
           >
-            {Object.values(categoriesArray[tabIndex].items).map((item, index) => (
+            {filteredItems.map((item, index) => (
               <div
-                key={item.name}
+                key={item?.name || item?.path || index}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -138,49 +175,47 @@ export const LoadoutPanel = (props) => {
                 }}
               >
                 <DmIcon
-                  icon={item.icon}
+                  icon={item?.icon}
                   fallback={fallback}
-                  icon_state={item.icon_state}
-                   style={{
+                  icon_state={item?.icon_state}
+                  style={{
                     backgroundColor: '#141414',
                     borderRadius: '12px',
-                    padding: '16px', 
+                    padding: '16px',
                     width: '96px',
                     height: '96px',
                   }}
                 />
-                <blockquote style={{ margin: 0, flexGrow: 1, fontSize: '18px', color: '#e4e4e4', textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}>{item.name}</blockquote>
+                <blockquote style={{ margin: 0, flexGrow: 1, fontSize: '18px', color: '#e4e4e4', textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}>{item?.name || 'Без названия'}</blockquote>
                 <Box
                   style={{
                     width: 96,
                     height: 96,
-                    backgroundColor: (item.isDonatorItem && data.isDonator === 0) ? "#a75818ff" : item.isSelected ? "#a71818" : "#24a718",
+                    backgroundColor: (item?.isDonatorItem && data.isDonator === 0) ? "#a75818ff" : item?.isSelected ? "#a71818" : "#24a718",
                     borderRadius: 8,
                     display: "flex",
-                    alignItems: "center", 
-                    justifyContent: "center", 
+                    alignItems: "center",
+                    justifyContent: "center",
                     color: '#000',
                   }}
                   onClick={() => {
-                    if(item.isDonatorItem && data.isDonator === 0) {
+                    if (item?.isDonatorItem && data.isDonator === 0) {
                       return;
                     }
 
-                    if(item.isSelected) {
-                      act('remove', { item: item.name });
+                    if (item?.isSelected) {
+                      act('remove', { item: item?.name || item?.path });
                     } else {
-                      act('add', { item: item.name });
+                      act('add', { item: item?.name || item?.path });
                     }
-                   
                   }}
                 >
-                  <b>{(item.isDonatorItem && data.isDonator === 0) ? 'Недоступно' : item.isSelected ? 'Убрать' : 'Взять'}</b>
+                  <b>{(item?.isDonatorItem && data.isDonator === 0) ? 'Недоступно' : item?.isSelected ? 'Убрать' : 'Взять'}</b>
                 </Box>
               </div>
             ))}
           </Stack.Item>
         </Stack>
-       
       </Window.Content>
     </Window>
   );

@@ -139,6 +139,11 @@
 			user_prefs.remove_loadout_item(params["item"])
 			return TRUE
 
+		if("clear")
+			user_prefs.selected_loadout_items = list()
+			to_chat(user, "Лодаут очищен!")
+			return TRUE
+
 		if("boosty")
 			user << link(CONFIG_GET(string/boostyurl))
 			return TRUE
