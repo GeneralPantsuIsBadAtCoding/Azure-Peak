@@ -1800,13 +1800,13 @@
 		cmode_involved = TRUE
 
 	if(cmode_involved)	//If no one's in combat around us, don't bother with a delay.
-		if(!move_after(src, 0.3 SECONDS, FALSE, src))
+		if(!move_after(src, 0.2 SECONDS, FALSE, src))
 			return
 
 	if(cmode_involved && stance_switch_time && stance_switch_time > world.time)
 		to_chat(src, span_warning("I can't switch stances this quickly while in danger!"))
 		return
-		
+
 	if(type)
 		if(type in possible_rmb_intents)
 			rmb_intent = new type()
