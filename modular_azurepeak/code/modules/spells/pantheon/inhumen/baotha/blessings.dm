@@ -16,7 +16,7 @@
     inspiration.grant_inspiration(human, bard_tier = BARD_T2)
 
 /datum/baotha_blessing/joy
-    name = "Joy (nudist, cool purple aura)"
+    name = "Joy (cool purple aura)"
 
 /datum/baotha_blessing/joy/apply(mob/living/carbon/human/human)
     human.remove_status_effect(/datum/status_effect/buff/druqks)
