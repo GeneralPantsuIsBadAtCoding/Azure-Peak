@@ -138,7 +138,7 @@
 	. = ..()
 
 /obj/item/rogueweapon/hammer/attack(mob/living/M, mob/user)
-	testing("attack")
+
 	if(!user.cmode)
 		hammerheal(M, user)
 	else

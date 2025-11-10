@@ -1306,7 +1306,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				SetChoices(user)
 			if("tutorial")
 				if(href_list["tut"])
-					testing("[href_list["tut"]]")
+
 					to_chat(user, span_info("* ----------------------- *"))
 					to_chat(user, href_list["tut"])
 					to_chat(user, span_info("* ----------------------- *"))

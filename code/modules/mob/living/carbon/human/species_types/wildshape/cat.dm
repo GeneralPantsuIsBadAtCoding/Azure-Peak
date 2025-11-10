@@ -4,7 +4,8 @@
 	footstep_type = FOOTSTEP_MOB_CLAW
 	ambushable = FALSE
 	skin_armor = new /obj/item/clothing/suit/roguetown/armor/skin_armor/cat_skin
-	// Someone else balance this, I am here for code, not numbers
+	wildshape_icon = 'icons/mob/pets.dmi'
+	wildshape_icon_state = "cat2"
 
 /mob/living/carbon/human/species/wildshape/cat/gain_inherent_skills()
 	. = ..()

@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(nightshift)
 		update_nightshift(night_time, announcing)*/
 	var/curtod = settod()
 	if(current_tod != curtod)
-		testing("curtod [curtod] current_tod [current_tod] globtod [GLOB.tod]")
+
 		current_tod = GLOB.tod
 		update_nightshift()
 

@@ -136,16 +136,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 34) // Update races
 		var/species_name
 		S["species"] >> species_name
-		testing("Save version < 34, updating [species_name].")
+
 		if(species_name)
 			var/newtype = GLOB.species_list[species_name]
 			if(!newtype)
 				switch(species_name)
 					if("Sissean")
-						testing("Updating to Zardman.")
+
 						species_name = "Zardman"
 					if("Vulpkian")
-						testing("Your character is now a Venardine.")
+
 						species_name = "Venardine"
 		_load_species(S, species_name)
 
@@ -360,7 +360,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 
 /datum/preferences/proc/_load_species(S, species_name = null)
-	testing("begin _load_species()")
 	if(!species_name)
 		S["species"] >> species_name
 
@@ -374,7 +373,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			else
 				testing("spec_check() succeeded on type [newtype] and name [species_name].")
 		else
-			testing("GLOB.species_list failed on name [species_name], defaulting to [default_species].")
+
 			pref_species = new default_species.type()
 	else
 		pref_species = new default_species.type()

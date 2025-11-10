@@ -322,12 +322,12 @@
 
 /// Can this atoms reagents be refilled
 /atom/proc/is_refillable()
-	testing("isrefill")
+
 	return reagents && (reagents.flags & REFILLABLE)
 
 /// Is this atom drainable of reagents
 /atom/proc/is_drainable()
-	testing("isdrain")
+
 	return reagents && (reagents.flags & DRAINABLE)
 
 /// Are you allowed to drop this atom

@@ -97,7 +97,7 @@
 
 	H.adjust_blindness(-3)
 	if(H.mind)
-		var/weapons = list("Warhammer & Shield","Axe & Shield","Halberd","Greataxe")
+		var/weapons = list("Warhammer & Shield","Axe & Shield","Sword & Shield","Halberd & Sword","Greataxe & Sword")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
@@ -107,12 +107,20 @@
 			if("Axe & Shield")
 				beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 				backl = /obj/item/rogueweapon/shield/iron
-			if("Halberd")
+			if("Sword & Shield")
+				l_hand = /obj/item/rogueweapon/sword
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				backl = /obj/item/rogueweapon/shield/iron
+			if("Halberd & Sword")
+				l_hand = /obj/item/rogueweapon/sword
 				r_hand = /obj/item/rogueweapon/halberd
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
-			if("Greataxe")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Greataxe & Sword")
+				l_hand = /obj/item/rogueweapon/sword
 				r_hand = /obj/item/rogueweapon/greataxe
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
+				beltr = /obj/item/rogueweapon/scabbard/sword
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
@@ -280,18 +288,20 @@
 
 	H.adjust_blindness(-3)
 	if(H.mind)
-		var/weapons = list("Bardiche","Sword & Shield")
+		var/weapons = list("Bardiche & Sword","Sword & Shield")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
-			if("Bardiche")
+			if("Bardiche & Sword")
+				l_hand = /obj/item/rogueweapon/sword
 				r_hand = /obj/item/rogueweapon/halberd/bardiche
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
+				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Sword & Shield")
 				beltr = /obj/item/rogueweapon/scabbard/sword
 				r_hand = /obj/item/rogueweapon/sword/sabre
 				backl = /obj/item/rogueweapon/shield/wood
-		
+
 		backpack_contents = list(
 			/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 			/obj/item/rope/chain = 1,
