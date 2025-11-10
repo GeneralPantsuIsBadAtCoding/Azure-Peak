@@ -97,7 +97,7 @@
 						break
 		else
 			if((owner.get_stat(S) + effectedstats[S]) > 20)	//We check for overflow as well.
-				effectedstats[S] = max(((owner.get_stat(S) + effectedstats[S]) - 20), 0)
+				effectedstats[S] = 20 - owner.get_stat(S)
 		owner.change_stat(S, effectedstats[S])
 	return TRUE
 
