@@ -80,11 +80,8 @@
 		ui.open()
 
 /datum/loadout_panel/ui_data(mob/user)
-
 	var/list/data = list()
-
 	var/list/categories = list()
-
 	var/datum/preferences/user_prefs = user.client.prefs
 	var/list/selected_loadout_items = user_prefs.selected_loadout_items
 
@@ -93,27 +90,28 @@
 		if(!categories[cat_name])
 			categories[cat_name] = list()
 		for(var/datum/loadout_item/item in items_in_cat)
-			var/icon = item.path::icon
-			var/icon_state = item.path::icon_state
-			var/selected = FALSE
+			if(!item.ckeywhitelist || item.donator_ckey_check(user.ckey))
+				var/icon = item.path::icon
+				var/icon_state = item.path::icon_state
+				var/selected = FALSE
 
-			if(ispath(item.path, /obj/item/enchantingkit))
-				var/obj/item/enchantingkit/kit_typepath = item.path
-				var/obj/result_item = kit_typepath.result_item
-				icon = result_item::icon
-				icon_state = result_item::icon_state
-			
-			if(item.name in selected_loadout_items)
-				selected = TRUE
+				if(ispath(item.path, /obj/item/enchantingkit))
+					var/obj/item/enchantingkit/kit_typepath = item.path
+					var/obj/result_item = kit_typepath.result_item
+					icon = result_item::icon
+					icon_state = result_item::icon_state
+				
+				if(item.name in selected_loadout_items)
+					selected = TRUE
 
-			categories[cat_name][item.name] += list(
-				name = item.name,
-				path = item.path,
-				icon = icon,
-				icon_state = icon_state,
-				isDonatorItem = item.donatitem,
-				isSelected = selected
-			)
+				categories[cat_name][item.name] += list(
+					name = item.name,
+					path = item.path,
+					icon = icon,
+					icon_state = icon_state,
+					isDonatorItem = item.donatitem,
+					isSelected = selected
+				)
 	data["categories"] = categories
 	data["isDonator"] = check_patreon_lvl(user.ckey)
 	data["curLoadoutSlots"] = selected_loadout_items.len
