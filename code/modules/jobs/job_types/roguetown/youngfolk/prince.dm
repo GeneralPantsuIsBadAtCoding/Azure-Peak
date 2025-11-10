@@ -114,6 +114,8 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 	mask = /obj/item/clothing/mask/rogue/spectacles
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
+
 /datum/advclass/heir/aristocrat
 	name = "Sheltered Aristocrat"
 	tutorial = "Life has been kind to you; you've an entire keep at your disposal, servants to wait on you, and a whole retinue of guards to guard you. You've nothing to prove; just live the good life and you'll be a lord someday, too. A lack of ambition translates into a lacking skillset beyond schooling, though, and your breaks from boredom consist of being a damsel or court gossip."
@@ -160,6 +162,7 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/silkcoat
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/princess
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 /datum/advclass/heir/inbred
 	name = "Inbred wastrel"
@@ -201,6 +204,7 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/silkcoat
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/princess
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 /datum/advclass/heir/scamp
 	name = "Nettlesome Scamp"
@@ -252,6 +256,7 @@
 		/obj/item/storage/belt/rogue/pouch/coins/rich = 1,
 		/obj/item/lockpickring/mundane = 1,
 	)
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 
 
