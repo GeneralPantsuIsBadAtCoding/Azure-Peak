@@ -361,4 +361,3 @@
 	timer = 10 MINUTES
 	stressadd = -99
 	desc = span_hypnophrase("The world starts to fade around me. My throat melts, my stomach churns, and my pulse quickens. Oblivion never tasted better.") 
-	

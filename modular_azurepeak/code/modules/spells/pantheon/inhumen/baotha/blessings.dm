@@ -22,6 +22,8 @@
 
 /datum/baotha_blessing/joy/apply(mob/living/carbon/human/human)
     ADD_TRAIT(human, TRAIT_NUDIST, src)
+
+    human.unequip_everything()
     
     human.remove_status_effect(/datum/status_effect/buff/druqks)
     human.apply_status_effect(/datum/status_effect/buff/druqks/baotha/joybringer)
