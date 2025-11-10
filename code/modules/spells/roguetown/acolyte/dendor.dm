@@ -172,13 +172,22 @@
 
 /obj/effect/proc_holder/spell/invoked/goodberry/cast(list/targets, mob/user = usr)
 	. = ..()
-	if(istype(targets[1], /obj/structure/flora/roguegrass/bush))
-		var/baseyield = rand(1,3)
-		var/skill = user.get_skill_level(/datum/skill/magic/holy)
-		var/fullyield = round(skill / 2) + baseyield
-		var/turf/t = get_turf(targets[1])
-		for(var/i in 1 to fullyield)
-			new /obj/item/reagent_containers/food/snacks/grown/berries/rogue/dendor(t)
-		return TRUE
-	revert_cast()
-	return FALSE
+	if(!istype(targets[1], /obj/structure/flora/roguegrass/bush))
+		revert_cast()
+		return FALSE
+	var/obj/structure/flora/roguegrass/bush/B = targets[1]
+	var/rawboost = user.get_skill_level(/datum/skill/magic/holy)
+	var/yieldboost = round(min(rawboost / 2, 1))
+	var/produce = /obj/item/reagent_containers/food/snacks/grown/berries/rogue/dendor
+	if(B.blessed)
+		to_chat(user, span_warning("This bush already bears a blessing."))
+		revert_cast()
+		return FALSE
+	if(B.looty)
+		B.looty = list(/obj/item/reagent_containers/food/snacks/grown/berries/rogue/dendor)
+		for(var/i in 1 to yieldboost)
+			B.looty += produce
+		B.loot_replenish()
+	B.blessed = TRUE
+	B.desc += "Blessed by natural powers. This bush only produces blessed fruits."
+	return TRUE
