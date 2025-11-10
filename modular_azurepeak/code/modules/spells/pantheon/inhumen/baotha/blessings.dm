@@ -5,7 +5,7 @@
     return
 
 /datum/baotha_blessing/heartbreak
-    name = "Heartbreak (bardic inspiration)"
+    name = "Heartbreak (bard inspiration)"
 
 /datum/baotha_blessing/heartbreak/apply(mob/living/carbon/human/human)
     ADD_TRAIT(human, TRAIT_GOODLOVER, src)

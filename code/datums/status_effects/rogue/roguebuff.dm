@@ -113,15 +113,15 @@
 		if(HAS_TRAIT(mob, TRAIT_CRACKHEAD) || HAS_TRAIT(mob, TRAIT_PSYDONITE))
 			continue
 		
-		mob.apply_status_effect(/datum/status_effect/buff/druqks/baotha/cursed)
+		mob.apply_status_effect(/datum/status_effect/buff/druqks/cursed)
 
 #undef JOYBRINGER_FILTER
 
-/datum/status_effect/buff/druqks/baotha/cursed
+/datum/status_effect/buff/druqks/cursed
 	effectedstats = list(STATKEY_SPD = -1, STATKEY_LCK = -1)
 	duration = 3 SECONDS
 
-/datum/status_effect/buff/druqks/baotha/cursed/tick()
+/datum/status_effect/buff/druqks/cursed/tick()
 	owner.hallucination++
 
 	if(!prob(10))
