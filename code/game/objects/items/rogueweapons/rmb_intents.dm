@@ -25,6 +25,8 @@
 	bypasses_click_cd = FALSE
 
 /datum/rmb_intent/aimed/special_attack(mob/living/user, atom/target)
+	if(user.has_status_effect(/datum/status_effect/debuff/strikecd))
+		return
 	if(!user)
 		return
 	if(user.incapacitated())

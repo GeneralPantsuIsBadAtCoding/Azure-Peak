@@ -4,6 +4,7 @@
 #define BAD_GUARD_FATIGUE_DRAIN 20 //Percentage of your green bar lost on letting a guard expire.
 #define GUARD_PEEL_REDUCTION 2	//How many Peel stacks to lose if a Guard is hit.
 #define BAIT_PEEL_REDUCTION 1	//How many Peel stacks to lose if we perfectly bait.
+#define PRECISE_STRIKE_DODGE 40	//Starting probability for dodge experts keeping the precise strike after a successful dodge.
 
 /*
 Medical defines

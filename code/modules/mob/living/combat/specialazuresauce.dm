@@ -142,7 +142,9 @@
 	HU.remove_status_effect(/datum/status_effect/buff/clash/limbguard)
 	HU.remove_status_effect(/datum/status_effect/buff/precise_strike)
 
-
+///Proc that will try to throw the src's held I and throw it 1 - 5 tiles to their side. 
+///At the moment it doesn't have a get_active_held_item() failsafe, so the I has to be defined first.
+///This is due to, uh, bad code.
 /mob/living/carbon/human/proc/disarmed(obj/item/I)
 	visible_message(span_suicide("[src] is disarmed!"), 
 					span_boldwarning("I'm disarmed!"))
@@ -154,10 +156,12 @@
 	throw_item(target_turf, FALSE)
 	apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
 
-/mob/living/carbon/human/proc/bad_guard(msg, cheesy = FALSE)
-	stamina_add(((max_stamina * BAD_GUARD_FATIGUE_DRAIN) / 100))
+///The name is deceptive due to being made for a different purpose. 
+///This is, in essence, a "stamina punish" tool. It drains a pre-set value of 20% or a custom value of the src's stamina.
+/mob/living/carbon/human/proc/bad_guard(msg, cheesy = FALSE, custom_value)
+	stamina_add(((max_stamina * (custom_value ? custom_value : BAD_GUARD_FATIGUE_DRAIN)) / 100))
 	if(cheesy)	//We tried to hit someone with Riposte (Not Limb Guard) up. Unfortunately this must be super punishing to prevent cheese.
-		energy_add(-((max_energy * BAD_GUARD_FATIGUE_DRAIN) / 100))
+		energy_add(-((max_energy * (custom_value ? custom_value : BAD_GUARD_FATIGUE_DRAIN)) / 100))
 		Immobilize(2 SECONDS)
 	if(msg)
 		to_chat(src, msg)
@@ -165,6 +169,7 @@
 	remove_status_effect(/datum/status_effect/buff/clash)
 	remove_status_effect(/datum/status_effect/buff/clash/limbguard)
 
+///Deprecated. Unless Peel's functionality changes (IE it does something other than destroying coverage), it should no longer be in use.
 /mob/living/carbon/human/proc/purge_peel(amt)
 	//Equipment slots manually picked out cus we don't have a proc for this apparently
 	var/list/slots = list(wear_armor, wear_pants, wear_wrists, wear_shirt, gloves, head, shoes, wear_neck, wear_mask, wear_ring)
@@ -176,16 +181,24 @@
 		if(C.peel_count > 0)
 			C.reduce_peel(amt)
 
+///Deprecated.
 /mob/living/carbon/human/proc/purge_bait()
 	if(!cmode)
 		if(bait_stacks > 0)
 			bait_stacks = 0
 			to_chat(src, span_info("My focus and balance returns. I won't lose my footing if I am baited again."))
 
+///Deprecated.
 /mob/living/carbon/human/proc/expire_peel()
 	if(!cmode)
 		purge_peel(99)
 
+///A Unique Stat comparison between src and HT.
+///It takes the highest stats up to 14 and lowest stats 'up to' 14.
+///It compares the highest and the lowest of both targets and adds them to the probability.
+///-Lower- stats are multiplied by 3. Higher stats are added as-is.
+///This in essence favors someone with a more balanced statblock rather than someone who is specced 16+ into one, and 7 elsewhere.
+///eg (14 Hi. & 7 Lo.) will be at a disadvantage vs (11 Hi. & 10 Lo.) (14 + 21) vs (11 + 30)
 /mob/living/carbon/human/proc/measured_statcheck(mob/living/carbon/human/HT)
 	var/finalprob = 40
 
@@ -219,6 +232,7 @@
 		if(istype(wear_ring, /obj/item/clothing/ring/duelist))
 			return TRUE
 	return FALSE
+
 /// Returns the highest AC worn, or held in hands.
 /mob/living/carbon/human/proc/highest_ac_worn(check_hands)
 	var/list/slots = list(wear_armor, wear_pants, wear_wrists, wear_shirt, gloves, head, shoes, wear_neck, wear_mask, wear_ring)

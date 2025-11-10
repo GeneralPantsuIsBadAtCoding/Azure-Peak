@@ -202,7 +202,7 @@
 
 /obj/item/clothing/ring/duelist
 	name = "duelist's ring"
-	desc = "Born out of duelists desire for theatrics, this ring denotes a proposal — an honorable duel, with stakes set ahigh.\nIf both duelists wear this ring, successful baits will off balance them, and clashing disarms will never be unlikely.\n<i>'You shall know his name. You shall know his purpose. You shall die.'</i>"
+	desc = "A strange, cheap ring devoid of purpose, yet carrying an uncanny sense of nostalgia of worse tymes.\n<i>'You shall know his name. You shall know his purpose. You shall die.'</i>"
 	icon_state = "ring_duel"
 	sellprice = 10
 

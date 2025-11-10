@@ -1121,9 +1121,14 @@
 
 //We have a lot of signals as the ability is meant to be interrupted by or interact with a lot of mechanics. 
 /datum/status_effect/buff/clash/on_creation(mob/living/new_owner, ...)
-	RegisterSignal(new_owner, COMSIG_MOB_ATTACKED_BY_HAND, PROC_REF(process_touch))
+	//!Danger! Zone!
+	//These signals use OVERRIDES and can OVERLAP with anything else using them.
+	//At the moment we have no way of prioritising one signal over the other, it's first-come first-serve. Keep this in mind.
 	RegisterSignal(new_owner, COMSIG_MOB_ITEM_ATTACK, PROC_REF(process_attack))
 	RegisterSignal(new_owner, COMSIG_MOB_ITEM_BEING_ATTACKED, PROC_REF(process_attack))
+
+
+	RegisterSignal(new_owner, COMSIG_MOB_ATTACKED_BY_HAND, PROC_REF(process_touch))
 	RegisterSignal(new_owner, COMSIG_MOB_ON_KICK, PROC_REF(guard_disrupted))
 	RegisterSignal(new_owner, COMSIG_MOB_KICKED, PROC_REF(guard_disrupted))
 	RegisterSignal(new_owner, COMSIG_LIVING_ONJUMP, PROC_REF(guard_disrupted))
@@ -1131,7 +1136,7 @@
 	RegisterSignal(new_owner, COMSIG_ITEM_GUN_PROCESS_FIRE, PROC_REF(guard_disrupted_cheesy))
 	RegisterSignal(new_owner, COMSIG_ATOM_BULLET_ACT, PROC_REF(guard_struck_by_projectile))
 	RegisterSignal(new_owner, COMSIG_LIVING_IMPACT_ZONE, PROC_REF(guard_struck_by_projectile))
-	RegisterSignal(new_owner, COMSIG_LIVING_SWINGDELAY_MOD, PROC_REF(guard_swingdelay_mod))
+	RegisterSignal(new_owner, COMSIG_LIVING_SWINGDELAY_MOD, PROC_REF(guard_swingdelay_mod))	//I dunno if a signal is better here rather than theoretically cycling through _all_ status effects to apply a var'd swingdelay mod.
 	. = ..()
 
 /datum/status_effect/buff/clash/proc/guard_swingdelay_mod()
@@ -1308,9 +1313,14 @@
 
 	//Due to the dynamic nature of the overlay, we can't use the built-in mob_effect system as it doesn't like it when the refs are deleted / altered
 	mob_effect_layer = MOB_EFFECT_LAYER_PRECISE_STRIKE
+	///Holder for world.time on aplication. Actual duration becomes a variant of world.time and not usable.
+	var/dur
 	var/chargetime = 0.75 SECONDS
 	var/atom/movable/flick_visual/vis
 	var/is_active
+	var/sfx_on_apply = 'sound/combat/precise_strike_start.ogg'
+	var/sfx_on_fail = 'sound/combat/precise_strike_fail.ogg'
+	var/sfx_on_success = 'sound/combat/precise_strike_hit.ogg'
 
 	//These two aren't necessary but helps readability
 	var/has_failed = FALSE
@@ -1331,13 +1341,19 @@
 	RegisterSignal(new_owner, COMSIG_CARBON_SWAPHANDS, PROC_REF(strike_disrupted))
 	RegisterSignal(new_owner, COMSIG_ITEM_GUN_PROCESS_FIRE, PROC_REF(strike_disrupted))
 	. = ..()
-	
+
+/datum/status_effect/buff/precise_strike/tick()
+	if(!owner.get_active_held_item() || !(owner.mobility_flags & MOBILITY_STAND))
+		strike_disrupted()
 
 /datum/status_effect/buff/precise_strike/on_apply()
 	. = ..()
-	vis = owner.play_overhead_indicator_flick(mob_effect_icon, "eff_aimed_full", initial(duration), mob_effect_layer, x_offset = -3)
+	//This will either turn full-transparent and expire before this effect ends, or after.
+	vis = owner.play_overhead_indicator_flick(mob_effect_icon, "eff_aimed_full", (initial(duration) + 0.3 SECONDS), mob_effect_layer, x_offset = -3)
 	vis.alpha = 0
 	vis.layer = mob_effect_layer
+	dur = world.time
+	playsound(owner, sfx_on_apply, 100, TRUE)
 	animate(vis, alpha = 100, time = chargetime)
 	addtimer(CALLBACK(src, PROC_REF(update_status)), (chargetime))
 
@@ -1345,12 +1361,21 @@
 	has_failed = TRUE
 	is_active = FALSE
 	animate_failure()
+	playsound(owner, sfx_on_fail, 100, TRUE)
+	addtimer(CALLBACK(src, PROC_REF(remove_self)), 0.5 SECONDS)
 
 //Covers an edge case where a dodger rolls to ignore the first disruption in strike_disrupted_by_attack but doesn't end up dodging successfully.
 /datum/status_effect/buff/precise_strike/proc/strike_disrupted_by_successful_attack()
 	if(!has_failed)
 		strike_disrupted()
 		return
+
+/datum/status_effect/buff/precise_strike/proc/strike_success()
+	is_active = FALSE
+	has_succeeded = TRUE
+	playsound(owner, sfx_on_success, 100, TRUE)
+	animate_success()
+	addtimer(CALLBACK(src, PROC_REF(remove_self)), 0.5 SECONDS)
 
 //This is hooked into the BEING_ATTACKED signal. Parent == Target. User = attacker.
 /datum/status_effect/buff/precise_strike/proc/strike_disrupted_by_attack(mob/living/parent, mob/living/target, mob/user, obj/item/I)
@@ -1369,7 +1394,7 @@
 		if(HAS_TRAIT(target, TRAIT_DODGEEXPERT) && target.d_intent == INTENT_DODGE)
 			var/obj/item/IT = target.get_active_held_item()
 			if(IT && IT?.wbalance == WBALANCE_SWIFT)
-				var/lucky_prob = 30	//This is the main starting number any jakker will want to tweak, imo.
+				var/lucky_prob = PRECISE_STRIKE_DODGE	//This is the main starting number any jakker will want to tweak, imo.
 				lucky_prob += (L.STALUC - target.STALUC) * 5
 				var/dist = get_dist(L, target)
 				lucky_prob += (dist > 1) ? (dist * 10) : -10
@@ -1388,6 +1413,9 @@
 	if(!is_active || has_failed)
 		strike_disrupted()
 		to_chat(user, span_warning("Too early!"))
+		return
+
+	if(has_succeeded)
 		return
 
 	//They have Riposte active, but we're hooked into the same signals, so we make sure to not process the attack no matter what and let Riposte handle it.
@@ -1410,20 +1438,24 @@
 
 	//We actually succeed and deal direct damage to wherever we were aiming, armor be damned.
 	strike_success()
+
+	//From here on out it's a cherry-picked sequence of the regular attack chain, omitting all of the fluff surrounding armor.
 	var/force = get_complex_damage(I, src)
 	
 	var/mob/living/carbon/human/H = parent
 	var/mob/living/carbon/human/HT = target
 	var/obj/item/bodypart/affecting = HT.get_bodypart(H.zone_selected)
 
-	var/armor_block = 0	//No armor involved if we hit this, unless we're a cheesy boy.
+	var/armor_block = 0	//No armor involved if we hit this, but that is tentative.
+
 	//We are presuming to be using a reach weapon on our target AND we're not adjacent. 
-	//We apply a penalty to the damage to not encourage the most boring-butt kiting behaviour with this ability..
+	//We apply a penalty to the damage to not encourage the most boring-butt kiting behaviour with this ability...
 	//(It will still happen)
 	var/dist = get_dist(H, HT)
-	if(dist > 1 && force > 0)	//The penalty is the "full pen" does not happen anymore. Take the risk, get in their face!
+	if(dist > 1 && force > 0)	//Take the risk, get in their face!
 		force = (force / dist)
-		armor_block = HT.run_armor_check(H.zone_selected, H.used_intent.item_d_type, armor_penetration = H.used_intent.penfactor, damage = force, used_weapon = I)
+		//Tentative / Pending playtests. Precise Strike at range could either only go through parry, but not armor, or reduce damage by a lot. Not sure which is better.
+		//armor_block = HT.run_armor_check(H.zone_selected, H.used_intent.item_d_type, armor_penetration = H.used_intent.penfactor, damage = force, used_weapon = I)
 	if(HT.apply_damage(force, I.damtype, affecting, armor_block))
 		H.visible_message(span_suicide("[H] precisely strikes [HT]'s [bodyzone2readablezone(H.zone_selected)]!"))
 		affecting.bodypart_attacked_by(H.used_intent.blade_class, force, H, armor = (armor_block ? armor_block : -1), crit_message = TRUE, weapon = I)
@@ -1443,12 +1475,6 @@
 		vis.alpha = 255
 		is_active = TRUE
 
-/datum/status_effect/buff/precise_strike/proc/strike_success()
-	is_active = FALSE
-	has_succeeded = TRUE
-	animate_success()
-
-
 /datum/status_effect/buff/precise_strike/proc/animate_success()
 	if(vis)
 		animate(vis, pixel_y = -3, time = 0.2 SECONDS)
@@ -1457,13 +1483,23 @@
 
 /datum/status_effect/buff/precise_strike/proc/animate_failure()
 	if(vis)
-		animate(vis, time = 0.5 SECONDS, transform = vis.transform.Turn(-45), pixel_x = -9, easing = BACK_EASING|EASE_OUT)
+		animate(vis, time = 0.5 SECONDS, transform = vis.transform.Turn(-60), pixel_x = -9, pixel_y = -4, easing = BACK_EASING|EASE_OUT)
 		animate(vis, alpha = 0, time = 0.2 SECONDS)
+
+/datum/status_effect/buff/precise_strike/proc/remove_self()
+	owner.remove_status_effect(/datum/status_effect/buff/precise_strike)
 
 /datum/status_effect/buff/precise_strike/on_remove()
 	. = ..()
-	if(vis)
-		qdel(vis)
+	if(!has_failed && !has_succeeded)	//Edge case of letting it expire
+		playsound(owner, sfx_on_fail, 100, TRUE)
+	var/newdur = world.time - dur
+	if(newdur > (initial(duration) - 0.2 SECONDS))	//Not checking exact duration to account for lag and any other tick / timing inconsistencies.
+		owner.stamina_add((owner.max_stamina * BAD_GUARD_FATIGUE_DRAIN) / 100)	//Letting it expire costs some green. Getting it cancelled doesn't, though.
+		animate_failure()
+	if(vis)	//If it's still there, drop the ref and just let it expire on its own.
+		vis = null
+	owner.apply_status_effect(/datum/status_effect/debuff/strikecd)
 	UnregisterSignal(owner, COMSIG_MOB_ITEM_ATTACK_POST_SWINGDELAY)
 	UnregisterSignal(owner, COMSIG_MOB_ITEM_BEING_ATTACKED)
 	UnregisterSignal(owner, COMSIG_ITEM_ATTACKED_SUCCESS)
