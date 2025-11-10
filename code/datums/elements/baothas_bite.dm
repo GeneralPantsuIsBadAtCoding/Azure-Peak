@@ -15,4 +15,4 @@
     if(target.stat || !prob(30))
         return
 
-    target.reagents.add_reagent(/datum/reagent/herozium, 10)
+    target.reagents.add_reagent(/datum/reagent/herozium, 5)
