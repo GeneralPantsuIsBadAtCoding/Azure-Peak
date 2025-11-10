@@ -49,7 +49,7 @@
 /datum/supply_pack/rogue/armor_steel/cuirass_steel
 	name = "Cuirass"
 	cost = 90 // 2 Steel
-	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/half)
+	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/cuirass)
 
 /datum/supply_pack/rogue/armor_steel/scalemail
 	name = "Scalemail"

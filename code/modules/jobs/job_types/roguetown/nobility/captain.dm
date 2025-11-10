@@ -215,7 +215,7 @@
 				pants = /obj/item/clothing/under/roguetown/chainlegs
 				cloak = /obj/item/clothing/cloak/tabard/retinue/captain
 			if("Fluted Cuirass")
-				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted
 				pants = /obj/item/clothing/under/roguetown/chainlegs
 				cloak = /obj/item/clothing/cloak/tabard/retinue/captain
 			if("Captain's armor")

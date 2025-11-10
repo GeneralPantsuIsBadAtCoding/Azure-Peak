@@ -28,7 +28,7 @@
 	max_integrity = ARMOR_INT_CHEST_PLATE_BLACKSTEEL
 	smeltresult = /obj/item/ingot/blacksteel
 
-/obj/item/clothing/suit/roguetown/armor/plate/half/blacksteel
+/obj/item/clothing/suit/roguetown/armor/plate/cuirass/blacksteel
 	name = "blacksteel cuirass"
 	desc = "A basic cuirass forged from blacksteel. It's somewhat more durable than regular steel."
 	body_parts_covered = COVERAGE_TORSO
