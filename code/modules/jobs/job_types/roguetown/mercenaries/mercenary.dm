@@ -62,13 +62,12 @@
 	var/player_count = length(GLOB.joined_player_list)
 	var/slots = 4
 	
-	if(player_count >= 80)
-		slots = 6
-	else if(player_count >= 50)
-		slots = 5
+	if(player_count > 50)
+		var/extra = floor((player_count - 50) / 10)
+		slots += extra
 
-	//4 slots minimum, 6 maximum.
-	slots = min(slots, 6)
+	//4 slots minimum, 8 maximum.
+	slots = min(slots, 8)
 
 	mercenary_job.total_positions = slots
 	mercenary_job.spawn_positions = slots
