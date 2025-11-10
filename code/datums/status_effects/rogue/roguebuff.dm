@@ -123,7 +123,7 @@
 
 /datum/status_effect/buff/druqks/cursed/tick()
 	owner.hallucination++
-
+	
 	if(!prob(10))
 		return
 
