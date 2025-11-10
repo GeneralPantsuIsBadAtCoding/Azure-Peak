@@ -199,3 +199,6 @@
 
 	/// Parry timer for projectiles post-attack. Hooks into the attack animation, so is fairly clunky.
 	var/projectile_parry_timer
+
+	/// Last world.time when stance was swapped. Acts as a cooldown.
+	var/stance_switch_time
