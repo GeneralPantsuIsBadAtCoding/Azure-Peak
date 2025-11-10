@@ -8,7 +8,7 @@
 					/obj/effect/proc_holder/spell/invoked/baothavice					= CLERIC_T0,
 					/obj/effect/proc_holder/spell/targeted/touch/loversruin				= CLERIC_T0,
 					/obj/effect/proc_holder/spell/invoked/lesser_heal 					= CLERIC_T1,
-					/obj/effect/proc_holder/spell/invoked/baothablessings				= CLERIC_T1,
+					/obj/effect/proc_holder/spell/self/baothablessings					= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/griefflower					= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/blood_heal					= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/projectile/blowingdust		= CLERIC_T2,

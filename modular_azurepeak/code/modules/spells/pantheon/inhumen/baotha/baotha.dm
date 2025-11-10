@@ -1,40 +1,37 @@
-//Baotha's Blessings - T1, reverses overdose effect on a target + soothing moodlet. (Medieval narcan..... #BanNarcan)
-
-/obj/effect/proc_holder/spell/invoked/baothablessings
+/obj/effect/proc_holder/spell/self/baothablessings
 	name = "Baotha's Blessings"
-	desc = "Gets the target drunk and stops them from overdosing for a time."
+	desc = "Allows you to choose one of her blessings."
 	overlay_state = "lesserheal"
-	releasedrain = 30
 	chargedrain = 0
 	chargetime = 0
-	range = 4
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
-	sound = 'sound/magic/heal.ogg'
 	invocation_type = "none"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
 	recharge_time = 30 SECONDS
 	miracle = TRUE
-	devotion_cost = 10
+	devotion_cost = 200
 
-/obj/effect/proc_holder/spell/invoked/baothablessings/cast(list/targets, mob/living/user)
-	if(isliving(targets[1]))
-		var/mob/living/carbon/target = targets[1]
-		if(HAS_TRAIT(target, TRAIT_PSYDONITE))
-			target.visible_message(span_info("[target] stirs for a moment, the miracle dissipates."), span_notice("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
-			user.playsound_local(user, 'sound/magic/PSY.ogg', 100, FALSE, -1)
-			playsound(target, 'sound/magic/PSY.ogg', 100, FALSE, -1)
-			return FALSE
-		if(target.has_status_effect(/datum/status_effect/buff/druqks/baotha))
-			to_chat(user, span_warning("They're already blessed by these effects!"))
-			revert_cast()
-			return FALSE
-		target.apply_status_effect(/datum/status_effect/buff/druqks/baotha) //Gets the trait temorarily, basically will just stop any active/upcoming ODs.	
-		target.visible_message("<span class='info'>[target]'s eyes appear to gloss over!</span>", "<span class='notice'>I feel.. at ease.</span>")
+/obj/effect/proc_holder/spell/self/baothablessings/cast(list/targets, mob/living/user)
+	. = ..()
 
-//Enrapturing Powder - T2, basically a crackhead blowing cocaine in your face.
+	var/choice = tgui_input_list(user, "choose your blessing", "Blessing", GLOB.baothas_blessings)
 
+	if(!choice)
+		return FALSE
+
+	var/path = GLOB.baothas_blessings[choice]
+	var/datum/baotha_blessing/blessing = new path
+
+	blessing.apply(user)
+	
+	qdel(blessing)
+	qdel(src)
+
+	return TRUE
+
+// Enrapturing Powder - T2, basically a crackhead blowing cocaine in your face.
 /obj/effect/proc_holder/spell/invoked/projectile/blowingdust
 	name = "Enrapturing Powder"
 	desc = "Blows dust of a potent painkilling drug at the target."
@@ -364,3 +361,4 @@
 	timer = 10 MINUTES
 	stressadd = -99
 	desc = span_hypnophrase("The world starts to fade around me. My throat melts, my stomach churns, and my pulse quickens. Oblivion never tasted better.") 
+	

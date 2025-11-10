@@ -49,7 +49,7 @@
 /datum/status_effect/buff/druqks
 	id = "druqks"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
-	effectedstats = list(STATKEY_INT = 5,STATKEY_SPD = 3,STATKEY_LCK = -5)
+	effectedstats = list(STATKEY_INT = 5, STATKEY_SPD = 3, STATKEY_LCK = -5)
 	duration = 2 MINUTES
 
 /datum/status_effect/buff/druqks/baotha
@@ -87,6 +87,48 @@
 			owner.remove_stress(/datum/stressevent/high)
 
 	. = ..()
+
+#define JOYBRINGER_FILTER "joybringer"
+
+/datum/status_effect/buff/druqks/baotha/joybringer
+	var/outline_colour = "#a529e8"
+	duration = -1
+	examine_text = "SUBJECTPRONOUN is bathed in Baotha's blessings!"
+	status_type = STATUS_EFFECT_UNIQUE
+
+/datum/status_effect/buff/druqks/baotha/joybringer/on_apply()
+	. = ..()
+
+	var/filter = owner.get_filter(JOYBRINGER_FILTER)
+	if(!filter)
+		owner.add_filter(JOYBRINGER_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 2))
+
+/datum/status_effect/buff/druqks/baotha/joybringer/on_remove()
+	. = ..()
+
+	owner.remove_filter(JOYBRINGER_FILTER)
+
+/datum/status_effect/buff/druqks/baotha/joybringer/tick()
+	for(var/mob/living/mob in get_hearers_in_view(1, owner))
+		if(HAS_TRAIT(mob, TRAIT_CRACKHEAD) || HAS_TRAIT(mob, TRAIT_PSYDONITE))
+			continue
+		
+		mob.apply_status_effect(/datum/status_effect/buff/druqks/baotha/cursed)
+
+#undef JOYBRINGER_FILTER
+
+/datum/status_effect/buff/druqks/baotha/cursed
+	effectedstats = list(STATKEY_SPD = -1, STATKEY_LCK = -1)
+	duration = 3 SECONDS
+
+/datum/status_effect/buff/druqks/baotha/cursed/tick()
+	owner.hallucination++
+
+	if(!prob(10))
+		return
+
+	owner.emote(pick("chuckle", "giggle"))
+	owner.Jitter(1 SECONDS)
 
 /atom/movable/screen/alert/status_effect/buff/druqks
 	name = "High"

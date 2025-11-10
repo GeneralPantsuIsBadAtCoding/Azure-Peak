@@ -86,6 +86,9 @@
 	for(var/mob/living/carbon/human/species/wildshape/shape as anything in subtypesof(/mob/living/carbon/human/species/wildshape))
 		GLOB.wildshapes[shape.name] = shape
 
+	for(var/datum/baotha_blessing/blessing as anything in subtypesof(/datum/baotha_blessing))
+		GLOB.baothas_blessings[blessing.name] = blessing
+
 //creates every subtype of prototype (excluding prototype) and adds it to list L.
 //if no list/L is provided, one is created.
 /proc/init_subtypes(prototype, list/L)

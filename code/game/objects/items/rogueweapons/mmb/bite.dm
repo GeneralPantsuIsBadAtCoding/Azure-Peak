@@ -143,6 +143,9 @@
 		if(mind)
 			mind.attackedme[user.real_name] = world.time
 		log_combat(user, src, "bit")
+
+	SEND_SIGNAL(user, COMSIG_CARBON_BITE, src, nodmg)
+
 	return TRUE
 
 // Checking if the unit can bite
@@ -235,7 +238,9 @@
 		damage = damage*2
 	C.next_attack_msg.Cut()
 	user.do_attack_animation(C, "bite")
-	if(C.apply_damage(damage, BRUTE, limb_grabbed, armor_block))
+
+	var/applied_damage = C.apply_damage(damage, BRUTE, limb_grabbed, armor_block)
+	if(applied_damage)
 		playsound(C.loc, "smallslash", 100, FALSE, -1)
 		var/datum/wound/caused_wound = limb_grabbed.bodypart_attacked_by(BCLASS_BITE, damage, user, sublimb_grabbed, crit_message = TRUE)
 		if(user.mind && caused_wound)
@@ -280,6 +285,7 @@
 	to_chat(user, span_danger("I bite [C]'s [parse_zone(sublimb_grabbed)].[C.next_attack_msg.Join()]"))
 	C.next_attack_msg.Cut()
 	log_combat(user, C, "limb chewed [sublimb_grabbed] ")
+	SEND_SIGNAL(user, COMSIG_CARBON_CHEW, C, applied_damage)
 
 //this is for carbon mobs being drink only
 /obj/item/grabbing/bite/proc/drinklimb(mob/living/user) //implies limb_grabbed and sublimb are things

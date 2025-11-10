@@ -42,3 +42,9 @@
 
 /// From /obj/item/organ/proc/Remove() (mob/living/carbon/lost_organ, obj/item/organ/removed, special, drop_if_replaced)
 #define COMSIG_MOB_ORGAN_REMOVED "mob_organ_removed"
+
+/// From /mob/living/carbon/onbite (user, target, nodmg)
+#define COMSIG_CARBON_BITE "carbon_bite"
+
+/// From /obj/item/grabbing/bite/proc/bitelimb (user, target, applied_damage)
+#define COMSIG_CARBON_CHEW "carbon_chew"
