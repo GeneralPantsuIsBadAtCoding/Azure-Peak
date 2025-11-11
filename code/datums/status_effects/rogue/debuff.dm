@@ -669,3 +669,26 @@
 	name = "Vampire biten"
 	desc = "You are feeling something... Interesting.."
 	icon_state = "acid"
+
+/datum/status_effect/debuff/joybringer_druqks
+	id = "joybringer_druqks"
+	effectedstats = list(STATKEY_SPD = -2, STATKEY_LCK = -2)
+	duration = 3 SECONDS
+	alert_type = null
+
+/datum/status_effect/debuff/joybringer_druqks/on_apply()
+	. = ..()
+	owner.overlay_fullscreen("joybringer_druqks", /atom/movable/screen/fullscreen/weedsm)
+
+/datum/status_effect/debuff/joybringer_druqks/on_remove()
+	. = ..()
+	owner.clear_fullscreen("joybringer_druqks")
+
+/datum/status_effect/debuff/joybringer_druqks/tick()
+	owner.hallucination++
+
+	if(!prob(15))
+		return
+
+	owner.emote(pick("chuckle", "giggle"))
+	owner.Jitter(1 SECONDS)

@@ -1456,3 +1456,66 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff
 	effectedstats = list(STATKEY_SPD = 3, STATKEY_WIL = 1, STATKEY_CON = 1)
 	status_type = STATUS_EFFECT_REPLACE
+
+/datum/status_effect/buff/ravox_vow
+	id = "ravox_vow"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/ravox_vow
+	effectedstats = list(STATKEY_STR = 1, STATKEY_WIL = 1, STATKEY_LCK = 1, STATKEY_CON = 1)
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = -1
+
+/datum/status_effect/buff/ravox_vow/tick()
+	owner.heal_wounds(2)
+
+/datum/status_effect/buff/ravox_vow/on_apply()
+	. = ..()
+	RegisterSignal(owner, list(COMSIG_MOB_ITEM_AFTERATTACK, COMSIG_HUMAN_MELEE_UNARMED_ATTACK), PROC_REF(on_attack))
+
+/datum/status_effect/buff/ravox_vow/proc/on_attack(mob/living/user, mob/living/carbon/human/target)
+	SIGNAL_HANDLER
+
+	if(!istype(target) || !(HAS_TRAIT(target, TRAIT_OUTLAW) && target.name in user.mind.known_people))
+		return
+
+	target.adjust_fire_stacks(1)
+	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob/living, ignite_mob))
+
+/datum/status_effect/buff/ravox_vow/on_remove()
+	. = ..()
+	UnregisterSignal(owner, list(COMSIG_MOB_ITEM_AFTERATTACK, COMSIG_HUMAN_MELEE_UNARMED_ATTACK))
+	
+/atom/movable/screen/alert/status_effect/buff/ravox_vow
+	name = "Ravox vow"
+	desc = "I vowed to Ravox. I shall bring justice to Psydonia."
+
+#define JOYBRINGER_FILTER "joybringer"
+
+/datum/status_effect/joybringer
+	id = "joybringer"
+	var/outline_colour = "#a529e8"
+	duration = -1
+	examine_text = span_love("SUBJECTPRONOUN is bathed in Baotha's blessings!")
+	alert_type = null
+
+/datum/status_effect/joybringer/on_apply()
+	. = ..()
+
+	owner.visible_message(span_userdanger("A tide of vibrant purple mist surges from [owner], carrying the heavy scent of sweet intoxication!"))
+
+	var/filter = owner.get_filter(JOYBRINGER_FILTER)
+	if(!filter)
+		owner.add_filter(JOYBRINGER_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 2))
+
+/datum/status_effect/joybringer/on_remove()
+	. = ..()
+
+	owner.remove_filter(JOYBRINGER_FILTER)
+
+/datum/status_effect/joybringer/tick()
+	for(var/mob/living/mob in get_hearers_in_view(2, owner))
+		if(HAS_TRAIT(mob, TRAIT_CRACKHEAD) || HAS_TRAIT(mob, TRAIT_PSYDONITE))
+			continue
+
+		mob.apply_status_effect(/datum/status_effect/debuff/joybringer_druqks)
+
+#undef JOYBRINGER_FILTER

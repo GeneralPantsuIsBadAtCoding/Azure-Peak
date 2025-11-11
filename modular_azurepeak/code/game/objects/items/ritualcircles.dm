@@ -1,3 +1,34 @@
+/obj/effect/decal/cleanable/roguerune/god
+	var/allowed_patron
+	can_be_scribed = FALSE
+	magictype = "divine"
+	icon_state = "ritual_base"
+	icon = 'icons/roguetown/misc/rituals.dmi'
+	layer = BELOW_OBJ_LAYER
+	density = FALSE
+	anchored = TRUE
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/effect/decal/cleanable/roguerune/god/can_invoke(mob/living/user, list/invokers)
+	. = ..()
+
+	if(!.)
+		return FALSE
+
+	if(!istype(user.patron, allowed_patron))
+		to_chat(user,span_smallred("I don't know the proper rites for this..."))
+		return FALSE
+
+	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
+		to_chat(user,span_smallred("I don't know the proper rites for this..."))
+		return FALSE
+
+	if(user.has_status_effect(/datum/status_effect/debuff/ritesexpended))
+		to_chat(user,span_smallred("I have performed enough rituals for the day... I must rest before communing more."))
+		return FALSE
+
+	return TRUE
+
 /obj/structure/ritualcircle
 	name = "ritual circle"
 	desc = ""
@@ -114,10 +145,42 @@
 	icon_state = "xylix_chalky"
 	desc = "A Holy Rune of Xylix. You can hear the wind, and distant bells, in the distance."
 
-/obj/structure/ritualcircle/ravox
+/obj/effect/decal/cleanable/roguerune/god/ravox
 	name = "Rune of Justice"
 	icon_state = "ravox_chalky"
 	desc = "A Holy Rune of Ravox. A blade to protect the weak with."
+	allowed_patron = /datum/patron/divine/ravox
+	rituals = list(/datum/runeritual/ravox_vow::name = /datum/runeritual/ravox_vow)
+
+/datum/runeritual/ravox_vow
+	name = "Vow to Ravox"
+
+/datum/runeritual/ravox_vow/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+	if(!do_after(user, 5 SECONDS))
+		return FALSE
+
+	user.say("My steel is sharp, my heart is true!")
+
+	if(!do_after(user, 5 SECONDS))
+		return FALSE
+
+	user.say("For the weak, my blade I drew!")
+
+	if(!do_after(user, 5 SECONDS))
+		return FALSE
+
+	user.say("Let foes of justice face my might!")
+
+	if(!do_after(user, 3 SECONDS))
+		return FALSE
+
+	user.say("Ravox, guide my hand in righteous fight!")
+	playsound(loc, 'sound/magic/holyshield.ogg', 80, FALSE, -1)
+	
+	user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+	user.apply_status_effect(/datum/status_effect/buff/ravox_vow)
+
+	return TRUE
 
 /obj/structure/ritualcircle/pestra
 	name = "Rune of Plague"
@@ -219,7 +282,7 @@
 	name = "Rune of Forge"
 	desc = "A Holy Rune of Malum. A hammer and heat, to fix any imperfections with."
 	icon_state = "malum_chalky"
-var/forgerites = list("Ritual of Blessed Reforgance")
+	var/forgerites = list("Ritual of Blessed Reforgance")
 
 /obj/structure/ritualcircle/malum/attack_hand(mob/living/user)
 	if(!..())
@@ -1451,12 +1514,89 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	cloak = /obj/item/clothing/cloak/graggar
 	r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead/graggar
 
-/obj/structure/ritualcircle/baotha
+/obj/effect/decal/cleanable/roguerune/god/baotha
 	name = "Rune of Hedonism"
 	desc = "A Holy Rune of Baotha. Relief for the broken hearted."
 	icon_state = "baotha_chalky"
+	rituals = list(/datum/runeritual/joybringer::name = /datum/runeritual/joybringer)
+	allowed_patron = /datum/patron/inhumen/baotha
 
-/obj/structure/ritualcircle/psydon // done as a joke, but it is good for Psydonites to decorate with.
+/datum/runeritual/joybringer
+	name = "Rite of Joy"
+
+/datum/runeritual/joybringer/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+	if(!do_after(user, 5 SECONDS))
+		return FALSE
+
+	user.say("Let the wine flow, let the music crash!")
+
+	if(!do_after(user, 5 SECONDS))
+		return FALSE
+	
+	user.say("Away with tears, away with shame!")
+	to_chat(user, span_notice("The memory of sorrow fades into a haze of bliss."))
+
+	if(!do_after(user, 5 SECONDS))
+		return FALSE
+
+	user.say("Grant me the bliss, grant me the rush!")
+
+	if(!do_after(user, 3 SECONDS))
+		return FALSE
+	
+	user.say("Baotha, fill my cup with endless mirth!")
+	playsound(loc, 'sound/misc/evilevent.ogg', 100, FALSE, -1)
+    
+	user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+	user.apply_status_effect(/datum/status_effect/joybringer)
+
+	return TRUE
+
+/obj/effect/decal/cleanable/roguerune/god/psydon
 	name = "Rune of Enduring"
 	desc = "A Holy Rune of Psydon. It depicts His holy symbol, yet nothing stirs within you."
 	icon_state = "psydon_chalky"
+	allowed_patron = /datum/patron/old_god
+	rituals = list(/datum/runeritual/silver_blessing::name = /datum/runeritual/silver_blessing)
+
+/datum/runeritual/silver_blessing
+	name = "Bless weapon"
+	required_atoms = list(/obj/item/rogueweapon = 1)
+
+/datum/runeritual/silver_blessing/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+	var/obj/item/rogueweapon/weapon = selected_atoms[1]
+
+	if(weapon.GetComponent(/datum/component/silverbless))
+		return FALSE
+
+	if(!do_after(user, 3 SECONDS))
+		return FALSE
+
+	loc.visible_message(span_warning("[user] firmly places a hand on [weapon] and straightens, adopting a posture of absolute discipline."))
+	user.say("The Architect is silent, but His Blueprint shall not be forgotten!")
+	to_chat(user, span_notice("You focus your WILL upon the tool, feeling a chilling depletion in your core."))
+	
+	if(!do_after(user, 4 SECONDS))
+		return FALSE
+
+	loc.visible_message(span_userdanger("A ghostly, icy silver light visibly drains from [user]'s hand, surging into [weapon]—the very essence of their Steadfastness!"))
+    
+	if(!do_after(user, 4 SECONDS))
+		return FALSE
+	
+	loc.visible_message(span_cultsmall("[weapon] flares with a cold glimmer, having absorbed the sacrifice! [user] appears visibly drained and cold."))
+	playsound(loc, 'sound/magic/churn.ogg', 100, FALSE, -1)
+
+	weapon.AddComponent(\
+        /datum/component/silverbless,\
+        pre_blessed = BLESSING_NONE,\
+        silver_type = SILVER_PSYDONIAN,\
+        added_force = 5,\
+        added_blade_int = 0,\
+        added_int = 50,\
+        added_def = 2,\
+    )
+
+	user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+
+	return TRUE

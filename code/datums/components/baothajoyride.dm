@@ -70,12 +70,14 @@
 		owner.add_filter(JOYRIDE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 2))
 		
 	ADD_TRAIT(owner, TRAIT_NOPAIN, src)
+	ADD_TRAIT(owner, TRAIT_CRACKHEAD, src)
 
 /datum/status_effect/baotha_joyride/on_remove()
 	. = ..()
 
 	owner.remove_filter(JOYRIDE_FILTER)
 	REMOVE_TRAIT(owner, TRAIT_NOPAIN, src)
+	REMOVE_TRAIT(owner, TRAIT_CRACKHEAD, src)
 
 /atom/movable/screen/alert/status_effect/baotha_joyride
 	name = "Joyride"
