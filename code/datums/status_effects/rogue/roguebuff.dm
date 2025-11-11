@@ -1469,12 +1469,35 @@
 
 /datum/status_effect/buff/ravox_vow/on_apply()
 	. = ..()
-	RegisterSignal(owner, list(COMSIG_MOB_ITEM_AFTERATTACK, COMSIG_HUMAN_MELEE_UNARMED_ATTACK), PROC_REF(on_attack))
+	RegisterSignal(owner, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
+	RegisterSignal(owner, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(on_item_attack))
 
-/datum/status_effect/buff/ravox_vow/proc/on_attack(mob/living/user, mob/living/carbon/human/target)
+/datum/status_effect/buff/ravox_vow/proc/on_unarmed_attack(mob/living/user, mob/living/carbon/human/target)
 	SIGNAL_HANDLER
 
 	if(!istype(target) || !(HAS_TRAIT(target, TRAIT_OUTLAW) && target.name in user.mind.known_people))
+		return
+	
+	var/armor_block = target.run_armor_check(user.zone_selected, "blunt")
+	if(prob(armor_block))
+		return
+	
+	apply_effects(target)
+
+/datum/status_effect/buff/ravox_vow/proc/on_item_attack(mob/living/user, mob/living/carbon/human/target, obj/item/item)
+	SIGNAL_HANDLER
+
+	if(!istype(target) || !(HAS_TRAIT(target, TRAIT_OUTLAW) && target.name in user.mind.known_people))
+		return
+	
+	var/armor_block = target.run_armor_check(user.zone_selected, item.d_type)
+	if(prob(armor_block))
+		return
+	
+	apply_effects(target)
+
+/datum/status_effect/buff/ravox_vow/proc/apply_effects(mob/living/carbon/human/target)
+	if(target.fire_stacks >= 3)
 		return
 
 	target.adjust_fire_stacks(1)
