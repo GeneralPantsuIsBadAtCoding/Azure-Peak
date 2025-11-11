@@ -16,15 +16,15 @@
 		return FALSE
 
 	if(!istype(user.patron, allowed_patron))
-		to_chat(user,span_smallred("I don't know the proper rites for this..."))
+		to_chat(user, span_smallred("I don't know the proper rites for this..."))
 		return FALSE
 
 	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
-		to_chat(user,span_smallred("I don't know the proper rites for this..."))
+		to_chat(user, span_smallred("I don't know the proper rites for this..."))
 		return FALSE
 
 	if(user.has_status_effect(/datum/status_effect/debuff/ritesexpended))
-		to_chat(user,span_smallred("I have performed enough rituals for the day... I must rest before communing more."))
+		to_chat(user, span_smallred("I have performed enough rituals for the day... I must rest before communing more."))
 		return FALSE
 
 	return TRUE
