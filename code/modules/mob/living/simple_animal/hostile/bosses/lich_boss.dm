@@ -75,6 +75,8 @@
 	//REMOVE_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC) //Ditto.
 
 /mob/living/simple_animal/hostile/boss/lich/Shoot()
+	if (QDELETED(src))
+		return
 	projectiletype = pick(allowed_projectile_types)
 	..()
 
@@ -102,12 +104,16 @@
 /mob/living/simple_animal/hostile/boss/lich/handle_automated_action()
 	. = ..()
 	if(target && next_cast < world.time && next_summon < world.time) //Second summon ability. Spawns a mob of simple skeletons
+		if (QDELETED(src)) 
+			return
 		spawn_minions(minions_to_spawn)
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Minions, to me!", null, list("colossus", "yell"))
 		next_cast = world.time + 10
 		next_summon = world.time + 600
 		return .
 	if(target && next_cast < world.time && next_blink < world.time) //Triggers a blink spell
+		if (QDELETED(src)) 
+			return
 		if(blink.cast_check(0,src))
 			blink.choose_targets(src)
 			blink.invocations += pick(taunt)
@@ -115,6 +121,8 @@
 			next_blink = world.time + 120
 			return .
 	if(target && next_cast < world.time && health < maxHealth * 0.33 && next_blaststrong < world.time) //Fires a wave of greater fireballs after blinking
+		if (QDELETED(src)) 
+			return
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "I am immortal, you are NOTHING!", null, list("colossus", "yell"))
 		playsound(get_turf(src), 'sound/magic/antimagic.ogg', 70, TRUE)
 		blaststrong()
@@ -122,12 +130,15 @@
 		next_blaststrong = world.time + 300
 		return .
 	if(target && next_cast < world.time) //fires a wave of a random projectile after blinking
+		if (QDELETED(src)) 
+			return // Проверка перед blast
 		blast()
 		next_cast = world.time + 100
 		return .
 
-
 /mob/living/simple_animal/hostile/boss/lich/proc/blast(set_angle)
+	if (QDELETED(src)) 
+		return
 	var/turf/target_turf = get_turf(target)
 	var/angle_to_target = Get_Angle(src, target_turf)
 	if(isnum(set_angle))
@@ -137,6 +148,8 @@
 		shoot_projectile(target_turf, angle_to_target + i)
 
 /mob/living/simple_animal/hostile/boss/lich/proc/shoot_projectile(turf/marker, set_angle)
+	if (QDELETED(src)) 
+		return
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
@@ -148,6 +161,8 @@
 	P.fire(set_angle)
 
 /mob/living/simple_animal/hostile/boss/lich/proc/blaststrong(set_angle)
+	if (QDELETED(src)) 
+		return
 	var/turf/target_turf = get_turf(target)
 	var/angle_to_target = Get_Angle(src, target_turf)
 	if(isnum(set_angle))
@@ -157,6 +172,8 @@
 		shoot_projectilestrong(target_turf, angle_to_target + i)
 
 /mob/living/simple_animal/hostile/boss/lich/proc/shoot_projectilestrong(turf/marker, set_angle)
+	if (QDELETED(src)) 
+		return
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
@@ -204,6 +221,8 @@
 	qdel(src)
 
 /mob/living/simple_animal/hostile/boss/lich/proc/spawn_minions()
+	if (QDELETED(src)) 
+		return
 	var/spawn_chance = 100
 	if (prob(spawn_chance))
 		var/turf/spawn_turf
@@ -256,6 +275,10 @@
 	new /obj/item/roguekey/mage/lich(T)
 	return ..()
 
+/mob/living/simple_animal/hostile/boss/lich/Destroy()
+	for(var/datum/timedevent/timer in active_timers)
+		qdel(timer)
+	return ..() 
 
 /mob/living/simple_animal/hostile/retaliate/rogue/boss/lich/simple_limb_hit(zone)
 	if(!zone)

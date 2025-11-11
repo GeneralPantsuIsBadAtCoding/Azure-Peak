@@ -1,3 +1,4 @@
+/*
 /datum/sex_controller/proc/handle_cock_milking(mob/living/carbon/human/milker)
 	if(arousal < ACTIVE_EJAC_THRESHOLD)
 		return
@@ -35,11 +36,7 @@
 		return
 	if(!can_ejaculate())
 		return FALSE
-	ejaculate_container(user.get_active_held_item())
-
-// From SR carbon_defense.dm
-/mob/proc/check_handholding()
-	return
+	ejaculate_container(user.get_active_held_item()) 
 
 /mob/living/carbon/human/check_handholding()
 	if(pulledby && pulledby != src)
@@ -51,3 +48,39 @@
 			for(var/obj/item/grabbing/G in src.grabbedby)
 				if(G.limb_grabbed == LH || G.limb_grabbed == RH)
 					return TRUE
+*/
+
+/datum/status_effect/facial
+	id = "facial"
+	alert_type = null // don't show an alert on screen
+	tick_interval = 12 MINUTES // use this time as our dry count down
+	var/has_dried_up = FALSE // used as our dry status
+
+/datum/status_effect/facial/internal
+	id = "creampie"
+	alert_type = null // don't show an alert on screen
+	tick_interval = 7 MINUTES // use this time as our dry count down
+
+/datum/status_effect/facial/on_apply()
+	RegisterSignal(owner, list(COMSIG_COMPONENT_CLEAN_ACT, COMSIG_COMPONENT_CLEAN_FACE_ACT),PROC_REF(clean_up))
+	has_dried_up = FALSE
+	return ..()
+
+/datum/status_effect/facial/on_remove()
+	UnregisterSignal(owner, list(COMSIG_COMPONENT_CLEAN_ACT, COMSIG_COMPONENT_CLEAN_FACE_ACT))
+	return ..()
+
+/datum/status_effect/facial/tick()
+	has_dried_up = TRUE
+
+/datum/status_effect/facial/proc/refresh_cum()
+	has_dried_up = FALSE
+	tick_interval = world.time + initial(tick_interval)
+
+///Callback to remove pearl necklace
+/datum/status_effect/facial/proc/clean_up(datum/source, strength)
+	if(strength >= CLEAN_WEAK && !QDELETED(owner))
+		if(!owner.has_stress_event(/datum/stressevent/bathcleaned))
+			to_chat(owner, span_notice("I feel much cleaner now!"))
+			owner.add_stress(/datum/stressevent/bathcleaned)
+		owner.remove_status_effect(src)

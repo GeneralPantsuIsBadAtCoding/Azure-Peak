@@ -14,6 +14,7 @@
 	clothing_flags = CANT_SLEEP_IN
 	dynamic_hair_suffix = "+generic"
 	bloody_icon_state = "helmetblood"
+	equip_sound = 'sound/foley/equip/equip_armor.ogg'
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	blocksound = PLATEHIT
@@ -526,3 +527,7 @@
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	bloody_icon = 'icons/effects/blood64.dmi'
+
+/obj/item/clothing/head/roguetown/roguehood/warden/munitioneer
+	name = "forgehound's hood"
+	desc = "Beneath his gleaming mask, the fyrmanne smiles. He is a salamander upon the worlde, belching flame, cleaning away history, and leaving a new land for the lyving."

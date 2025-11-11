@@ -1,19 +1,23 @@
 GLOBAL_LIST_EMPTY(loadout_items)
 GLOBAL_LIST_EMPTY(loadout_items_by_name)
+GLOBAL_LIST_EMPTY(loadout_items_by_category)
 
 /datum/loadout_item
 	var/name = "Parent loadout datum"
 	var/desc
-	var/path
+	var/atom/movable/path
 	var/donoritem			//autoset on new if null
 	var/donatitem = FALSE
 	var/list/ckeywhitelist
+	var/triumph_cost
 	var/category = "Разное"
 
 /datum/loadout_item/New()
 	if(isnull(donoritem))
 		if(ckeywhitelist)
 			donoritem = TRUE
+	if (triumph_cost)
+		desc += "<b>Costs [triumph_cost] TRIUMPH.</b>"
 
 /datum/loadout_item/proc/donator_ckey_check(key)
 	if(ckeywhitelist && ckeywhitelist.Find(key))
@@ -42,6 +46,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	category = "Разное"
 	path = /obj/item/book/rogue/loadoutbook
 
+//TOOLS
+/datum/loadout_item/bauernwehr
+	name = "Bauernwehr (-3 TRI)"
+	category = "Триумфы"
+	path = /obj/item/rogueweapon/huntingknife/throwingknife/bauernwehr
+	triumph_cost = 3
 
 //HATS
 /datum/loadout_item/shalal
@@ -60,7 +70,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	path = /obj/item/clothing/head/roguetown/veiled
 
 /datum/loadout_item/archercap
-	name = "Archer cap"
+	name = "Archer's cap"
 	category = "Головные уборы"
 	path = /obj/item/clothing/head/roguetown/archercap
 
@@ -115,7 +125,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	path = /obj/item/clothing/head/roguetown/bucklehat
 
 /datum/loadout_item/duelist_hatc
-	name = "Duelist Hat"
+	name = "Duelist's Hat"
 	category = "Головные уборы"
 	path = /obj/item/clothing/head/roguetown/duelhat
 
@@ -214,7 +224,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	path = /obj/item/clothing/cloak/eastcloak2
 
 /datum/loadout_item/thief_cloakc
-	name = "Rapscallion Shawl"
+	name = "Rapscallion's Shawl"
 	category = "Плащи"
 	path = /obj/item/clothing/cloak/thief_cloak
 
@@ -306,12 +316,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	path = /obj/item/clothing/suit/roguetown/shirt/robe
 
 /datum/loadout_item/phys_robe
-	name = "Physicker Robe"
+	name = "Physicker's Robe"
 	category = "Одежда"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/phys
 
 /datum/loadout_item/feld_robe
-	name = "Feldsher Robe"
+	name = "Feldsher's Robe"
 	category = "Одежда"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/feld
 
@@ -349,6 +359,34 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	name = "Exotic Silk Bra"
 	category = "Одежда"
 	path = /obj/item/clothing/suit/roguetown/shirt/exoticsilkbra
+
+/datum/loadout_item/desertbra
+	name = "Desert Bra"
+	path = /obj/item/clothing/suit/roguetown/shirt/desertbra
+
+/datum/loadout_item/deserthood
+	name = "Desert Hood"
+	path = /obj/item/clothing/head/roguetown/deserthood
+
+/datum/loadout_item/desertskirt
+	name = "Desert Skirt"
+	path = /obj/item/clothing/under/roguetown/skirt/desert
+
+/datum/loadout_item/explorerhat
+	name = "Explorer Hat"
+	path = /obj/item/clothing/head/roguetown/explorerhat
+
+/datum/loadout_item/explorervest
+	name = "Explorer Vest"
+	path = /obj/item/clothing/suit/roguetown/shirt/explorer
+
+/datum/loadout_item/fancycoat
+	name = "Fancy Coat"
+	path = /obj/item/clothing/cloak/poncho/fancycoat
+
+/datum/loadout_item/explorerpants
+	name = "Explorer Pants"
+	path = /obj/item/clothing/under/roguetown/tights/explorerpants
 
 /datum/loadout_item/bottomtunic
 	name = "Low-cut Tunic"
@@ -534,7 +572,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	path = /obj/item/clothing/mask/rogue/exoticsilkmask
 
 /datum/loadout_item/duelmaskc
-	name = "Duelist Mask"
+	name = "Duelist's Mask"
 	category = "Аксессуары"
 	path = /obj/item/clothing/mask/rogue/duelmask
 
@@ -689,22 +727,22 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
     path = /obj/item/clothing/head/roguetown/chaperon/greyscale
 
 /datum/loadout_item/chaperon/burgherc
-    name = "Noble Chaperon"
+    name = "Noble's Chaperon"
     category = "Головные уборы"
     path = /obj/item/clothing/head/roguetown/chaperon/noble
 
 /datum/loadout_item/jesterhatc
-    name = "Jester Hat"
+    name = "Jester's Hat"
     category = "Головные уборы"
     path = /obj/item/clothing/head/roguetown/jester
 
 /datum/loadout_item/jestertunickc
-    name = "Jester Tunick"
+    name = "Jester's Tunick"
     category = "Одежда"
     path = /obj/item/clothing/suit/roguetown/shirt/jester
 
 /datum/loadout_item/jestershoess
-    name = "Jester Shoes"
+    name = "Jester's Shoes"
     category = "Обувь"
     path = /obj/item/clothing/shoes/roguetown/jester
 
@@ -758,6 +796,24 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	name = "Donator Kit - Gilded Knight Helm - Required: Knight Helmet"
 	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/bigfoot
+	donatitem = TRUE
+
+/datum/loadout_item/donator_ravoxhelm_oldrw
+	name = "Donator Kit - Plumed Ravox Helmet - Required: Heavy Helmet"
+	category = list("Разное", "Донат")
+	path = /obj/item/enchantingkit/ravoxhelm_oldrw
+	donatitem = TRUE
+
+/datum/loadout_item/donator_necranhelm_oldrw
+	name = "Donator Kit - Hooded Necra Helmet - Required: Heavy Helmet"
+	category = list("Разное", "Донат")
+	path = /obj/item/enchantingkit/necranhelm_oldrw
+	donatitem = TRUE
+
+/datum/loadout_item/donator_astratanhelm_oldrw
+	name = "Donator Kit - Plumed Astrata Helmet - Required: Heavy Helmet"
+	category = list("Разное", "Донат")
+	path = /obj/item/enchantingkit/astratanhelm_oldrw
 	donatitem = TRUE
 
 /datum/loadout_item/donator_bigfoot_axe

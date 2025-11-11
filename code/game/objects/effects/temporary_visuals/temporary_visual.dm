@@ -6,18 +6,22 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/duration = 10 //in deciseconds
 	var/randomdir = TRUE
-	var/timerid
+	/// how long to fade away, if null, will disappear instantly.
+	var/fade_time
 
 /obj/effect/temp_visual/Initialize()
 	. = ..()
 	if(randomdir)
 		setDir(pick(GLOB.cardinals))
 
-	timerid = QDEL_IN(src, duration)
+	addtimer(CALLBACK(src, PROC_REF(timed_out)), duration)
 
-/obj/effect/temp_visual/Destroy()
-	. = ..()
-	deltimer(timerid)
+/obj/effect/temp_visual/proc/timed_out()
+	if(fade_time)
+		animate(src, time = fade_time, alpha = 0)
+		QDEL_IN(src, fade_time)
+	else
+		qdel(src)
 
 /obj/effect/temp_visual/ex_act()
 	return

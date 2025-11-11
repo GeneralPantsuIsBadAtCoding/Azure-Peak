@@ -238,6 +238,7 @@
 							"Courtiers" = GLOB.courtier_positions,
 							"Garrison" = GLOB.garrison_positions,
 							"Church" = GLOB.church_positions,
+							"Inquisition" = GLOB.inquisition_positions,
 							"WANDERERS" = GLOB.wanderer_positions,
 							"Abstract" = list("Appearance", "Emote", "Deadchat", "OOC", "LOOC"))
 		for(var/department in headless_job_lists)

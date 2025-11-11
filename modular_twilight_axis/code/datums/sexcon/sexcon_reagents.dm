@@ -12,14 +12,17 @@
 
 /datum/reagent/consumable/ethanol/beer/emberwine/on_mob_metabolize(mob/living/carbon/human/C)
 	..()
-	C.sexcon.aphrodisiac++
+	var/datum/component/arousal/arc = C.GetComponent(/datum/component/arousal)
+	if(arc)
+		arc.aphrodisiac++
 
 /datum/reagent/consumable/ethanol/beer/emberwine/on_mob_end_metabolize(mob/living/carbon/human/C)
-	C.sexcon.aphrodisiac--
+	var/datum/component/arousal/arc = C.GetComponent(/datum/component/arousal)
+	if(arc)
+		arc.aphrodisiac--
 	..()
 
 /datum/reagent/consumable/ethanol/beer/emberwine/on_mob_life(mob/living/carbon/human/C)
-	var/datum/sex_controller/S = C.sexcon
 	var/high_message = pick("Your stomach feels hot.", "Your skin feels prickly to the touch.", "Your loins throb involuntarily.", "Your heart beats irregularly.", "You feel cold sweat running down your neck.")
 	switch(current_cycle)
 		if(0 to 19)
@@ -28,13 +31,17 @@
 		if(20)
 			to_chat(C, "<span class='aphrodisiac'>You feel a warm glow spreading through your stomach.</span>")
 		if(21 to 25)
-			S.adjust_arousal(5)
+			var/list/arousal_data = list()
+			SEND_SIGNAL(C, COMSIG_SEX_GET_AROUSAL, arousal_data)
+			if(arousal_data["arousal"] < 50)
+				SEND_SIGNAL(C, COMSIG_SEX_ADJUST_AROUSAL, 3)
 		if(26 to INFINITY)
 			C.apply_status_effect(/datum/status_effect/debuff/emberwine)
-			if(S.arousal_frozen)
-				S.arousal_frozen = FALSE
-			if(S.arousal < 51)
-				S.set_arousal(55) //Just enough to be above the frustration threshold.
+			SEND_SIGNAL(C, COMSIG_SEX_FREEZE_AROUSAL, FALSE)
+			var/list/arousal_data = list()
+			SEND_SIGNAL(C, COMSIG_SEX_GET_AROUSAL, arousal_data)
+			if(arousal_data["arousal"] < 50)
+				SEND_SIGNAL(C, COMSIG_SEX_SET_AROUSAL, 50)
 			if(prob(8))
 				C.emote("sexmoanlight", forced = TRUE)
 				to_chat(C, "<span class='love_high'>[high_message]</span>")
@@ -49,7 +56,6 @@
 							C.Immobilize(15)
 							C.set_blurriness(2)
 							to_chat(C, "<span class='warning'>Your armor chaffs uncomfortably against your skin.</span>")
-			S.adjust_charge(8)
 	return ..()
 
 /datum/reagent/consumable/ethanol/beer/emberwine/overdose_start(mob/living/carbon/human/C)
@@ -60,7 +66,9 @@
 	to_chat(C, "<span class='aphrodisiac'>The glow in your stomach spreads, rushing to your head and warming your face.</span>")
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM //Purges faster while overdosing because this is really debilitating
 	C.emote("sexmoanhvy", forced = TRUE)
-	C.sexcon.aphrodisiac++
+	var/datum/component/arousal/arc = C.GetComponent(/datum/component/arousal)
+	if(arc)
+		arc.aphrodisiac++
 	C.Jitter(20)
 	C.Stun(15)
 
@@ -73,7 +81,10 @@
 /datum/reagent/consumable/ethanol/beer/emberwine/addiction_act_stage3(mob/living/carbon/human/C)
 	if(prob(20))
 		to_chat(C, span_danger("I have an intense craving for [name]."))
-		C.sexcon.adjust_arousal(5)
+		var/list/arousal_data = list()
+		SEND_SIGNAL(C, COMSIG_SEX_GET_AROUSAL, arousal_data)
+		if(arousal_data["arousal"] < 50)
+			SEND_SIGNAL(C, COMSIG_SEX_ADJUST_AROUSAL, 3)
 	if(istype(C, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = C
 		if(!istype(H.charflaw, /datum/charflaw/addiction/lovefiend))
@@ -81,12 +92,11 @@
 	return
 
 /datum/reagent/consumable/ethanol/beer/emberwine/addiction_act_stage4(mob/living/carbon/human/C)
-	var/datum/sex_controller/S = C.sexcon
-	if(!S.arousal_frozen)
-		S.arousal_frozen = TRUE
-	C.sexcon.arousal = 40
-	if(S.aphrodisiac < 1.5)
-		S.aphrodisiac = 1.5
+	SEND_SIGNAL(C, COMSIG_SEX_FREEZE_AROUSAL, TRUE)
+	SEND_SIGNAL(C, COMSIG_SEX_SET_AROUSAL, 40)
+	var/datum/component/arousal/arc = C.GetComponent(/datum/component/arousal)
+	if(arc && arc.aphrodisiac < 1.5)
+		arc.aphrodisiac = 1.5
 	if(prob(10))
 		to_chat(C, span_boldannounce("The feeling in your loins has subsided to a dull ache. Only more [name] would scratch the itch..."))
 	return

@@ -128,18 +128,18 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	updateallghostimages()
 
-	testing("BEGIN LOC [loc]")
+
 
 	var/turf/T
 	var/mob/body = loc
 	if(ismob(body))
 		T = get_turf(body)				//Where is the body located?
-		testing("body [body] loc [body.loc]")
+
 		if(!T)
-			testing("no t yyy")
+
 			if(istype(body, /mob/living/brain))
 				var/obj/Y = body.loc
-				testing("Y [Y] loc [Y.loc]")
+
 				T = get_turf(Y)
 
 		gender = body.gender
@@ -189,7 +189,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	update_icon()
 
 	if(!T)
-		testing("NO T")
+
 		T = SSmapping.get_station_center()
 
 	forceMove(T)
@@ -844,15 +844,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	target.key = key
 	target.faction = list("neutral")
-	return TRUE
-
-//this is a mob verb instead of atom for performance reasons
-//see /mob/verb/examinate() in mob.dm for more info
-//overridden here and in /mob/living for different point span classes and sanity checks
-/mob/dead/observer/pointed(atom/A as mob|obj|turf in view(client.view, src))
-	if(!..())
-		return FALSE
-	usr.visible_message(span_deadsay("<b>[src]</b> points to [A]."))
 	return TRUE
 
 /mob/dead/observer/verb/view_manifest()

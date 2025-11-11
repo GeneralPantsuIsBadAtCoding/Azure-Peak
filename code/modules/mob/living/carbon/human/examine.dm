@@ -13,6 +13,8 @@
 	if(HAS_TRAIT(src, TRAIT_UNSEEMLY) && user != src)
 		if(!HAS_TRAIT(user, TRAIT_UNSEEMLY))
 			user.add_stress(/datum/stressevent/unseemly)
+	if(HAS_TRAIT(src, TRAIT_LEPROSY) && user != src)
+		user.add_stress(/datum/stressevent/leprosy)
 	if(HAS_TRAIT(src, TRAIT_BEAUTIFUL_UNCANNY) && user != src)
 		if(prob(50) && !user.has_stress_event(/datum/stressevent/uncanny))
 			user.add_stress(/datum/stressevent/beautiful)
@@ -232,14 +234,14 @@
 		if(inquisition_text)
 			. +=span_notice(inquisition_text)
 
-		if(leprosy == 1)
+		if (HAS_TRAIT(src, TRAIT_LEPROSY))
 			. += span_necrosis("A LEPER...")
 
 		if (HAS_TRAIT(src, TRAIT_BEAUTIFUL))
 			switch (pronouns)
-				if (HE_HIM)
+				if (HE_HIM, SHE_HER_M)
 					. += span_beautiful_masc("[m1] handsome!")
-				if (SHE_HER)
+				if (SHE_HER, HE_HIM_F)
 					. += span_beautiful_fem("[m1] beautiful!")
 				if (THEY_THEM, THEY_THEM_F, IT_ITS)
 					. += span_beautiful_nb("[m1] good-looking!")
@@ -905,12 +907,6 @@
 					var/skilldiff = user.get_skill_level(user_skill) - get_skill_level(src_skill)
 					. += "<font size = 3><i>[skilldiff_report(skilldiff)] in my wielded skill than they are in theirs.</i></font>"
 
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
-			. += "<a href='?src=[REF(src)];task=assess;'>Assess</a>"
-
 	if(!obscure_name || client?.prefs.masked_examine)
 		if((user.client?.prefs.chatheadshot) && headshot_link)
 			. += "<span class='info'><img src=[headshot_link] width=100 height=100/></span>"
@@ -934,9 +930,28 @@
 		lines = build_cool_description_unknown(get_mob_descriptors_unknown(obscure_name, user), src)
 	else
 		lines = build_cool_description(get_mob_descriptors(obscure_name, user), src)
+	
+	var/app_str
+	if(!(user.client?.prefs?.full_examine))
+		app_str = "<details><summary>[span_info("Details")]</summary>"
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
+			app_str += span_info("<a href='?src=[REF(src)];task=assess;'>Assess</a><br>")
 
 	for(var/line in lines)
-		. += span_info(line)
+		var/index = 1
+		app_str += span_info(line)
+		index++
+		if(index != length(lines))
+			app_str += "<br>"
+
+	if(!(user.client?.prefs?.full_examine))
+		if(length(lines))
+			app_str += "</details>"
+
+	. += app_str
 
 	// Characters with the hunted flaw will freak out if they can't see someone's face.
 	if(!appears_dead)

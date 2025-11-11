@@ -103,6 +103,8 @@
 	sleeved = 'icons/roguetown/clothing/onmob/shirts.dmi'
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
+	salvage_result = /obj/item/natural/silk
+	salvage_amount = 1
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/artificer
 	name = "tinker suit"
@@ -271,6 +273,8 @@
 	icon_state = "summergown"
 	boobed = TRUE
 	detail_color = "#e395bb"
+	salvage_result = /obj/item/natural/silk
+	salvage_amount = 2
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gown/fallgown
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
@@ -287,6 +291,8 @@
 	icon_state = "wintergown"
 	boobed = TRUE
 	detail_color = "#45749d"
+	salvage_result = /obj/item/natural/silk
+	salvage_amount = 2
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/sailor
 	icon_state = "sailorblues"
@@ -354,11 +360,42 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	flags_inv = HIDECROTCH|HIDEBOOB
+	salvage_result = /obj/item/natural/hide
+	salvage_amount = 1
 
 /obj/item/clothing/suit/roguetown/shirt/robe/archivist
 	name = "archivist's robe"
 	desc = "Robes belonging to seekers of knowledge."
 	icon_state = "archivist"
+	icon = 'icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
+	body_parts_covered = CHEST|GROIN|ARMS|VITALS
+	boobed = FALSE
+	flags_inv = HIDECROTCH|HIDEBOOB
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+	allowed_sex = list(MALE, FEMALE)
+
+/obj/item/clothing/suit/roguetown/shirt/fancyjacket
+	name = "fancy jacket"
+	desc = "My, so modern -- so elegant. Which fine hands sewed this?"
+	icon_state = "fancyjacket"
+	icon = 'icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
+	body_parts_covered = CHEST|GROIN|ARMS|VITALS
+	boobed = FALSE
+	flags_inv = HIDECROTCH|HIDEBOOB
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+	allowed_sex = list(MALE, FEMALE)
+
+
+/obj/item/clothing/suit/roguetown/shirt/explorer
+	name = "explorer's vest"
+	desc = "Vest belonging to those who seek knowledge!"
+	icon_state = "explorervest"
 	icon = 'icons/roguetown/clothing/shirts.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
@@ -369,7 +406,6 @@
 	l_sleeve_status = SLEEVE_NORMAL
 	allowed_sex = list(MALE, FEMALE)
 	color = null
-	sellprice = 100
 
 /obj/item/clothing/suit/roguetown/shirt/tunic
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
@@ -448,6 +484,8 @@
 	icon_state = "silkdress"
 	item_state = "silkdress"
 	color = "#e6e5e5"
+	salvage_result = /obj/item/natural/silk
+	salvage_amount = 2
 
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/princess
 	color = CLOTHING_WHITE
@@ -499,6 +537,8 @@
 	l_sleeve_status = SLEEVE_NORMAL
 	body_parts_covered = CHEST|ARMS|VITALS
 	color = null
+	salvage_result = /obj/item/natural/silk
+	salvage_amount = 1
 
 /obj/item/clothing/suit/roguetown/shirt/jester
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
@@ -579,6 +619,19 @@
 	item_state = "exoticsilkbra"
 	body_parts_covered = CHEST
 	boobed = TRUE
+	sewrepair = TRUE
+	flags_inv = null
+	slot_flags = ITEM_SLOT_SHIRT
+	salvage_result = /obj/item/natural/silk
+	salvage_amount = 2
+
+/obj/item/clothing/suit/roguetown/shirt/desertbra
+	name = "desert bra"
+	desc = "An exquisite bra crafted from durable cloth. It leaves little to the imagination. Why is it a desert bra and not just a bra?"
+	icon_state = "desertbra"
+	item_state = "desertbra"
+	body_parts_covered = CHEST
+	boobed = FALSE
 	sewrepair = TRUE
 	flags_inv = null
 	slot_flags = ITEM_SLOT_SHIRT

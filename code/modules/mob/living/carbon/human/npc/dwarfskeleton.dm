@@ -25,7 +25,7 @@ GLOBAL_LIST_INIT(dwarfskeleton_aggro, world.file2list("strings/rt/dskeletonaggro
 	.=..()
 	if(prob(5))
 		say(pick(GLOB.dwarfskeleton_aggro))
-		linepoint(target)
+		pointed(target)
 
 /mob/living/carbon/human/species/dwarfskeleton/Initialize()
 	. = ..()

@@ -84,8 +84,7 @@
 	name = "Barbute, Decrepit (+1 Alloy)"
 	req_bar = /obj/item/ingot/purifiedaalloy
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
-	additional_items = /obj/item/ingot/aalloy
-
+	additional_items = list(/obj/item/ingot/aalloy)
 
 /datum/anvil_recipe/armor/aalloy/savoyard
 	name = "Savoyard, Decrepit (+1 Alloy)"
@@ -96,7 +95,7 @@
 	name = "Savoyard, Ancient (+1 Purified Alloy)"
 	req_bar = /obj/item/ingot/purifiedaalloy
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
-	additional_items = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy)
 
 /datum/anvil_recipe/armor/aalloy/mask
 	name = "Mask, Decrepit"
@@ -357,14 +356,14 @@
 	req_blade = /obj/item/blade/iron_plate
 	additional_items = list(/obj/item/clothing/wrists/roguetown/bracers/leather)
 	created_item = /obj/item/clothing/wrists/roguetown/splintarms/iron
-	
+
 /datum/anvil_recipe/armor/iron/bracers
 	name = "Plate Bracers, Iron"
 	req_bar = /obj/item/ingot/iron
 	req_blade = /obj/item/blade/iron_plate
 	created_item = /obj/item/clothing/wrists/roguetown/bracers/iron
 	createditem_num = 1
-	
+
 /datum/anvil_recipe/armor/iron/jackchain
 	name = "Jack Chain, Iron"
 	req_bar = /obj/item/ingot/iron
@@ -436,19 +435,9 @@
 	req_bar = /obj/item/ingot/iron
 	req_blade = /obj/item/blade/iron_plate
 	created_item = /obj/item/clothing/head/roguetown/helmet/horned
-	
+
 
 // STEEL
-
-/datum/anvil_recipe/armor/steel/lbrigandine
-	name = "Light Brigandine (+1 cured leather)"
-	req_bar = /obj/item/ingot/steel
-	req_blade = /obj/item/blade/steel_plate
-	additional_items = list(/obj/item/natural/hide/cured)
-	created_item = /obj/item/clothing/suit/roguetown/armor/brigandine/light
-	i_type = "Armor"
-	craftdiff = 2 //not any random can make it
-
 /datum/anvil_recipe/armor/steel/haubergeon
 	name = "Haubergeon, Steel"
 	req_bar = /obj/item/ingot/steel
@@ -604,10 +593,10 @@
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/half
 
 /datum/anvil_recipe/armor/steel/lightcuirass
-	name = "Fencing Cuirass, Steel (+1 Fur, +1 Tallow, +3 Cured Leather)"
+	name = "Fencing Cuirass, Steel (+1 Steel, +1 Fencing Jacket)" //needs cooperation with a tailor to make
 	req_bar = /obj/item/ingot/steel
 	req_blade = /obj/item/blade/steel_plate
-	additional_items = list(/obj/item/ingot/steel, /obj/item/natural/fur, /obj/item/natural/fur, /obj/item/reagent_containers/food/snacks/tallow, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steel, /obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/half/fencer
 
 /datum/anvil_recipe/armor/steel/cuirass/fluted
@@ -803,7 +792,7 @@
 	req_bar = /obj/item/ingot/steel
 	req_blade = /obj/item/blade/steel_plate
 	additional_items = list(/obj/item/ingot/steel)
-	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/necrahelm
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/necran
 
 /datum/anvil_recipe/armor/steel/nochelm
 	name = "Noccian Helmet (+1 Steel)"
@@ -839,7 +828,7 @@
 	created_item = /obj/item/storage/belt/rogue/leather/steel/tasset
 
 /datum/anvil_recipe/armor/steel/splintarms
-	name = "Brigandine Bracers (+1 leather bracers)" 
+	name = "Brigandine Bracers (+1 leather bracers)"
 	req_bar = /obj/item/ingot/steel
 	req_blade = /obj/item/blade/steel_plate
 	additional_items = list(/obj/item/clothing/wrists/roguetown/bracers/leather)

@@ -86,8 +86,6 @@
 	oactive = FALSE
 	update_a_intents()
 
-	givingto = null
-
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.has_status_effect(/datum/status_effect/buff/clash))
@@ -601,6 +599,7 @@
 /mob/living/carbon
 	var/nausea = 0
 	var/pain_threshold = 0
+	var/bleeding_tier = 0 
 
 /mob/living/carbon/proc/add_nausea(amt)
 	nausea = clamp(nausea + amt, 0, 300)
@@ -1165,7 +1164,7 @@
 /mob/living/carbon/can_be_revived()
 	. = ..()
 	if(!getorgan(/obj/item/organ/brain) && (!mind))
-		testing("norescarbon")
+
 		return 0
 
 /mob/living/carbon/harvest(mob/living/user)

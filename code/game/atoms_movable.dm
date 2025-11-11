@@ -12,7 +12,7 @@
 	var/throw_speed = 1 //How many tiles to move per ds when being thrown. Float values are fully supported
 	var/throw_range = 7
 	var/mob/pulledby = null
-	var/initial_language_holder = /datum/language_holder
+	var/initial_language_holder = /datum/language_holder/basic
 	var/datum/language_holder/language_holder
 	var/verb_say = "says"
 	var/verb_ask = "asks"
@@ -144,7 +144,7 @@
 	return ..()
 
 /atom/movable/proc/start_pulling(atom/movable/AM, state, force = move_force, supress_message = FALSE, obj/item/item_override)
-	testing("startpulling target: [AM]")
+
 	if(QDELETED(AM))
 		return FALSE
 	if(!(AM.can_be_pulled(src, state, force)))
@@ -193,9 +193,9 @@
 	return TRUE
 
 /atom/movable/proc/stop_pulling(forced = TRUE)
-	testing("stoppull1")
+
 	if(pulling)
-		testing("stoppull2")
+
 		if(pulling != src)
 			pulling.pulledby = null
 			var/mob/living/ex_pulled = pulling
@@ -326,7 +326,7 @@
 
 //Early override for some cases like diagonal movement
 	if(glide_size_override)
-		testing("GSO 1 [glide_size_override]")
+
 		set_glide_size(glide_size_override)
 
 	if(loc != newloc)
@@ -424,7 +424,7 @@
 	//glide_size strangely enough can change mid movement animation and update correctly while the animation is playing
 	//This means that if you don't override it late like this, it will just be set back by the movement update that's called when you move turfs.
 	if(glide_size_override)
-		testing("GSO 2 [glide_size_override]")
+
 		set_glide_size(glide_size_override)
 
 	last_move = direct

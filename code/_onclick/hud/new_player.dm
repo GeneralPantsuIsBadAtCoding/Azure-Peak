@@ -207,6 +207,7 @@
 	if(ready)
 		new_player.ready = PLAYER_READY_TO_PLAY
 		base_icon_state = "ready"
+		log_game("([usr ? usr.key : "NO KEY"]) readied as ([usr.client?.prefs?.real_name])")
 	else
 		new_player.ready = PLAYER_NOT_READY
 		base_icon_state = "not_ready"

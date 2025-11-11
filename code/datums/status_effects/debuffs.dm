@@ -94,9 +94,9 @@
 			human_owner = owner
 
 /datum/status_effect/incapacitating/sleeping/on_remove()
-	if(human_owner && human_owner.client)
-		SSdroning.play_area_sound(get_area(src), human_owner.client)
-		SSdroning.play_loop(get_area(src), human_owner.client)
+	if(ishuman(owner))
+		SSdroning.play_area_sound(get_area(src), owner.client)
+		SSdroning.play_loop(get_area(src), owner.client)
 	. = ..()
 
 /datum/status_effect/incapacitating/sleeping/Destroy()
@@ -274,11 +274,6 @@
 
 /obj/effect/temp_visual/curse
 	icon_state = "curse"
-
-/obj/effect/temp_visual/curse/Initialize()
-	. = ..()
-	deltimer(timerid)
-
 
 /datum/status_effect/gonbolaPacify
 	id = "gonbolaPacify"
@@ -863,7 +858,7 @@
 	my_stack++
 	if(!owner) // wtf
 		return TRUE
-	if(owner.stat) // Dead / Unconscious	
+	if(owner.stat) // Dead / Unconscious
 		return TRUE
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner

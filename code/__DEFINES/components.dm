@@ -272,7 +272,11 @@
 	#define SPEECH_MODE 8
 #define COMSIG_MOB_DEADSAY "mob_deadsay" // from /mob/say_dead(): (mob/speaker, message)
 	#define MOB_DEADSAY_SIGNAL_INTERCEPT 1
+///from base of /mob/verb/pointed: (atom/A)
+#define COMSIG_MOB_POINTED "mob_pointed"
 // /mob/living signals
+#define COMSIG_LIVING_GRAB_SELF_ATTEMPT "living_grab_self_attempt"
+	#define COMPONENT_CANCEL_GRAB_ATTACK 1
 #define COMSIG_LIVING_SET_RESTING "comsig_set_resting"
 #define COMSIG_LIVING_RESIST "living_resist"					//from base of mob/living/resist() (/mob/living)
 #define COMSIG_LIVING_IGNITED "living_ignite"					//from base of mob/living/ignite_mob() (/mob/living)
@@ -492,6 +496,6 @@
 //S Smithing
 
 #define COMSIG_ITEM_PLACED_ON_ANVIL "item_placed_on_anvil"
-#define COMSIG_ITEM_REMOVED_FROM_ANVIL "item_removed_from_anvil" 
+#define COMSIG_ITEM_REMOVED_FROM_ANVIL "item_removed_from_anvil"
 #define COMSIG_ITEM_HAMMERED_ON_ANVIL "item_hammered_on_anvil"
 #define COMSIG_ITEM_ADDED_TO_FORGING "item_added_to_forging"

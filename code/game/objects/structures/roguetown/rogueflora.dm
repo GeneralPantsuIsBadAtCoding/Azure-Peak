@@ -474,7 +474,6 @@
 						user.put_in_hands(I)
 			return
 
-
 /obj/structure/flora/rogueshroom/Initialize()
 	. = ..()
 	icon_state = "mush[rand(1,5)]"

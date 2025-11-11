@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
 	var/topjob = "Hero!"
 	flags_1 = NONE
-
+	hud_type = /datum/hud/new_player
 	invisibility = INVISIBILITY_ABSTRACT
 
 //	hud_type = /datum/hud/new_player
@@ -19,10 +19,6 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 
 	//Used to make sure someone doesn't get spammed with messages if they're ineligible for roles
 	var/ineligible_for_roles = FALSE
-
-	var/brohand
-
-	hud_type = /datum/hud/new_player
 
 /mob/dead/new_player/Initialize()
 //	if(client && SSticker.state == GAME_STATE_STARTUP)
@@ -141,15 +137,6 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 
 	if(href_list["show_keybinds"])
 		client.prefs.ShowChoices(src, 3)
-		return 1
-
-	if(href_list["sethand"])
-		if(brohand == href_list["sethand"])
-			brohand = null
-			to_chat(src, span_boldwarning("Your Hand is REJECTED, sire."))
-			return 1
-		brohand = href_list["sethand"]
-		to_chat(src, span_boldnotice("Your Hand is selected, sire."))
 		return 1
 
 	if(href_list["ready"])
@@ -427,7 +414,6 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	if(job.required_playtime_remaining(client))
 		return JOB_UNAVAILABLE_PLAYTIME
 	if(job.plevel_req > client.patreonlevel())
-		testing("PATREONLEVEL [client.patreonlevel()] req [job.plevel_req]")
 		return JOB_UNAVAILABLE_GENERIC
 	#ifdef USES_PQ
 	if(!job.required || latejoin)
@@ -507,26 +493,26 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	SSticker.queued_players -= src
 	SSticker.queue_delay = 4
 
-	testing("basedtest 1")
+
 
 	SSjob.AssignRole(src, rank, 1)
-	testing("basedtest 2")
+
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
-	testing("basedtest 3")
+
 	character.islatejoin = TRUE
 	var/equip = SSjob.EquipRank(character, rank, TRUE)
-	testing("basedtest 4")
+
 
 	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
 		character = equip
 
 	var/datum/job/job = SSjob.GetJob(rank)
-	testing("basedtest 5")
+
 
 	if(job && !job.override_latejoin_spawn(character))
-		testing("basedtest 6")
+
 		SSjob.SendToLateJoin(character)
-		testing("basedtest 7")
+
 //		if(!arrivals_docked)
 		var/atom/movable/screen/splash/Spl = new(character.client, TRUE)
 		Spl.Fade(TRUE)
@@ -559,6 +545,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 */
 	GLOB.joined_player_list += character.ckey
 	update_wretch_slots()
+	update_mercenary_slots()
 /*
 	if(CONFIG_GET(flag/allow_latejoin_antagonists) && humanc)	//Borgs aren't allowed to be antags. Will need to be tweaked if we get true latejoin ais.
 		if(SSshuttle.emergency)
@@ -613,7 +600,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 
 	for(var/list/category in omegalist)
 		if(!SSjob.name_occupations[category[1]])
-			testing("HELP NO THING FOUND FOR [category[1]]")
+
 			continue
 
 		var/list/available_jobs = list()

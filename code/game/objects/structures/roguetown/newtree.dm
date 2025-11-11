@@ -36,7 +36,6 @@
 						user.mind.special_items -= item
 						var/obj/item/I = new path2item(user.loc)
 						user.put_in_hands(I)
-			return
 
 /obj/structure/flora/newtree/obj_destruction(damage_flag)//this proc is stupidly long for a destruction proc
 	var/turf/NT = get_turf(src)

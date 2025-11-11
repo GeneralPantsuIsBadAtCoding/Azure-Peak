@@ -956,9 +956,10 @@
 	skillcraft = /datum/skill/craft/masonry
 	craftdiff = 3
 
-/datum/crafting_recipe/roguetown/structure/scom
-	name = "SCOM"
-	result = /obj/structure/roguemachine/scomm
+// SCOM is not constructable, only the receive only version is constructable to prevent unactionable sneeding. 
+/datum/crafting_recipe/roguetown/structure/rcom
+	name = "RCOM"
+	result = /obj/structure/roguemachine/scomm/receive_only
 	reqs = list(/obj/item/ingot/iron = 1,
 					/obj/item/reagent_containers/food/snacks/smallrat = 1)
 	verbage_simple = "assemble"

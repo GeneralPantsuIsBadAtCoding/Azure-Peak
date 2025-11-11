@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/hair_color	// this allows races to have specific hair colors... if null, it uses the H's hair/facial hair colors. if "mutcolor", it uses the H's mutant_color
 	var/hair_alpha = 255	// the alpha used by the hair. 255 is completely solid, 0 is transparent.
 
-	var/use_skintones = 0	// does it use skintones or not? (spoiler alert this is only used by humans)
+	var/use_skintones = FALSE	// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/exotic_blood = ""	// If my race wants to bleed something other than bog standard blood, change this to reagent id.
 	var/exotic_bloodtype = "" //If my race uses a non standard bloodtype (A+, O-, AB-, etc)
 	var/meat = /obj/item/reagent_containers/food/snacks/rogue/meat/steak //What the species drops on gibbing
@@ -639,7 +639,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 			return TRUE
 		if(SLOT_BACK)
-			if(H.back)
+			if(H.backr && H.backl)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_BACK) )
 				return FALSE
@@ -868,7 +868,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 			return TRUE
 		if(SLOT_IN_BACKPACK)
-			testing("STARTYES")
+
 			if(H.backr)
 				if(SEND_SIGNAL(H.backr, COMSIG_TRY_STORAGE_CAN_INSERT, I, H, TRUE))
 					return TRUE
@@ -884,7 +884,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(H.belt)
 				if(SEND_SIGNAL(H.belt, COMSIG_TRY_STORAGE_CAN_INSERT, I, H, TRUE))
 					return TRUE
-			testing("NONONO")
+
 			return FALSE
 	return FALSE //Unsupported slot
 
@@ -1552,7 +1552,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else
 			if(HAS_TRAIT(user, TRAIT_STRONGKICK))
 				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
-				target.throw_at(target_shove_turf, 1, 1)
+				var/throwtarget = get_edge_target_turf(user, get_dir(user, get_step_away(target, user)))
+				target.throw_at(throwtarget, 2, 2)
 				target.visible_message(span_danger("[user.name] kicks [target.name], knocking them back!"),
 				span_danger("I'm knocked back from a kick by [user.name]!"), span_hear("I hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, user)
 				to_chat(user, span_danger("I kick [target.name], knocking them back!"))

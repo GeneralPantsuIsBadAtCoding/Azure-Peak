@@ -362,7 +362,7 @@ BLIND     // can't see anything
 	GLOB.female_clothing_icons[index] = female_clothing_icon
 
 /proc/generate_dismembered_clothing(index, t_color, icon, sleeveindex, sleevetype)
-	testing("GDC [index]")
+
 	if(sleevetype)
 		var/icon/dismembered		= icon("icon"=icon, "icon_state"=t_color)
 		var/icon/r_mask				= icon("icon"='icons/roguetown/clothing/onmob/helpers/dismemberment.dmi', "icon_state"="r_[sleevetype]")
@@ -376,7 +376,7 @@ BLIND     // can't see anything
 			if(3)
 				dismembered.Blend(r_mask, ICON_MULTIPLY)
 		dismembered 			= fcopy_rsc(dismembered)
-		testing("GDC added [index]")
+
 		GLOB.dismembered_clothing_icons[index] = dismembered
 
 /obj/item/clothing/under/verb/toggle()

@@ -134,8 +134,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/anonymize = TRUE
 	var/masked_examine = FALSE
+	var/full_examine = FALSE
 	var/mute_animal_emotes = FALSE
 	var/autoconsume = FALSE
+	var/no_examine_blocks = FALSE
 
 	var/lastclass
 
@@ -157,7 +159,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/static/default_cmusic_type = /datum/combat_music/default
 	var/datum/combat_music/combat_music
 	var/combat_music_helptext_shown = FALSE
-	
+
 	var/family = FAMILY_NONE
 
 	var/crt = FALSE
@@ -170,6 +172,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/headshot_link
 	var/nsfw_headshot_link //Twilight Axis edit далее TA
+	var/list/violated = list() // ТА
 	var/chatheadshot = TRUE
 	var/ooc_extra
 	var/song_artist
@@ -184,6 +187,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	//var/datum/loadout_item/loadout2
 	//var/datum/loadout_item/loadout3
 
+	var/loadout_1_hex
+	var/loadout_2_hex
+	var/loadout_3_hex
+
 	var/flavortext
 
 	var/ooc_notes
@@ -193,7 +200,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/erpprefs
 
 	var/list/img_gallery = list()
-	
+
 	var/datum/familiar_prefs/familiar_prefs
 
 	var/taur_type = null
@@ -208,10 +215,14 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/race_bonus
 
+	var/datum/loadout_panel/loadoutpanel
+
 /datum/preferences/New(client/C)
 	parent = C
 	migrant  = new /datum/migrant_pref(src)
 	familiar_prefs = new /datum/familiar_prefs(src)
+
+	loadoutpanel = new(C.mob)
 
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		custom_names[custom_name_id] = get_default_name(custom_name_id)
@@ -407,7 +418,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
 					dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER]'>Always Random Bodytype: [(randomise[RANDOM_GENDER]) ? "Yes" : "No"]</A>"
 					dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER_ANTAG]'>When Antagonist: [(randomise[RANDOM_GENDER_ANTAG]) ? "Yes" : "No"]</A>"
-			
+
 			if(LAZYLEN(pref_species.allowed_taur_types))
 				var/obj/item/bodypart/taur/T = taur_type
 				var/name = ispath(T) ? T::name : "None"
@@ -959,7 +970,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(!(job_unavailable in acceptable_unavailables))
 				HTML += "<font color=#a36c63>[used_name]</font></td> <td> </td></tr>"
 				continue
-			
+
 			var/job_display = used_name
 			//job_display += " <a href='?src=[REF(job)];explainjob=1'>{?}</a></span>"
 //			if((job_preferences[SSjob.overflow_role] == JP_LOW) && (rank != SSjob.overflow_role) && !is_banned_from(user.ckey, SSjob.overflow_role))
@@ -1285,7 +1296,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				SetChoices(user)
 			if("tutorial")
 				if(href_list["tut"])
-					testing("[href_list["tut"]]")
+
 					to_chat(user, span_info("* ----------------------- *"))
 					to_chat(user, href_list["tut"])
 					to_chat(user, span_info("* ----------------------- *"))
@@ -1426,21 +1437,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				SetKeybinds(user)
 		return TRUE
 
-	else if(href_list["preference"] == "loadout_items")
-		var/item_name = href_list["item"]
-		switch(href_list["task"])
-			if("add")
-				if(selected_loadout_items.len >= get_loadout_size(user))
-					to_chat(user, "Лимит исчерпан!")
-					return
-				add_loadout_item(item_name)
-			if("remove")
-				remove_loadout_item(item_name)
-			if("set_category")
-				current_loadout_category = href_list["category"]
-		show_loadout_window(user)
-		return
-
 	switch(href_list["task"])
 		if("change_customizer")
 			handle_customizer_topic(user, href_list)
@@ -1563,7 +1559,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 //						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("age")
-					var/new_age = tgui_input_list(user, "Choose your character's age (18-[pref_species.max_age])", "YILS LIVED", pref_species.possible_ages) 
+					var/new_age = tgui_input_list(user, "Choose your character's age (18-[pref_species.max_age])", "YILS LIVED", pref_species.possible_ages)
 					if(new_age)
 						age = new_age
 						var/list/hairs
@@ -1620,7 +1616,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 				// LETHALSTONE EDIT: add voice type selection
 				if ("voicetype")
-					var voicetype_input = tgui_input_list(user, "Choose your character's voice type", "VOICE TYPE", GLOB.voice_types_list) 
+					var voicetype_input = tgui_input_list(user, "Choose your character's voice type", "VOICE TYPE", GLOB.voice_types_list)
 					if(voicetype_input)
 						voice_type = voicetype_input
 						to_chat(user, "<font color='red'>Your character will now vocalize with a [lowertext(voice_type)] affect.</font>")
@@ -1635,7 +1631,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/list/taur_selection = list("None")
 					for(var/obj/item/bodypart/taur/tt as anything in pref_species.get_taur_list())
 						taur_selection[tt::name] = tt
-					
+
 					var/new_taur_type = tgui_input_list(user, "Choose your character's taur body", "TAUR BODY", taur_selection)
 					if(!new_taur_type)
 						return
@@ -1655,7 +1651,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						if(!faith.name)
 							continue
 						faiths_named[faith.name] = faith
-					var/faith_input = tgui_input_list(user, "The world rots. Which truth you bear?", "FAITH", faiths_named) 
+					var/faith_input = tgui_input_list(user, "The world rots. Which truth you bear?", "FAITH", faiths_named)
 					if(faith_input)
 						var/datum/faith/faith = faiths_named[faith_input]
 						to_chat(user, "<font color='yellow'>Вера: [faith.translated_name]</font>") //	TA EDIT
@@ -1706,12 +1702,12 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							to_chat(user, "<font color='red'>This voice color is too dark for mortals.</font>")
 							return
 						voice_color = sanitize_hexcolor(new_voice)
-				
+
 				if("extra_language")
 					var/static/list/selectable_languages = list(
 						/datum/language/elvish,
 						/datum/language/dwarvish,
-						/datum/language/orcish, 
+						/datum/language/orcish,
 						/datum/language/hellspeak,
 						/datum/language/draconic,
 						/datum/language/celestial,
@@ -1878,7 +1874,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					to_chat(user, "<span class='notice'>If the photo doesn't show up properly in-game, ensure that it's a direct image link that opens properly in a browser.</span>")
 					to_chat(user, "<span class='notice'>Keep in mind that all three images are displayed next to eachother and justified to fill a horizontal rectangle. As such, vertical images work best.</span>")
 					to_chat(user, "<span class='notice'>You can only have a maximum of ["<span class='bold'>THREE IMAGES</span>"] in your gallery at a time.</span>")
-					
+
 					var/new_galleryimg = tgui_input_text(user, "Input the image link (https, hosts: gyazo, discord, lensdump, imgbox, catbox):", "Gallery Image",  encode = FALSE)
 
 					if(new_galleryimg == null)
@@ -1972,7 +1968,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				if("loadout_item")
 					handle_loadout_size(user)
 					clean_loadout(user)
-					show_loadout_window(user)
+
+					loadoutpanel.ui_interact(user)
 
 				if("species")
 					var/list/species = list()
@@ -2107,11 +2104,12 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/new_s_tone = tgui_input_list(user, "Choose your character's skin tone:", "SKINTONE", listy)
 					if(new_s_tone)
 						skin_tone = listy[new_s_tone]
+						features["mcolor"] = sanitize_hexcolor(skin_tone)
 						try_update_mutant_colors()
 
 				if("charflaw")
 					var/selectedflaw
-					selectedflaw = tgui_input_list(user, "Choose your character's flaw:", "FLAWS", GLOB.character_flaws) 
+					selectedflaw = tgui_input_list(user, "Choose your character's flaw:", "FLAWS", GLOB.character_flaws)
 					if(selectedflaw)
 						charflaw = GLOB.character_flaws[selectedflaw]
 						charflaw = new charflaw()
@@ -2418,9 +2416,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				if("be_defiant")
 					defiant = !defiant
 					if(defiant)
-						to_chat(user, span_notice("You will now have resistance from people violating you. Ahelp if you are targeted in spite of this."))
+						to_chat(user, span_notice("You will now have resistance from people violating you, but be punished for trying to violate others." + " " + span_boldwarning("(COMBAT Mode will disable ERP interactions. Bypassing this is a bannable offense, AHELP if necessary.)")))
 					else
-						to_chat(user, span_boldwarning("You fully immerse yourself in the grim experience, waiving your resistance from people violating you."))
+						to_chat(user, span_boldwarning("You fully immerse yourself in the grim experience, waiving your resistance from people violating you, but letting you do the same unto other non-defiants"))
 		
 				if("schizo_voice")
 					toggles ^= SCHIZO_VOICE
@@ -2493,8 +2491,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 	ShowChoices(user)
 	return 1
-
-
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE, character_setup = FALSE, antagonist = FALSE)
 	if(randomise[RANDOM_SPECIES] && !character_setup)
@@ -2592,7 +2588,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	character.statpack = statpack
 
 	character.flavortext = flavortext
-	
+
 	character.ooc_notes = ooc_notes
 
 	character.nsfwflavortext = nsfwflavortext
@@ -2629,7 +2625,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 	if(icon_updates)
 		character.update_body()
-		character.update_hair() 
+		character.update_hair()
 		character.update_body_parts(redraw = TRUE)
 
 	character.char_accent = char_accent
@@ -2691,12 +2687,11 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	parent?.ensure_keys_set(src)
 
 /datum/preferences/proc/try_update_mutant_colors()
-	if(update_mutant_colors)
-		reset_body_marking_colors()
-		reset_all_customizer_accessory_colors()
+	reset_body_marking_colors()
+	reset_all_customizer_accessory_colors()
 
 /proc/valid_headshot_link(mob/user, value, silent = FALSE, list/valid_extensions = list("jpg", "png", "jpeg"))
-	var/static/link_regex = regex("i.gyazo.com|a.l3n.co|b.l3n.co|c.l3n.co|images2.imgbox.com|thumbs2.imgbox.com|files.catbox.moe") //gyazo, discord, lensdump, imgbox, catbox
+	var/static/link_regex = regex(@"i\.gyazo.com|.\.l3n\.co|images2\.imgbox\.com|thumbs2\.imgbox\.com|files\.catbox\.moe") //gyazo, discord, lensdump, imgbox, catbox
 
 	if(!length(value))
 		return FALSE

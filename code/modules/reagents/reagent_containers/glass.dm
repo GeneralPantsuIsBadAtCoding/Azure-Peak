@@ -90,14 +90,14 @@
 	if(user.used_intent.type == INTENT_GENERIC)
 		return ..()
 
-	testing("attackobj1")
+
 
 	if(!spillable)
 		return
 
 
 	if(target.is_refillable() && (user.used_intent.type == INTENT_POUR)) //Something like a glass. Player probably wants to transfer TO it.
-		testing("attackobj2")
+
 		if(!reagents.total_volume)
 			to_chat(user, span_warning("[src] is empty!"))
 			return
@@ -123,7 +123,7 @@
 		return
 
 	if(target.is_drainable() && (user.used_intent.type == /datum/intent/fill)) //A dispenser. Transfer FROM it TO us.
-		testing("attackobj3")
+
 		if(!target.reagents.total_volume)
 			to_chat(user, span_warning("[target] is empty!"))
 			return
@@ -243,7 +243,7 @@
 
 /obj/item/reagent_containers/glass/bucket/update_icon(dont_fill=FALSE)
 	if(dont_fill)
-		testing("dontfull")
+
 		return ..()
 
 	cut_overlays()
