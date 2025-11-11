@@ -1045,7 +1045,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 /datum/loadout_item/donat/tabard/crusader/ravox
 	name = "Табард-плащ Равокса"
 	category = list("Плащи", "Донат")
-	path = /obj/item/clothing/cloak/tabard/crusader/ravox
+	path = /obj/item/clothing/cloak/cleric/ravox
 	donatitem = TRUE
 
 /datum/loadout_item/donat/tabard/crusader/eora
