@@ -807,7 +807,7 @@
 /datum/status_effect/debuff/strikecd
 	id = "strikecd"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/precisestrikecd
-	duration = 2 SECONDS
+	duration = 30 SECONDS
 
 /atom/movable/screen/alert/status_effect/debuff/precisestrikecd
 	name = "Precise Strike Cooldown"
@@ -840,7 +840,12 @@
 /datum/status_effect/debuff/feintcd
 	id = "feintcd"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/feintcd
-	duration = 30 SECONDS
+	duration = 15 SECONDS
+
+/datum/status_effect/debuff/feintcd/on_creation(mob/living/new_owner, new_dur)
+	if(new_dur)
+		duration = new_dur
+	return ..()
 
 //Unused
 /datum/status_effect/debuff/riposted
