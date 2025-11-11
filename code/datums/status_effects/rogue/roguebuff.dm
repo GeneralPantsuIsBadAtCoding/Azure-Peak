@@ -1465,7 +1465,7 @@
 	duration = -1
 
 /datum/status_effect/buff/ravox_vow/tick()
-	owner.heal_wounds(2)
+	owner.heal_wounds(1)
 
 /datum/status_effect/buff/ravox_vow/on_apply()
 	. = ..()
