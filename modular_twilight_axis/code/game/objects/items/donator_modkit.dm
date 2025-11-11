@@ -87,3 +87,21 @@
 	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Hardened Leather Coat"
 	target_items = list(/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat)
 	result_item = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/aristocratic
+
+/obj/item/enchantingkit/ravoxhelm_oldrw
+	name = "'Plumed Ravox Helmet' morphing elixer'"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Heavy Helmet"
+	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy)
+	result_item = /obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm/oldrw
+
+/obj/item/enchantingkit/necranhelm_oldrw
+	name = "'Hooded Necra Helmet' morphing elixer'"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Heavy Helmet"
+	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy)
+	result_item = /obj/item/clothing/head/roguetown/helmet/heavy/necran/oldrw
+
+/obj/item/enchantingkit/astratanhelm_oldrw
+	name = "'Plumed Astrata Helmet' morphing elixer'"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Heavy Helmet"
+	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy)
+	result_item = /obj/item/clothing/head/roguetown/helmet/heavy/astratan/oldrw

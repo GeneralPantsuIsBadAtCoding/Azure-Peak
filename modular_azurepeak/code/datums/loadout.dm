@@ -798,6 +798,24 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/enchantingkit/bigfoot
 	donatitem = TRUE
 
+/datum/loadout_item/donator_ravoxhelm_oldrw
+	name = "Donator Kit - Plumed Ravox Helmet - Required: Heavy Helmet"
+	category = list("Разное", "Донат")
+	path = /obj/item/enchantingkit/ravoxhelm_oldrw
+	donatitem = TRUE
+
+/datum/loadout_item/donator_necranhelm_oldrw
+	name = "Donator Kit - Hooded Necra Helmet - Required: Heavy Helmet"
+	category = list("Разное", "Донат")
+	path = /obj/item/enchantingkit/necranhelm_oldrw
+	donatitem = TRUE
+
+/datum/loadout_item/donator_astratanhelm_oldrw
+	name = "Donator Kit - Plumed Astrata Helmet - Required: Heavy Helmet"
+	category = list("Разное", "Донат")
+	path = /obj/item/enchantingkit/astratanhelm_oldrw
+	donatitem = TRUE
+
 /datum/loadout_item/donator_bigfoot_axe
 	name = "Donator Kit - Gilded GreatAxe - Required: Steel Greataxe"
 	category = list("Разное", "Донат")
