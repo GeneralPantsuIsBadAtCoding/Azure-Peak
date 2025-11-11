@@ -672,7 +672,7 @@
 
 /datum/status_effect/debuff/joybringer_druqks
 	id = "joybringer_druqks"
-	effectedstats = list(STATKEY_SPD = -2, STATKEY_LCK = -2)
+	effectedstats = list(STATKEY_LCK = -2)
 	duration = 3 SECONDS
 	alert_type = null
 

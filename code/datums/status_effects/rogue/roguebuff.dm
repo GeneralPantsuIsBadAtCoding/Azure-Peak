@@ -1460,7 +1460,7 @@
 /datum/status_effect/buff/ravox_vow
 	id = "ravox_vow"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/ravox_vow
-	effectedstats = list(STATKEY_STR = 1, STATKEY_WIL = 1, STATKEY_LCK = 1, STATKEY_CON = 1)
+	effectedstats = list(STATKEY_STR = 1, STATKEY_WIL = 1)
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1
 
