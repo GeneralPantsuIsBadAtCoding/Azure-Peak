@@ -848,7 +848,6 @@
 	smeltresult = /obj/item/ingot/blacksteel
 	max_integrity = 300 //blacksteel, so its gotta be more durable
 	max_blade_int = 200
-	wdefense = 10
 	sellprice = 250
 
 /obj/item/rogueweapon/eaglebeak
@@ -907,7 +906,6 @@
 /datum/intent/spear/thrust/glaive
 	penfactor = 50
 	damfactor = 1.1
-	chargetime = 0
 
 /datum/intent/mace/smash/eaglebeak
 	reach = 2
