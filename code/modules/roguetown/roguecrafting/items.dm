@@ -426,7 +426,8 @@
 /datum/crafting_recipe/roguetown/survival/purify_lux
 	name = "purifiy lux"
 	result = list(
-		/obj/item/reagent_containers/lux
+		/obj/item/heart_blood_canister,
+		/obj/item/reagent_containers/lux,
 		)
 	reqs = list(
 		/obj/item/reagent_containers/lux_impure = 1,
@@ -438,7 +439,10 @@
 /datum/crafting_recipe/roguetown/survival/purify_lux_vials
 	name = "purifiy lux (vials)"
 	result = list(
-		/obj/item/reagent_containers/lux
+		/obj/item/reagent_containers/lux,
+		/obj/item/heart_blood_vial,
+		/obj/item/heart_blood_vial,
+		/obj/item/heart_blood_vial,
 		)
 	reqs = list(
 		/obj/item/reagent_containers/lux_impure = 1,

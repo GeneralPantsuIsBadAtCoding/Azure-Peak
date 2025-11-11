@@ -90,6 +90,14 @@
 	prerequisites = list("INFESTATION_TIER3")
 	is_recipe_node = TRUE
 
+/datum/chimeric_tech_node/corpse_ticks
+	name = "Corpse Ticks"
+	description = "Allows leechticks to attach to dead bodies to extract their lux"
+	string_id = "CORPSE_TICKS"
+	required_tier = 1
+	cost = 5
+	selection_weight = 1
+
 /// INFESTATION CHARGE CAPACITY TECHS
 /datum/chimeric_tech_node/infestation_capacity_1
 	name = "Enhanced Infestation Capacity"
