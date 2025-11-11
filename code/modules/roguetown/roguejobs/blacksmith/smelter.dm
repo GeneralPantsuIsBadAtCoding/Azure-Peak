@@ -184,15 +184,11 @@
 /obj/machinery/light/rogue/smelter/proc/handle_smelting()
 	for(var/obj/item/item as anything in contained_items)
 		if(item.smeltresult)
-			// disabled for now, balance reasons
-			// while(item.smelt_bar_num)
-			// 	item.smelt_bar_num--
-			// 	var/obj/item/result = new item.smeltresult(src, contained_items[item])
-			// 	contained_items += result
-			// contained_items -= item
-			var/obj/item/result = new item.smeltresult(src, contained_items[item])
+			var/smelt_amount = item.smelt_bar_num || 1
+			for(var/i in 1 to smelt_amount)
+				var/obj/item/result = new item.smeltresult(src, contained_items[item])
+				contained_items += result
 			contained_items -= item
-			contained_items += result
 			qdel(item)
 	playsound(src,'sound/misc/smelter_fin.ogg', 100, FALSE)
 	visible_message(span_notice("\The [src] finished smelting."))
