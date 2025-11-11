@@ -2880,6 +2880,7 @@
 #include "modular_twilight_axis\code\modules\cargo\packsrogue\alcohols.dm"
 #include "modular_twilight_axis\code\modules\cargo\packsrogue\instruments.dm"
 #include "modular_twilight_axis\code\modules\cargo\packsrogue\luxury.dm"
+#include "modular_twilight_axis\code\modules\cargo\packsrogue\merch_armor_exotic.dm"
 #include "modular_twilight_axis\code\modules\client\preferences_loadout.dm"
 #include "modular_twilight_axis\code\modules\client\customizer\customizers\organ\horns.dm"
 #include "modular_twilight_axis\code\modules\client\customizer\customizers\organ\tail.dm"
