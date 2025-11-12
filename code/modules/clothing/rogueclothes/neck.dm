@@ -728,7 +728,7 @@
 	. = ..()
 	if(slot == SLOT_NECK)
 		active_item = TRUE
-		to_chat(user, span_hypnophrase("..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before.. </br>..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets.. </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.' </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER. </br>'FIVE SLABS OF SILVER, THE REMAINS OF A DRACONIC RING AND WEEPING PSICROSS, A GREAT LOG, AND WHAT LIES WITHIN THIS AMULET; TO SLAY VHESLYN'S DAEMONS.'"))
+		to_chat(user, span_hypnophrase("..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before.. </br>..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets..  </br>  </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.'  </br>  </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER.'  </br>  </br>'AN INGOT-CATALYST, A GREATSWORD - EACH - OF GILBRANZE AND SILVER, THE REMAINS OF A DRACONIC RING AND WEEPING PSICROSS, AND WHAT LIES WITHIN THIS AMULET: TO SLAY VHESLYN'S DAEMONS.'"))
 		user.change_stat(STATKEY_INT, 3)
 		user.change_stat(STATKEY_LCK, 3)
 		user.change_stat(STATKEY_STR, -3)

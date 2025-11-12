@@ -115,6 +115,17 @@
 		else
 			to_chat(src, "You will now see examined items in boxes.")
 
+/client/verb/toggle_autopunctuation()
+	set category = "Options"
+	set name = "Toggle Autopunctuation"
+	if(prefs)
+		prefs.no_autopunctuate = !prefs.no_autopunctuate
+		prefs.save_preferences()
+		if(prefs.no_autopunctuate)
+			to_chat(src, "Your messages will no longer be automatically punctuated.")
+		else
+			to_chat(src, "Your messages will now be automatically punctuated.")
+
 /client/verb/toggle_lobby_music()
 	set name = "Toggle Lobby Music"
 	set category = "Options"

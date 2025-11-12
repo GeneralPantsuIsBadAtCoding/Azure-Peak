@@ -70,8 +70,6 @@
 		return FALSE
 	if(A == src)
 		return FALSE
-	if(isliving(A) && pulledby)
-		return FALSE
 	if(IsOffBalanced())
 		if(do_message)
 			to_chat(src, span_warning("I haven't regained my balance yet."))

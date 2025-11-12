@@ -198,16 +198,16 @@
 /datum/anvil_recipe/valuables/dragon
 	name = "Dragonstone Ring (Secret!)"
 	req_bar = /obj/item/ingot/blacksteel
-	hides_from_books = TRUE
+	hides_from_books = TRUE //New variable, which should make the full recipe unviewable through the Blacksmith's crafting books. Should only be placed on crafting recipes with 'Secret!' in the name.
 	additional_items = list(/obj/item/ingot/gold, /obj/item/roguegem/blue, /obj/item/roguegem/violet, /obj/item/clothing/neck/roguetown/psicross/silver)
 	created_item = /obj/item/clothing/ring/dragon_ring
 	craftdiff = SKILL_LEVEL_LEGENDARY
-	bypass_dupe_test = TRUE // Transmutation into draconic ingot is fine
+	bypass_dupe_test = TRUE // Transmutation into draconic ingot is fine.
 
 /datum/anvil_recipe/valuables/hope
 	name = "Ring Of Omnipotence (Secret!)"
 	req_bar = /obj/item/ingot/silver
-	hides_from_books = TRUE
+	hides_from_books = TRUE //'Secret!' items should be stronger but harder to make. Likewise, it should be inherently difficult to figure out how to craft them, unless you've found special info-giving items.
 	additional_items = list(/obj/item/clothing/ring/statgemerald, /obj/item/clothing/ring/statonyx, /obj/item/clothing/ring/statamythortz, /obj/item/clothing/ring/statrontz)
 	created_item = /obj/item/clothing/ring/statdorpel
 	craftdiff = SKILL_LEVEL_LEGENDARY
@@ -216,9 +216,10 @@
 /datum/anvil_recipe/valuables/daemonslayer
 	name = "Daemonslayer (Secret!)"
 	req_bar = /obj/item/ingot/silver
-	hides_from_books = TRUE
-	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver/, /obj/item/ingot/draconic, /obj/item/ingot/weeping, /obj/item/riddleofsteel, /obj/item/grown/log/tree)
+	hides_from_books = TRUE //Note to self - adding more than five additional items to a crafting recipe might result in unintended consequences.
+	additional_items = list(/obj/item/rogueweapon/greatsword/silver, /obj/item/rogueweapon/greatsword/paalloy, /obj/item/ingot/draconic, /obj/item/ingot/weeping, /obj/item/riddleofsteel)
 	created_item = /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
 	appro_skill = /datum/skill/craft/weaponsmithing
+	i_type = "Weapons"
 	craftdiff = SKILL_LEVEL_LEGENDARY
-	bypass_dupe_test = TRUE // Smelting into a kriegmesser is fine
+	bypass_dupe_test = TRUE // Smelting into a greatsword is fine.

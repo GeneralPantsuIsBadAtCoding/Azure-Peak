@@ -34,6 +34,7 @@
 	//crafting diff, every diff removes 25% chance to craft
 	var/required_tech_node = null // String ID of required tech node, or null if no tech required
 	var/tech_unlocked = TRUE // Set to TRUE when the required tech is unlocked
+	var/ignoredensity = FALSE //used on objects that we want to build into walls or atop other structures
  	// If TRUE, this recipe will be skipped by the nodupe tests
 	var/bypass_dupe_test = FALSE
 /*

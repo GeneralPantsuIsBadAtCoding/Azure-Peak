@@ -844,81 +844,81 @@
 // HOLY STEEL
 
 /datum/anvil_recipe/armor/holysteel/astratahelmtemplar
-	name = "Astratan Templar's Helmet (+1 Cured Leather)"
+	name = "Astratan Templar's Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/astratan
 
 /datum/anvil_recipe/armor/holysteel/malumhelmtemplar
-	name = "Malumite Templar's Helmet (+1 Cured Leather)"
+	name = "Malumite Templar's Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/malum
 
 /datum/anvil_recipe/armor/holysteel/necrahelmtemplar
-	name = "Necran Templar's Helmet (+1 Cured Leather)"
+	name = "Necran Templar's Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/necran
 
 /datum/anvil_recipe/armor/holysteel/pestrahelmtemplar
-	name = "Pestran Templar's Helmet (+1 Cured Leather)"
+	name = "Pestran Templar's Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/pestran
 
 /datum/anvil_recipe/armor/holysteel/eorahelmtemplar
-	name = "Eoran Templar's Helmet (+1 Cured Leather)"
+	name = "Eoran Templar's Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/eoran
 
 /datum/anvil_recipe/armor/holysteel/astratahelm
-	name = "Astratan Helmet (+1 Cured Leather)"
+	name = "Astratan Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/astratahelm
 
 /datum/anvil_recipe/armor/holysteel/abyssorhelm
-	name = "Abyssorite Helmet (+1 Cured Leather)"
+	name = "Abyssorite Helmet (+1 Holy Steel,+1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/abyssorgreathelm
 
 /datum/anvil_recipe/armor/holysteel/necrahelm
-	name = "Necran Helmet (+1 Cured Leather)"
+	name = "Necran Helmet (+1 Holy Steel,+1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/necrahelm
 
 /datum/anvil_recipe/armor/holysteel/nochelm
-	name = "Noccian Helmet (+1 Cured Leather)"
+	name = "Noccian Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
 
 /datum/anvil_recipe/armor/holysteel/dendorhelm
-	name = "Dendorite Helmet (+1 Cured Leather)"
+	name = "Dendorite Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
 
 /datum/anvil_recipe/armor/holysteel/ravoxhelm
-	name = "Ravoxian Helmet (+1 Cured Leather)"
+	name = "Ravoxian Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm
 
 /datum/anvil_recipe/armor/holysteel/xylixhelm
-	name = "Xylixian Helmet (+1 Cured Leather)"
+	name = "Xylixian Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/xylixhelm
 
 /datum/anvil_recipe/armor/holysteel/eorahelm
-	name = "Eoran Helmet (+1 Cured Leather)"
+	name = "Eoran Helmet (+1 Holy Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steelholy
-	additional_items = list(/obj/item/natural/hide/cured)
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/head/roguetown/helmet/sallet/eoran
 
 // SILVER

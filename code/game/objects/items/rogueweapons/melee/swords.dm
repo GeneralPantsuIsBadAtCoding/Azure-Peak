@@ -706,6 +706,8 @@
 	icon_state = "exe"
 	minstr = 12
 	slot_flags = ITEM_SLOT_BACK //Too big for hip
+	smeltresult = /obj/item/ingot/iron
+	smelt_bar_num = 2 // 1 bar loss
 
 /datum/intent/sword/thrust/exe
 	swingdelay = 4	//Slight delay to stab; big and heavy.
@@ -735,6 +737,8 @@
 	icon_state = "terminusest"
 	name = "\"Terminus Est\""
 	desc = "An ancient and damaged executioner's sword, decorated with a bronze pommel and crossguard. A bloody rag winds around the ricasso, ever-present to keep the blade clean."
+	smeltresult = /obj/item/ingot/gold // It is the most valuable component
+	smelt_bar_num = 2
 
 /obj/item/rogueweapon/sword/long/exe/cloth/rmb_self(mob/user)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -1150,16 +1154,16 @@
 	last_used = 0
 	is_silver = FALSE
 	smeltresult = /obj/item/ingot/gold
-	smelt_bar_num = 2
+	smelt_bar_num = 1
 
 /obj/item/rogueweapon/sword/sabre/stalker
 	name = "stalker sabre"
-	desc = "A once elegant blade of mythril, diminishing under the suns gaze"
+	desc = "A once elegant blade of mythril, diminishing under the suns gaze."
 	icon_state = "spidersaber"
-	force = 17
-	force_wielded = 20
+	force = 23
+	force_wielded = 23
 	minstr = 7
-	wdefense = 9
+	wdefense = 8
 
 /obj/item/rogueweapon/sword/sabre/shamshir
 	name = "shamshir"
