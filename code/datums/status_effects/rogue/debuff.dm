@@ -689,10 +689,10 @@
 	owner.clear_fullscreen("joybringer_druqks")
 
 /datum/status_effect/debuff/joybringer_druqks/tick()
-	owner.hallucination++
+	owner.hallucination += 2
 
 	if(!prob(15))
 		return
 
 	owner.emote(pick("chuckle", "giggle"))
-	owner.Jitter(1 SECONDS)
+	owner.Jitter(2 SECONDS)
