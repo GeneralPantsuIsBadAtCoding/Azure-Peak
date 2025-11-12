@@ -131,43 +131,6 @@
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/full // пока у них не будет нормальных шлемов
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/iron
-	// -- Start of section for god specific bonuses --
-	if(H.patron?.type == /datum/patron/divine/astrata)
-		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
-		H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
-	if(H.patron?.type == /datum/patron/divine/dendor)
-		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-	if(H.patron?.type == /datum/patron/divine/noc)
-		H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE) // Really good at reading... does this really do anything? No. BUT it's soulful.
-		H.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
-	if(H.patron?.type == /datum/patron/divine/abyssor)
-		H.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
-		ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
-	if(H.patron?.type == /datum/patron/divine/necra)
-		ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
-		H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
-	if(H.patron?.type == /datum/patron/divine/pestra)
-		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
-		ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
-	if(H.patron?.type == /datum/patron/divine/eora)
-		ADD_TRAIT(H, TRAIT_BEAUTIFUL, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
-		H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
-	if(H.patron?.type == /datum/patron/divine/malum)
-		H.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
-	if(H.patron?.type == /datum/patron/divine/ravox)
-		H.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
-	if(H.patron?.type == /datum/patron/divine/xylix)
-		H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/lockpicking, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/music, 1, TRUE)
 	// -- End of section for god specific bonuses --
 	ADD_TRAIT(H, TRAIT_CLERGY, TRAIT_GENERIC)
 
@@ -333,3 +296,40 @@
 			ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)
 			H.change_stat(STATKEY_SPD, 2)
 			H.change_stat(STATKEY_INT, 2)
+	// -- Start of section for god specific bonuses --
+	if(H.patron?.type == /datum/patron/divine/astrata)
+		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+		H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
+	if(H.patron?.type == /datum/patron/divine/dendor)
+		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+	if(H.patron?.type == /datum/patron/divine/noc)
+		H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE) // Really good at reading... does this really do anything? No. BUT it's soulful.
+		H.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
+	if(H.patron?.type == /datum/patron/divine/abyssor)
+		H.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
+		ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
+	if(H.patron?.type == /datum/patron/divine/necra)
+		ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
+		H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
+	if(H.patron?.type == /datum/patron/divine/pestra)
+		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
+		ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
+	if(H.patron?.type == /datum/patron/divine/eora)
+		ADD_TRAIT(H, TRAIT_BEAUTIFUL, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
+		H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
+	if(H.patron?.type == /datum/patron/divine/malum)
+		H.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
+	if(H.patron?.type == /datum/patron/divine/ravox)
+		H.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
+	if(H.patron?.type == /datum/patron/divine/xylix)
+		H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/lockpicking, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/music, 1, TRUE)
