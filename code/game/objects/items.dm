@@ -597,7 +597,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			inspec += "<br>"
 			inspec += C.defense_examine()
 			if(C.body_parts_covered)
-				inspec += "\n<b>COVERAGE: <br></b>"
+				inspec += "<table align='center'; width='100%'; height='100%';border: 1px solid white;border-collapse: collapse>"
+				inspec += "<tr style='vertical-align:top'>"
+				inspec += "<td width = 25%>"
+				inspec += "<b>COVERAGE: <br></b>"
 				if(islist(C.body_parts_covered_dynamic))	//This item is using limb coverage integrity
 					var/alist/bpc_simplified = C.body_parts_covered_dynamic
 					for(var/zone in bpc_simplified)
@@ -612,20 +615,21 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					for(var/zoneorg in body_parts_covered2organ_names(C.body_parts_covered, precise = TRUE))
 						zones += zoneorg
 					for(var/zonedyn in body_parts_covered2organ_names(C.body_parts_covered_dynamic, precise = TRUE))
-						inspec += "<b>[capitalize(zonedyn)]</b> | "
+						inspec += "<b>[capitalize(zonedyn)]</b> "
 						if(zonedyn in zones)
 							zones.Remove(zonedyn)
 					for(var/zone in zones)
 						inspec += "<b><font color = '#7e0000'>[capitalize(zone)]</font></b> | "
-				inspec += "<br>"
+				inspec += "</td>"
 			if(C.prevent_crits)
 				if(length(C.prevent_crits))
-					inspec += "\n<b>PREVENTS CRITS:</b>"
+					inspec += "<td width = 75%><b>PREVENTS CRITS:</b>"
 					for(var/X in C.prevent_crits)
 						if(X == BCLASS_PICK)	//BCLASS_PICK is named "stab", and "stabbing" is its own damage class. Prevents confusion.
 							X = "pick"
 						inspec += ("\n<b>[capitalize(X)]</b>")
-				inspec += "<br>"
+				inspec += "<br></td>"
+			inspec += "</tr></table>"
 
 //**** General durability
 

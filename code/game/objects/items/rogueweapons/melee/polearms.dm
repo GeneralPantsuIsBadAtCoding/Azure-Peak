@@ -1000,6 +1000,7 @@
 	wdefense = 4
 	force = 14
 	force_wielded = 35
+	special = /datum/special_intent/thrust
 
 /obj/item/rogueweapon/greatsword/grenz
 	name = "steel zweihander"

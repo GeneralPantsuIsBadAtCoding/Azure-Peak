@@ -1699,8 +1699,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/pen = I.armor_penetration
 	if(user.used_intent?.penfactor)
 		pen = I.armor_penetration + user.used_intent.penfactor
-	if(I.d_type == "blunt")
-		pen = BLUNT_DEFAULT_PENFACTOR
+
+	if(istype(user.used_intent, /datum/intent/dagger/thrust/pick) && istype(I, /obj/item/rogueweapon/huntingknife/idagger))
+		var/obj/item/rogueweapon/huntingknife/idagger/dg = I
+		pen += dg.penbonus
+		to_chat(world, "the pen pre-armor check ends up being: [pen]")
 
 //	var/armor_block = H.run_armor_check(affecting, "I.d_type", span_notice("My armor has protected my [hit_area]!"), span_warning("My armor has softened a hit to my [hit_area]!"),pen)
 
@@ -1731,7 +1734,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else
 			user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
 
-	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=bladec, peeldivisor = user.used_intent.peel_divisor, intdamfactor = used_intfactor, used_weapon = I)
+	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=bladec, intdamfactor = used_intfactor, used_weapon = I)
+	to_chat(world, "armor_block returns: [armor_block]")
 
 	var/nodmg = FALSE
 
@@ -1849,18 +1853,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE)
 	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
 	var/hit_percent = 1
-	damage = max(damage-blocked+armor,0)
-//	var/hit_percent =  (100-(blocked+armor))/100
+	//damage = max(damage-blocked+armor,0) Pre-roguepen annihilation
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
 	var/atom/movable/screen/zone_sel/zone_sel
 	if(def_zone && H.client && H.hud_used && H.hud_used.zone_select)
 		zone_sel = H.hud_used.zone_select
 	var/obj/item/bodypart/BP = null
-	if(!damage || (!forced && hit_percent <= 0))
+	if(!damage || (!forced && hit_percent <= 0) || blocked)
 		if(zone_sel && isbodypart(def_zone))
 			BP = def_zone
 			zone_sel.flash_limb(BP.body_zone, "#00AFFF") // blocked = blue
-		return 0
+		return FALSE
 
 	if(!spread_damage)
 		if(isbodypart(def_zone))

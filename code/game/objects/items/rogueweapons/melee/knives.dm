@@ -33,7 +33,7 @@
 	icon_state = "inpick"
 	attack_verb = list("stabs", "impales")
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 80
+	penfactor = 100
 	clickcd = 14
 	swingdelay = 12
 	damfactor = 1.1
@@ -317,6 +317,27 @@
 	icon_state = "idagger"
 	sheathe_icon = "idagger"
 	smeltresult = /obj/item/ingot/iron
+	var/mob/last_target
+	var/penbonus = 0
+	var/last_penhit
+
+/obj/item/rogueweapon/huntingknife/idagger/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_ATTACK_SUCCESS, PROC_REF(penbonus))
+
+/obj/item/rogueweapon/huntingknife/idagger/proc/penbonus(obj/item/parent, mob/living/M, mob/living/user)
+	if(!user.mind)	//A mindless creature shouldn't be -able- to pick, but just in case.
+		return
+	if(world.time > last_penhit)
+		penbonus = 0
+	if(!last_target)
+		last_target = M
+		penbonus = 0
+	if(last_target == M && istype(user.used_intent, /datum/intent/dagger/thrust/pick))	//istype not necessary because there are no children of that intent, but just in case.
+		penbonus += user.get_skill_level(associated_skill) * PICK_INTENT_SCALE
+	else
+		penbonus = 0
+	last_penhit = world.time + PICK_INTENT_DELAY
 
 /obj/item/rogueweapon/huntingknife/idagger/virtue
 	possible_item_intents = list(/datum/intent/dagger/thrust,/datum/intent/dagger/cut, /datum/intent/dagger/thrust/pick, /datum/intent/dagger/sucker_punch)

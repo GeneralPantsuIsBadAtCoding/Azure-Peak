@@ -1,24 +1,6 @@
 
 /mob/living/proc/run_armor_check(def_zone = null, attack_flag = "blunt", absorb_text = null, soften_text = null, armor_penetration, penetrated_text, damage, blade_dulling, peeldivisor, intdamfactor, used_weapon = null)
 	var/armor = getarmor(def_zone, attack_flag, damage, armor_penetration, blade_dulling, peeldivisor, intdamfactor, used_weapon)
-
-	//the if "armor" check is because this is used for everything on /living, including humans
-	if(armor > 0 && armor_penetration)
-		armor = max(0, armor - armor_penetration)
-		if(penetrated_text)
-			to_chat(src, span_danger("[penetrated_text]"))
-//		else
-//			to_chat(src, span_danger("My armor was penetrated!"))
-	else if(armor >= 100)
-		if(absorb_text)
-			to_chat(src, span_notice("[absorb_text]"))
-//		else
-//			to_chat(src, span_notice("My armor absorbs the blow!"))
-	else if(armor > 0)
-		if(soften_text)
-			to_chat(src, span_warning("[soften_text]"))
-//		else
-//			to_chat(src, span_warning("My armor softens the blow!"))
 	if(mob_timers[MT_INVISIBILITY] > world.time)			
 		mob_timers[MT_INVISIBILITY] = world.time
 		update_sneak_invis(reset = TRUE)

@@ -382,3 +382,6 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define SILVER_SIMPLEMOB_DAM_MULT 3
 
 #define PROJ_PARRY_TIMER	0.65 SECONDS	//The time after an attack (swinging in the air counts) when a thrown item would be deflected at a higher chance.
+
+#define PICK_INTENT_SCALE	5	//How much the penfactor scales /per skill level/ of a dagger. Very niche.
+#define PICK_INTENT_DELAY 10 SECONDS	//How long until the pick intent stacks will reset on the next hit

@@ -46,6 +46,13 @@
 	name = "strong"
 	desc = "Your attacks have +1 strength but use more stamina. Higher critrate with brutal attacks. Intentionally fails surgery steps."
 	icon_state = "rmbstrong"
+	adjacency = FALSE
+
+/datum/rmb_intent/strong/special_attack(mob/living/user, atom/target)
+	var/obj/item/rogueweapon/W = user.get_active_held_item()
+	to_chat(world, "[W] is of type [W.type] and special is: [W.special]")
+	if(istype(W, /obj/item/rogueweapon) && W.special)
+		W.special.deploy(user, W)
 
 /datum/rmb_intent/swift
 	name = "swift"
@@ -145,13 +152,13 @@
 		status = FEINT_STATUS_NORMAL
 
 	perc += ourskill * 10
-	if(!istype(L.rmb_intent, /datum/rmb_intent/feint))
+	if(!istype(L.rmb_intent, /datum/rmb_intent/feint) && L.mind)
 		perc += max((user.STAINT - 10) * 5, 0)	//Prob never -goes down- due to INT diff. 
 
 	//Easier to feint someone on defend intent, harder if they're also aiming to feint.
-	if(istype(L.rmb_intent, /datum/rmb_intent/riposte))
+	if(istype(L.rmb_intent, /datum/rmb_intent/riposte) || !L.mind)
 		perc += DEFEND_STANCE_BONUS
-	else if(istype(L.rmb_intent, /datum/rmb_intent/feint))
+	else if(istype(L.rmb_intent, /datum/rmb_intent/feint) && L.mind)
 		perc += FEINT_STANCE_BONUS
 
 	//Having used the rclicks increases the chances.
@@ -231,14 +238,17 @@
 		if(FEINT_STATUS_STUPIDVSSMART)	//In essence, this makes feinting a very dumb (relative to user) person harder. The dumb person won't be able to feint them any better, either.
 			iconstate = "eff_feint_wtf"
 			if(user.STAINT > target.STAINT)	//Smart person feinting a stupid one
-				var/silly_outcome = pick("feintback", "iwasfeinted?", "mutualfeint", "fallover", "normalfeint")
+				var/silly_outcome = rand(1,5)
 				switch(silly_outcome)
-					if("feintback")
+					if(1)	//Feints back
 						user.visible_message(span_warning("<i>[L] feints back?</i>"))
-						process_feint(target, user, perc, intdiff, status)	//This has a theoretical chance to become recursive!
-					if("iwasfeinted?")
+						process_feint(target, user, perc, intdiff, status)
+					if(2)	//Doesn't understand there was a feint at all (ignores it)
 						vismsg = span_info("<i>[L] doesn't seem to acknowledge there was a feint at all?</i>")
-					if("mutualfeint")
+						L.emote("huh")
+						if(L.pulling)
+							L.stop_pulling()
+					if(3)	//Mutual feint
 						user.visible_message(span_warning("<i>[L] feint back in perfect sync! A savant! They're both feinted!</i>"))
 						L.apply_status_effect(/datum/status_effect/debuff/exposed, 2.5 SECONDS)
 						L.apply_status_effect(/datum/status_effect/debuff/clickcd, 1.5 SECONDS)
@@ -248,10 +258,12 @@
 						user.apply_status_effect(/datum/status_effect/debuff/clickcd, 1.5 SECONDS)
 						user.apply_status_effect(/datum/status_effect/debuff/feintcd, (15 SECONDS + cdmod))
 						return
-					if("fallover")
+					if(4)	//Gets knocked down
 						vismsg = span_warning("<i>[L] gets scared and falls over!</i>")
 						L.Knockdown(1 SECONDS)
-					if("normalfeint")
+						if(L.pulling)
+							L.stop_pulling()
+					if(5)	//A normal feint that goes through without any bells or whistles
 						L.apply_status_effect(/datum/status_effect/debuff/exposed, 2.5 SECONDS)
 						L.apply_status_effect(/datum/status_effect/debuff/clickcd, 1.5 SECONDS)
 			else
@@ -262,8 +274,8 @@
 		if(FEINT_STATUS_5HEAD_ONLY, FEINT_STATUS_2HEAD_ONLY)	//Mostly for humor. The thresholds may be too low for this to be a very "exclusive" experience, however.
 			iconstate = "eff_feint_wtf"
 			intdiff += rand(0, 1)
-			var/last_to_feint = L
-			var/next_to_feint = user
+			var/mob/living/last_to_feint = L
+			var/mob/living/next_to_feint = user
 			for(var/i in 1 to intdiff)
 				var/counter_count
 				for(var/j in 1 to i)

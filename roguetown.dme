@@ -2105,6 +2105,7 @@
 #include "code\modules\mob\living\combat\dodge.dm"
 #include "code\modules\mob\living\combat\parry.dm"
 #include "code\modules\mob\living\combat\shared.dm"
+#include "code\modules\mob\living\combat\special_intents.dm"
 #include "code\modules\mob\living\combat\specialazuresauce.dm"
 #include "code\modules\mob\living\simple_animal\animal_defense.dm"
 #include "code\modules\mob\living\simple_animal\damage_procs.dm"

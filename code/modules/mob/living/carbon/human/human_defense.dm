@@ -23,31 +23,37 @@
 	var/obj/item/clothing/used
 	var/protection = 0
 	used = get_best_worn_armor(def_zone, d_type)
-	to_chat(world, "damage pre armor anything: [damage]")
+	to_chat(world, "damage pre armor anything: [damage] vs item: [used]")
 	if(used)
 		protection = used.armor?.getRating(d_type)
 		if(!blade_dulling)
 			blade_dulling = BCLASS_BLUNT
-		if(blade_dulling == BCLASS_PEEL)	//Peel shouldn't be dealing any damage through armor, or to armor itself.
-			used.peel_coverage(def_zone, peeldivisor, src)
-			damage = 0
-			if(def_zone == BODY_ZONE_CHEST)
-				purge_peel(99)
 		if(used.blocksound)
 			playsound(loc, get_armor_sound(used.blocksound, blade_dulling), 100)
 		var/intdamage = damage
+
 		if(intdamfactor != 1)
 			intdamage *= intdamfactor
+
+		protection = max(protection - armor_penetration, 1)
+
 		if(protection > 0)
-			intdamage -= intdamage * ((protection / 2) / 100)	//Armor reduces taken integrity damage by up to 67% at 100 (S).
-		else if(protection == -1)
+			intdamage -= intdamage * ((protection / 2) / 100)	//Armor reduces taken integrity damage by up to 50% at 100 (S).
+		else if(protection == -1 && armor_penetration > 0)
 			intdamage *= (armor_penetration / 10)
+
+		if(istype(used_weapon, /obj/item/rogueweapon/huntingknife/idagger) && armor_penetration > 100)
+			var/daggerbonus = (armor_penetration - 100) / 2
+			to_chat(world, "dagger bonus is: [daggerbonus]")
+			intdamage += daggerbonus
+
 		if(istype(used_weapon) && used_weapon.is_silver && ((used.smeltresult in list(/obj/item/ingot/aaslag, /obj/item/ingot/aalloy, /obj/item/ingot/purifiedaalloy)) || used.GetComponent(/datum/component/cursed_item)))
 			// Blessed silver delivers more int damage against "cursed" alloys, see component for multiplier values
 			var/datum/component/silverbless/bless = used_weapon.GetComponent(/datum/component/silverbless)
 			if(bless.is_blessed)
 				// Apply multiplier if the blessing is active.
 				intdamage = round(intdamage * bless.cursed_item_intdamage)
+		to_chat(world, "final intdamage is: [intdamage]")
 		used.take_damage(intdamage, damage_flag = d_type, sound_effect = FALSE, armor_penetration = 100, def_zone = def_zone)
 	if(physiology)
 		protection += physiology.armor.getRating(d_type)
@@ -783,13 +789,14 @@
 	for(var/obj/item/I in torn_items)
 		I.take_damage(damage_amount, damage_type, damage_flag, 0)
 
-/// Helper proc that returns the worn item ref that has the highest rating covering the def_zone (targeted zone) for the d_type (damage type)
+/// Helper proc that returns the worn item ref that is the FIRST ON THE LIST AND covering the def_zone (targeted zone) for the d_type (damage type)
 /mob/living/carbon/human/proc/get_best_worn_armor(def_zone, d_type)
 	var/obj/item/clothing/used
 	if(def_zone == BODY_ZONE_TAUR)
 		def_zone = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-	//This list is now triply important because it dictates the order of layering for coverage integrity. //TODO: make it a define dumbass
-	var/list/body_parts = list(skin_armor, head, wear_mask, wear_wrists, gloves, wear_neck, cloak, wear_armor, wear_shirt, shoes, wear_pants, backr, backl, belt, s_store, glasses, ears, wear_ring) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
+	//This list is now triply important because it dictates the order of layering for coverage integrity.
+	//Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
+	var/list/body_parts = list(skin_armor, head, wear_mask, wear_wrists, gloves, wear_neck, cloak, wear_armor, wear_shirt, shoes, wear_pants, backr, backl, belt, s_store, glasses, ears, wear_ring)
 	for(var/bp in body_parts)
 		if(!bp)
 			continue
@@ -800,7 +807,7 @@
 					if(C.obj_integrity <= 0)
 						continue
 				var/val = C.armor.getRating(d_type)
-				if(val > 0)
+				if(val > 0 || val < 0)
 					used = C	//Be mindful of the order in body_parts list! This may result in weird outcomes.
 					break
 	return used
