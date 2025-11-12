@@ -203,6 +203,10 @@
 	effectedstats = list(STATKEY_STR = -1, STATKEY_WIL = -1, STATKEY_CON = -1, STATKEY_SPD = -1, STATKEY_LCK = -1)	//Slightly punishing.
 	duration = 15 MINUTES	//Punishing, same time as revival, but mildly less punishing than revival itself.
 
+/datum/status_effect/debuff/devitalised/lesser
+	effectedstats = list(STATKEY_STR = -1, STATKEY_WIL = -1, STATKEY_CON = -1, STATKEY_SPD = -1, STATKEY_LCK = -1)
+	duration = 5 MINUTES
+
 /atom/movable/screen/alert/status_effect/debuff/devitalised
 	name = "Devitalised"
 	desc = "Something has been taken from me, and it will take time to recover."

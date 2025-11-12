@@ -1475,7 +1475,10 @@
 /datum/status_effect/buff/ravox_vow/proc/on_unarmed_attack(mob/living/user, mob/living/carbon/human/target)
 	SIGNAL_HANDLER
 
-	if(!istype(target) || !(HAS_TRAIT(target, TRAIT_OUTLAW) && target.name in user.mind.known_people))
+	if(!istype(target))
+		return
+
+	if(!HAS_TRAIT(target, TRAIT_OUTLAW) || (!(target.name in user.mind.known_people)))
 		return
 	
 	var/armor_block = target.run_armor_check(user.zone_selected, "blunt")
@@ -1487,7 +1490,10 @@
 /datum/status_effect/buff/ravox_vow/proc/on_item_attack(mob/living/user, mob/living/carbon/human/target, obj/item/item)
 	SIGNAL_HANDLER
 
-	if(!istype(target) || !(HAS_TRAIT(target, TRAIT_OUTLAW) && target.name in user.mind.known_people))
+	if(!istype(target))
+		return
+
+	if(!HAS_TRAIT(target, TRAIT_OUTLAW) || (!(target.name in user.mind.known_people)))
 		return
 	
 	var/armor_block = target.run_armor_check(user.zone_selected, item.d_type)
