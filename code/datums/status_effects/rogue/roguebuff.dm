@@ -1525,6 +1525,7 @@
 	duration = -1
 	examine_text = span_love("SUBJECTPRONOUN is bathed in Baotha's blessings!")
 	alert_type = null
+	var/image/effect
 
 /datum/status_effect/joybringer/on_apply()
 	. = ..()
@@ -1535,10 +1536,16 @@
 	if(!filter)
 		owner.add_filter(JOYBRINGER_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 2))
 
+	effect = image('icons/effects/effects.dmi', icon_state = "mist", layer = TURF_LAYER)
+	effect.color = "#a529e8"
+	owner.add_overlay(effect)
+
 /datum/status_effect/joybringer/on_remove()
 	. = ..()
 
 	owner.remove_filter(JOYBRINGER_FILTER)
+	owner.remove_overlay(effect)
+	QDEL_NULL(effect)
 
 /datum/status_effect/joybringer/tick()
 	for(var/mob/living/mob in get_hearers_in_view(2, owner))
