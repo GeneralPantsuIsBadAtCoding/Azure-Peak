@@ -40,6 +40,7 @@
 	var/ooc_notes = ""
 	var/ooc_notes_nsfw
 	var/headshot = ""
+	var/nsfw_headshot = ""
 	var/list/img_gallery = list()
 	var/char_name
 	var/song_url
@@ -58,9 +59,9 @@
 		ooc_notes_nsfw += holder.erpprefs
 		char_name = holder.name
 		song_url = holder.ooc_extra
-		is_vet = holder.check_agevet()
 		if(!obscured)
 			headshot += holder.headshot_link
+			nsfw_headshot += holder.nsfw_headshot_link
 			img_gallery = holder.img_gallery
 		if(!holder.headshot_link)
 			headshot = "headshot_red.png"
@@ -73,10 +74,10 @@
 		ooc_notes = pref.ooc_notes
 		ooc_notes_nsfw = pref.erpprefs
 		headshot = pref.headshot_link
+		nsfw_headshot = pref.nsfw_headshot_link
 		img_gallery = pref.img_gallery
 		char_name = pref.real_name
 		song_url = pref.ooc_extra
-		is_vet = viewing.check_agevet()
 		if(!headshot)
 			headshot = "headshot_red.png"
 	
@@ -103,6 +104,7 @@
 		// Descriptions, but requiring manual input to see
 		"flavor_text_nsfw" = flavor_text_nsfw,
 		"ooc_notes_nsfw" = ooc_notes_nsfw,
+		"nsfw_headshot" = nsfw_headshot,
 		"img_gallery" = img_gallery,
 		"is_playing" = is_playing,
 		"has_song" = has_song,

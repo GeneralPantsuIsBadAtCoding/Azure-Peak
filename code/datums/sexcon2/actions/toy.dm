@@ -1,6 +1,6 @@
 
 /datum/sex_action/insert_toy
-	name = "Insert Toy"
+	name = "Вставить игрушку"
 	continous = FALSE
 
 /datum/sex_action/insert_toy/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)

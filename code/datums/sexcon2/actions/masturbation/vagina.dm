@@ -1,5 +1,5 @@
 /datum/sex_action/masturbate/vagina
-	name = "Stroke clit"
+	name = "Вздрочнуть клитор"
 
 /datum/sex_action/masturbate/vagina/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user != target)
@@ -22,11 +22,11 @@
 
 /datum/sex_action/masturbate/vagina/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] starts stroking [user.p_their()] clit..."))
+	user.visible_message(span_warning("[user] мастурбирует свою киску..."))
 
 /datum/sex_action/masturbate/vagina/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] strokes [user.p_their()] clit..."))
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] вздрачивает клитор..."))
 	playsound(user, 'sound/misc/mat/fingering.ogg', 30, TRUE, -2, ignore_walls = FALSE)
 
 	sex_session.perform_sex_action(user, 2, 4, TRUE)
@@ -35,4 +35,4 @@
 
 /datum/sex_action/masturbate/vagina/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	user.visible_message(span_warning("[user] stops stroking."))
+	user.visible_message(span_warning("[user] заканчивает мастурбацию."))

@@ -26,6 +26,7 @@
 	job_subclasses = list(
 		/datum/advclass/sergeant/sergeant
 	)
+	same_job_respawn_delay = 30 MINUTES
 
 /datum/outfit/job/roguetown/sergeant
 	job_bitflag = BITFLAG_GARRISON

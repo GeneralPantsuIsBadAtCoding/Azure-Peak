@@ -123,6 +123,10 @@
 	var/list/img_gallery = list()
 	
 
+	var/nsfw_headshot_link = null //TA edit
+
+	var/has_confessed = FALSE // Used to track if they have confessed it was written onto a confession paper
+
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\
 	/datum/rmb_intent/strong,\

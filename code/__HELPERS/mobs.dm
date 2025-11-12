@@ -521,8 +521,8 @@ GLOBAL_LIST_EMPTY(species_list)
 			prefs = new
 
 		var/override = FALSE
-		if(M.client.holder && (prefs.chat_toggles & CHAT_DSAY))
-			override = TRUE
+	//	if(M.client.holder && (prefs.chat_toggles & CHAT_DSAY))
+	//		override = TRUE
 		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE))
 			override = TRUE
 		if(isnewplayer(M) && !override)
