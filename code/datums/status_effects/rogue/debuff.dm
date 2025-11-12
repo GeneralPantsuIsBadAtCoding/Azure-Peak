@@ -682,11 +682,23 @@
 
 /datum/status_effect/debuff/joybringer_druqks/on_apply()
 	. = ..()
-	owner.overlay_fullscreen("joybringer_druqks", /atom/movable/screen/fullscreen/weedsm)
+	owner.overlay_fullscreen("joybringer_weeds", /atom/movable/screen/fullscreen/weedsm)
+	owner.overlay_fullscreen("joybringer_druqks", /atom/movable/screen/fullscreen/druqks)
+
+	ADD_TRAIT(owner, TRAIT_DRUQK, src)
+
+	if(owner.client)
+		SSdroning.play_area_sound(get_area(owner), owner.client)
 
 /datum/status_effect/debuff/joybringer_druqks/on_remove()
 	. = ..()
 	owner.clear_fullscreen("joybringer_druqks")
+	owner.clear_fullscreen("joybringer_weeds")
+
+	REMOVE_TRAIT(owner, TRAIT_DRUQK, src)
+
+	if(owner.client)
+		SSdroning.play_area_sound(get_area(owner), owner.client)
 
 /datum/status_effect/debuff/joybringer_druqks/tick()
 	owner.hallucination += 2
