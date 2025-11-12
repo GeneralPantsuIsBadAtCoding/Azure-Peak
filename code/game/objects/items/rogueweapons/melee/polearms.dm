@@ -13,18 +13,19 @@
 	penfactor = 50
 	item_d_type = "stab"
 
+/datum/intent/spear/thrust/partizan
+	penfactor = 80
+
 /datum/intent/spear/thrust/militia
 	penfactor = 40
 
 /datum/intent/spear/bash
 	name = "bash"
 	blade_class = BCLASS_BLUNT
-	penfactor = BLUNT_DEFAULT_PENFACTOR
+	penfactor = 30
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
-	damfactor = NONBLUNT_BLUNT_DAMFACTOR
 	item_d_type = "blunt"
-	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 // Eaglebeak has a decent bash with range
 /datum/intent/spear/bash/eaglebeak
@@ -66,6 +67,7 @@
 	noaa = TRUE
 	misscost = 0
 	icon_state = "inuse"
+	penfactor = 80
 	no_attack = TRUE
 
 /datum/intent/spear/cut/naginata
@@ -100,63 +102,8 @@
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = NONBLUNT_BLUNT_DAMFACTOR
+	damfactor = 50
 	item_d_type = "blunt"
-	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
-
-
-/datum/intent/rend
-	name = "rend"
-	icon_state = "inrend"
-	attack_verb = list("rends")
-	animname = "cut"
-	blade_class = BCLASS_CHOP
-	reach = 1
-	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 2.5
-	clickcd = CLICK_CD_CHARGED
-	no_early_release = TRUE
-	hitsound = list('sound/combat/hits/bladed/genslash (1).ogg', 'sound/combat/hits/bladed/genslash (2).ogg', 'sound/combat/hits/bladed/genslash (3).ogg')
-	item_d_type = "slash"
-	misscost = 10
-	intent_intdamage_factor = 0.25
-
-/datum/intent/rend/reach
-	name = "long rend"
-	penfactor = BLUNT_DEFAULT_PENFACTOR
-	misscost = 5
-	clickcd = CLICK_CD_HEAVY
-	damfactor = 2
-	reach = 2
-
-/datum/intent/rend/reach/partizan
-	name = "rending thrust"
-	attack_verb = list("skewers")
-	blade_class = BCLASS_STAB
-	swingdelay = 8
-	misscost = 20
-	damfactor = 1.8
-	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	item_d_type = "stab"
-	no_early_release = TRUE
-	intent_intdamage_factor = 0.1
-
-/datum/intent/partizan/peel
-	name = "armor peel"
-	icon_state = "inpeel"
-	attack_verb = list("snags")
-	animname = "cut"
-	blade_class = BCLASS_PEEL
-	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
-	clickcd = CLICK_CD_CHARGED
-	penfactor = BLUNT_DEFAULT_PENFACTOR
-	swingdelay = 5
-	damfactor = 0.01
-	item_d_type = "slash"
-	peel_divisor = 5
-	reach = 2
-
-
 
 /datum/intent/spear/bash/ranged/quarterstaff
 	damfactor = 1
@@ -1342,7 +1289,7 @@
 	force = 8	//Not a possible one-handed weapon. Also too heavy!
 	force_wielded = 30
 	possible_item_intents = list(SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
-	gripped_intents = list(SPEAR_THRUST, PARTIZAN_REND, PARTIZAN_PEEL)
+	gripped_intents = list(/datum/intent/spear/thrust/partizan, SPEAR_BASH)
 	icon_state = "partizan"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 10
@@ -1351,6 +1298,7 @@
 	throwforce = 12	//Not a throwing weapon. Too heavy!
 	icon_angle_wielded = 50
 	smeltresult = /obj/item/ingot/steel
+	special = /datum/special_intent/shin_swipe
 
 /obj/item/rogueweapon/spear/partizan/getonmobprop(tag)
 	. = ..()
@@ -1399,7 +1347,7 @@
 	force = 16
 	force_wielded = 30
 	possible_item_intents = list(/datum/intent/spear/cut/naginata, SPEAR_BASH) // no stab for you little chuddy, it's a slashing weapon
-	gripped_intents = list(/datum/intent/rend/reach, /datum/intent/spear/cut/naginata, PARTIZAN_PEEL, SPEAR_BASH)
+	gripped_intents = list(/datum/intent/spear/cut/naginata, SPEAR_BASH)
 	icon_state = "naginata"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 7

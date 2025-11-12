@@ -3,7 +3,7 @@
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 	name = "haubergeon"
 	desc = "A steel maille shirt. Arrows and small daggers go right through the gaps in this."
-	body_parts_covered = COVERAGE_ALL_BUT_LEGS
+	body_parts_covered = ARMOR_COVERAGE_MEDIUM_ARMS
 	icon_state = "haubergeon"
 	armor = ARMOR_MAILLE
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_STEEL
@@ -49,7 +49,7 @@
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 	name = "hauberk"
 	desc = "A longer steel maille that protects the legs, still doesn't protect against arrows though."
-	body_parts_covered = COVERAGE_FULL
+	body_parts_covered = ARMOR_COVERAGE_MEDIUM_FULL
 	icon_state = "hauberk"
 	item_state = "hauberk"
 	armor = ARMOR_MAILLE
@@ -99,5 +99,5 @@
 	item_state = "chainkini"
 	allowed_sex = list(MALE, FEMALE)
 	allowed_race = CLOTHED_RACES_TYPES
-	body_parts_covered = CHEST|GROIN
+	body_parts_covered = ARMOR_COVERAGE_MEDIUM_CUIRASS	//I'm not making a whole define for bimbos.
 	armor_class = ARMOR_CLASS_LIGHT //placed in the medium category to keep it with its parent obj

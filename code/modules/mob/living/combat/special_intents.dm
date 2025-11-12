@@ -109,7 +109,8 @@ This allows the devs to draw whatever shape they want at the cost of it feeling 
 				is_adjacent = TRUE
 				break
 		if(!is_adjacent)
-			to_chat(span_danger("I moved too far from my maneuvre!"))
+			to_chat(howner, span_danger("I moved too far from my maneuvre!"))
+			apply_cooldown()
 			return
 	if(post_icon_state)
 		for(var/turf/T in affected_turfs)

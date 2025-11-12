@@ -5,12 +5,7 @@
 	desc = "Composite armour made according to an Etruscan tradition. It's a high-quality arched plate cuirass sewn with dyed leather and fitted with a wide skirt at the bottom to cover the groin."
 	icon_state = "brigandine"
 	blocksound = SOFTHIT
-	body_parts_covered = alist(
-		CHEST = 500,
-		VITALS = 400,
-		GROIN = 300,
-		ARMS = 200
-	)
+	body_parts_covered = ARMOR_COVERAGE_MEDIUM_ARMS
 	armor = ARMOR_PLATE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	allowed_sex = list(MALE, FEMALE)
@@ -74,6 +69,7 @@
 	name = "coat of plates"
 	desc = "A leather coat with plates attached to increase protection while retaining mobility. The leather below might stop a dagger."
 	icon_state = "coat_of_plates"
+	body_parts_covered = ARMOR_COVERAGE_HEAVY_ARMS
 	blocksound = PLATEHIT
 	smelt_bar_num = 2
 	armor_class = ARMOR_CLASS_HEAVY
@@ -115,7 +111,7 @@
 	desc = "A light riveted coat with plates concealed inside an exterior fabric. Susceptible to daggers being shoved into your ribs."
 	icon_state = "light_brigandine"
 	blocksound = SOFTHIT
-	body_parts_covered = COVERAGE_TORSO
+	body_parts_covered = ARMOR_COVERAGE_LIGHT_CUIRASS
 	armor = ARMOR_LEATHER_STUDDED
 	max_integrity = ARMOR_INT_CHEST_PLATE_BRIGANDINE
 	smeltresult = /obj/item/ingot/iron

@@ -432,10 +432,10 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 	if(isnull(rating))
 		rating = 0
 	switch(rating)
-		if(0 to 9)
+		if(-1)
 			var/color = "#f81a1a"
-			str = elaborate ? "<font color = '[color]'>[input] (F)</font>" : "<font color = '[color]'>[input] (F)</font>"
-		if(10 to 19)
+			str = "<font color = '[color]'>[input] (!)</font>"
+		if(0 to 19)
 			var/color = "#680d0d"
 			str = elaborate ? "<font color = '[color]'>[input] (D)</font>" : "<font color = '[color]'>[input] (D)</font>"
 		if(20 to 39)
@@ -466,7 +466,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			var/color = "#c757af"
 			str = "<font color = '[color]'>[input] (S+)</font>"
 		else
-			str = "[input] (Under 0 or above 200! Contact coders.)"
+			str = "[input] (Under -1 or above 200! Contact coders.)"
 	return str
 
 /proc/skilldiff_report(var/input)

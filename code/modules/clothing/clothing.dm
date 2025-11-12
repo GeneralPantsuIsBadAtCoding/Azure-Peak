@@ -344,6 +344,14 @@
 	..()
 	armor = original_armor
 
+	//This goes through the coverage integrity and restores it to the initial values on object repair.
+	//It's probably not worth doing dynamic per-zone repairs, just do it all once the armor is repaired.
+	if(islist(body_parts_covered_dynamic))
+		for(var/zone in body_parts_covered_dynamic)
+			for(var/ogzone in body_parts_covered)
+				if(zone & ogzone)
+					body_parts_covered_dynamic[zone] = body_parts_covered[ogzone]
+
 /*
 SEE_SELF  // can see self, no matter what
 SEE_MOBS  // can see all mobs, no matter what

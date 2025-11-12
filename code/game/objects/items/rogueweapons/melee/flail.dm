@@ -30,10 +30,10 @@
 	attack_verb = list("strikes", "hits")
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	chargetime = 0
+	penfactor = 40
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	icon_state = "instrike"
 	item_d_type = "blunt"
-	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/flail/strike/matthiosflail
 	reach = 2
@@ -46,18 +46,18 @@
 	chargetime = 0
 	recovery = 15
 	damfactor = 1.2 // Extra damage. Flail babe flail.
-	penfactor = BLUNT_DEFAULT_PENFACTOR
+	penfactor = 40
 	clickcd = CLICK_CD_CHARGED // Higher delay for a powerful ranged attack
 	reach = 2
 	icon_state = "instrike"
 	item_d_type = "blunt"
-	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/mace/smash/flail
 	name = "flail smash"
 	chargetime = 0.8 SECONDS
 	damfactor = 1.4 // Flail smash has higher damage due to a longer charge.
 	chargedloop = /datum/looping_sound/flailswing
+	penfactor = 80
 	keep_looping = TRUE
 	icon_state = "insmash"
 	blade_class = BCLASS_SMASH
