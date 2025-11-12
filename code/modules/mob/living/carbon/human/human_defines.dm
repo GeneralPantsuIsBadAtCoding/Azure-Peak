@@ -125,9 +125,9 @@
 
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\
-	/datum/rmb_intent/riposte,\
 	/datum/rmb_intent/strong,\
 	/datum/rmb_intent/swift,\
+	/datum/rmb_intent/riposte,\
 	/datum/rmb_intent/weak)
 
 	rot_type = /datum/component/rot/corpse

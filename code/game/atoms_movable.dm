@@ -782,10 +782,14 @@ GLOBAL_VAR_INIT(pixel_diff_time, 1)
 	animate(pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, transform=initial_transform, time = GLOB.pixel_diff_time * 2, easing=SINE_EASING, flags = ANIMATION_PARALLEL)
 
 /atom/movable/proc/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override = null, datum/intent/used_intent, simplified = FALSE)
+	var/animation_type = item_animation_override || used_intent?.get_attack_animation_type()
 	if(used_item || !simplified)
-		var/animation_type = item_animation_override || used_intent?.get_attack_animation_type()
-		do_item_attack_animation(A, visual_effect_icon, used_item, animation_type = animation_type)
-		return
+		if(used_intent?.swingdelay)
+			draw_swingdelay(A, used_intent.custom_swingdelay, used_intent.swingdelay)
+			addtimer(CALLBACK(src, PROC_REF(do_item_attack_animation), A, visual_effect_icon, used_item, animation_type), used_intent.swingdelay)
+		else
+			do_item_attack_animation(A, visual_effect_icon, used_item, animation_type = animation_type)
+			return
 	wiggle(A)
 
 
@@ -944,7 +948,7 @@ GLOBAL_VAR_INIT(pixel_diff_time, 1)
 	else
 		do_attack_animation_simple(A, visual_effect_icon)
 
-	///Oldschool indicators. Used by non-weapon intents or ismple mobs.
+	///Oldschool indicators. Used by non-weapon intents or simple mobs.
 /atom/movable/proc/do_attack_animation_simple(atom/A, visual_effect_icon, wiggle = TRUE)
 	var/newdir = get_dir(src, A)
 	var/turf/first_step = get_step(src, newdir)
@@ -962,6 +966,28 @@ GLOBAL_VAR_INIT(pixel_diff_time, 1)
 			first_step = next_step
 	if(wiggle)
 		wiggle(A)
+
+///Bit of a shoddy copy paste specifically for more static swingdelays
+/atom/movable/proc/draw_swingdelay(atom/A, visual_effect_icon, delay)
+	to_chat(world, "drawing swingdelay")
+	var/newdir = get_dir(src, A)
+	var/turf/first_step = get_step(src, newdir)
+	var/obj/effect/temp_visual/swingdelay/firstatk = new(first_step, delay)
+	firstatk.duration = delay
+	if(visual_effect_icon)
+		firstatk.icon_state = visual_effect_icon
+	firstatk.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/dist = get_dist(src, A)
+	if(dist > 1)	//2+ tiles, we trace a path to the target.
+		for(var/i = 1, i<dist, i++)
+			newdir = get_dir(first_step, A)
+			var/turf/next_step = get_step(first_step, newdir)
+			var/obj/effect/temp_visual/swingdelay/atk = new(next_step, delay)
+			atk.duration = delay
+			if(visual_effect_icon)
+				atk.icon_state = visual_effect_icon
+			atk.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+			first_step = next_step
 
 /obj/effect/temp_visual/dir_setting/attack_effect
 	icon = 'icons/effects/effects.dmi'

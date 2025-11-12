@@ -82,6 +82,7 @@
 	if(enchant_type == FORCE_BLADE_ENCHANT)
 		I.force += FORCE_BLADE_FORCE
 		I.force_wielded += FORCE_BLADE_FORCE
+		I.force_altgripped += FORCE_BLADE_FORCE
 		I.update_force_dynamic()
 		var/force_blade_filter = I.get_filter(FORCE_FILTER)
 		if(!force_blade_filter)

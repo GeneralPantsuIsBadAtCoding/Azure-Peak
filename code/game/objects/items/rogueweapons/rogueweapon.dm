@@ -45,7 +45,7 @@
 	. = ..()
 	if(!destroy_message)
 		destroy_message = span_warning("\The [src] shatters!")
-	if(special)
+	if(ispath(special))
 		special = new special()
 
 /obj/item/rogueweapon/ComponentInitialize()
@@ -69,6 +69,8 @@
 		force /= 5
 	if(force_wielded)
 		force_wielded /= 5
+	if(force_altgripped)
+		force_altgripped /= 5
 	update_force_dynamic()
 	if(armor_penetration)
 		armor_penetration /= 5
@@ -85,6 +87,7 @@
 /obj/item/rogueweapon/obj_fix()
 	force = initial(force)
 	force_wielded = initial(force_wielded)
+	force_altgripped = initial(force_altgripped)
 	update_force_dynamic()
 	armor_penetration = initial(armor_penetration)
 	wdefense = initial(wdefense)

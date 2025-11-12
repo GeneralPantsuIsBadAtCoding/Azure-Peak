@@ -48,9 +48,21 @@
 	icon_state = "rmbstrong"
 	adjacency = FALSE
 
+
 /datum/rmb_intent/strong/special_attack(mob/living/user, atom/target)
+	if(user.has_status_effect(/datum/status_effect/debuff/specialcd) || user.has_status_effect(/datum/status_effect/buff/clash) || user.has_status_effect(/datum/status_effect/buff/clash/limbguard) || user.has_status_effect(/datum/status_effect/buff/precise_strike))
+		return
+	if(!user)
+		return
+	if(user.incapacitated())
+		return
+	if(!ishuman(user))
+		return
+	if(!user.get_active_held_item()) //Nothing in our hand to strike with.
+		return 
+	if(!user.cmode)
+		return
 	var/obj/item/rogueweapon/W = user.get_active_held_item()
-	to_chat(world, "[W] is of type [W.type] and special is: [W.special]")
 	if(istype(W, /obj/item/rogueweapon) && W.special)
 		W.special.deploy(user, W)
 
@@ -318,7 +330,7 @@
 			return 
 		if(user.r_grab || user.l_grab || length(user.grabbedby)) //Not usable while grabs are in play.
 			return
-		if(!(user.mobility_flags & MOBILITY_STAND) || user.IsImmobilized() || user.IsOffBalanced()) //Not usable while we're offbalanced, immobilized or on the ground.
+		if(user.IsImmobilized() || user.IsOffBalanced()) //Not usable while we're offbalanced or immobilized
 			return
 		if(user.m_intent == MOVE_INTENT_RUN)
 			to_chat(user, span_warning("I can't focus on this while running."))

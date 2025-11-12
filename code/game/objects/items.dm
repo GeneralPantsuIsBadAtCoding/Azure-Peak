@@ -151,6 +151,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/list/alt_intents //these replace main intents
 	var/list/gripped_intents //intents while gripped, replacing main intents
 	var/force_wielded = 0
+	var/force_altgripped = 0
 	var/gripsprite = FALSE //use alternate grip sprite for inhand
 	var/wieldsound = FALSE
 
@@ -642,6 +643,19 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			inspec += "[percent]% ([floor(eff_currint)])"
 			if(force >= 5) // Durability is rather obvious for non-weapons
 				inspec += " <span class='info'><a href='?src=[REF(src)];explaindurability=1'>{?}</a></span>"
+		if(istype(src, /obj/item/clothing))	//awful
+			var/obj/item/clothing/C = src
+			var/str
+			switch(C.armor_class)
+				if(ARMOR_CLASS_NONE)
+					str = "None"
+				if(ARMOR_CLASS_LIGHT)
+					str = "Light"
+				if(ARMOR_CLASS_MEDIUM)
+					str = "Medium"
+				if(ARMOR_CLASS_HEAVY)
+					str = "Heavy"
+			inspec += "\n<b>ARMOR CLASS:</b> [str]"
 
 		var/output = inspec.Join()
 		if(!usr.client.prefs.no_examine_blocks)
@@ -1391,6 +1405,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		wdefense_dynamic = wdefense
 	if(altgripped)
 		altgripped = FALSE
+		if(force_altgripped)
+			update_force_dynamic()
 	update_transform()
 	if(user.get_item_by_slot(SLOT_BACK) == src)
 		user.update_inv_back()
@@ -1412,6 +1428,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(user.get_active_held_item() == src)
 		if(alt_intents)
 			user.update_a_intents()
+	if(force_altgripped)
+		update_force_dynamic()
 
 /obj/item/proc/wield(mob/living/carbon/user, show_message = TRUE)
 	if(wielded)
@@ -1656,4 +1674,4 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		. += str
 
 /obj/item/proc/update_force_dynamic()
-	force_dynamic = (wielded ? force_wielded : force)
+	force_dynamic = (wielded ? force_wielded : altgripped ? force_altgripped : force)

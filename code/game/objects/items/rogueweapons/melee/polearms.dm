@@ -919,6 +919,7 @@
 /obj/item/rogueweapon/greatsword
 	force = 12
 	force_wielded = 30
+	force_altgripped = 25
 	possible_item_intents = list(/datum/intent/sword/chop,/datum/intent/sword/strike) //bash is for nonlethal takedowns, only targets limbs
 	// Design Intent: I have a big fucking sword and I want to rend people in half.
 	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/rend, /datum/intent/sword/thrust/zwei, /datum/intent/sword/strike/bad)
@@ -1000,7 +1001,8 @@
 	wdefense = 4
 	force = 14
 	force_wielded = 35
-	special = /datum/special_intent/thrust
+	intdamage_factor = 0.75
+	special = /datum/special_intent/rend
 
 /obj/item/rogueweapon/greatsword/grenz
 	name = "steel zweihander"
@@ -1011,6 +1013,8 @@
 	wdefense = 4
 	force = 14
 	force_wielded = 35
+	intdamage_factor = 0.75
+	special = /datum/special_intent/rend
 
 /obj/item/rogueweapon/greatsword/grenz/flamberge
 	name = "steel flamberge"

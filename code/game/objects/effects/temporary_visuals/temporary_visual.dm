@@ -33,3 +33,13 @@
 	if(set_dir)
 		setDir(set_dir)
 	. = ..()
+
+/obj/effect/temp_visual/swingdelay
+	randomdir = FALSE
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "blip"
+
+/obj/effect/temp_visual/swingdelay/Initialize(mapload, set_dur)
+	if(set_dur)
+		duration = set_dur
+	. = ..()
