@@ -27,7 +27,8 @@
 		/datum/advclass/heir/bookworm,
 		/datum/advclass/heir/aristocrat,
 		/datum/advclass/heir/inbred,
-		/datum/advclass/heir/scamp
+		/datum/advclass/heir/scamp,
+		/datum/advclass/heir/religious_scion,
 	)
 
 /datum/outfit/job/roguetown/heir/pre_equip(mob/living/carbon/human/H)
@@ -113,6 +114,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 	mask = /obj/item/clothing/mask/rogue/spectacles
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
+
 /datum/advclass/heir/aristocrat
 	name = "Sheltered Aristocrat"
 	tutorial = "Life has been kind to you; you've an entire keep at your disposal, servants to wait on you, and a whole retinue of guards to guard you. You've nothing to prove; just live the good life and you'll be a lord someday, too. A lack of ambition translates into a lacking skillset beyond schooling, though, and your breaks from boredom consist of being a damsel or court gossip."
@@ -252,7 +254,105 @@
 		/obj/item/lockpickring/mundane = 1,
 	)
 
+/datum/advclass/heir/religious_scion
+	name = "Religious Scion"
+	tutorial = "Cloistered away from the sweat and toil the peasantry endure, you have found the time to devote yourself to your faith whenever you weren't being taught your noble duties. The Gods smile upon you, and perhaps your piety will see you through when it comes time to take the throne."
+	outfit = /datum/outfit/job/roguetown/heir/religious_scion
+	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_EMPATH)
+	category_tags = list(CTAG_HEIR)
+	subclass_stats = list(
+		STATKEY_INT = 2,
+		STATKEY_CON = 2,
+		STATKEY_STR = -2,
+		STATKEY_WIL = 1,
+		STATKEY_LCK = 1,
+		STATKEY_SPD = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/bows = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/magic/holy = SKILL_LEVEL_APPRENTICE,
+	)
+	subclass_stashed_items = list(
+		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
+		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
+	)
 
+/datum/outfit/job/roguetown/heir/religious_scion/pre_equip(mob/living/carbon/human/H)
+	..()
+	head = /obj/item/clothing/head/roguetown/circlet
+	belt = /obj/item/storage/belt/rogue/leather
+	beltl = /obj/item/storage/keyring/heir
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
+	backr = /obj/item/storage/backpack/rogue/satchel
+	if(should_wear_masc_clothes(H))
+		pants = /obj/item/clothing/under/roguetown/tights
+		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/prince
+		belt = /obj/item/storage/belt/rogue/leather
+		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
+	if(should_wear_femme_clothes(H))
+		belt = /obj/item/storage/belt/rogue/leather/cloth/lady
+		head = /obj/item/clothing/head/roguetown/hennin
+		armor = /obj/item/clothing/suit/roguetown/armor/silkcoat
+		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/princess
+		shoes = /obj/item/clothing/shoes/roguetown/shortboots
+
+	switch(H.patron?.type)
+		if(/datum/patron/old_god)
+			neck = /obj/item/clothing/neck/roguetown/psicross
+		if(/datum/patron/divine/undivided)
+			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
+		if(/datum/patron/divine/astrata)
+			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
+		if(/datum/patron/divine/noc)
+			neck = /obj/item/clothing/neck/roguetown/psicross/noc
+		if(/datum/patron/divine/abyssor)
+			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/divine/dendor)
+			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
+		if(/datum/patron/divine/necra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
+		if(/datum/patron/divine/pestra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
+		if(/datum/patron/divine/ravox)
+			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
+		if(/datum/patron/divine/malum)
+			neck = /obj/item/clothing/neck/roguetown/psicross/malum
+		if(/datum/patron/divine/eora)
+			neck = /obj/item/clothing/neck/roguetown/psicross/eora
+			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
+		if(/datum/patron/inhumen/zizo)
+			H.cmode_music = 'sound/music/combat_heretic.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/matthios)
+			H.cmode_music = 'sound/music/combat_matthios.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/graggar)
+			H.cmode_music = 'sound/music/combat_graggar.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/baotha)
+			H.cmode_music = 'sound/music/combat_baotha.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/divine/xylix)
+			neck = /obj/item/clothing/neck/roguetown/luckcharm
+			H.cmode_music = 'sound/music/combat_jester.ogg'
+
+	var/datum/devotion/devotion_datum = new /datum/devotion(H, H.patron)
+	devotion_datum.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles. Better passive regeneration.
 
 /mob/living/carbon/human/proc/declarechampion()
 	set name = "Declare Champion"
