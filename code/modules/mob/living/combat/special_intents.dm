@@ -1,3 +1,12 @@
+/*
+
+-- AOE INTENTS --
+They're meant to be kept on the weapon and used via Strong stance's rclick.
+At the moment the pattern is manually designated using coordinates in tile_coordinates.
+This allows the devs to draw whatever shape they want at the cost of it feeling a little quirky.
+
+Beyond that, it just hoovers up the tiles in t
+*/
 /datum/special_intent
 	var/name = "special intent"
 	var/desc = "desc"
