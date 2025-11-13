@@ -4,7 +4,7 @@
 
 /obj/effect/proc_holder/spell/invoked/psydonendure
 	name = "ENDURE"
-	desc = "Invoke an envigoring prayer for those who're faltering in strength. </br>‎  </br>Provides minor health regeneration, staunches the target's bleeding, and helps to alleviate those who're struggling to breathe. The more valuable a caster's psycross is, the more health that is restored unto the target - this is further increased if they have been mortally wounded."
+	desc = "Invoke an envigoring prayer for those who're faltering in willpower. </br>‎  </br>Provides minor health regeneration, staunches the target's bleeding, and helps to alleviate those who're struggling to breathe. The more valuable a caster's psycross is, the more health that is restored unto the target - this is further increased if they have been mortally wounded."
 	overlay_state = "ENDURE"
 	releasedrain = 33
 	chargedrain = 0
@@ -105,13 +105,13 @@
 
 /obj/effect/proc_holder/spell/invoked/psydonlux_tamper
 	name = "WEEP"
-	overlay_state = "WEEP" //Absolver-exclusive.
+	overlay_state = "WEEP" //Absolver-exclusive. Classified as 'lux-magicka', rather than a traditional miracle. Same line of thought as the Naledians.
 	releasedrain = 33
 	chargedrain = 0
 	chargetime = 0
 	range = 2
 	warnie = "sydwarning"
-	desc = "Endure the wounds of another, for their sake. </br>‎  </br>Siphons away lesser injuries, such as gashes and fractures, from the target. In exchange, any siphoned injuries are subsequently imposed onto you. If the target has lost any blood, they will be fully replenished through your own veins."
+	desc = "Lesser lux-magicka. Endure the wounds of another, for their sake. </br>‎  </br>Siphons away lesser injuries, such as gashes and fractures, from the target. In exchange, any siphoned injuries are subsequently imposed onto you. If the target has lost any blood, they will be fully replenished through your own veins."
 	movement_interrupt = FALSE
 	sound = 'sound/magic/psydonbleeds.ogg'
 	invocations = list("I BLEED, SO THAT YOU MIGHT ENDURE!","PERSIST AGAINST THE PAIN!","LET YOUR WOUNDS WEEP NO MORE!")
@@ -197,8 +197,8 @@
 
 /obj/effect/proc_holder/spell/invoked/psydonabsolve	
 	name = "ABSOLVE"
-	overlay_state = "ABSOLVE" //Absolver exclusive.
-	desc = "Exchange your vitality for the sake of another. </br>‎  </br>Siphons away all injuries - be it physical damage, blood loss, or dismemberment - from the target, completely healing them. In exchange, all siphoned injuries are subsequently inflicted unto you. Using this on a target who's dead will fully resurrect them, albeit at the cost of your own lyfe."
+	overlay_state = "ABSOLVE" //Absolver-exclusive. Classified as 'lux-magicka', rather than a traditional miracle. Same line of thought as the Naledians.
+	desc = "Greater lux-magicka. Exchange your vitality for the sake of another. </br>‎  </br>Siphons away all injuries - be it physical damage, blood loss, or dismemberment - from the target, completely healing them. In exchange, all siphoned injuries are subsequently inflicted unto you. Using this on a target who's dead will fully resurrect them, albeit at the cost of your own lyfe."
 	releasedrain = 50
 	chargedrain = 0
 	chargetime = 0
@@ -602,7 +602,7 @@
 
 /obj/effect/proc_holder/spell/self/psydonpersist
 	name = "PERSIST"
-	desc = "Invoke your faith under hushed breaths, so that you may yet triumph over adversity. </br>‎  </br>Provides greater health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
+	desc = "Channel your willpower under duress, so that you may yet triumph over adversity. </br>‎  </br>Provides greater health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	overlay_state = "PERSIST"
 	releasedrain = 30
 	chargedrain = 0
