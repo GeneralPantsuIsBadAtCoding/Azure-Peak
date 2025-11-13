@@ -785,15 +785,18 @@ GLOBAL_VAR_INIT(pixel_diff_time, 1)
 	var/animation_type = item_animation_override || used_intent?.get_attack_animation_type()
 	if(used_item || !simplified)
 		if(used_intent?.swingdelay)
-			draw_swingdelay(A, used_intent.custom_swingdelay, used_intent.swingdelay)
-			addtimer(CALLBACK(src, PROC_REF(do_item_attack_animation), A, visual_effect_icon, used_item, animation_type), used_intent.swingdelay)
+			//draw_swingdelay(A, used_intent.custom_swingdelay, used_intent.swingdelay)
+			if(isliving(src))
+				var/mob/living/L = src
+				L.play_overhead_indicator_flick('icons/mob/mob_effects.dmi', "eff_swingdelay", used_intent?.swingdelay, MOB_EFFECT_LAYER_SWINGDELAY, y_offset = 3)
+				addtimer(CALLBACK(src, PROC_REF(do_item_attack_animation), A, visual_effect_icon, used_item, animation_type), used_intent.swingdelay)
 		else
-			do_item_attack_animation(A, visual_effect_icon, used_item, animation_type = animation_type)
+			do_item_attack_animation(A, visual_effect_icon, used_item, animation_type = animation_type, used_intent = used_intent)
 			return
 	wiggle(A)
 
 
-/atom/movable/proc/do_item_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, animation_type = ATTACK_ANIMATION_SWIPE)
+/atom/movable/proc/do_item_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, animation_type = ATTACK_ANIMATION_SWIPE, datum/intent/used_intent)
 	if(used_item)
 		if(used_item.no_effect)
 			return
@@ -804,6 +807,10 @@ GLOBAL_VAR_INIT(pixel_diff_time, 1)
 	if (isnull(used_item))
 		return
 	var/dist = get_dist(src, A)
+	if(dist > used_intent?.reach)
+		do_attack_animation_simple(get_step(src, src.dir), visual_effect_icon)	//We whiff it directly in front of us and leave it at that
+		wiggle(A)
+		return
 	if(dist <= 1)
 		var/image/attack_image = image(icon = used_item, icon_state = used_item.icon_state)
 		attack_image.plane = A.plane + 1

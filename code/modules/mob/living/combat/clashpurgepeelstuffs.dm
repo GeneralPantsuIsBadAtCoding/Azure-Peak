@@ -136,11 +136,7 @@
 			HU.disarmed(IU)
 	
 	remove_status_effect(/datum/status_effect/buff/clash)
-	remove_status_effect(/datum/status_effect/buff/clash/limbguard)
-	remove_status_effect(/datum/status_effect/buff/precise_strike)
 	HU.remove_status_effect(/datum/status_effect/buff/clash)
-	HU.remove_status_effect(/datum/status_effect/buff/clash/limbguard)
-	HU.remove_status_effect(/datum/status_effect/buff/precise_strike)
 
 ///Proc that will try to throw the src's held I and throw it 1 - 5 tiles to their side. 
 ///At the moment it doesn't have a get_active_held_item() failsafe, so the I has to be defined first.

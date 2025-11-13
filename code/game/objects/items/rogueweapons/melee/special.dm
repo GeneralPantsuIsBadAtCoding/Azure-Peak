@@ -908,6 +908,7 @@
 	blade_class = BCLASS_CHOP
 	reach = 1
 	penfactor = BLUNT_DEFAULT_PENFACTOR
+	swingdelay = 20
 	damfactor = 2.5
 	clickcd = CLICK_CD_HEAVY
 	no_early_release = TRUE

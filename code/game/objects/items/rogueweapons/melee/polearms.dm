@@ -112,6 +112,7 @@
 	animname = "cut"
 	blade_class = BCLASS_CHOP
 	reach = 1
+	swingdelay = 15
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 2.5
 	clickcd = CLICK_CD_CHARGED
@@ -119,12 +120,13 @@
 	hitsound = list('sound/combat/hits/bladed/genslash (1).ogg', 'sound/combat/hits/bladed/genslash (2).ogg', 'sound/combat/hits/bladed/genslash (3).ogg')
 	item_d_type = "slash"
 	misscost = 10
-	intent_intdamage_factor = 0.25
+	intent_intdamage_factor = 0.05
 
 /datum/intent/rend/reach
 	name = "long rend"
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	misscost = 5
+	swingdelay = 15
 	clickcd = CLICK_CD_HEAVY
 	damfactor = 2
 	reach = 2

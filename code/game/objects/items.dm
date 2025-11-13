@@ -593,51 +593,63 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			var/obj/item/clothing/C = src
 			inspec += "<br>"
 			inspec += C.defense_examine()
-			inspec += "<table align='center'; width='100%'; height='100%';border: 1px solid white;border-collapse: collapse>"
-			inspec += "<tr style='vertical-align:top'>"
-			inspec += "<td width = 25%>"
+			inspec += "<table align='center'; width='100%'; height='100%';border: 1px solid white;border-collapse: collapse><tr style='vertical-align:top'><td width = 35%>"
 			inspec += "<b>COVERAGE: <br></b>"
 			if(!C.body_parts_covered)
 				inspec += "<b>NONE!</b>"
 			if(C.body_parts_covered == C.body_parts_covered_dynamic)
-				var/pair = 0
+				var/break_lim = 0
 				for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
-					inspec += "<b>[capitalize(zone)]</b>"
-					pair++
-					if(pair >= 2)
+					inspec += "<b>[capitalize(zone)]</b> "
+					break_lim++
+					if(break_lim >= 2)
 						inspec += "<br>"
-						pair = 0
+						break_lim = 0
 			else
 				var/list/zones = list()
 				//We have some part peeled, so we turn the printout into precise mode and highlight the missing coverage.
+				var/break_lim = 0
 				for(var/zoneorg in body_parts_covered2organ_names(C.body_parts_covered, precise = TRUE))
 					zones += zoneorg
 				for(var/zonedyn in body_parts_covered2organ_names(C.body_parts_covered_dynamic, precise = TRUE))
-					inspec += "<b>[capitalize(zonedyn)]</b>"
+					inspec += "<b>[capitalize(zonedyn)]</b> "
 					if(zonedyn in zones)
 						zones.Remove(zonedyn)
+					break_lim++
+					if(break_lim >= 2)
+						inspec += "<br>"
+						break_lim = 0
 				for(var/zone in zones)
-					inspec += "<b><font color = '#7e0000'>[capitalize(zone)]</font></b> | "
+					inspec += "<b><font color = '#7e0000'>[capitalize(zone)]</font></b> "
+					break_lim++
+					if(break_lim >= 2)
+						inspec += "<br>"
+						break_lim = 0
 			inspec += "<br>"
-			if(C.body_parts_inherent)
-				inspec += "<b>CANNOT BE PEELED: </b>"
-				var/list/inherentList = body_parts_covered2organ_names(C.body_parts_inherent)
-				if(length(inherentList) == 1)
-					inspec += "<b><font color = '#77cde2'>[capitalize(inherentList[1])]</font></b>"
-				else
-					inspec += "| "
-					for(var/zone in inherentList)
-						inspec += "<b><font color = '#77cde2'>[capitalize(zone)]</b></font> | "
 			inspec += "</td>"
-			inspec += "<td width = 75%><b>PREVENTS CRITS:</b>"
-			if(!C.prevent_crits)
-				inspec += "<b>NONE!</b>"
+			inspec += "<td width = 50%><b>PREVENTS CRITS:</b>"
+			if(!length(C.prevent_crits))
+				inspec += "\n<b>NONE!</b>"
+			var/break_lim = 0
 			for(var/X in C.prevent_crits)
 				if(X == BCLASS_PICK)	//BCLASS_PICK is named "stab", and "stabbing" is its own damage class. Prevents confusion.
 					X = "pick"
-					inspec += ("\n<b>[capitalize(X)]</b>")
-				inspec += "<br></td>"
+				inspec += ("<b>[capitalize(X)]</b>")
+				break_lim++
+				if(break_lim > 2)
+					inspec += "<br>"
+			inspec += "<br></td>"
 			inspec += "</tr></table>"
+			if(C.body_parts_inherent)
+				inspec += "<b>CANNOT BE PEELED: </b>"
+				var/peelcolor = "#77cde2"
+				var/list/inherentList = body_parts_covered2organ_names(C.body_parts_inherent)
+				if(length(inherentList) == 1)
+					inspec += "<b><font color = [peelcolor]>[capitalize(inherentList[1])]</font></b>"
+				else
+					inspec += "| "
+					for(var/zone in inherentList)
+						inspec += "<b><font color = [peelcolor]>[capitalize(zone)]</b></font> | "
 
 //**** General durability
 
