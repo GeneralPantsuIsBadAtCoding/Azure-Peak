@@ -566,6 +566,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Decrepit Zcross"
 	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
 
+/datum/loadout_item/zcross_iron
+	name = "Iron Zcross"
+	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
+
 /datum/loadout_item/wedding_band
 	name = "silver wedding band"
 	path = /obj/item/clothing/ring/band

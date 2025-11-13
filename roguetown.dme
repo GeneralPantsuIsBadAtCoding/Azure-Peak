@@ -1042,6 +1042,7 @@
 #include "code\game\objects\items\rogueitems\books.dm"
 #include "code\game\objects\items\rogueitems\bouquet.dm"
 #include "code\game\objects\items\rogueitems\broom.dm"
+#include "code\game\objects\items\rogueitems\carpet.dm"
 #include "code\game\objects\items\rogueitems\ceramics.dm"
 #include "code\game\objects\items\rogueitems\coins.dm"
 #include "code\game\objects\items\rogueitems\construction.dm"

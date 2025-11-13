@@ -22,7 +22,7 @@
 	max_integrity = 100
 	sewrepair = TRUE
 	block2add = FOV_BEHIND
-	salvage_result = /obj/item/natural/hide/cured
+	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/ComponentInitialize()

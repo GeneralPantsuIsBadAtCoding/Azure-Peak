@@ -62,3 +62,4 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/workervest
 		pants = /obj/item/clothing/under/roguetown/trou
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
+	SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")

@@ -270,6 +270,11 @@
 	var/color_index = "good"
 	rotprocess = SHELFLIFE_SHORT
 
+/obj/item/reagent_containers/food/snacks/grown/berries/rogue/examine(mob/user)
+	. = ..()
+	if(!user.get_client_color(/datum/client_colour/monochrome))
+		. += span_notice("These berries have a <b>[BERRYCOLORS[filling_color]]</b> hue.")
+
 /obj/item/reagent_containers/food/snacks/grown/berries/rogue/Initialize()
 	if(GLOB.berrycolors[color_index])
 		filling_color = GLOB.berrycolors[color_index]
@@ -434,9 +439,9 @@
 					success = TRUE
 					IND.fullreset(user)
 				else
-					return	
+					return
 				if(success)
-					changefood(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied, user)		
+					changefood(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied, user)
 
 
 /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied

@@ -639,6 +639,7 @@
 
 /datum/intent/effect/daze
 	name = "dazing strike"
+	desc = "A heavy strike aimed at the head to daze them."
 	icon_state = "indaze"
 	attack_verb = list("dazes")
 	animname = "strike"
