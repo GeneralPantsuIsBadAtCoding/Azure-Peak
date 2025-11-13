@@ -193,18 +193,20 @@
 /datum/component/arousal/proc/after_intimate_climax(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return
-	/*
 	if(HAS_TRAIT(target, TRAIT_GOODLOVER))
 		if(!user.mob_timers["cumtri"])
 			user.mob_timers["cumtri"] = world.time
 			user.adjust_triumphs(1)
-			to_chat(user, span_love("Our loving is a true TRIUMPH!"))
+			to_chat(user, span_love("Наша любовь - истинный ТРИУМФ!"))
+			user.add_stress(/datum/stressevent/cumgood)
+			user.apply_status_effect(/datum/status_effect/buff/goodloving)
 	if(HAS_TRAIT(user, TRAIT_GOODLOVER))
 		if(!target.mob_timers["cumtri"])
 			target.mob_timers["cumtri"] = world.time
 			target.adjust_triumphs(1)
-			to_chat(target, span_love("Our loving is a true TRIUMPH!"))
-	*/
+			to_chat(user, span_love("Наша любовь - истинный ТРИУМФ!"))
+			target.add_stress(/datum/stressevent/cumgood)
+			target.apply_status_effect(/datum/status_effect/buff/goodloving)
 
 /datum/component/arousal/proc/set_charge(amount)
 	var/empty = (charge < CHARGE_FOR_CLIMAX)
