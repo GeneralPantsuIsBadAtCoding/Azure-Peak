@@ -54,3 +54,4 @@
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	armor = /obj/item/clothing/suit/roguetown/armor/workervest
+	SStreasury.give_money_account(ECONOMIC_DESTITUTE, H, "Savings.")

@@ -15,7 +15,7 @@
 	cmode_music = 'sound/music/combat_physician.ogg'
 
 	display_order = JDO_APOTHECARY
-	give_bank_account = 30
+	give_bank_account = TRUE
 
 	min_pq = 0
 	max_pq = null
@@ -74,3 +74,4 @@
 	)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
+	SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")

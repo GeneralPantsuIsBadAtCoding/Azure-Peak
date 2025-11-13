@@ -284,7 +284,7 @@
 
 	if(I.minstr)
 		var/effective = I.minstr
-		if(I.wielded)
+		if(I.wielded && !I.minstr_req)
 			effective = max(I.minstr / 2, 1)
 		if(effective > user.STASTR)
 			newforce = max(newforce*0.3, 1)

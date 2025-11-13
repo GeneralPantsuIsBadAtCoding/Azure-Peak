@@ -74,6 +74,7 @@
 	backpack_contents = list(
 		/obj/item/bottle_kit
 	)
+	SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
 
 /datum/outfit/job/roguetown/knavewench/choose_loadout(mob/living/carbon/human/H)
 	. = ..()

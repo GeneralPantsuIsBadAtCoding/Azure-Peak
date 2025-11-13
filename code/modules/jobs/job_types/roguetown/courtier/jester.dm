@@ -68,4 +68,5 @@
 		ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC) // Jester :3
 	else
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC) // Joker >:(
+	SStreasury.give_money_account(ECONOMIC_LETSGOGAMBLING, H, "Savings.")
 

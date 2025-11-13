@@ -711,6 +711,10 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = "Аксессуары"
 	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
 
+/datum/loadout_item/zcross_iron
+	name = "Iron Zcross"
+	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
+
 /datum/loadout_item/wedding_band
 	name = "silver wedding band"
 	category = "Аксессуары"

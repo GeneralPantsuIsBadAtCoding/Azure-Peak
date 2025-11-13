@@ -209,7 +209,7 @@
 	if(spells && H.mind)
 		for(var/S in spells)
 			H.mind.AddSpell(new S)
-			
+
 	if(length(job_stats))
 		for(var/stat in job_stats)
 			H.change_stat(stat, job_stats[stat])
@@ -258,14 +258,17 @@
 		H.cmode_music = cmode_music
 
 	if (!hidden_job)
+		var/mob_name = H.real_name
+		var/mob_rank
 		if (obsfuscated_job)
-			GLOB.actors_list[H.mobid] = "[H.real_name] as Adventurer<BR>"
+			mob_rank = "Adventurer"
 		else
-			GLOB.actors_list[H.mobid] = "[H.real_name] as [H.mind.assigned_role]<BR>"
+			mob_rank = H.mind.assigned_role
+		GLOB.actors_list[H.mobid] = list("name" = mob_name, "rank" = mob_rank)
 
 	if(islist(advclass_cat_rolls))
 		hugboxify_for_class_selection(H)
-	
+
 	log_admin("[H.key]/([H.real_name]) has joined as [H.mind.assigned_role].")
 
 /client/verb/set_mugshot()

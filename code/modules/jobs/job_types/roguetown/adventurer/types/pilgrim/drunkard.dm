@@ -43,3 +43,4 @@
 						/obj/item/flashlight/flare/torch = 1,
 						)
 	ADD_TRAIT(H, TRAIT_CRACKHEAD, TRAIT_GENERIC)
+	SStreasury.give_money_account(ECONOMIC_LETSGOGAMBLING, H, "Savings.")
