@@ -6,11 +6,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	var/path
 	var/donoritem			//autoset on new if null
 	var/list/ckeywhitelist
+	var/triumph_cost
 
 /datum/loadout_item/New()
 	if(isnull(donoritem))
 		if(ckeywhitelist)
 			donoritem = TRUE
+	if (triumph_cost)
+		desc += "<b>Costs [triumph_cost] TRIUMPH.</b>"
 
 /datum/loadout_item/proc/donator_ckey_check(key)
 	if(ckeywhitelist && ckeywhitelist.Find(key))
@@ -35,6 +38,12 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Custom Book"
 	path = /obj/item/book/rogue/loadoutbook
 
+//TOOLS
+
+/datum/loadout_item/bauernwehr
+	name = "Bauernwehr (-3 TRI)"
+	path = /obj/item/rogueweapon/huntingknife/throwingknife/bauernwehr
+	triumph_cost = 3
 
 //HATS
 /datum/loadout_item/shalal
@@ -283,6 +292,34 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/exoticsilkbra
 	name = "Exotic Silk Bra"
 	path = /obj/item/clothing/suit/roguetown/shirt/exoticsilkbra
+
+/datum/loadout_item/desertbra
+	name = "Desert Bra"
+	path = /obj/item/clothing/suit/roguetown/shirt/desertbra
+
+/datum/loadout_item/deserthood
+	name = "Desert Hood"
+	path = /obj/item/clothing/head/roguetown/deserthood
+
+/datum/loadout_item/desertskirt
+	name = "Desert Skirt"
+	path = /obj/item/clothing/under/roguetown/skirt/desert
+
+/datum/loadout_item/explorerhat
+	name = "Explorer Hat"
+	path = /obj/item/clothing/head/roguetown/explorerhat
+
+/datum/loadout_item/explorervest
+	name = "Explorer Vest"
+	path = /obj/item/clothing/suit/roguetown/shirt/explorer
+
+/datum/loadout_item/fancycoat
+	name = "Fancy Coat"
+	path = /obj/item/clothing/cloak/poncho/fancycoat
+
+/datum/loadout_item/explorerpants
+	name = "Explorer Pants"
+	path = /obj/item/clothing/under/roguetown/tights/explorerpants
 
 /datum/loadout_item/bottomtunic
 	name = "Low-cut Tunic"

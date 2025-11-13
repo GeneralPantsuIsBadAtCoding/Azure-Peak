@@ -403,8 +403,6 @@
 
 	var/jobtype = null
 
-	back = /obj/item/storage/backpack
-
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
 /*	switch(H.backpack)

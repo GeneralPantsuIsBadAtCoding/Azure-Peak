@@ -23,7 +23,14 @@
 /datum/crafting_recipe/roguetown/arcana/rawmana
 	name = "mana crystal"
 	result = /obj/item/magic/manacrystal
-	reqs = list(/datum/reagent/medicine/manapot = 45)
+	reqs = list(/datum/reagent/medicine/manapot = 25)
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/arcana/obsidian
+	name = "Obsidian Shard"
+	result = /obj/item/magic/manacrystal
+	reqs = list(/obj/item/natural/stone = 2, 
+				/obj/item/alch/coaldust = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/arcana/chalk
@@ -289,8 +296,8 @@
 				  /obj/item/magic/elemental/shard)
 	reqs = list(/obj/item/natural/cured/essence = 1,
 				/datum/reagent/water/salty = 15,
-				/obj/item/natural/clay = 5,
-				/obj/item/skull = 1,
+				/obj/item/natural/clay = 2,
+				/obj/item/ingot/aaslag = 1,
 				/obj/item/rogueore/cinnabar = 1)
 	craftdiff = 3
 
@@ -318,7 +325,7 @@
 				  /obj/item/magic/elemental/fragment,)
 	reqs = list(/obj/item/phylactery = 1,
 				/datum/reagent/water/salty = 15,
-				/obj/item/natural/clay = 5,
+				/obj/item/natural/clay = 2,
 				/obj/item/rogueore/silver= 1,
 				/obj/item/rogueore/cinnabar = 1)
 	craftdiff = 5

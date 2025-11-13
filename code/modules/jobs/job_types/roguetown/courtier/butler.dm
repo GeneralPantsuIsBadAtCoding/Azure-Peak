@@ -48,6 +48,7 @@
 		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/seneschal
@@ -100,6 +101,7 @@
 		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/seneschal/headmaid/pre_equip(mob/living/carbon/human/H)
@@ -136,6 +138,7 @@
 		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/seneschal/chiefbutler/pre_equip(mob/living/carbon/human/H)

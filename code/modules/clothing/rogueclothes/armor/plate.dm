@@ -290,6 +290,7 @@
 
 	/// Whether the user has the Heavy Armour Trait prior to donning.
 	var/traited = FALSE
+	smelt_bar_num = 3
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate/equipped(mob/living/user, slot)
 	. = ..()
@@ -523,6 +524,7 @@
 	icon_state = "ornatecuirass"
 	desc = "A beautiful steel cuirass, fitted with tassets for additional coverage. Strips of blessed silver have been meticulously incorporated into the fluting; a laborous decoration that denotes it as originating from the Order of the Silver Psycross. </br>'..the feeling of Aeon's grasp upon your shoulders, imparting the world's burden unto flesh and bone..' </br>... </br>With some blessed silver and a blacksmith's assistance, I can turn this cuirass into a set of half-plate armor."
 	smeltresult = /obj/item/ingot/silverblessed
+	smelt_bar_num = 1
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/iron
 	name = "iron breastplate"
@@ -542,7 +544,7 @@
 	smeltresult = /obj/item/ingot/copper
 	body_parts_covered = CHEST
 	armor_class = ARMOR_CLASS_LIGHT
-	smelt_bar_num = 2
+	smelt_bar_num = 1
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/elven
 	name = "elven guardian cuirass"

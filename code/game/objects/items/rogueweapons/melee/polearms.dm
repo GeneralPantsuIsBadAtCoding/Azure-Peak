@@ -1036,6 +1036,29 @@
 	force_wielded = 40
 	max_blade_int = 200
 	smeltresult = /obj/item/ingot/blacksteel
+	smelt_bar_num = 2 // Okay you CAN get a refund on the blacksteel
+
+/obj/item/rogueweapon/greatsword/silver
+	name = "silver greatsword"
+	desc = "A greatsword with a massive blade of pure silver. Such is favored amongst the Order of Syonica's paladins: a faith-militance that seeks to safeguard those who've taken pilgrimage towards Azuria. </br>'There is no fate, but what we make for ourselves. It is not the will of gods that will determine Psydonia's fate.. but instead, the hope of its children.'"
+	icon_state = "silverexealt"
+	force = 8
+	force_wielded = 25
+	minstr = 11
+	wdefense = 6
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/greatsword/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/greatsword/psygsword
 	name = "psydonic greatsword"
@@ -1345,6 +1368,7 @@
 	wdefense = 6
 	throwforce = 12	//Not a throwing weapon. Too heavy!
 	icon_angle_wielded = 50
+	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/spear/partizan/getonmobprop(tag)
 	. = ..()
@@ -1364,6 +1388,7 @@
 	force_wielded = 33 // 10% base damage increase
 	wdefense = 6 // A little bit extra
 	max_blade_int = 200 
+	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/spear/boar/frei
 	name = "Aavnic lándzsa"
@@ -1384,6 +1409,7 @@
 	possible_item_intents = list(SPEAR_THRUST, /datum/intent/lance/onehand, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/spear/thrust/lance, /datum/intent/lance, SPEAR_BASH)
 	resistance_flags = null
+	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/spear/naginata
 	name = "naginata"
@@ -1399,6 +1425,7 @@
 	wdefense = 5
 	throwforce = 12	//Not a throwing weapon. 
 	icon_angle_wielded = 50
+	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/spear/naginata/getonmobprop(tag)
 	. = ..()
@@ -1520,7 +1547,7 @@
 	max_blade_int = 555
 	alt_intents = null 
 	is_silver = TRUE
-	smeltresult = /obj/item/rogueweapon/sword/long/kriegmesser/silver //Too thick to completely melt.
+	smeltresult = /obj/item/rogueweapon/greatsword/silver //Too thick to completely melt.
 
 /obj/item/rogueweapon/greatsword/psygsword/dragonslayer/ComponentInitialize()
 	AddComponent(\

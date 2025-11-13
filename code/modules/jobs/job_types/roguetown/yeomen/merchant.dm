@@ -67,7 +67,7 @@
 	pants = /obj/item/clothing/under/roguetown/tights/sailor
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltl = /obj/item/storage/keyring/merchant
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
+	beltr = /obj/item/storage/belt/rogue/pouch/merchant/coins
 	id = /obj/item/clothing/ring/gold
 	backr = /obj/item/storage/backpack/rogue/satchel
 	if(should_wear_masc_clothes(H))

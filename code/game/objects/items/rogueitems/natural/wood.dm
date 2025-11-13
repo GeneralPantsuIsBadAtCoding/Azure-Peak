@@ -154,7 +154,7 @@
 		return
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/skill_level = user.get_skill_level(/datum/skill/craft/carpentry)
-	var/planking_time = (45 - (skill_level * 5))
+	var/planking_time = (35 - (skill_level * 5))
 	var/woodtotal = 1
 	switch (skill_level) //how many planks you get is random, but higher with more carpentry skill
 		if (0)

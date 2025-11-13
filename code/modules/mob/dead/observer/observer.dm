@@ -11,6 +11,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	layer = GHOST_LAYER
 	stat = DEAD
 	density = FALSE
+	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
@@ -119,18 +120,18 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	updateallghostimages()
 
-	testing("BEGIN LOC [loc]")
+
 
 	var/turf/T
 	var/mob/body = loc
 	if(ismob(body))
 		T = get_turf(body)				//Where is the body located?
-		testing("body [body] loc [body.loc]")
+
 		if(!T)
-			testing("no t yyy")
+
 			if(istype(body, /mob/living/brain))
 				var/obj/Y = body.loc
-				testing("Y [Y] loc [Y.loc]")
+
 				T = get_turf(Y)
 
 		gender = body.gender
@@ -180,7 +181,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	update_icon()
 
 	if(!T)
-		testing("NO T")
+
 		T = SSmapping.get_station_center()
 
 	forceMove(T)

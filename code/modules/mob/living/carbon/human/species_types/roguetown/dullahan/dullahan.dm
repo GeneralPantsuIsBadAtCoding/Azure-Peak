@@ -285,7 +285,7 @@
 		mob_light_obj = user.mob_light(soul_accessory.accessory_colors, 2, 2)
 
 /datum/species/dullahan/proc/soul_light_off()
-	qdel(mob_light_obj)
+	QDEL_NULL(mob_light_obj)
 
 /datum/species/dullahan/proc/on_say_postprocess(datum/source, list/speech_args)
 	var/mob/living/carbon/human/human = my_head.original_owner

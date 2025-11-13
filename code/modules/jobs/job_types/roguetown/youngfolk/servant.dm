@@ -52,6 +52,7 @@
 		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/servant/servant/pre_equip(mob/living/carbon/human/H)
@@ -72,7 +73,7 @@
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
 		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 
 /datum/advclass/servant/maid
@@ -96,6 +97,7 @@
 		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/servant/maid/pre_equip(mob/living/carbon/human/H)
@@ -115,7 +117,7 @@
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
 		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 
 /datum/advclass/servant/butler
@@ -139,6 +141,7 @@
 		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/servant/butler/pre_equip(mob/living/carbon/human/H)
@@ -158,5 +161,5 @@
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
 		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
