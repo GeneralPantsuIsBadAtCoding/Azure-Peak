@@ -137,7 +137,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/full_examine = FALSE
 	var/mute_animal_emotes = FALSE
 	var/autoconsume = FALSE
-	var/no_examine_blocks = FALSE
+	var/no_examine_blocks = TRUE
 	var/no_autopunctuate = FALSE
 
 	var/lastclass
