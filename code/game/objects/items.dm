@@ -598,46 +598,59 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(!C.body_parts_covered)
 				inspec += "<b>NONE!</b>"
 			if(C.body_parts_covered == C.body_parts_covered_dynamic)
-				var/break_lim = 0
-				for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
-					inspec += "<b>[capitalize(zone)]</b> "
-					break_lim++
-					if(break_lim >= 2)
+				var/count = 1
+				var/list/zonelist = body_parts_covered2organ_names(C.body_parts_covered)
+				for(var/zone in zonelist)
+					var/add_divider = TRUE
+					if(count % 2 == 0 || count == (length(zonelist)))
+						add_divider = FALSE
+					inspec += "<b>[capitalize(zone)]</b> [add_divider ? "| " : ""]"
+					if(count % 2 == 0)
 						inspec += "<br>"
-						break_lim = 0
+					count++
 			else
 				var/list/zones = list()
 				//We have some part peeled, so we turn the printout into precise mode and highlight the missing coverage.
-				var/break_lim = 0
+				var/count = 1
 				for(var/zoneorg in body_parts_covered2organ_names(C.body_parts_covered, precise = TRUE))
 					zones += zoneorg
-				for(var/zonedyn in body_parts_covered2organ_names(C.body_parts_covered_dynamic, precise = TRUE))
-					inspec += "<b>[capitalize(zonedyn)]</b> "
+				var/list/dynlist = body_parts_covered2organ_names(C.body_parts_covered_dynamic, precise = TRUE)
+				for(var/zonedyn in dynlist)
+					var/add_divider = TRUE
+					if(count % 2 == 0 || count == (length(dynlist)))
+						add_divider = FALSE
+
+					inspec += "<b>[capitalize(zonedyn)]</b> [add_divider ? "| " : ""]"
 					if(zonedyn in zones)
 						zones.Remove(zonedyn)
-					break_lim++
-					if(break_lim >= 2)
+
+					if(count % 2 == 0)
 						inspec += "<br>"
-						break_lim = 0
+					count++
 				for(var/zone in zones)
-					inspec += "<b><font color = '#7e0000'>[capitalize(zone)]</font></b> "
-					break_lim++
-					if(break_lim >= 2)
+					var/add_divider = TRUE
+					if(count % 2 == 0 || count == (length(dynlist)))
+						add_divider = FALSE
+					inspec += "<b><font color = '#7e0000'>[capitalize(zone)]</font></b> [add_divider ? "| " : ""]"
+					if(count % 2 == 0)
 						inspec += "<br>"
-						break_lim = 0
+					count++
 			inspec += "<br>"
 			inspec += "</td>"
-			inspec += "<td width = 50%><b>PREVENTS CRITS:</b>"
+			inspec += "<td width = 60%><b>PREVENTS CRITS:</b><br>"
 			if(!length(C.prevent_crits))
 				inspec += "\n<b>NONE!</b>"
-			var/break_lim = 0
+			var/count = 1
 			for(var/X in C.prevent_crits)
 				if(X == BCLASS_PICK)	//BCLASS_PICK is named "stab", and "stabbing" is its own damage class. Prevents confusion.
 					X = "pick"
-				inspec += ("<b>[capitalize(X)]</b>")
-				break_lim++
-				if(break_lim > 2)
+				var/add_divider = TRUE
+				if(count % 2 == 0 || count == (length(C.prevent_crits)))
+					add_divider = FALSE
+				inspec += ("<b>[capitalize(X)]</b> [add_divider ? "| " : ""]")
+				if(count % 2 == 0)
 					inspec += "<br>"
+				count++
 			inspec += "<br></td>"
 			inspec += "</tr></table>"
 			if(C.body_parts_inherent)

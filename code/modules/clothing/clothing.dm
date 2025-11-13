@@ -542,7 +542,7 @@ BLIND     // can't see anything
 
 	if(showcrits && prevent_crits)
 		str += "<br>———————————————<br>"
-		str += "<font color = '#afaeae'>STOPS CRITS: <br>"
+		str += "<font color = '#afaeae'><text-align: center>STOPS CRITS: <br>"
 		var/linebreak_count = 0
 		var/index = 0
 		for(var/flag in prevent_crits)

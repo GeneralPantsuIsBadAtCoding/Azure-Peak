@@ -336,7 +336,7 @@
 	if(wear_armor && !(SLOT_ARMOR in obscured))
 		var/str = "[m3] [wear_armor.generate_tooltip(wear_armor.get_examine_string(user), showcrits = (is_normal || is_smart))]. "
 		if(is_smart || is_normal)
-			str += wear_armor.integrity_check(elaborate = TRUE)
+			str += wear_armor.integrity_check(is_smart)
 		else if (is_stupid)
 			if(istype(wear_armor, /obj/item/clothing/suit/roguetown/armor))
 				var/obj/item/clothing/suit/roguetown/armor/examined_armor = wear_armor
