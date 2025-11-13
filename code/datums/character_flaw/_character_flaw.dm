@@ -32,6 +32,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	var/name
 	var/desc
 	var/ephemeral = FALSE // This flaw is currently disabled and will not process
+	var/roundend_triumph_award = 1	//Awards triumphs round end for those with flaws. Base is 1, no flaw is 0, some punishing flaws are 2.
 
 /datum/charflaw/proc/on_mob_creation(mob/user)
 	return
@@ -83,27 +84,17 @@ GLOBAL_LIST_INIT(character_flaws, list(
 /datum/charflaw/eznoflaw
 	name = "No Flaw"
 	desc = "I'm a normal person, how rare!"
+	roundend_triumph_award = 0
 
 /datum/charflaw/noflaw
-	name = "No Flaw (-3 TRI)"
-	desc = "I'm a normal person, how rare! (Consumes 3 triumphs or gives a random flaw.)"
+	name = "No Flaw"
+	desc = "I'm a normal person, how rare!"
+	roundend_triumph_award = 0
+	var/nochekk = TRUE
 
-/datum/charflaw/noflaw/apply_post_equipment(mob/user)
-	var/mob/living/carbon/human/H = user
-	if(H.get_triumphs() < 3)
-		var/flawz = GLOB.character_flaws.Copy()
-		var/charflaw = pick_n_take(flawz)
-		charflaw = GLOB.character_flaws[charflaw]
-		if((charflaw == type) || (charflaw == /datum/charflaw/randflaw))
-			charflaw = pick_n_take(flawz)
-			charflaw = GLOB.character_flaws[charflaw]
-		if((charflaw == type) || (charflaw == /datum/charflaw/randflaw))
-			charflaw = pick_n_take(flawz)
-			charflaw = GLOB.character_flaws[charflaw]
-		H.charflaw = new charflaw()
-		H.charflaw.on_mob_creation(H)
-	else
-		H.adjust_triumphs(-3)
+/datum/charflaw/noflaw/flaw_on_life(mob/user)
+	if(!nochekk)
+		return
 
 /datum/charflaw/badsight
 	name = "Bad Eyesight"
@@ -147,6 +138,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 /datum/charflaw/paranoid
 	name = "Paranoid"
 	desc = "I'm even more anxious than most people. I'm extra paranoid of other races and the sight of blood."
+	roundend_triumph_award = 2
 	var/last_check = 0
 
 /datum/charflaw/paranoid/flaw_on_life(mob/user)
@@ -382,6 +374,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	var/do_sleep = FALSE
 	var/pain_pity_charges = 3
 	var/drugged_up = FALSE
+	roundend_triumph_award = 2
 
 /datum/charflaw/narcoleptic/on_mob_creation(mob/user)
 	ADD_TRAIT(user, TRAIT_FASTSLEEP, "[type]")
@@ -461,6 +454,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 /datum/charflaw/mute
 	name = "Mute"
 	desc = "I was born without the ability to speak."
+	roundend_triumph_award = 2
 
 /datum/charflaw/mute/on_mob_creation(mob/user)
 	ADD_TRAIT(user, TRAIT_PERMAMUTE, TRAIT_GENERIC)
@@ -468,6 +462,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 /datum/charflaw/critweakness
 	name = "Critical Weakness"
 	desc = "My body is as fragile as an eggshell. A critical strike is like to end me then and there."
+	roundend_triumph_award = 3
 
 /datum/charflaw/critweakness/on_mob_creation(mob/user)
 	ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)

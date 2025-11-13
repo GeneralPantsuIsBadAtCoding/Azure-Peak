@@ -299,14 +299,15 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 			// Top-level menu table
 			dat += "<table style='width: 100%; line-height: 20px;'>"
-			// NEXT ROW
+			// ROW 1
 			dat += "<tr>"
 			dat += "<td style='width:33%;text-align:left'>"
 			dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=changeslot;'>Change Character</a>"
 			dat += "</td>"
 
 			dat += "<td style='width:33%;text-align:center'>"
-			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Class Selection</a>"
+			if(SStriumphs.triumph_buys_enabled)
+				dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=triumph_buy_menu'>Triumph Shop</a>"
 			dat += "</td>"
 
 			dat += "<td style='width:33%;text-align:right'>"
@@ -314,12 +315,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "</td>"
 			dat += "</tr>"
 
-			// ANOTHA ROW
+			// ROW 2
 			dat += "<tr style='padding-top: 0px;padding-bottom:0px'>"
 			dat += "<td style='width:33%;text-align:left'>"
 			dat += "<a href='?_src_=prefs;preference=tgui_ui_prefs;task=menu'>[tgui_pref ? "TGUI" : "Legacy"]</a>"
-			dat += "<br>"
-			dat += "<a href='?_src_=prefs;preference=tgui_theme'>Theme: [get_tgui_theme_display_name()]</a>"
 			dat += "</td>"
 
 			dat += "<td style='width:33%;text-align:center'>"
@@ -330,6 +329,19 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "</td>"
 			dat += "</tr>"
 
+			// ROW 3
+			dat += "<tr style='padding-top: 0px;padding-bottom:0px'>"
+
+			dat += "<td style='width:33%;text-align:left'>"
+			dat += "<a href='?_src_=prefs;preference=tgui_theme'>Theme: [get_tgui_theme_display_name()]</a>"
+			dat += "</td>"
+
+			dat += "<td style='width:33%;text-align:center'>"
+			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Class Selection</a>"
+			dat += "</td>"
+				
+			dat += "</tr>"
+
 			// ANOTHER ROW HOLY SHIT WE FINALLY A GOD DAMN GRID NOW! WHOA!
 			dat += "<tr style='padding-top: 0px;padding-bottom:0px'>"
 			dat += "<td style='width:33%; text-align:left'>"
@@ -338,8 +350,6 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 			dat += "<td style='width:33%;text-align:center'>"
 			dat += "<a href='?_src_=prefs;preference=triumphs;task=menu'><b>TRIUMPHS:</b></a> [user.get_triumphs() ? "\Roman [user.get_triumphs()]" : "None"]"
-			if(SStriumphs.triumph_buys_enabled)
-				dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=triumph_buy_menu'>Triumph Buy</a>"
 			dat += "</td>"
 
 			var/agevetted = user.check_agevet()
@@ -975,6 +985,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(length(job.vice_restrictions))
 				if(charflaw.type in job.vice_restrictions)
 					HTML += "<font color='#a56161'>[used_name] (Disallowed by Vice: [charflaw.name])</font></td> <td> </td></tr>"
+					continue
+			if(length(job.allowed_races) && !(user.client.prefs.pref_species.id in job.allowed_races))
+				if(!(user.client.has_triumph_buy(TRIUMPH_BUY_RACE_ALL)))
+					HTML += "<font color=#a36c63>[used_name]</font></td> <td> </td></tr>"
 					continue
 			var/job_unavailable = JOB_AVAILABLE
 			if(isnewplayer(parent?.mob))
@@ -2620,7 +2634,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		real_name = pref_species.random_name(gender)
 
 	if(roundstart_checks)
-		if(CONFIG_GET(flag/humans_need_surnames) && ((pref_species.id == "human") || (pref_species.id == "humen")))
+		if(CONFIG_GET(flag/humans_need_surnames) && (pref_species.id == SPEC_ID_HUMAN))
 			var/firstspace = findtext(real_name, " ")
 			var/name_length = length(real_name)
 			if(!firstspace)	//we need a surname
