@@ -501,6 +501,17 @@
 		/datum/sprite_accessory/hair/head/hprotagonist,
 		/datum/sprite_accessory/hair/head/alsoprotagonist,
 		/datum/sprite_accessory/hair/head/ghast,
+		// Twilight style
+		/datum/sprite_accessory/hair/head/dreadlocks_accurate,
+		/datum/sprite_accessory/hair/head/dreadlocks_accurate_tied,
+		/datum/sprite_accessory/hair/head/cactus,
+		/datum/sprite_accessory/hair/head/choppy,
+		/datum/sprite_accessory/hair/head/elize,
+		/datum/sprite_accessory/hair/head/floof,
+		/datum/sprite_accessory/hair/head/wavy_tied,
+		/datum/sprite_accessory/hair/head/wavy,
+		/datum/sprite_accessory/hair/head/wavy_medium,
+		/datum/sprite_accessory/hair/head/charlotta,
 		)
 
 /datum/customizer_choice/bodypart_feature/hair/head/humanoid/get_random_accessory(datum/customizer_entry/entry, datum/preferences/prefs)

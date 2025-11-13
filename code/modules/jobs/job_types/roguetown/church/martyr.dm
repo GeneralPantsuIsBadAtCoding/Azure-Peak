@@ -439,6 +439,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	display_order = JDO_MARTYR
+	same_job_respawn_delay = 30 MINUTES
 	
 	give_bank_account = TRUE
 

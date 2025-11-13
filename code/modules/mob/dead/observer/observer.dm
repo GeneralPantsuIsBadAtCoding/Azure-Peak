@@ -11,7 +11,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	layer = GHOST_LAYER
 	stat = DEAD
 	density = FALSE
-	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
+//	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
@@ -78,6 +78,15 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	icon = 'icons/roguetown/mob/misc.dmi'
 	icon_state = "hollow"
 	alpha = 150
+
+/mob/dead/observer/rogue/Move(n, direct)
+	if(world.time < next_gmove)
+		return
+	next_gmove = world.time + 2
+
+	setDir(direct)
+
+	. = ..()
 
 /mob/dead/observer/screye
 //	see_invisible = SEE_INVISIBLE_LIVING

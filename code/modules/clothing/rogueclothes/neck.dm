@@ -647,14 +647,14 @@
 	desc = "A old reminder. A lighter version often used more as a status symbol for slaves. Then and now."
 	icon_state = "iwolfcollaralt"
 
-/obj/item/clothing/neck/roguetown/collar/bell_collar
+/* /obj/item/clothing/neck/roguetown/collar/bell_collar TA EDIT START
 	name = "bell collar"
 	desc = "A band of leather with a bell that protects the local zads from the local catfolk."
 	icon_state = "bell_collar"
 
 /obj/item/clothing/neck/roguetown/collar/bell_collar/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS)
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS) */ // TA EDIT END
 
 /obj/item/clothing/neck/roguetown/collar/feldcollar
 	name = "feldcollar"

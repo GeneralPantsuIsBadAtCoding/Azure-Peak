@@ -1,5 +1,5 @@
 /datum/sex_action/sex/vaginal
-	name = "Fuck their pussy"
+	name = "Трахнуть в киску"
 	stamina_cost = 1.0
 
 /datum/sex_action/sex/vaginal/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -30,7 +30,7 @@
 	return TRUE
 
 /datum/sex_action/sex/vaginal/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return span_warning("[user] slides [user.p_their()] cock into [target]'s pussy!")
+	return span_warning("[user] входит свои хером в киску [target]!")
 
 /datum/sex_action/sex/vaginal/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
@@ -38,7 +38,7 @@
 /datum/sex_action/sex/vaginal/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
 	var/is_knotting = sex_session.do_knot_action
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] [is_knotting ? "knot-fucks" : "fucks"] [target]'s pussy."))
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] [is_knotting ? "трахает [target] в киску по самый узел" : "трахает [target] в киску"]."))
 	playsound(target, sex_session.get_force_sound(), 50, TRUE, -2, ignore_walls = FALSE)
 	do_thrust_animate(user, target)
 
@@ -54,19 +54,19 @@
 	sex_session.handle_passive_ejaculation(target)
 
 /datum/sex_action/sex/vaginal/handle_climax_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	user.visible_message(span_love("[user] cums into [target]'s pussy!"))
+	user.visible_message(span_love("[user] кончает внутрь лона [target]!"))
 	user.try_impregnate(target)
 	user.virginity = FALSE
 	return "into"
 
 /datum/sex_action/sex/vaginal/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return span_warning("[user] pulls [user.p_their()] cock out of [target]'s pussy.")
+	return span_warning("[user] прекращает сношать лоно [target].")
 
 /datum/sex_action/sex/vaginal/get_knot_count()
 	return 1
 
 /datum/sex_action/sex/vaginal/double
-	name = "Fuck their pussy with both cocks"
+	name = "Трахнуть в киску двумя членами"
 
 /datum/sex_action/sex/vaginal/double/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!has_double_penis(user))
@@ -79,7 +79,7 @@
 	return ..()
 
 /datum/sex_action/sex/vaginal/double/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return span_warning("[user] slides [user.p_their()] cocks into [target]'s pussy!")
+	return span_warning("[user] входит сразу же всеми двумя членами в киску [target]!")
 
 /datum/sex_action/sex/vaginal/double/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
@@ -87,7 +87,7 @@
 /datum/sex_action/sex/vaginal/double/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
 	var/is_knotting = sex_session.do_knot_action
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] [is_knotting ? "double-knots" : "double-fucks"] [target]'s pussy."))
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] [is_knotting ? "трахает лоно [target] двумя членами разом по самый узел" : "трахает лоно [target] двумя членами разом"]."))
 	playsound(target, sex_session.get_force_sound(), 50, TRUE, -2, ignore_walls = FALSE)
 	do_thrust_animate(user, target)
 
@@ -103,7 +103,7 @@
 	sex_session.handle_passive_ejaculation(target)
 
 /datum/sex_action/sex/vaginal/double/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return span_warning("[user] pulls [user.p_their()] cocks out of [target]'s pussy.")
+	return span_warning("[user] прекращает сношать лоно [target].")
 
 /datum/sex_action/sex/vaginal/double/get_knot_count()
 	return 2

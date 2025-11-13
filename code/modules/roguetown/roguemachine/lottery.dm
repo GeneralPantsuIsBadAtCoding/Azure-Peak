@@ -99,20 +99,20 @@
 			playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
 			src.gamblingprob = src.gamblingbaseprob
 			src.oldtithe = src.gamblingprice //this is redundant but i feel like bad things will happen if i don't do this :T
-			sleep(15)
+			stoplag(1.5 SECONDS)
 			src.stopgambling = 0
 			return
 
 		else
 			src.say(pick("TEN, WHEEL OF FORTUNE - inversed.", "The Castle. O, Omen!", "A harvest of locusts...!", "Look into my eyes and whisper your woes.", "Aw, dangit.", "Fool. Poor fool.", "Your eyes leak out of your skull, drool falling from your lips.", "Divine idiocy.", "You stand just as I did; loser and a freek."))
 			playsound(src, 'sound/misc/bug.ogg', 100, FALSE, -1)
-			sleep(20) //really make them THINK about their life choices up to this point
+			stoplag(2 SECONDS) //really make them THINK about their life choices up to this point
 			src.say(pick("King of fools, your land is barren. Play again?", "Divine comedy. Play again?", "Next time, surely. Play again?", "Haha-...ah-ha-ha! Again! Play again, jester!", "Poor beggar! Spin me again?"))
 			playsound(src, 'sound/misc/bug.ogg', 100, FALSE, -1)
 			src.gamblingprob = src.gamblingbaseprob
 			src.gamblingprice = 0
 			src.oldtithe = 0
-			sleep(15)
+			stoplag(1.5 SECONDS)
 			src.stopgambling = 0
 			return
 

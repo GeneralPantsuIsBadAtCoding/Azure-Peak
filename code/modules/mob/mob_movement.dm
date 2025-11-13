@@ -788,6 +788,21 @@
 	for(var/atom/movable/screen/eye_intent/eyet in hud_used.static_inventory)
 		eyet.update_icon(src)
 	playsound_local(src, 'sound/misc/click.ogg', 100)
+
+/*/client/proc/hearglobalLOOC()
+	set category = "Prefs - Admin"
+	set name = "Show/Hide Global LOOC"
+	if(!holder)
+		return
+	if(!prefs)
+		return
+	prefs.chat_toggles ^= CHAT_ADMINLOOC
+	prefs.save_preferences()
+	if(prefs.chat_toggles & CHAT_ADMINLOOC)
+		to_chat(src, span_notice("I will now hear all LOOC chatter."))
+	else
+		to_chat(src, span_info("I will now only hear LOOC chatter around me."))*/ // Лоок вырезан. Не нужно.
+
 ///Moves a mob upwards in z level
 
 /mob/proc/ghost_up()

@@ -130,7 +130,7 @@
 	name = "sinew"
 	icon_state = "sinew"
 	dropshrink = 0.9
-	major_pot = /datum/alch_cauldron_recipe/stam_poison
+	major_pot = /datum/alch_cauldron_recipe/aphrodisiac
 	med_pot = /datum/alch_cauldron_recipe/end_potion
 	minor_pot = /datum/alch_cauldron_recipe/health_potion
 
@@ -336,7 +336,7 @@
 	icon_state = "euphrasia"
 
 	major_pot = /datum/alch_cauldron_recipe/spd_potion
-	med_pot = /datum/alch_cauldron_recipe/stam_poison
+	med_pot = /datum/alch_cauldron_recipe/aphrodisiac
 	minor_pot = /datum/alch_cauldron_recipe/int_potion
 
 /obj/item/alch/paris
@@ -369,7 +369,7 @@
 
 	major_pot = /datum/alch_cauldron_recipe/health_potion
 	med_pot = /datum/alch_cauldron_recipe/spd_potion
-	minor_pot = /datum/alch_cauldron_recipe/stamina_potion
+	minor_pot = /datum/alch_cauldron_recipe/aphrodisiac
 
 /obj/item/alch/salvia
 	name = "salvia"
@@ -414,7 +414,7 @@
 
 	major_pot = /datum/alch_cauldron_recipe/lck_potion
 	med_pot = /datum/alch_cauldron_recipe/spd_potion
-	minor_pot = /datum/alch_cauldron_recipe/health_potion
+	minor_pot = /datum/alch_cauldron_recipe/aphrodisiac
 
 /obj/item/alch/manabloompowder
 	name = "manabloom powder"

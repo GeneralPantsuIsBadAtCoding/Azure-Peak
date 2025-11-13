@@ -797,6 +797,41 @@
 	created_item = /obj/item/clothing/mask/rogue/facemask/steel
 	createditem_num = 1
 
+/datum/anvil_recipe/armor/steel/astratahelm
+	name = "Astratan Helmet (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	req_blade = /obj/item/blade/steel_plate
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/astratahelm
+
+/datum/anvil_recipe/armor/steel/abyssorhelm
+	name = "Abyssorite Helmet (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	req_blade = /obj/item/blade/steel_plate
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/abyssorgreathelm
+
+/datum/anvil_recipe/armor/steel/necrahelm
+	name = "Necran Helmet (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	req_blade = /obj/item/blade/steel_plate
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/necran
+
+/datum/anvil_recipe/armor/steel/nochelm
+	name = "Noccian Helmet (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	req_blade = /obj/item/blade/steel_plate
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
+
+/datum/anvil_recipe/armor/steel/dendorhelm
+	name = "Dendorite Helmet (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	req_blade = /obj/item/blade/steel_plate
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
+
 /datum/anvil_recipe/armor/steel/frogmouth
 	name = "Froggemund Helmet, Steel (+2 Steel)"
 	req_bar = /obj/item/ingot/steel

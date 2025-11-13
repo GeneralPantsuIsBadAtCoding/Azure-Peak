@@ -55,6 +55,7 @@
 #define TRAIT_POLYTHEIST "Polytheist"
 #define TRAIT_MONOTHEIST "Monotheist"
 #define TRAIT_GUARDSMAN "Vigilant Guardsman"
+#define TRAIT_CLERGY "Decem Dii Vult" // TA EDIT
 #define TRAIT_TAVERN_FIGHTER "Tavern Fighter"
 #define TRAIT_WOODSMAN "Talented Woodsman"
 #define TRAIT_DUNGEONMASTER "Ruthless Jailor"
@@ -250,8 +251,9 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
 	TRAIT_UNDIVIDED = span_info("I have seen past petty squabbles, and am a true follower of the Ten Undivided. I feel most comfortable around churchmen."),
 	TRAIT_TAVERN_FIGHTER = span_info("I am vigilant in my duties. The Tavern is my home, none shall dare oppose me or skip out on payment."),
-	TRAIT_GUARDSMAN = span_info("I am vigilant in my duties. In the town of Azure Peak, my abilities are sharper due to my routine and familiarity."),
-	TRAIT_WOODSMAN = span_info("I am vigilant in my duties. In the grove and coast of Azure Peak, my abilities are sharper due to my routine and familiarity."),
+	TRAIT_GUARDSMAN = span_info("I am vigilant in my duties. In the town of Twilight Axis, my abilities are sharper due to my routine and familiarity."),
+	TRAIT_WOODSMAN = span_info("I am vigilant in my duties. In the grove and coast of Twilight Axis, my abilities are sharper due to my routine and familiarity."),
+	TRAIT_CLERGY = span_notice("I am a member of local clergy, sworn to defend the House of the Ten. My oath empowers me when within the Temple's walls, or near my spiritual guide, the Bishop."),
 	TRAIT_DEATHBARGAIN = span_info("A horrible deal has been prepared in your name. May you never see it fulfilled..."),
 	TRAIT_RITUALIST = span_info("I am skilled in the holy arts. Using ritual chalk, I can more deftly channel my God's powers via runes."),
 	TRAIT_INSPIRING_MUSICIAN = span_info("The flow of battle dances to my song!"),
@@ -379,7 +381,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NOHUNGER = span_info("I do not hunger, or thirst."),
 	TRAIT_DARKVISION = span_info("I can see better in the dark."),
 	TRAIT_NOCSHADES = span_info("The lens I look through allows me to see in the dark clear as dae, at the cost of greater vision."),
-	TRAIT_RESIDENT = span_info("I've been granted a Meister account, and the ownership of a house in Azure Peak."),
+	TRAIT_RESIDENT = span_info("I've been granted a Meister account, and the ownership of a house in Twilight Axis."),
 	TRAIT_LIGHT_STEP = span_info("My steps are light and swift. I make less noise while sneaking, and can sneak much quicker."),
 	TRAIT_NOMOOD = span_info("I feel no sorrow, no joy, and no stress."),
 	TRAIT_AZURENATIVE = span_info("I've grown up and lived all my lyfe in these lands. I can only trigger ambushes if I sprint through them."),
@@ -686,6 +688,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
 #define INNATE_TRAIT "innate"
 #define POULTICE_TRAIT "poultice"
+#define XYLIX_LUCK_TRAIT "xylixluck"
 
 // unique trait sources, still defines
 #define TRAIT_GUIDANCE "Guidance"

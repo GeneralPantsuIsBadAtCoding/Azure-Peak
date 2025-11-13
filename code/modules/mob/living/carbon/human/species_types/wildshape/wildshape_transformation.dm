@@ -71,6 +71,15 @@
 	W.grant_language(/datum/language/beast)
 	W.base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB)
 	W.update_a_intents()
+	
+	if(getorganslot(ORGAN_SLOT_PENIS))
+		W.internal_organs_slot[ORGAN_SLOT_PENIS] = /obj/item/organ/penis/knotted/big
+	if(getorganslot(ORGAN_SLOT_TESTICLES))
+		W.internal_organs_slot[ORGAN_SLOT_TESTICLES] = /obj/item/organ/testicles
+	if(getorganslot(ORGAN_SLOT_BREASTS))
+		W.internal_organs_slot[ORGAN_SLOT_BREASTS] = /obj/item/organ/breasts
+	if(getorganslot(ORGAN_SLOT_VAGINA))
+		W.internal_organs_slot[ORGAN_SLOT_VAGINA] = /obj/item/organ/vagina
 
 	// temporal traits so our body won't die or snore
 	ADD_TRAIT(src, TRAIT_NOSLEEP, TRAIT_SOURCE_WILDSHAPE)

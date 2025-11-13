@@ -72,5 +72,13 @@
 		var/list/embeds = departing_mob.get_embedded_objects()
 		for(var/thing in embeds)
 			QDEL_NULL(thing)
+	var/datum/job/target_job = SSjob.GetJob(departing_mob.mind.assigned_role)
+	if(target_job)
+		if(target_job.job_reopens_slots_on_death)
+			target_job.current_positions = max(0, target_job.current_positions - 1)
+		if(target_job.same_job_respawn_delay)
+			// Store the current time for the player
+			GLOB.job_respawn_delays[departing_mob.ckey] = world.time + target_job.same_job_respawn_delay
+	departing_mob.returntolobby()
 	QDEL_NULL(departing_mob)
 

@@ -143,7 +143,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/clownfish
 	name = "clownfish"
-	desc = "This fish brings vibrant hues to the dark world of Azure Peak."
+	desc = "This fish brings vibrant hues to the dark world of Twilight Axis."
 	icon_state = "clownfish"
 	faretype = FARE_NEUTRAL
 	sellprice = 40

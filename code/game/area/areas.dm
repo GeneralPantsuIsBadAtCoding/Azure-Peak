@@ -432,7 +432,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	T.maptext = {"<span style='vertical-align:top; text-align:center;
 				color: #820000; font-size: 300%;
 				text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
-				font-family: "Blackmoor LET", "Pterra";'>[A.first_time_text]</span>"}
+				font-family: "Blackmoor LET", "Mookmania";'>[A.first_time_text]</span>"}
 	T.maptext_width = 205
 	T.maptext_height = 209
 	T.maptext_x = 12

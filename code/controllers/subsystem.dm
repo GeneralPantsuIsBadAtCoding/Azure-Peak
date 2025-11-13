@@ -174,6 +174,7 @@
 	to_chat(world, span_boldannounce("[msg]"))
 	#endif
 	log_world(msg)
+	SEND_SIGNAL(src, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 	return time
 
 //hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.

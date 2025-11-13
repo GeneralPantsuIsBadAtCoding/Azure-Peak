@@ -50,9 +50,9 @@
 		if(OOC_CHANNEL)
 			client.ooc(entry)
 			return TRUE
-		if(LOOC_CHANNEL)
-			client.looc(entry)
-			return TRUE
+		//if(LOOC_CHANNEL)
+		//	client.looc(entry)
+		//	return TRUE
 		if(ADMIN_CHANNEL)
 			if(check_rights(R_ADMIN, show_msg = FALSE))
 				client.cmd_admin_say(entry)
