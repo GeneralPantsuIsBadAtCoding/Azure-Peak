@@ -144,6 +144,9 @@
 				r_hand = /obj/item/rogueweapon/sword/sabre/knightcaptain
 				l_hand = /obj/item/rogueweapon/shield/buckler/knightcaptain
 				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Deliverance (Glaive)")
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 5, TRUE)
+				r_hand = /obj/item/rogueweapon/halberd/glaive/knightcaptain
 			if("Claymore")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
 				r_hand = /obj/item/rogueweapon/greatsword/zwei
