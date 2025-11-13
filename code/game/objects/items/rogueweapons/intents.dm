@@ -52,6 +52,7 @@
 	var/glow_color = null // The color of the glow. Used for spells
 	var/mob_light = null // tracking mob_light
 	var/obj/effect/mob_charge_effect = null // The effect to be added (on top) of the mob while it is charging
+	var/custom_swingdelay = null	//Custom icon for its swingdelay.
 
 
 	var/list/static/bonk_animation_types = list(

@@ -107,6 +107,8 @@
 		return TRUE
 	if(HAS_TRAIT(src, TRAIT_FORTITUDE))
 		added = added * 0.5
+	if(added < 0 && HAS_TRAIT(src, TRAIT_FROZEN_STAMINA))
+		added = 0
 	stamina = CLAMP(stamina+added, 0, max_stamina)
 	if(added > 0)
 		energy_add(added * -1)
