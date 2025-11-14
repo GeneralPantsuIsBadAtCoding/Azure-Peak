@@ -68,6 +68,7 @@
 			if("Common Soldiery (Polearms, Swords & Shields)") //Steel arming sword & shield. On-spawn bolts, but no crossbow.
 				backl= /obj/item/rogueweapon/shield/iron
 				beltr = /obj/item/rogueweapon/sword
+				beltl = /obj/item/rogueweapon/scabbard/sword
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_EXPERT, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_EXPERT, TRUE)	//Big maybe? Up for discussion honestly.
