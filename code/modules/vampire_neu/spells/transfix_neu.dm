@@ -11,8 +11,8 @@
 
 	/// Ignore crosses and give a different message
 	var/powerful = FALSE
-	/// Willpower divisor from INT
-	var/int_divisor = 3.3
+	/// Willpower divisor from WIL
+	var/wil_divisor = 3.3
 	/// Faces of blood die
 	var/blood_dice = 9
 	/// Faces of will die
@@ -63,7 +63,7 @@
 	for(var/mob/living/carbon/human/target as anything in targets)
 		if(target.cmode)
 			will_dice++
-		var/willpower = round(target.STAINT / int_divisor, 1)
+		var/willpower = round(target.STAWIL / wil_divisor, 1)
 		var/willroll = roll(willpower, will_dice)
 
 		// If the vampire failed badly
@@ -74,7 +74,7 @@
 				var/extra = "!"
 				if(knowledgable)
 					extra = ", I sense the caster was [user]!"
-				to_chat(target, "<font color='white'>The silver psycross shines and protect me from unholy magic[extra]</font>")
+				to_chat(target, "<font color='white'>The silver psycross shines and protects me from unholy magic[extra]</font>")
 				to_chat(user, span_userdanger("[target] has my BANE! It causes me to fail to ensnare their mind!"))
 				break
 

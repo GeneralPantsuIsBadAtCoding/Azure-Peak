@@ -23,12 +23,13 @@
 	multi_activate = TRUE
 	cooldown_length = 60 SECONDS
 
-/datum/coven_power/presence/awe/pre_activation_checks(mob/living/target)
-	var/mypower = owner.STAINT
-	var/mob/living/carbon/human/H = target
-	var/theirpower = H.STAINT - 5
-	if((theirpower >= mypower))
-		to_chat(owner, span_warning("[target]'s mind is too powerful to sway!"))
+/datum/coven_power/presence/awe/pre_activation_checks(mob/living/carbon/human/target)
+	var/bloodskill = owner.get_skill_level(/datum/skill/magic/blood)
+	var/willpower = target.STAWIL-10
+	for(var/obj/item/clothing/neck/roguetown/psicross/silver/I in target.contents)
+		willpower += 2
+	if((willpower >= bloodskill))
+		to_chat(owner, span_warning("[target]'s will is too powerful to sway!"))
 		return FALSE
 
 	return TRUE
