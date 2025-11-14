@@ -34,16 +34,12 @@ GLOBAL_VAR_INIT(dayspassed, FALSE)
 	var/oldtod = GLOB.tod
 	if(time >= SSnightshift.nightshift_start_time || time <= SSnightshift.nightshift_dawn_start)
 		GLOB.tod = "night"
-//		testing("set [tod]")
 	if(time > SSnightshift.nightshift_dawn_start && time <= SSnightshift.nightshift_day_start)
 		GLOB.tod = "dawn"
-//		testing("set [tod]")
 	if(time > SSnightshift.nightshift_day_start && time <= SSnightshift.nightshift_dusk_start)
 		GLOB.tod = "day"
-//		testing("set [tod]")
 	if(time > SSnightshift.nightshift_dusk_start && time <= SSnightshift.nightshift_start_time)
 		GLOB.tod = "dusk"
-//		testing("set [tod]")
 	if(GLOB.todoverride)
 		GLOB.tod = GLOB.todoverride
 	if((GLOB.tod != oldtod) && !GLOB.todoverride && (GLOB.dayspassed>1)) //weather check on tod changes
@@ -84,6 +80,7 @@ GLOBAL_VAR_INIT(dayspassed, FALSE)
 			if(GLOB.dayspassed == 8)
 				GLOB.dayspassed = 1
 			SStreasury.distribute_estate_incomes()
+			SStreasury.distribute_daily_payments()
 		for(var/mob/living/player in GLOB.mob_list)
 			if(player.stat != DEAD && player.client)
 				player.do_time_change()
@@ -91,7 +88,7 @@ GLOBAL_VAR_INIT(dayspassed, FALSE)
 	if(GLOB.tod)
 		return GLOB.tod
 	else
-		testing("COULDNT FIND TOD [GLOB.tod] .. [time]")
+
 		return null
 
 /mob/living/proc/do_time_change()
@@ -127,7 +124,7 @@ GLOBAL_VAR_INIT(dayspassed, FALSE)
 		T.maptext = {"<span style='vertical-align:top; text-align:center;
 					color: #7c5b10; font-size: 150%;
 					text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
-					font-family: "Nosfer", "Pterra";'>[text_to_show]</span>"}
+					font-family: "Nosfer", "Mookmania";'>[text_to_show]</span>"}
 		T.maptext_width = 205
 		T.maptext_height = 209
 		T.maptext_x = 12

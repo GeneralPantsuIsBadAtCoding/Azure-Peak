@@ -3,6 +3,7 @@
 	icon = 'icons/roguetown/items/valuable.dmi'
 	name = "statue"
 	icon_state = ""
+	obj_flags = CAN_BE_HIT
 	w_class = WEIGHT_CLASS_NORMAL
 	experimental_inhand = FALSE
 	smeltresult = null
@@ -76,7 +77,16 @@
 	. = ..()
 	icon_state = "istatue[pick(1,2)]"
 
+/obj/item/roguestatue/blacksteel
+	name = "blacksteel statue"
+	desc = "A dark statue of glimmering, resilient blacksteel."
+	icon_state = "bsstatue1"
+	smeltresult = /obj/item/ingot/blacksteel
+	sellprice = 160
 
+/obj/item/roguestatue/blacksteel/Initialize()
+	. = ..()
+	icon_state = "bsstatue[pick(1,2)]"
 //000000000000000000000000000--
 
 /obj/item/var/polished = FALSE

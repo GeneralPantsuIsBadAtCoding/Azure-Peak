@@ -123,6 +123,10 @@
 	var/list/img_gallery = list()
 	
 
+	var/nsfw_headshot_link = null //TA edit
+
+	var/has_confessed = FALSE // Used to track if they have confessed it was written onto a confession paper
+
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\
 	/datum/rmb_intent/strong,\
@@ -170,5 +174,10 @@
 
 	var/mob/living/carbon/human/hostagetaker //Stores the person that took us hostage in a var, allows us to force them to attack the mob and such
 	var/mob/living/carbon/human/hostage //What hostage we have
+
+	// Boolean. Usually set only to TRUE for non-Eoran church roles.
+	var/virginity = FALSE
+	// Used to prevent certain antag from having sex
+	var/can_do_sex = TRUE
 
 	fovangle = FOV_DEFAULT

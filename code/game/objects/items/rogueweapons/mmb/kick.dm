@@ -47,7 +47,7 @@
 			return FALSE
 		if(!M.Adjacent(src))
 			return FALSE
-		if(src.incapacitated())
+		if(incapacitated())
 			return FALSE
 		if(M.checkmiss(src))
 			return FALSE
@@ -69,8 +69,6 @@
 	if(!A.Adjacent(src))
 		return FALSE
 	if(A == src)
-		return FALSE
-	if(isliving(A) && !(mobility_flags & MOBILITY_STAND) && pulledby)
 		return FALSE
 	if(IsOffBalanced())
 		if(do_message)

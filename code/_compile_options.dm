@@ -1,6 +1,3 @@
-//#define TESTING				//By using the testing("message") proc you can create debug-feedback for people with this
-								//uncommented, but not visible in the release version)
-
 //#define DATUMVAR_DEBUGGING_MODE	//Enables the ability to cache datum vars and retrieve later for debugging which vars changed.
 
 #define MATURESERVER
@@ -12,7 +9,7 @@
 //12 minutes norma
 //#define ROUNDTIMERBOAT (300 MINUTES)
 #define INITIAL_ROUND_TIMER (165 MINUTES)
-#define ROUND_EXTENSION_TIME (30 MINUTES)
+#define ROUND_EXTENSION_TIME (60 MINUTES)
 #define ROUND_END_TIME (15 MINUTES)
 #define ROUND_END_TIME_VERBAL "15 minutes"
 //180 norma
@@ -34,11 +31,7 @@
 
 //#define FIND_REF_NO_CHECK_TICK	//Sets world.loop_checks to false and prevents find references from sleeping
 
-
-//#define VISUALIZE_ACTIVE_TURFS	//Highlights atmos active turfs in green
 #endif
-
-//#define UNIT_TESTS			//Enables unit tests via TEST_RUN_PARAMETERF
 
 #ifndef PRELOAD_RSC					//set to:
 #define PRELOAD_RSC		0			//	0 to allow using external resources or on-demand behaviour;

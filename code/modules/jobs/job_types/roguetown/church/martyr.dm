@@ -439,6 +439,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	display_order = JDO_MARTYR
+	same_job_respawn_delay = 30 MINUTES
 	
 	give_bank_account = TRUE
 
@@ -521,6 +522,7 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
+	SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Church Funding.")
 
 
 /obj/item/rogueweapon/sword/long/martyr

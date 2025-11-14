@@ -43,7 +43,7 @@
 /atom/movable/screen/credit/Click()
 	if(upvoted)
 		return
-	testing("clicdebugk")
+
 	upvoted = TRUE
 	var/image/I = new('icons/effects/effects.dmi', "hearty")
 	I.pixel_x = rand(-32,32)
@@ -61,7 +61,7 @@
 
 /atom/movable/screen/credit/Initialize(mapload, credited, client/P, icon/I)
 	. = ..()
-	testing("spawned credit [credited]")
+
 	icon = I
 	parent = P
 	var/voicecolor = "dc0174"
@@ -73,7 +73,7 @@
 	maptext = {"<span style='vertical-align:top; text-align:center;
 				color: #[voicecolor]; font-size: 100%;
 				text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
-				font-family: "Pterra";'>[credited] the [credited_title]</span>"}
+				font-family: "Mookmania";'>[credited] the [credited_title]</span>"}
 	creditee = credited
 	maptext_x = -32
 	maptext_y = 8

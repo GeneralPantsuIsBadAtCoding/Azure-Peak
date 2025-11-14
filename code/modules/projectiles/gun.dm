@@ -81,9 +81,9 @@
 
 /obj/item/gun/afterattack(atom/target, mob/living/user, flag, params)
 	. = ..()
-	testing("gun afterattack")
+
 	if(!target)
-		testing("no target")
+
 		return
 	if(!user?.used_intent.tranged) //melee attack
 		return
@@ -91,7 +91,7 @@
 		if(target in user.contents) //can't shoot stuff inside us.
 			return
 		if(!ismob(target)) //melee attack
-			testing("gun with melee attack selected")
+
 			return
 		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
 			return

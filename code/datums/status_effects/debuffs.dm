@@ -94,9 +94,9 @@
 			human_owner = owner
 
 /datum/status_effect/incapacitating/sleeping/on_remove()
-	if(human_owner && human_owner.client)
-		SSdroning.play_area_sound(get_area(src), human_owner.client)
-		SSdroning.play_loop(get_area(src), human_owner.client)
+	if(ishuman(owner))
+		SSdroning.play_area_sound(get_area(src), owner.client)
+		SSdroning.play_loop(get_area(src), owner.client)
 	. = ..()
 
 /datum/status_effect/incapacitating/sleeping/Destroy()
@@ -131,7 +131,7 @@
 /atom/movable/screen/alert/status_effect/asleep
 	name = "Asleep"
 	desc = ""
-	icon_state = "asleep"
+	icon_state = "sleeping"
 
 //STASIS
 /datum/status_effect/incapacitating/stasis

@@ -12,7 +12,7 @@
 	/// key of map_adjustment. It is used to check if '/datum/map_config/var/map_file' is matched
 	var/map_file_name
 	/// Name of the realm/location for announcements (e.g., "Azure Peak", "Azure Bleak", etc.)
-	var/realm_name = "Azure Peak"
+	var/realm_name = "Twilight Axis"
 	/// Jobs that this map won't use
 	var/list/blacklist
 	/// Jobs that have slots changed /datum/job = num

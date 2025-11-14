@@ -39,8 +39,6 @@ GLOBAL_VAR(restart_counter)
 
 	log_world("World loaded at [time_stamp()]!")
 
-	SetupExternalRSC()
-
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
 
 	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
@@ -65,8 +63,11 @@ GLOBAL_VAR(restart_counter)
 		GLOB.rogue_round_id = "[pick(GLOB.roundid)][GLOB.round_id]-[timestamp]"
 	SetupLogs()
 	load_poll_data()
+
 	if(CONFIG_GET(string/channel_announce_new_game_message))
 		send2chat(new /datum/tgs_message_content(CONFIG_GET(string/channel_announce_new_game_message)), CONFIG_GET(string/chat_announce_new_game))
+
+	TgsAnnounceServerStart()
 
 #ifndef USE_CUSTOM_ERROR_HANDLER
 	world.log = file("[GLOB.log_directory]/dd.log")
@@ -76,7 +77,6 @@ GLOBAL_VAR(restart_counter)
 #endif
 
 	LoadVerbs(/datum/verbs/menu)
-	load_whitelist()
 
 	load_blacklist()
 
@@ -103,9 +103,9 @@ GLOBAL_VAR(restart_counter)
 
 	Master.Initialize(10, FALSE, TRUE)
 
-	if(TEST_RUN_PARAMETER in params)
-		HandleTestRun()
-
+#ifdef UNIT_TESTS
+	HandleTestRun()
+#endif
 	update_status()
 
 
@@ -121,17 +121,6 @@ GLOBAL_VAR(restart_counter)
 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(addtimer), cb, 10 SECONDS))
-
-/world/proc/SetupExternalRSC()
-#if (PRELOAD_RSC == 0)
-	GLOB.external_rsc_urls = world.file2list("[global.config.directory]/external_rsc_urls.txt","\n")
-	var/i=1
-	while(i<=GLOB.external_rsc_urls.len)
-		if(GLOB.external_rsc_urls[i])
-			i++
-		else
-			GLOB.external_rsc_urls.Cut(i,i+1)
-#endif
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
@@ -158,7 +147,6 @@ GLOBAL_VAR(restart_counter)
 		GLOB.log_directory = "data/logs/[override_dir]"
 		GLOB.picture_logging_prefix = "O_[override_dir]_"
 		GLOB.picture_log_directory = "data/picture_logs/[override_dir]"
-
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
 	GLOB.world_mecha_log = "[GLOB.log_directory]/mecha.log"
 	GLOB.world_virus_log = "[GLOB.log_directory]/virus.log"
@@ -179,7 +167,10 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_job_debug_log = "[GLOB.log_directory]/job_debug.log"
 	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 	GLOB.tgui_log = "[GLOB.log_directory]/tgui.log"
-
+#ifdef UNIT_TESTS
+	GLOB.test_log = file("[GLOB.log_directory]/tests.log")
+	start_log(GLOB.test_log)
+#endif
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_pda_log)
@@ -288,13 +279,13 @@ GLOBAL_VAR(restart_counter)
 
 	TgsReboot()
 
-	if(TEST_RUN_PARAMETER in params)
-		FinishTestRun()
-		return
-
+#ifdef UNIT_TESTS
+	FinishTestRun()
+	return
+#else
 	if(TgsAvailable())
 		send2chat(new /datum/tgs_message_content("Round ending!"), CONFIG_GET(string/chat_announce_new_game))
-		testing("tgsavailable passed")
+
 		var/do_hard_reboot
 		// check the hard reboot counter
 		var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
@@ -320,6 +311,7 @@ GLOBAL_VAR(restart_counter)
 	log_world("World rebooted at [time_stamp()]")
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
+#endif
 
 /world/proc/update_status()
 	var/list/features = list()
@@ -504,5 +496,98 @@ GLOBAL_VAR(restart_counter)
 	var/dll = GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 	if (dll)
 		call_ext(dll, "auxtools_shutdown")()
-	
+
 	. = ..()
+
+/world/proc/TgsAnnounceServerStart()
+	if(!TgsAvailable())
+		return
+
+	var/announce_channel = CONFIG_GET(string/chat_announce_new_game)
+
+	if(!announce_channel)
+		return
+
+	var/datum/tgs_chat_embed/structure/embed = new()
+	embed.title = "Сервер запущен!"
+	embed.description = "История вот-вот начнется..."
+	embed.colour = "#B9B28A"
+
+	var/ping_role_id = CONFIG_GET(string/game_alert_role_id)
+	var/datum/tgs_message_content/message = new(ping_role_id ? "<@&[ping_role_id]>": "")
+	message.embed = embed
+
+	send2chat(
+		message,
+		announce_channel
+	)
+
+/world/proc/TgsAnnounceRoundStart()
+	if(!TgsAvailable())
+		return
+
+	var/announce_channel = CONFIG_GET(string/chat_announce_new_game)
+
+	if(!announce_channel)
+		return
+
+	var/datum/tgs_chat_embed/structure/embed = new()
+	embed.title = "История началась!"
+	embed.description = GLOB.rogue_round_id
+	embed.colour = "#79ac78"
+
+	var/datum/tgs_message_content/message = new("")
+	message.embed = embed
+
+	send2chat(
+		message,
+		announce_channel
+	)
+
+/world/proc/TgsAnnounceVoteEndRound()
+	if(!TgsAvailable())
+		return
+
+	var/announce_channel = CONFIG_GET(string/chat_announce_new_game)
+
+	if(!announce_channel)
+		return
+
+	var/datum/tgs_chat_embed/structure/embed = new()
+	embed.title = "Приближается конец истории!"
+	embed.description = "Игроки проголосовали за конец раунда. До конца: [ROUND_END_TIME_VERBAL]"
+	embed.colour = "#ac87c5"
+	embed.footer = new(GLOB.rogue_round_id)
+
+	var/datum/tgs_message_content/message = new("")
+	message.embed = embed
+
+	send2chat(
+		message,
+		announce_channel
+	)
+
+/world/proc/TgsAnnounceRoundEnd()
+	if(!TgsAvailable())
+		return
+
+	var/announce_channel = CONFIG_GET(string/chat_announce_new_game)
+
+	if(!announce_channel)
+		return
+
+	var/round_duration_timestamp = gameTimestamp("hh:mm:ss", world.time - SSticker.round_start_time)
+
+	var/datum/tgs_chat_embed/structure/embed = new()
+	embed.title = "Конец!"
+	embed.description = "История длилась [round_duration_timestamp]."
+	embed.colour = "#9f5255"
+	embed.footer = new(GLOB.rogue_round_id)
+
+	var/datum/tgs_message_content/message = new("")
+	message.embed = embed
+
+	send2chat(
+		message,
+		announce_channel
+	)

@@ -366,12 +366,12 @@
 	if(CZ)
 		if( !(check_zone(L.zone_selected) in acceptable) )
 			to_chat(L, span_warning("I can't reach that."))
-			testing("reach2")
+
 			return FALSE
 	else
 		if( !(L.zone_selected in acceptable) )
 			to_chat(L, span_warning("I can't reach that."))
-			testing("reach2")
+
 			return FALSE
 	return TRUE
 
@@ -478,6 +478,9 @@
 				C.grippedby(src)
 			if(!supress_message)
 				send_pull_message(target)
+			var/signal_result = SEND_SIGNAL(target, COMSIG_LIVING_GRAB_SELF_ATTEMPT, target, used_limb)
+			if(signal_result & COMPONENT_CANCEL_GRAB_ATTACK)
+				return FALSE
 		else
 			var/obj/item/grabbing/O = new()
 			O.name = "[target.name]"
@@ -494,6 +497,9 @@
 				target.grippedby(src)
 			if(!supress_message)
 				send_pull_message(target)
+			var/signal_result = SEND_SIGNAL(target, COMSIG_LIVING_GRAB_SELF_ATTEMPT, target, zone_selected)
+			if(signal_result & COMPONENT_CANCEL_GRAB_ATTACK)
+				return FALSE
 
 		update_pull_movespeed()
 		set_pull_offsets(target, state)
@@ -670,10 +676,6 @@
 		updatehealth()
 //		if(!whispered)
 //			to_chat(src, span_userdanger("I have given up life and succumbed to death."))
-
-		var/word_input = stripped_input(src, "Your parting words? Leave empty if you will.", "Last Words")
-		if(word_input)
-			say(word_input)
 		death()
 
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = TRUE, check_immobilized = FALSE, ignore_stasis = FALSE)
@@ -1124,6 +1126,15 @@
 	else if(mobility_flags & MOBILITY_MOVE)
 		if(on_fire)
 			resist_fire() //stop, drop, and roll
+		else if(has_status_effect(/datum/status_effect/leash_pet))
+			if(istype(src, /mob/living/carbon))
+				src:resist_leash()
+		else if(last_special <= world.time)
+			resist_restraints() //trying to remove cuffs.
+
+	else if(mobility_flags & MOBILITY_MOVE)
+		if(on_fire)
+			resist_fire() //stop, drop, and roll
 		else if(last_special <= world.time)
 			resist_restraints() //trying to remove cuffs.
 			var/datum/component/riding/human/riding_datum = GetComponent(/datum/component/riding/human)
@@ -1332,7 +1343,7 @@
 		fixed = 1
 	if(on && !(movement_type & FLOATING) && !fixed)
 		animate(src, pixel_y = pixel_y + 2, time = 10, loop = -1)
-		sleep(10)
+		stoplag(1 SECONDS)
 		animate(src, pixel_y = pixel_y - 2, time = 10, loop = -1)
 		setMovetype(movement_type | FLOATING)
 	else if(((!on || fixed) && (movement_type & FLOATING)))
@@ -1768,6 +1779,10 @@
 			should_be_lying = buckled.buckle_lying
 
 	if(should_be_lying)
+		// Track when we transition from standing to prone for dismemberment grace period
+		if(mobility_flags & MOBILITY_STAND) 
+			if(mob_timers)
+				mob_timers["last_standing"] = world.time
 		resting = TRUE
 		mobility_flags &= ~MOBILITY_STAND
 		if(buckled)
@@ -2363,3 +2378,6 @@
 		)
 	SEND_SIGNAL(offered_item, COMSIG_OBJ_HANDED_OVER, src, offerer)
 	offerer.stop_offering_item()
+
+/mob/living/proc/resist_leash()
+	return

@@ -3,7 +3,7 @@
 	icon = 'icons/roguetown/items/books.dmi'
 	icon_state = "basic_book_0"
 	slot_flags = ITEM_SLOT_HIP
-	var/base_icon_state = "basic_book"
+	base_icon_state = "basic_book"
 	unique = TRUE
 	firefuel = 5 MINUTES
 	dropshrink = 0.6
@@ -124,7 +124,7 @@
 			return
 		var/picked_cat = input(user, "Categories", "Shipping Ledger") as null|anything in sortList(SSmerchant.supply_cats)
 		if(!picked_cat)
-			testing("yeye")
+
 			return
 		var/list/pax = list()
 		for(var/pack in SSmerchant.supply_packs)

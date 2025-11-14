@@ -145,7 +145,7 @@
 				else
 					C.ui_interact(H)
 			else
-				testing("what")
+
 
 /atom/movable/screen/area_creator
 	name = "create new area"
@@ -1669,7 +1669,7 @@
 	var/showing = FALSE
 
 /atom/movable/screen/rmbintent/update_icon()
-	testing("overlayscut")
+
 	cut_overlays()
 	if(isliving(hud?.mymob))
 		var/mob/living/L = hud.mymob

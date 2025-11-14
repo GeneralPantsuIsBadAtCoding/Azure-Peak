@@ -170,10 +170,11 @@
 	initialized = TRUE
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!"
-	#ifdef TESTING
+	#ifdef LOCALTEST
 	to_chat(world, span_boldannounce("[msg]"))
 	#endif
 	log_world(msg)
+	SEND_SIGNAL(src, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 	return time
 
 //hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.

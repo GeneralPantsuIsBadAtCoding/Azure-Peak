@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	if(key)
 		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
 			if(new_character.key)
-				testing("ghostizz")
+
 				new_character.ghostize(1)						//we'll need to ghostize so that key isn't mobless.
 	else
 		key = new_character.key
@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 
 	RegisterSignal(new_character, COMSIG_MOB_DEATH, PROC_REF(set_death_time))
 	if(active || force_key_move)
-		testing("dotransfer to [new_character]")
+
 		new_character.key = key		//now transfer the key to link the client to our new body
 	new_character.update_fov_angles()
 	SEND_SIGNAL(old_current, COMSIG_MIND_TRANSFER, new_character)
@@ -918,7 +918,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		qdel(O)
 	personal_objectives.Cut()
 
-/proc/handle_special_items_retrieval(mob/user, atom/host_object)
+/* /proc/handle_special_items_retrieval(mob/user, atom/host_object)
 	// Attempts to retrieve an item from a player's stash, and applies any base colors, where preferable.
 	if(user.mind && isliving(user))
 		if(user.mind.special_items && user.mind.special_items.len)
@@ -933,4 +933,4 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 						if (istype(I, /obj/item/clothing)) // commit any pref dyes to our item if it is clothing and we have them available
 							var/dye = user.client?.prefs.resolve_loadout_to_color(path2item)
 							if (dye)
-								I.add_atom_colour(dye, FIXED_COLOUR_PRIORITY)
+								I.add_atom_colour(dye, FIXED_COLOUR_PRIORITY) */

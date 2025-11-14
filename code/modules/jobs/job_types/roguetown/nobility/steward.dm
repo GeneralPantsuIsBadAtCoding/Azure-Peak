@@ -11,12 +11,13 @@
 	display_order = JDO_STEWARD
 	tutorial = "Coin, Coin, Coin! Oh beautiful coin: You're addicted to it, and you hold the position as the Grand Duke's personal treasurer of both coin and information. You know the power silver and gold has on a man's mortal soul, and you know just what lengths they'll go to in order to get even more. Keep your festering economy alive- for it is the only thing you can weigh any trust into anymore."
 	outfit = /datum/outfit/job/roguetown/steward
-	give_bank_account = 22
+	give_bank_account = TRUE
 	noble_income = 16
 	min_pq = 3 //Please don't give the vault keys to somebody that's going to lock themselves in on accident
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_noble.ogg'
+	same_job_respawn_delay = 30 MINUTES
 
 	advclass_cat_rolls = list(CTAG_STEWARD = 2)
 
@@ -60,19 +61,28 @@
 	..()
 	H.adjust_blindness(-3)
 	if(should_wear_femme_clothes(H))
-		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/steward
+		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/stewarddress
+		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 	else if(should_wear_masc_clothes(H))
-		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
-		pants = /obj/item/clothing/under/roguetown/tights/random
-		armor = /obj/item/clothing/suit/roguetown/shirt/tunic/silktunic
+		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/steward
+		pants = /obj/item/clothing/under/roguetown/tights/black
+		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket/handjacket
+	head = /obj/item/clothing/head/roguetown/stewardtophat
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	belt = /obj/item/storage/belt/rogue/leather/plaquegold/steward
 	beltr = /obj/item/storage/keyring/steward
+	beltl = /obj/item/storage/belt/rogue/pouch/merchant/coins
 	backr = /obj/item/storage/backpack/rogue/satchel
 	id = /obj/item/scomstone
+	H.mind.special_items["Steward Tights"] = /obj/item/clothing/under/roguetown/tights/black
+	H.mind.special_items["Steward Tailcoat"] = /obj/item/clothing/suit/roguetown/armor/gambeson/steward
+	H.mind.special_items["Steward Silkdress"] = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/steward
+	H.mind.special_items["Steward Silktunic"] = /obj/item/clothing/suit/roguetown/shirt/tunic/silktunic
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
 	H.verbs |= /mob/living/carbon/human/proc/adjust_taxes
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 GLOBAL_VAR_INIT(steward_tax_cooldown, -50000) // Antispam
 /mob/living/carbon/human/proc/adjust_taxes()

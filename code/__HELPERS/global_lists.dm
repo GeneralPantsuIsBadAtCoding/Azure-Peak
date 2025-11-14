@@ -34,9 +34,6 @@
 
 	init_subtypes(/datum/stew_recipe, GLOB.stew_recipes)
 
-	for(var/i in 0 to 20)
-		GLOB.mouseicons_human += file("icons/effects/mousemice/swang/[i * 5].dmi")
-
 	// Faiths
 	for(var/path in subtypesof(/datum/faith))
 		var/datum/faith/faith = new path()
@@ -67,6 +64,24 @@
 	for (var/path in subtypesof(/datum/loadout_item))
 		var/datum/loadout_item/loadout_item = new path()
 		GLOB.loadout_items[path] = loadout_item
+		GLOB.loadout_items_by_name[loadout_item.name] = loadout_item // TW EDIT
+
+	GLOB.loadout_items_by_category["Всё"] = list()
+	GLOB.loadout_items_by_category["Донат"] = list()
+	for(var/item_name in GLOB.loadout_items_by_name)
+		var/datum/loadout_item/item = GLOB.loadout_items_by_name[item_name]
+		if(item.category)
+			if(islist(item.category))
+				for(var/cat in item.category)
+					if(!GLOB.loadout_items_by_category[cat])
+						GLOB.loadout_items_by_category[cat] = list()
+					GLOB.loadout_items_by_category[cat] += item
+					GLOB.loadout_items_by_category["Всё"] += item
+			else 
+				if(!GLOB.loadout_items_by_category[item.category])
+					GLOB.loadout_items_by_category[item.category] = list()
+				GLOB.loadout_items_by_category[item.category] += item
+				GLOB.loadout_items_by_category["Всё"] += item
 
 
 	// Combat Music Overrides
@@ -83,6 +98,8 @@
 		var/datum/inqports/inqports = new path()
 		GLOB.inqsupplies[path] = inqports
 
+	for(var/mob/living/carbon/human/species/wildshape/shape as anything in subtypesof(/mob/living/carbon/human/species/wildshape))
+		GLOB.wildshapes[shape.name] = shape
 
 //creates every subtype of prototype (excluding prototype) and adds it to list L.
 //if no list/L is provided, one is created.

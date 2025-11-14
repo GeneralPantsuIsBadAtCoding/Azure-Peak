@@ -49,7 +49,7 @@
 	roles = list(
 		/datum/migrant_role/pilgrim = 4,
 	)
-	greet_text = "Fleeing from misfortune and hardship, you and a handful of survivors get closer to Azure Peak, looking for refuge and work, finally almost being there, almost..."
+	greet_text = "Fleeing from misfortune and hardship, you and a handful of survivors get closer to Twilight Axis, looking for refuge and work, finally almost being there, almost..."
 
 /datum/migrant_wave/pilgrim_down_one
 	name = "Pilgrimage"
@@ -58,7 +58,7 @@
 	roles = list(
 		/datum/migrant_role/pilgrim = 3,
 	)
-	greet_text = "Fleeing from misfortune and hardship, you and a handful of survivors get closer to Azure Peak, looking for refuge and work, finally almost being there, almost..."
+	greet_text = "Fleeing from misfortune and hardship, you and a handful of survivors get closer to Twilight Axis, looking for refuge and work, finally almost being there, almost..."
 
 /datum/migrant_wave/pilgrim_down_two
 	name = "Pilgrimage"
@@ -67,7 +67,7 @@
 	roles = list(
 		/datum/migrant_role/pilgrim = 2,
 	)
-	greet_text = "Fleeing from misfortune and hardship, you and a handful of survivors get closer to Azure Peak, looking for refuge and work, finally almost being there, almost..."
+	greet_text = "Fleeing from misfortune and hardship, you and a handful of survivors get closer to Twilight Axis, looking for refuge and work, finally almost being there, almost..."
 
 /datum/migrant_wave/pilgrim_down_three
 	name = "Pilgrimage"
@@ -75,15 +75,15 @@
 	roles = list(
 		/datum/migrant_role/pilgrim = 1,
 	)
-	greet_text = "Fleeing from misfortune and hardship, you and a handful of survivors get closer to Azure Peak, looking for refuge and work, finally almost being there, almost..."
-
+	greet_text = "Fleeing from misfortune and hardship, you and a handful of survivors get closer to Twilight Axis, looking for refuge and work, finally almost being there, almost..."
+/*
 /datum/migrant_wave/adventurer
 	name = "Adventure Party"
 	downgrade_wave = /datum/migrant_wave/adventurer_down_one
 	roles = list(
 		/datum/migrant_role/adventurer = 4,
 	)
-	greet_text = "Together with a party of trusted friends we decided to venture out, seeking thrills, glory and treasure, ending up in the misty and damp bog underneath Azure Peak, perhaps getting ourselves into more than what we bargained for."
+	greet_text = "Together with a party of trusted friends we decided to venture out, seeking thrills, glory and treasure, ending up in the misty and damp bog underneath Twilight Axis, perhaps getting ourselves into more than what we bargained for."
 
 /datum/migrant_wave/adventurer_down_one
 	name = "Adventure Party"
@@ -92,7 +92,7 @@
 	roles = list(
 		/datum/migrant_role/adventurer = 3,
 	)
-	greet_text = "Together with a party of trusted friends we decided to venture out, seeking thrills, glory and treasure, ending up in the misty and damp bog underneath Azure Peak, perhaps getting ourselves into more than what we bargained for."
+	greet_text = "Together with a party of trusted friends we decided to venture out, seeking thrills, glory and treasure, ending up in the misty and damp bog underneath Twilight Axis, perhaps getting ourselves into more than what we bargained for."
 
 /datum/migrant_wave/adventurer_down_two
 	name = "Adventure Party"
@@ -101,7 +101,7 @@
 	roles = list(
 		/datum/migrant_role/adventurer = 2,
 	)
-	greet_text = "Together with a party of trusted friends we decided to venture out, seeking thrills, glory and treasure, ending up in the misty and damp bog underneath Azure Peak, perhaps getting ourselves into more than what we bargained for."
+	greet_text = "Together with a party of trusted friends we decided to venture out, seeking thrills, glory and treasure, ending up in the misty and damp bog underneath Twilight Axis, perhaps getting ourselves into more than what we bargained for."
 
 /datum/migrant_wave/adventurer_down_three
 	name = "Adventure Party"
@@ -109,8 +109,8 @@
 	roles = list(
 		/datum/migrant_role/adventurer = 1,
 	)
-	greet_text = "Together with a party of trusted friends we decided to venture out, seeking thrills, glory and treasure, ending up in the misty and damp bog underneath Azure Peak, perhaps getting ourselves into more than what we bargained for."
-
+	greet_text = "Together with a party of trusted friends we decided to venture out, seeking thrills, glory and treasure, ending up in the misty and damp bog underneath Twilight Axis, perhaps getting ourselves into more than what we bargained for."
+*/
 /datum/migrant_wave/bandit
 	name = "Bandit Raid"
 	downgrade_wave = /datum/migrant_wave/bandit_down_one

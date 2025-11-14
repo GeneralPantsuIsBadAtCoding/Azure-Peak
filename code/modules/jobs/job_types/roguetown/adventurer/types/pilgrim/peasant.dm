@@ -51,3 +51,4 @@
 						)
 	beltl = /obj/item/rogueweapon/sickle
 	backr = /obj/item/rogueweapon/hoe
+	SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")

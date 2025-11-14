@@ -12,6 +12,11 @@
 	if(!length(mob_descriptors))
 		mob_descriptors = null
 
+/mob/living/proc/get_descriptor_type(var/desired_type)
+	for(var/datum/mob_descriptor/descriptor as anything in mob_descriptors)
+		if(ispath(descriptor, desired_type))
+			return MOB_DESCRIPTOR(descriptor)
+
 /mob/living/proc/clear_mob_descriptors()
 	mob_descriptors = null
 
@@ -58,6 +63,7 @@
 		/datum/mob_descriptor/testicles,
 		/datum/mob_descriptor/breasts,
 		/datum/mob_descriptor/vagina,
+		/datum/mob_descriptor/defiant,
 		)
 
 /mob/living/proc/get_descriptor_of_slot(descriptor_slot, list/descs)

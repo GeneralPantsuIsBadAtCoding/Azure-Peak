@@ -741,7 +741,7 @@
 	return ..()
 
 /obj/structure/mineral_door/wood/fire_act(added, maxstacks)
-	testing("added [added]")
+
 	if(!added)
 		return FALSE
 	if(added < 10)

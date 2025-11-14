@@ -49,7 +49,7 @@
 	reqs = list(/obj/item/natural/hide/cured = 1)
 	craftdiff = 0
 
-/datum/crafting_recipe/roguetown/survival/bell_collar
+/* /datum/crafting_recipe/roguetown/survival/bell_collar TA EDIT START
 	name = "bell collar"
 	category = "Clothes"
 	result = /obj/item/clothing/neck/roguetown/collar/bell_collar
@@ -57,7 +57,7 @@
 		/obj/item/natural/hide/cured = 1,
 		/obj/item/jingle_bells = 1,
 		)
-	craftdiff = 0
+	craftdiff = 0 */ // TA EDIT END
 
 /datum/crafting_recipe/roguetown/survival/feldcollar
 	name = "feldcollar"
@@ -210,7 +210,7 @@
 		)
 
 /datum/crafting_recipe/roguetown/survival/woodcross
-	name = "wooden amulet"
+	name = "wooden psytcross"
 	category = "Clothes"
 	result = /obj/item/clothing/neck/roguetown/psicross/wood
 	reqs = list(
@@ -219,7 +219,7 @@
 		)
 
 /datum/crafting_recipe/roguetown/survival/wickercloak
-	name = "wickercloak"
+	name = "wicker cloak"
 	category = "Clothes"
 	result = /obj/item/clothing/cloak/wickercloak
 	reqs = list(

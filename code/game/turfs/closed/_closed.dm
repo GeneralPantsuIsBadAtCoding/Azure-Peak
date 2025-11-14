@@ -1,6 +1,7 @@
 /turf/closed
 	name = ""
 	layer = CLOSED_TURF_LAYER
+	plane = WALL_PLANE
 	opacity = 1
 	density = TRUE
 	blocks_air = TRUE
@@ -10,6 +11,11 @@
 	var/wallpress = TRUE
 	var/wallclimb = FALSE
 	var/climbdiff = 0
+
+/turf/closed/basic/New()//Do not convert to Initialize
+	SHOULD_CALL_PARENT(FALSE)
+	//This is used to optimize the map loader
+	return
 
 /turf/closed/MouseDrop_T(atom/movable/O, mob/user)
 	. = ..()

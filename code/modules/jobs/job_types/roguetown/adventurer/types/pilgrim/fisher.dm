@@ -79,3 +79,4 @@
 							/obj/item/flashlight/flare/torch = 1,
 							/obj/item/rogueweapon/scabbard/sheath = 1
 							)
+	SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")

@@ -16,13 +16,14 @@
 	spells = list(/obj/effect/proc_holder/spell/self/convertrole/guard) // /obj/effect/proc_holder/spell/self/convertrole/bog
 	outfit = /datum/outfit/job/roguetown/marshal
 
-	give_bank_account = 40
+	give_bank_account = TRUE
 	noble_income = 20
 	min_pq = 8
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_knight.ogg'
 	advclass_cat_rolls = list (CTAG_MARSHAL = 20)
+	same_job_respawn_delay = 30 MINUTES
 
 	job_traits = list(TRAIT_NOBLE, TRAIT_HEAVYARMOR, TRAIT_PERFECT_TRACKER, TRAIT_ALERT)
 	job_subclasses = list(
@@ -49,6 +50,7 @@
 		)
 	H.verbs |= /mob/proc/haltyell
 	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/living/carbon/human/proc/request_law, /mob/living/carbon/human/proc/request_law_removal, /mob/living/carbon/human/proc/request_purge)
+	SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
 /datum/advclass/marshal/classic
 	name = "Marshal"

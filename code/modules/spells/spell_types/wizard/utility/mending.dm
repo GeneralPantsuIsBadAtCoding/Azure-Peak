@@ -40,7 +40,8 @@
 		revert_cast()
 		return
 
-	int_bonus = (user.STAINT * 0.01)
+	repair_percent = initial(repair_percent)
+	int_bonus = CLAMP((user.STAINT * 0.01), 0.01, 0.9)
 	repair_percent += int_bonus
 	repair_percent *= I.max_integrity
 

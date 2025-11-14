@@ -204,3 +204,245 @@
 			playsound(H, pick(sounds), 100, TRUE)
 		return TRUE
 
+#define NOTHING "nothing"
+#define XYLIX "xylix"
+#define ASTRATA "astrata"
+#define NOC "noc"
+#define ZIZO "zizo"
+#define RAVOX "ravox"
+#define MALUM "malum"
+#define EORA "eora"
+
+//Говно ксайликса
+/datum/status_effect/xylix_blessed_luck
+	id = "xylix_blessed_luck"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 2 MINUTES
+	alert_type = /atom/movable/screen/alert/status_effect/buff/xylix_blessed_luck
+
+/datum/status_effect/xylix_blessed_luck/on_apply()
+	var/random_luck = rand(2,4)
+	effectedstats = list("fortune" = random_luck)
+	. = ..()
+
+/atom/movable/screen/alert/status_effect/buff/xylix_blessed_luck
+	name = "Благославление Ксаликса"
+	desc = "Хоть вы и не выиграли одно из его одолжений, он все же благоволит вас."
+	icon_state = "status"
+
+//Говно астраты
+/particles/astartian_favor
+	icon = 'icons/effects/particles/generic.dmi'
+	icon_state = list("dot" = 8,"curl" = 1)
+	width = 64
+	height = 96
+	color = 0
+	color_change = 0.05
+	count = 200
+	spawning = 50
+	gradient = list("#f37a34", "#FBAF4D", "#f02b1d", "#ff6d40")
+	lifespan = 1.5 SECONDS
+	fade = 1 SECONDS
+	fadein = 0.1 SECONDS
+	grow = -0.1
+	velocity = generator("box", list(-3, -0.7), list(3,3), NORMAL_RAND)
+	position = generator("sphere", 8, 8, LINEAR_RAND)
+	scale = generator("vector", list(2, 2), list(4,4), NORMAL_RAND)
+	drift = list(0)
+
+
+/datum/status_effect/astrata_favor
+	id = "astrata_favor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 41.1 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/buff/astrata_favor
+
+/datum/status_effect/astrata_favor/on_apply()
+	effectedstats = list("constitution" = 5, "willpower" = 5)
+	ADD_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, XYLIX_LUCK_TRAIT)
+	ADD_TRAIT(owner, TRAIT_NOPAINSTUN, XYLIX_LUCK_TRAIT)
+	ADD_TRAIT(owner, TRAIT_STEELHEARTED, XYLIX_LUCK_TRAIT)
+	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, XYLIX_LUCK_TRAIT)
+	owner.particles = new /particles/astartian_favor()
+	. = ..()
+
+/datum/status_effect/astrata_favor/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, XYLIX_LUCK_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_NOPAINSTUN, XYLIX_LUCK_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_STEELHEARTED, XYLIX_LUCK_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, XYLIX_LUCK_TRAIT)
+	qdel(owner.particles)
+	owner.particles = null
+	. = ..()
+
+/atom/movable/screen/alert/status_effect/buff/astrata_favor
+	name = "Одолжение Астраты"
+	desc = "Хоть его и было сложно заполучить, но Ксайликс воспользовался им. Вы практически бессмертны... Временно"
+	icon_state = "status"
+
+//Говно Нок
+/datum/status_effect/noc_favor
+	id = "noc_favor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 2 MINUTES
+	alert_type = /atom/movable/screen/alert/status_effect/buff/noc_favor
+
+/datum/status_effect/noc_favor/on_apply()
+	effectedstats = list("intelligence" = 3, "speed" = 3)
+	owner.alpha = 127
+	. = ..()
+
+/datum/status_effect/noc_favor/on_remove()
+	owner.alpha = 255
+	. = ..()
+
+/atom/movable/screen/alert/status_effect/buff/noc_favor
+	name = "Одолжение Нок"
+	desc = "Знание, свет и тень Нок укрывает вас."
+	icon_state = "status"
+
+//Говно Зизо
+/datum/status_effect/zizo_unfavor
+	id = "zizo_unfavor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 30 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/buff/zizo_unfavor
+
+/datum/status_effect/zizo_unfavor/on_apply()
+	effectedstats = list("strength" = -3, "perception" = -3, "intelligence" = -3, "constitution" = -3, "willpower" = -3, "speed" = -3)
+	. = ..()
+
+/atom/movable/screen/alert/status_effect/buff/zizo_unfavor
+	name = "Вмешательство Зизо"
+	desc = "Ваш покровитель не был достаточно внимателен."
+	icon_state = "status"
+
+//Говно Равокса
+/datum/status_effect/ravox_favor
+	id = "ravox_favor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 2 MINUTES
+	alert_type = /atom/movable/screen/alert/status_effect/buff/ravox_favor
+
+/datum/status_effect/ravox_favor/on_apply()
+	effectedstats = list("strength" = 3, "speed" = 3, "willpower" = 3)
+	. = ..()
+
+/atom/movable/screen/alert/status_effect/buff/ravox_favor
+	name = "Одолжение Равокса"
+	desc = "Сила Равокса поддерживает вас."
+	icon_state = "status"
+
+//Говно Малума
+/datum/status_effect/malum_favor
+	id = "malum_favor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 5 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/buff/malum_favor
+
+/datum/status_effect/malum_favor/on_apply()
+	for(var/obj/item/item in owner.get_equipped_items())
+		item.max_integrity *= 1.1
+		item.obj_integrity = min(item.obj_integrity + item.max_integrity/2, item.max_integrity)
+		if(item.blade_int)
+			item.max_blade_int *= 1.1
+			item.blade_int = min(item.blade_int + item.max_blade_int/2, item.max_blade_int)
+	. = ..()
+
+/atom/movable/screen/alert/status_effect/buff/malum_favor
+	name = "Одолжение Малума"
+	desc = "Малум доработал работу ремесленников на ваше снаряжение."
+	icon_state = "status"
+
+//Говно Эоры
+/datum/status_effect/eora_favor
+	id = "eora_favor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 1 MINUTES
+	alert_type = /atom/movable/screen/alert/status_effect/buff/eora_favor
+
+/datum/status_effect/eora_favor/on_apply()
+	. = ..()
+
+/datum/status_effect/eora_favor/process()
+	owner.adjustBruteLoss(-1.25)
+	owner.adjustFireLoss(-1.25)
+	. = ..()
+
+/atom/movable/screen/alert/status_effect/buff/eora_favor
+	name = "Одолжение Эоры"
+	desc = "Эора окружает вас своей любовью."
+	icon_state = "status"
+
+/obj/effect/proc_holder/spell/invoked/xylixlian_luck
+	name = "Ксайликситова удача"
+	desc = "Бросьте вызов своей удаче и вашему покровителю"
+	overlay_state = "xylixfortune"
+	invocation_type = "none"
+	associated_skill = /datum/skill/magic/holy
+	recharge_time = 3 MINUTES
+	miracle = TRUE
+	devotion_cost = 50
+	var/used_times = 0
+	var/last_used = 0
+	var/bonus_luck_threshould = 600
+
+/obj/effect/proc_holder/spell/invoked/xylixlian_luck/Initialize()
+	. = ..()
+
+	last_used = world.time	
+
+/obj/effect/proc_holder/spell/invoked/xylixlian_luck/cast(list/targets,mob/living/carbon/human/user = usr)
+	user.play_overhead_indicator('modular_twilight_axis/icons/mob/overhead_effects.dmi', "xylix_fortune", 30, MUTATIONS_LAYER, soundin = 'modular_twilight_axis/sound/slotmachine.ogg', y_offset = 24)
+
+	to_chat(user, span_danger("Ксайликс дает вам шанс, использовать одно из его одолжений"))
+	var/luck_bonus = 0
+	luck_bonus -= used_times * 5
+	luck_bonus += 1.9444 * ((world.time - last_used) / bonus_luck_threshould)
+	var/list/patronChances = list(
+								XYLIX = 100 - luck_bonus,			RAVOX = 60 -luck_bonus/2, 
+								EORA = 70 - luck_bonus/2,			NOTHING = 80 - luck_bonus, 
+								MALUM = 50 - luck_bonus/2,			NOC = 50 - luck_bonus, 
+								ASTRATA = 15 + luck_bonus * 1.5,	ZIZO = ceil(10-luck_bonus)
+								)
+
+	var/list/chances = typelist("patronChances", patronChances)
+	var/result = pickweight(chances)
+
+	used_times += 1
+	last_used = world.time
+
+	switch(result)
+		if(NOTHING)
+			to_chat(user, span_danger("Вы выиграли... Ничего!"))
+		if(XYLIX)
+			user.apply_status_effect(/datum/status_effect/xylix_blessed_luck)
+			to_chat(user, span_danger("Удача Ксайликса благоволит вам!"))
+		if(ASTRATA)
+			user.apply_status_effect(/datum/status_effect/astrata_favor)
+			to_chat(user, span_danger("Свет Астраты дает вам сил!"))
+		if(NOC)
+			user.apply_status_effect(/datum/status_effect/noc_favor)
+			to_chat(user, span_danger("Тень от серебрянного света Нок укрывает вас!"))
+		if(ZIZO)
+			user.apply_status_effect(/datum/status_effect/zizo_unfavor)
+			to_chat(user, span_danger("Лик Зизо насмехается над вами!"))
+		if(RAVOX)
+			user.apply_status_effect(/datum/status_effect/ravox_favor)
+			to_chat(user, span_danger("Равокс благославляет вашу силу!"))
+		if(MALUM)
+			user.apply_status_effect(/datum/status_effect/malum_favor)
+			to_chat(user, span_danger("Малум благославляет изделия ремесленников носимых вами!"))
+		if(EORA)
+			user.apply_status_effect(/datum/status_effect/eora_favor)
+			to_chat(user, span_danger("Любовь Эоры окутывает вас!"))
+	return ..()
+
+#undef NOTHING
+#undef XYLIX
+#undef ASTRATA
+#undef NOC
+#undef ZIZO
+#undef RAVOX
+#undef MALUM
+#undef EORA

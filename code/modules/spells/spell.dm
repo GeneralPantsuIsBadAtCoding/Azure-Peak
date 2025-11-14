@@ -194,7 +194,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/list/req_items = list()		//required worn items to cast
 	var/req_inhand = null			//required inhand to cast
-	var/base_icon_state = "spell"
+	base_icon_state = "spell"
 	var/associated_skill = /datum/skill/magic/arcane
 	var/miracle = FALSE
 	var/devotion_cost = 0
@@ -252,7 +252,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			return FALSE
 	else
 		if(!(src in user.mob_spell_list))
-			testing("cast1")
+
 			return FALSE
 
 	var/turf/T = get_turf(user)
@@ -262,7 +262,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	if(!skipcharge)
 		if(!charge_check(user))
-			testing("cast2")
+
 			return FALSE
 
 	if(user.stat && !stat_allowed)

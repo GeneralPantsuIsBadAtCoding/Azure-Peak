@@ -2,6 +2,7 @@ export type ExaminePanelData = {
   // Identity
   character_name: string;
   headshot: string;
+  nsfw_headshot: string;
   obscured: boolean;
   // Descriptions
   flavor_text: string;
