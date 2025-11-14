@@ -558,6 +558,6 @@ BLIND     // can't see anything
 				str += " | "
 		str += "</font>"
 
-	//This makes it appear a faint off-blue from the rest of examine text + gives it a "clickable" underline. Draws the cursor to it like to a Wetsquires.rt link.
-	examine_text = "<u><font color = '#a9dbdf'>[examine_text]</font></u>"
+	//This makes it appear a faint off-blue from the rest of examine text. Draws the cursor to it like to a Wetsquires.rt link.
+	examine_text = "<font color = '#aabdbe'>[examine_text]</font>"
 	return SPAN_TOOLTIP_DANGEROUS_HTML(str, examine_text)
