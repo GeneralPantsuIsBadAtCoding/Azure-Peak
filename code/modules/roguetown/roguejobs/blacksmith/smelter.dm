@@ -308,7 +308,7 @@
 		if(item.smeltresult == /obj/item/ingot/copper)
 			bronzealloy = bronzealloy + 2
 	if(bronzealloy == 7)
-		testing("BRONZE ALLOYED")
+
 		alloy = /obj/item/ingot/bronze
 	else
 		alloy = null

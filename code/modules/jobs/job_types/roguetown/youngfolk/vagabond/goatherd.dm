@@ -35,9 +35,10 @@
 	if(prob(33))
 		cloak = /obj/item/clothing/cloak/half/brown
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
-	
+
 	if(prob(10))
 		r_hand = /obj/item/rogue/instrument/flute
+	SStreasury.give_money_account(ECONOMIC_DESTITUTE, H, "Savings.")
 
 /mob/living/simple_animal/hostile/retaliate/rogue/goat/tame/Initialize()
 	..()

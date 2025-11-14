@@ -20,6 +20,7 @@
 	(+1 Speed)"
 
 	skin_tone_wording = "Tribal Identity"
+	max_age = 850
 
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,OLDGREY)

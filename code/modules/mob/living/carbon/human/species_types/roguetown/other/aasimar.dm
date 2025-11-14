@@ -16,6 +16,7 @@
 	(+1 Stat of their choice, or Lack of Hunger & Thirst)"
 
 	skin_tone_wording = "Craft"
+	max_age = "???"
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)

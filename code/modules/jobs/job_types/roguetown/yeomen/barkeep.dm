@@ -12,7 +12,7 @@
 
 	outfit = /datum/outfit/job/roguetown/barkeep
 	display_order = JDO_BARKEEP
-	give_bank_account = 43
+	give_bank_account = TRUE
 	min_pq = -4
 	max_pq = null
 	round_contrib_points = 3
@@ -80,3 +80,4 @@
 		/obj/item/recipe_book/survival,
 		/obj/item/bottle_kit
 	)
+	SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Savings.")

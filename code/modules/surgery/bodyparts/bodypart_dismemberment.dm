@@ -30,7 +30,17 @@
 		if(zone_precise != BODY_ZONE_PRECISE_NECK)
 			return FALSE
 		if(!HAS_TRAIT(C, TRAIT_CRITICAL_WEAKNESS) && !HAS_TRAIT(C, TRAIT_EASYDISMEMBER))	//People with these traits can be decapped standing, or buckled, or however.
-			if(!isnull(C.mind) && (C.mobility_flags & MOBILITY_STAND) && !C.buckled) //Only allows upright decapitations if it's not a player. Unless they're buckled.
+			var/has_mind = TRUE  // DEBUG: Temporarily forced to TRUE for testing
+			var/not_buckled = !C.buckled
+
+			// Check if currently standing OR within grace period after being knocked down
+			var/can_stand = (C.mobility_flags & MOBILITY_STAND)
+			if(!can_stand && C.mob_timers && C.mob_timers["last_standing"])
+				// Within 2 seconds of being knocked down? Still count as standing
+				if(world.time < C.mob_timers["last_standing"] + STANDING_DECAP_GRACE_PERIOD)
+					can_stand = TRUE
+
+			if(has_mind && can_stand && not_buckled) //Only allows upright decapitations if it's not a player. Unless they're buckled.
 				return FALSE
 
 	if(body_zone != BODY_ZONE_HEAD)
@@ -142,7 +152,7 @@
 /obj/item/bodypart/proc/drop_limb(special)
 	if(!owner)
 		return FALSE
-	testing("begin drop limb")
+
 	var/atom/drop_location = owner.drop_location()
 	var/mob/living/carbon/was_owner = owner
 	update_limb(dropping_limb = TRUE)

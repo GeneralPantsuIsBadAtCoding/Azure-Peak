@@ -104,7 +104,7 @@
 			return
 	if(istype(I ,/obj/item/reagent_containers/glass))
 		if(user.used_intent.type == INTENT_POUR) //Something like a glass. Player probably wants to transfer TO it.
-			testing("attackobj2")
+
 			if(!I.reagents.total_volume)
 				to_chat(user, span_warning("[I] is empty!"))
 				return
@@ -131,7 +131,7 @@
 			return
 
 		if(is_drainable() && (user.used_intent.type == /datum/intent/fill)) //A dispenser. Transfer FROM it TO us.
-			testing("attackobj3")
+
 			if(!reagents.total_volume)
 				to_chat(user, span_warning("[src] is empty!"))
 				return

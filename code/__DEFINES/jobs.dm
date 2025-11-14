@@ -162,7 +162,6 @@
 #define PRISONERB	(1<<16)
 #define LUNATIC		(1<<17)
 #define MIGRANT		(1<<18)
-#define ASSASSIN	(1<<19)
 #define YOUNGFOLK	(1<<6)
 
 #define APPRENTICE	(1<<0)
@@ -181,9 +180,10 @@
 #define WANDERER		(1<<2)
 #define ADVENTURER      (1<<3)
 #define BANDIT		    (1<<4)
-#define COURTAGENT	    (1<<5)
-#define WRETCH          (1<<6)
-#define TRADER			(1<<7)
+#define ASSASSIN		(1<<5)
+#define COURTAGENT	    (1<<6)
+#define WRETCH          (1<<7)
+#define TRADER			(1<<8)
 
 #define TRIBAL		(1<<8)
 
@@ -293,7 +293,7 @@
 #define JDO_COURTAGENT 30.3
 #define JDO_WRETCH 30.4
 #define JDO_ASSASSIN 30.5
-#define JDO_TRADER 30.5
+#define JDO_TRADER 30.6
 
 #define JDO_MERCENARY 31
 #define JDO_GRENZELHOFT 31.1
@@ -320,6 +320,17 @@
 #define BITFLAG_ROYALTY (1<<1)
 #define BITFLAG_CONSTRUCTOR (1<<2)
 #define BITFLAG_GARRISON (1<<3)
+
+// START OF THE ECONOMY SECTION 
+#define ECONOMIC_RICH rand(120, 140)
+#define ECONOMIC_UPPER_CLASS rand(100, 120)
+#define ECONOMIC_UPPER_MIDDLE_CLASS rand(80, 100)
+#define ECONOMIC_LOWER_MIDDLE_CLASS rand(40, 80)
+#define ECONOMIC_WORKING_CLASS rand(40, 60)
+#define ECONOMIC_LOWER_CLASS rand(20, 40)
+#define ECONOMIC_DESTITUTE rand(0, 6)
+#define ECONOMIC_LETSGOGAMBLING pick(ECONOMIC_DESTITUTE, ECONOMIC_DESTITUTE, ECONOMIC_DESTITUTE, ECONOMIC_WORKING_CLASS, ECONOMIC_WORKING_CLASS, ECONOMIC_WORKING_CLASS, ECONOMIC_WORKING_CLASS, ECONOMIC_RICH)
+// END OF THE ECONOMY SECTION
 
 #define MANOR_ROLES \
 	/datum/job/roguetown/jester,\
