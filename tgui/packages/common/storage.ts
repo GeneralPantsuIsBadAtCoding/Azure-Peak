@@ -11,6 +11,8 @@ export const IMPL_HUB_STORAGE = 1;
 
 type StorageImplementation = typeof IMPL_MEMORY | typeof IMPL_HUB_STORAGE;
 
+const KEY_NAME = 'azure';
+
 type StorageBackend = {
   impl: StorageImplementation;
   get(key: string): Promise<any>;
