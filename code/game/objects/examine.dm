@@ -35,19 +35,19 @@
 
 	var/int_percent = round(((obj_integrity / max_integrity) * 100), 1)
 	var/result
-
+	if(elaborate && int_percent < 100)
+		return span_warning("([int_percent]%)")
 	if(obj_broken)
 		return span_warning("It's broken.")
-	if(elaborate)
-		switch(int_percent)
-			if(1 to 15)
-				result = span_warning("It's nearly broken.")
-			if(16 to 30)
-				result = span_warning("It's severely damaged.")
-			if(31 to 80)
-				result = span_warning("It's damaged.")
-			if(80 to 99)
-				result = span_warning("It's a little damaged.")
+	switch(int_percent)
+		if(1 to 15)
+			result = span_warning("It's nearly broken.")
+		if(16 to 30)
+			result = span_warning("It's severely damaged.")
+		if(31 to 80)
+			result = span_warning("It's damaged.")
+		if(80 to 99)
+			result = span_warning("It's a little damaged.")
 	return result
 
 /obj/item/clothing/integrity_check(elaborate = FALSE)
