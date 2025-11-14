@@ -53,7 +53,7 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
 	id = /obj/item/mattcoin
 	H.adjust_blindness(-3)
-	var/weapons = list("Axes, Maces & Whips/Flails (Classic)","Common Soldiery (Polearms, Swords & Crossbows)", "The Nefarious Dusthead (Knives & Athletics)")
+	var/weapons = list("Axes, Maces & Whips/Flails (Classic)","Common Soldiery (Polearms, Swords & Shields)", "The Nefarious Dusthead (Knives, Whips & Athletics)")
 	if(H.mind)
 		var/weapon_choice = input(H, "Choose your proficiencies.", "HOW DOTH THOU WALK THROUGH LYFE, BRIGAND?") as anything in weapons
 		H.set_blindness(0)

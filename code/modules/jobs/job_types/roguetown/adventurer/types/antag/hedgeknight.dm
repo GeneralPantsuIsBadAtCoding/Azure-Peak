@@ -63,7 +63,8 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_MASTER, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			if("Master Spearman")
-				backl = /obj/item/rogueweapon/spear/death
+				r_hand = /obj/item/rogueweapon/spear/death
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_MASTER, TRUE)	//No shields, you have a two-hander!
 			if("Master Cleaver")
 				beltl = /obj/item/rogueweapon/stoneaxe/battle
