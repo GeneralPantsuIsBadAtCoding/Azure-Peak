@@ -125,7 +125,6 @@
 	if(H.mind)
 		var/weapons = list(
 			"Edict & Aegis (Sabre & Buckler)",
-			"Deliverance (Glaive)",
 			"Claymore",
 			"Great Mace",
 			"Battle Axe",
