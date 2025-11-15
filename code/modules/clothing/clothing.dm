@@ -523,7 +523,7 @@ BLIND     // can't see anything
 
 
 /obj/proc/generate_tooltip(examine_text, showcrits)
-	return
+	return examine_text
 
 /obj/item/clothing/generate_tooltip(examine_text, showcrits)
 	if(!armor)	// No armor
