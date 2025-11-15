@@ -9,7 +9,7 @@
 		target.create_reagents(1)
 	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(target, COMSIG_ITEM_PRE_ATTACK, PROC_REF(check_dip))
-	RegisterSignal(target, COMSIG_ITEM_AFTERATTACK, PROC_REF(try_inject))
+	RegisterSignal(target, COMSIG_ITEM_SPEC_ATTACKEDBY, PROC_REF(try_inject))
 
 /datum/element/tipped_item/Detach(datum/source)
 	. = ..()
@@ -37,13 +37,15 @@
 	attacker.visible_message(span_danger("[attacker] dips \the [dipper] in \the [attacked_container]!"), "You dip \the [dipper] in \the [attacked_container]!", vision_distance = 2)
 	log_combat(attacker, dipper, "poisoned", addition="with [reagentlog]")
 
-/datum/element/tipped_item/proc/try_inject(obj/item/source, atom/target, mob/user, proximity_flag, click_parameters)
+/datum/element/tipped_item/proc/try_inject(obj/item/source, atom/target, mob/user, obj/item/bodypart/affecting, actual_damage)
 	var/reagentlog2 = source.reagents
-	if(!proximity_flag)
+	if(!affecting)
+		return
+	if(!actual_damage)
 		return
 	if(isliving(target))
 		log_combat(user, target, "poisoned", addition="with [reagentlog2]")
-		source.reagents.trans_to(target, 1, transfered_by = user)
+		source.reagents.trans_to(target, 1, transfered_by = user, method = INJECT)
 
 /datum/element/tipped_item/proc/on_examine(atom/movable/source, mob/user, list/examine_list)
 	if(source.reagents.total_volume)

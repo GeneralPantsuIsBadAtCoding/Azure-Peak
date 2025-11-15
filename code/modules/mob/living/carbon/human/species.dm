@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/gender_swapping = FALSE
 	var/stress_examine = FALSE
 	var/stress_desc = null
-	
+
 	var/punch_damage
 
 ///////////
@@ -1363,9 +1363,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
 				target.visible_message(
 					span_danger("[user.name] shoves [target.name], knocking them down!"),
-					span_danger("You're knocked down from a shove by [user.name]!"), 
-					span_hear("I hear aggressive shuffling followed by a loud thud!"), 
-					COMBAT_MESSAGE_RANGE, 
+					span_danger("You're knocked down from a shove by [user.name]!"),
+					span_hear("I hear aggressive shuffling followed by a loud thud!"),
+					COMBAT_MESSAGE_RANGE,
 					user
 				)
 				to_chat(user, span_danger("I shove [target.name], knocking them down!"))
@@ -1375,9 +1375,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				target.Knockdown(SHOVE_KNOCKDOWN_TABLE)
 				target.visible_message(
 					span_danger("[user.name] shoves [target.name] onto \the [target_table]!"),
-					span_danger("I'm shoved onto \the [target_table] by [user.name]!"), 
-					span_hear("I hear aggressive shuffling followed by a loud thud!"), 
-					COMBAT_MESSAGE_RANGE, 
+					span_danger("I'm shoved onto \the [target_table] by [user.name]!"),
+					span_hear("I hear aggressive shuffling followed by a loud thud!"),
+					COMBAT_MESSAGE_RANGE,
 					user
 				)
 				to_chat(user, span_danger("I shove [target.name] onto \the [target_table]!"))
@@ -1389,9 +1389,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				target_collateral_mob.Knockdown(SHOVE_KNOCKDOWN_COLLATERAL)
 				target.visible_message(
 					span_danger("[user.name] shoves [target.name] into [target_collateral_mob.name]!"),
-					span_danger("I'm shoved into [target_collateral_mob.name] by [user.name]!"), 
+					span_danger("I'm shoved into [target_collateral_mob.name] by [user.name]!"),
 					span_hear("I hear aggressive shuffling followed by a loud thud!"),
-					COMBAT_MESSAGE_RANGE, 
+					COMBAT_MESSAGE_RANGE,
 					user
 				)
 				to_chat(user, span_danger("I shove [target.name] into [target_collateral_mob.name]!"))
@@ -1400,9 +1400,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else
 			target.visible_message(
 				span_danger("[user.name] shoves [target.name]!"),
-				span_danger("I'm shoved by [user.name]!"), 
-				span_hear("I hear aggressive shuffling!"), 
-				COMBAT_MESSAGE_RANGE, 
+				span_danger("I'm shoved by [user.name]!"),
+				span_hear("I hear aggressive shuffling!"),
+				COMBAT_MESSAGE_RANGE,
 				user
 			)
 			to_chat(user, span_danger("I shove [target.name]!"))
@@ -1426,8 +1426,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				knocked_item = TRUE
 				target.visible_message(
 					span_danger("[target.name] drops \the [target_held_item]!"),
-					span_warning("I drop \the [target_held_item]!"), 
-					null, 
+					span_warning("I drop \the [target_held_item]!"),
+					null,
 					COMBAT_MESSAGE_RANGE
 				)
 
@@ -1475,7 +1475,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return FALSE
 	if(user == target)
 		return FALSE
-	if(!HAS_TRAIT(user, TRAIT_GARROTED))	
+	if(!HAS_TRAIT(user, TRAIT_GARROTED))
 		if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
 			to_chat(user, span_notice("I can't move my leg!"))
 			return
@@ -1488,7 +1488,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!stander)
 			target.lastattacker = user.real_name
 			target.lastattackerckey = user.ckey
-			target.lastattacker_weakref = WEAKREF(user)	
+			target.lastattacker_weakref = WEAKREF(user)
 			if(target.mind)
 				target.mind.attackedme[user.real_name] = world.time
 			var/selzone = accuracy_check(user.zone_selected, user, target, /datum/skill/combat/unarmed, user.used_intent)
@@ -1714,7 +1714,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	// No self-peeling. Useful for debug, though.
 	if(H == user && bladec == BCLASS_PEEL)
 		bladec = BCLASS_BLUNT
-	
+
 	var/higher_intfactor = max(user.used_intent.masteritem?.intdamage_factor, user.used_intent.intent_intdamage_factor)
 	var/lowest_intfactor = min(user.used_intent.masteritem?.intdamage_factor, user.used_intent.intent_intdamage_factor)
 	var/used_intfactor = 1
@@ -1722,7 +1722,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		used_intfactor = lowest_intfactor
 	if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
 		used_intfactor = higher_intfactor
-	
+
 	if(ishuman(user) && user.mind && user.used_intent.blade_class != BCLASS_PEEL)
 		var/text = "[bodyzone2readablezone(selzone)]..."
 		if(HAS_TRAIT(user, TRAIT_DECEIVING_MEEKNESS))
@@ -1736,12 +1736,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/nodmg = FALSE
 
+	var/actual_damage = Iforce
 	if(Iforce)
 		H.retaliate(user)
 
 		var/weakness = H.check_weakness(I, user)
+		actual_damage = apply_damage(Iforce * weakness, I.damtype, def_zone, armor_block, H)
 		H.next_attack_msg.Cut()
-		if(!apply_damage(Iforce * weakness, I.damtype, def_zone, armor_block, H))
+		if(!actual_damage)
 			nodmg = TRUE
 			H.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
 			if(I)
@@ -1753,7 +1755,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				var/can_impale = TRUE
 				if(!affecting)
 					can_impale = FALSE
-				else if(I.wlength > WLENGTH_SHORT && (affecting.body_zone != BODY_ZONE_CHEST))
+				else if(I.wlength > WLENGTH_SHORT && !(affecting.body_zone in list(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
 					can_impale = FALSE
 				if(can_impale && user.Adjacent(H))
 					//affecting.add_embedded_object(I, silent = FALSE, crit_message = TRUE)
@@ -1775,6 +1777,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	I.funny_attack_effects(H, user, nodmg)
 	H.send_item_attack_message(I, user, selzone, affecting, bladec)
 
+	SEND_SIGNAL(I, COMSIG_ITEM_SPEC_ATTACKEDBY, H, user, affecting, actual_damage)
 	if(nodmg)
 		return FALSE //dont play a sound
 
@@ -1918,7 +1921,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				H.flash_fullscreen("redflash3")
 			if(BP)
 				if(zone_sel)
-					zone_sel.flash_limb(BP.body_zone, "#FF0000") 
+					zone_sel.flash_limb(BP.body_zone, "#FF0000")
 				if(BP.receive_damage(0, damage_amount))
 					H.update_damage_overlays()
 			else
@@ -2042,7 +2045,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		H.clear_alert("temp")
 		H.remove_movespeed_modifier(MOVESPEED_ID_COLD)
 
-// A general-purpose proc used to centralise checks to skip turf, movement, step, etc. 
+// A general-purpose proc used to centralise checks to skip turf, movement, step, etc.
 // For if a mob is floating, flying, intangible, etc.
 /datum/species/proc/is_floor_hazard_immune(mob/living/carbon/human/owner)
 	return FALSE
