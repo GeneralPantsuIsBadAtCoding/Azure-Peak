@@ -1727,6 +1727,7 @@
 #include "code\modules\jobs\job_types\roguetown\church\monk.dm"
 #include "code\modules\jobs\job_types\roguetown\church\priest.dm"
 #include "code\modules\jobs\job_types\roguetown\church\templar.dm"
+#include "code\datums\components\druids\wise_tree.dm"
 #include "code\modules\jobs\job_types\roguetown\courtier\butler.dm"
 #include "code\modules\jobs\job_types\roguetown\courtier\councillor.dm"
 #include "code\modules\jobs\job_types\roguetown\courtier\jester.dm"

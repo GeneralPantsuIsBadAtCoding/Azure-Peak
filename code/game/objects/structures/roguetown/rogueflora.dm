@@ -138,6 +138,10 @@
 	SEND_SOUND(usr, sound(null))
 	playsound(user, 'sound/music/tree.ogg', 80)
 
+/obj/structure/flora/roguetree/wise/druids/take_damage(damage_amount, damage_type = BRUTE || BURN, damage_flag, sound_effect = TRUE)
+	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_SACRED_TREE_DAMAGED, src, damage_amount)
+
 /obj/structure/flora/roguetree/burnt
 	name = "burnt tree"
 	desc = "Maybe lightning, maybe war, took the life of this once lively tree."

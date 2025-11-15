@@ -521,6 +521,7 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
+	H.AddComponent(/datum/component/wise_tree_alert)
 	SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Church Funding.")
 
 
