@@ -2745,6 +2745,7 @@
 #include "modular\Neu_Food\code\cooked\cooked_cakes.dm"
 #include "modular\Neu_Food\code\cooked\cooked_deep_fried.dm"
 #include "modular\Neu_Food\code\cooked\cooked_egg.dm"
+#include "modular\Neu_Food\code\cooked\cooked_fruits.dm"
 #include "modular\Neu_Food\code\cooked\cooked_meat.dm"
 #include "modular\Neu_Food\code\cooked\cooked_meat_meal.dm"
 #include "modular\Neu_Food\code\cooked\cooked_pastry.dm"

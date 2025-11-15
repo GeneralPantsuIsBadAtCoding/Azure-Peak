@@ -113,7 +113,7 @@
 	force = 23
 	force_wielded = 29
 	name = "bronze mace"
-	color = "#f9d690"
+	icon_state = "bronzemace"
 	desc = "An antiquital staff, crested with a studded sphere of bronze. Bludgeons were the first implements made for the explicit purpose of killing another; fittingly, this was the second."
 	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/bronze

@@ -322,8 +322,8 @@
 /obj/item/rogueweapon/katar/bronze
 	name = "bronze katar"
 	desc = "A bronze blade that sits above the user's fist. Commonly used by those proficient at unarmed fighting."
+	icon_state = "bronzekatar"
 	force = 21 //-3 damage malus, same as the knuckles.
-	color = "#f9d690" //Not perfect, but should nearly replicate the bronze knuckle's palette. Someone could replace with an actual palette swap in the .dmi, when able.
 	max_integrity = 80
 	smeltresult = /obj/item/ingot/bronze
 
