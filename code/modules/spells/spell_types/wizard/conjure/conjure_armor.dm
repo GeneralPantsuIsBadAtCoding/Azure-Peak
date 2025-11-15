@@ -59,10 +59,14 @@
 				revert_cast()
 				return FALSE
 
-	user.visible_message("[user]'s existence briefly jitters, conjuring protection from doomed fates!")
 	var/item = objtoequip
 	conjured_armor = new item(user)
 	user.equip_to_slot_or_del(conjured_armor, slottoequip)
+	switch(checkspot)
+		if("ring")
+			user.visible_message("[user]'s existence briefly jitters, conjuring protection from doomed fates!")
+		if("armor")
+			user.visible_message("[user]'s skin grows hardened like that of a magma drake, the scent of smoke bursting out.")
 	if(!QDELETED(conjured_armor))
 		conjured_armor.AddComponent(/datum/component/conjured_item, GLOW_COLOR_ARCANE)
 	return TRUE

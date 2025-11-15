@@ -5,6 +5,7 @@
 	var/current_category = "Raw Materials"
 	var/list/categories = list("Raw Materials", "Foodstuffs", "Fruits")
 	var/obj/structure/roguemachine/parent_structure = null
+	var/licensed = FALSE
 
 /datum/withdraw_tab/New(stockpile_param, obj/structure/roguemachine/structure_param)
 	. = ..()
@@ -30,18 +31,26 @@
 
 	if(compact)
 		for(var/datum/roguestock/stockpile/A in SStreasury.stockpile_datums)
+			if(!licensed)
+				A.unlicensed_price = A.withdraw_price
+			else
+				A.unlicensed_price = 0
 			if(A.category != current_category)
 				continue
 			var/remote_stockpile = stockpile_index == 1 ? 2 : 1
 			if(!A.withdraw_disabled)
-				contents += "<b>[A.name] (Max: [A.stockpile_limit]):</b> <a href='?src=[REF(parent_structure)];withdraw=[REF(A)]'>LCL: [A.held_items[stockpile_index]] at [A.withdraw_price]m</a> /"
-				contents += "<a href='?src=[REF(parent_structure)];withdraw=[REF(A)];remote=1'>RMT: [A.held_items[remote_stockpile]] at [A.withdraw_price+A.transport_fee]m</a><BR>"
+				contents += "<b>[A.name] (Max: [A.stockpile_limit]):</b> <a href='?src=[REF(parent_structure)];withdraw=[REF(A)]'>LCL: [A.held_items[stockpile_index]] at [A.withdraw_price+A.unlicensed_price]m</a> /"
+				contents += "<a href='?src=[REF(parent_structure)];withdraw=[REF(A)];remote=1'>RMT: [A.held_items[remote_stockpile]] at [A.withdraw_price+A.transport_fee+A.unlicensed_price]m</a><BR>"
 
 			else
 				contents += "<b>[A.name]:</b> Withdrawing Disabled..."
 
 	else
 		for(var/datum/roguestock/stockpile/A in SStreasury.stockpile_datums)
+			if(!licensed)
+				A.unlicensed_price = A.withdraw_price
+			else
+				A.unlicensed_price = 0
 			if(A.category != current_category)
 				continue
 			contents += "[A.name]<BR>"
@@ -50,8 +59,8 @@
 			var/remote_stockpile = stockpile_index == 1 ? 2 : 1
 			contents += "Stockpiled Amount (Remote): [A.held_items[remote_stockpile]]<BR>"
 			if(!A.withdraw_disabled)
-				contents += "<a href='?src=[REF(parent_structure)];withdraw=[REF(A)]'>\[Withdraw Local ([A.withdraw_price])\] </a>"
-				contents += "<a href='?src=[REF(parent_structure)];withdraw=[REF(A)];remote=1'>\[Withdraw Remote ([A.withdraw_price+A.transport_fee])\]</a><BR><BR>"
+				contents += "<a href='?src=[REF(parent_structure)];withdraw=[REF(A)]'>\[Withdraw Local ([A.withdraw_price+A.unlicensed_price])\] </a>"
+				contents += "<a href='?src=[REF(parent_structure)];withdraw=[REF(A)];remote=1'>\[Withdraw Remote ([A.withdraw_price+A.transport_fee+A.unlicensed_price])\]</a><BR><BR>"
 			else
 				contents += "Withdrawing Disabled...<BR><BR>"
 
@@ -63,8 +72,8 @@
 
 		var/remote = href_list["remote"]
 		var/source_stockpile = stockpile_index
-		var/total_price = D.withdraw_price
-		if (remote)
+		var/total_price = D.withdraw_price+D.unlicensed_price
+		if(remote)
 			total_price += D.transport_fee
 			source_stockpile = stockpile_index == 1 ? 2 : 1
 

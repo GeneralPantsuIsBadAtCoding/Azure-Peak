@@ -5,6 +5,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/homesteader
 	traits_applied = list(TRAIT_JACKOFALLTRADES,
+		TRAIT_LICENSED,
 		TRAIT_ALCHEMY_EXPERT,
 		TRAIT_SMITHING_EXPERT,
 		TRAIT_SEWING_EXPERT,

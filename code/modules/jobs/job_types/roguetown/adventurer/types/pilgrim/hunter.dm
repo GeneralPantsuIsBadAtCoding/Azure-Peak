@@ -4,7 +4,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/hunter
-	traits_applied = list(TRAIT_OUTDOORSMAN, TRAIT_SURVIVAL_EXPERT)
+	traits_applied = list(TRAIT_OUTDOORSMAN, TRAIT_SURVIVAL_EXPERT, TRAIT_LICENSED)
 	cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
 
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)

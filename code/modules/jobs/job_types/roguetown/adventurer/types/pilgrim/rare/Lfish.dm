@@ -6,7 +6,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/fishermaster
-	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
+	traits_applied = list(TRAIT_HOMESTEAD_EXPERT, TRAIT_LICENSED)
 
 	maximum_possible_slots = 1
 	pickprob = 5
