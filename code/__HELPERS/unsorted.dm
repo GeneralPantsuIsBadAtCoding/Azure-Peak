@@ -1619,7 +1619,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 	for(var/mob_id in GLOB.actors_list)
 		var/list/actor_data = GLOB.actors_list[mob_id]
 		if(!sorted_ckey_to_actor_data[mob_id])
-			sorted_ckey_to_actor_data[mob_id] = list("data" = actor_data["data"], "category" = "Nobodies")
+			sorted_ckey_to_actor_data[mob_id] = list("data" = actor_data, "category" = "Nobodies")
 
 	return sorted_ckey_to_actor_data
 
