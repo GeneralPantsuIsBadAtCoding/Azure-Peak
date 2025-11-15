@@ -67,7 +67,7 @@ class HubStorageBackend implements StorageBackend {
   }
 
   async get(key: string): Promise<any> {
-    const value = await window.hubStorage.getItem((`${KEY_NAME}-${key}`);
+    const value = await window.hubStorage.getItem(`${KEY_NAME}-${key}`);
     if (typeof value === 'string') {
       return JSON.parse(value);
     }
