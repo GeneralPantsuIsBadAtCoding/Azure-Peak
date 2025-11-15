@@ -1008,7 +1008,7 @@
 /mob/living/carbon/human/Topic(href, href_list)
 	..()
 
-/mob/living/carbon/human/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override, datum/intent/used_intent, simplified)
+/mob/living/carbon/human/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override, datum/intent/used_intent, simplified, ignore_held = FALSE)
 	update_proj_parry_timer()
 	. = ..()
 

@@ -189,7 +189,7 @@
 		return FALSE
 	if(user == target)
 		return FALSE
-	if(!HAS_TRAIT(user, TRAIT_GARROTED))	
+	if(!HAS_TRAIT(user, TRAIT_GARROTED))
 		if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
 			to_chat(user, span_notice("I can't move my leg!"))
 			return
@@ -268,7 +268,7 @@
 
 	take_overall_damage(brute_loss,burn_loss)
 
-/mob/living/simple_animal/do_attack_animation(atom/A, visual_effect_icon, used_item, no_effect, used_intent = null, simplified = TRUE)
+/mob/living/simple_animal/do_attack_animation(atom/A, visual_effect_icon, used_item, no_effect, used_intent = null, simplified = TRUE, ignore_held = FALSE)
 	if(!no_effect && !visual_effect_icon && melee_damage_upper)
 		if(melee_damage_upper < 10)
 			visual_effect_icon = ATTACK_EFFECT_PUNCH

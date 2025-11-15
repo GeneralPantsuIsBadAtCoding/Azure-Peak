@@ -19,7 +19,7 @@
 			to_chat(src, span_warning("[soften_text]"))
 //		else
 //			to_chat(src, span_warning("My armor softens the blow!"))
-	if(mob_timers[MT_INVISIBILITY] > world.time)			
+	if(mob_timers[MT_INVISIBILITY] > world.time)
 		mob_timers[MT_INVISIBILITY] = world.time
 		update_sneak_invis(reset = TRUE)
 	return armor
@@ -203,9 +203,9 @@
 	if(user == src)
 		instant = TRUE
 
-	if(HAS_TRAIT(user, TRAIT_NOSTRUGGLE))	
+	if(HAS_TRAIT(user, TRAIT_NOSTRUGGLE))
 		instant = TRUE
-		
+
 	if(surrendering)
 		combat_modifier = 2
 
@@ -315,7 +315,7 @@
 	return list(/datum/intent/grab/move)
 
 /mob/living/proc/send_grabbed_message(mob/living/carbon/user)
-	if(HAS_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE))	
+	if(HAS_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE))
 		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		visible_message(span_danger("[user] firmly grips [src]!"),
@@ -481,8 +481,8 @@
 	return
 
 
-/mob/living/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override = null, datum/intent/used_intent, simplified = TRUE)
-	if(!used_item)
+/mob/living/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override = null, datum/intent/used_intent, simplified = TRUE, ignore_held = FALSE)
+	if(!used_item && !ignore_held)
 		used_item = get_active_held_item()
 	..()
 	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
