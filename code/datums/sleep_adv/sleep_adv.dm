@@ -104,6 +104,8 @@
 	var/can_advance_pre = enough_sleep_xp_to_advance(skill, 1)
 
 	adjust_sleep_xp(skill, amt)
+	add_cross_training_experience(skill, amt)
+
 	var/can_advance_post = enough_sleep_xp_to_advance(skill, 1)
 	var/capped_post = enough_sleep_xp_to_advance(skill, 2)
 
@@ -135,6 +137,57 @@
 		if(amt && show_xp && (L.client?.prefs.floating_text_toggles & XP_TEXT))
 			L.balloon_alert(L, "[amt] XP")
 			COOLDOWN_START(src, xp_show, XP_SHOW_COOLDOWN)
+
+/datum/sleep_adv/proc/add_cross_training_experience(primary_skill, amt)
+	if(!amt || !(primary_skill in CROSS_TRAINING_MAP))
+		return
+
+	var/mob/living/L = mind.current
+	if(!L) return
+
+	for(var/secondary_skill in CROSS_TRAINING_MAP[primary_skill])
+		var/multiplier = CROSS_TRAINING_MAP[primary_skill][secondary_skill]
+		if(!multiplier || multiplier <= 0)
+			continue
+
+		var/sec_amt = round(amt * multiplier)
+		if(sec_amt <= 0)
+			continue
+
+		adjust_sleep_xp(secondary_skill, sec_amt)
+
+var/global/list/CROSS_TRAINING_MAP = list(
+	/datum/skill/labor/lumberjacking = list(/datum/skill/combat/axes = 0.25, /datum/skill/misc/athletics = 0.05),
+	/datum/skill/craft/crafting = list(/datum/skill/craft/carpentry = 0.1, /datum/skill/craft/masonry = 0.1),
+	/datum/skill/craft/weaponsmithing = list(/datum/skill/craft/armorsmithing = 0.25, /datum/skill/craft/blacksmithing = 0.25),
+	/datum/skill/craft/armorsmithing = list(/datum/skill/craft/weaponsmithing = 0.25, /datum/skill/craft/blacksmithing = 0.25),
+	/datum/skill/craft/blacksmithing = list(/datum/skill/craft/armorsmithing = 0.25, /datum/skill/craft/weaponsmithing = 0.25, /datum/skill/craft/smelting = 0.1),
+	/datum/skill/craft/carpentry = list(/datum/skill/craft/crafting = 0.25, /datum/skill/craft/masonry = 0.1),
+	/datum/skill/craft/masonry = list(/datum/skill/craft/crafting = 0.25, /datum/skill/craft/carpentry = 0.1),
+	/datum/skill/craft/traps = list(/datum/skill/misc/tracking = 0.25, /datum/skill/craft/engineering = 0.25),
+	/datum/skill/craft/engineering = list(/datum/skill/craft/traps = 0.5, /datum/skill/craft/crafting = 0.1),
+	/datum/skill/craft/tanning = list(/datum/skill/craft/sewing = 0.5, /datum/skill/labor/butchering = 0.1),
+	/datum/skill/craft/alchemy = list(/datum/skill/craft/cooking = 0.1),
+	/datum/skill/combat/knives = list(/datum/skill/combat/swords = 0.25, /datum/skill/combat/unarmed = 0.1),
+	/datum/skill/combat/swords = list(/datum/skill/combat/knives = 0.25),
+	/datum/skill/combat/polearms = list(/datum/skill/combat/axes = 0.25),
+	/datum/skill/combat/maces = list(/datum/skill/combat/whipsflails = 0.25),
+	/datum/skill/combat/axes = list(/datum/skill/labor/lumberjacking = 0.5, /datum/skill/combat/polearms = 0.25),
+	/datum/skill/combat/whipsflails = list(/datum/skill/combat/maces = 0.25),
+	/datum/skill/combat/bows = list(/datum/skill/combat/crossbows = 0.25),
+	/datum/skill/combat/crossbows = list(/datum/skill/combat/bows = 0.25),
+	/datum/skill/combat/wrestling = list(/datum/skill/combat/unarmed = 0.25),
+	/datum/skill/combat/unarmed = list(/datum/skill/combat/wrestling = 0.25),
+	/datum/skill/labor/mining = list(/datum/skill/combat/axes = 0.1, /datum/skill/combat/maces = 0.1, /datum/skill/misc/athletics = 0.1),
+	/datum/skill/labor/butchering = list(/datum/skill/craft/tanning = 0.25, /datum/skill/misc/medicine = 0.25, /datum/skill/combat/knives = 0.25),
+	/datum/skill/labor/lumberjacking = list(/datum/skill/combat/axes = 0.25, /datum/skill/combat/unarmed = 0.05, /datum/skill/misc/athletics = 0.1),
+	/datum/skill/misc/athletics = list(/datum/skill/misc/swimming = 1, /datum/skill/misc/climbing = 1),
+	/datum/skill/misc/climbing = list(/datum/skill/misc/athletics = 0.25, /datum/skill/misc/swimming = 0.25),
+	/datum/skill/misc/swimming = list(/datum/skill/misc/athletics = 0.1, /datum/skill/misc/climbing = 0.1),
+	/datum/skill/misc/medicine = list(/datum/skill/craft/sewing = 0.25, /datum/skill/labor/butchering = 0.1),
+	/datum/skill/craft/sewing = list(/datum/skill/craft/sewing = 0.5, /datum/skill/misc/medicine = 0.1),
+	/datum/skill/misc/tracking = list(/datum/skill/craft/traps = 0.25, /datum/skill/misc/sneaking = 0.25),
+)
 
 /datum/sleep_adv/proc/advance_cycle()
 	// Stuff
