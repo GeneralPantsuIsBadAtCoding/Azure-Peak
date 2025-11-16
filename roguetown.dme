@@ -1791,6 +1791,7 @@
 #include "code\modules\jobs\job_types\roguetown\trader\doomsayer.dm"
 #include "code\modules\jobs\job_types\roguetown\trader\harlequin.dm"
 #include "code\modules\jobs\job_types\roguetown\trader\jeweler.dm"
+#include "code\modules\jobs\job_types\roguetown\trader\maid.dm"
 #include "code\modules\jobs\job_types\roguetown\trader\peddler.dm"
 #include "code\modules\jobs\job_types\roguetown\trader\scholar.dm"
 #include "code\modules\jobs\job_types\roguetown\yeomen\archivist.dm"
