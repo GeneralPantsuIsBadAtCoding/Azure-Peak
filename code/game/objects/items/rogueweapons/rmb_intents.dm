@@ -107,6 +107,20 @@
 	name = "strong"
 	desc = "Your attacks have +1 strength but use more stamina. Higher critrate with brutal attacks. Intentionally fails surgery steps."
 	icon_state = "rmbstrong"
+	adjacency = FALSE
+
+/datum/rmb_intent/strong/special_attack(mob/living/user, atom/target)
+	if(!user)
+		return
+	if(user.incapacitated())
+		return
+	if(!user.mind)
+		return
+	if(user.has_status_effect(/datum/status_effect/debuff/specialcd))
+		return
+	var/obj/item/rogueweapon/W = user.get_active_held_item()
+	if(istype(W, /obj/item/rogueweapon) && W.special)
+		W.special.deploy(user, W)
 
 /datum/rmb_intent/swift
 	name = "swift"

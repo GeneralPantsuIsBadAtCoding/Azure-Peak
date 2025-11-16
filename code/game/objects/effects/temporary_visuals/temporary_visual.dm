@@ -9,10 +9,13 @@
 	/// how long to fade away, if null, will disappear instantly.
 	var/fade_time
 
-/obj/effect/temp_visual/Initialize()
+/obj/effect/temp_visual/Initialize(mapload, customdur)
 	. = ..()
 	if(randomdir)
 		setDir(pick(GLOB.cardinals))
+
+	if(customdur)
+		duration = customdur
 
 	addtimer(CALLBACK(src, PROC_REF(timed_out)), duration)
 
