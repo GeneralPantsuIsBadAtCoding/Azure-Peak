@@ -1,4 +1,6 @@
 #define STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL -2
+#define MAX_PARRY_CHANCE_NO_ARMOR_TRAINING 40 // Tank their parry
+#define PARRY_STAM_DRAIN_PEN_NO_ARMOR_TRAINING 10 // Extra stam drain for not training armor
 
 /mob/living/proc/attempt_parry(datum/intent/intenty, mob/living/user)
 	var/prob2defend = user.defprob
@@ -128,8 +130,8 @@
 	if(HAS_TRAIT(user, TRAIT_HARDSHELL) && H.client)	//Dwarf-merc specific limitation w/ their armor on in pvp
 		prob2defend = clamp(prob2defend, 5, 70)
 	if(!H?.check_armor_skill())
-		prob2defend = clamp(prob2defend, 5, 75)			//Caps your max parry to 75 if using armor you're not trained in. Bad dexerity.
-		drained = drained + 5							//More stamina usage for not being trained in the armor you're using.
+		prob2defend = clamp(prob2defend, 5, MAX_PARRY_CHANCE_NO_ARMOR_TRAINING)			//Caps your max parry to 40 if using armor you're not trained in. Bad dexerity.
+		drained = drained + PARRY_STAM_DRAIN_PEN_NO_ARMOR_TRAINING						//More stamina usage for not being trained in the armor you're using.
 
 	//Dual Wielding
 	var/defender_dualw
@@ -310,3 +312,6 @@
 			record_round_statistic(STATS_PARRIES)
 		playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 		return TRUE
+
+#undef MAX_PARRY_CHANCE_NO_ARMOR_TRAINING
+#undef PARRY_STAM_DRAIN_PEN_NO_ARMOR_TRAINING
