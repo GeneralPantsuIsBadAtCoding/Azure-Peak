@@ -203,6 +203,10 @@
 	effectedstats = list(STATKEY_STR = -1, STATKEY_WIL = -1, STATKEY_CON = -1, STATKEY_SPD = -1, STATKEY_LCK = -1)	//Slightly punishing.
 	duration = 15 MINUTES	//Punishing, same time as revival, but mildly less punishing than revival itself.
 
+/datum/status_effect/debuff/devitalised/lesser
+	effectedstats = list(STATKEY_STR = -1, STATKEY_WIL = -1, STATKEY_CON = -1, STATKEY_SPD = -1, STATKEY_LCK = -1)
+	duration = 5 MINUTES
+
 /atom/movable/screen/alert/status_effect/debuff/devitalised
 	name = "Devitalised"
 	desc = "Something has been taken from me, and it will take time to recover."
@@ -669,6 +673,41 @@
 	name = "Vampire biten"
 	desc = "You are feeling something... Interesting.."
 	icon_state = "acid"
+
+/datum/status_effect/debuff/joybringer_druqks
+	id = "joybringer_druqks"
+	effectedstats = list(STATKEY_LCK = -2)
+	duration = 3 SECONDS
+	alert_type = null
+
+/datum/status_effect/debuff/joybringer_druqks/on_apply()
+	. = ..()
+	owner.overlay_fullscreen("joybringer_weeds", /atom/movable/screen/fullscreen/weedsm)
+	owner.overlay_fullscreen("joybringer_druqks", /atom/movable/screen/fullscreen/druqks)
+
+	ADD_TRAIT(owner, TRAIT_DRUQK, src)
+
+	if(owner.client)
+		SSdroning.play_area_sound(get_area(owner), owner.client)
+
+/datum/status_effect/debuff/joybringer_druqks/on_remove()
+	. = ..()
+	owner.clear_fullscreen("joybringer_druqks")
+	owner.clear_fullscreen("joybringer_weeds")
+
+	REMOVE_TRAIT(owner, TRAIT_DRUQK, src)
+
+	if(owner.client)
+		SSdroning.play_area_sound(get_area(owner), owner.client)
+
+/datum/status_effect/debuff/joybringer_druqks/tick()
+	owner.hallucination += 2
+
+	if(!prob(15))
+		return
+
+	owner.emote(pick("chuckle", "giggle"))
+	owner.Jitter(2 SECONDS)
 
 /datum/status_effect/debuff/hobbled
 	id = "hobbled"
