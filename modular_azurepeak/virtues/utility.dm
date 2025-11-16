@@ -93,7 +93,9 @@
 	added_stashed_items = list(
 		"Hammer" = /obj/item/rogueweapon/hammer/iron,
 		"Polishing Cream" = /obj/item/polishing_cream,
-		"Fine Brush" = /obj/item/armor_brush
+		"Fine Brush" = /obj/item/armor_brush,
+		"Armor Plates" = /obj/item/repair_kit/metal,
+		"Sewing Kit" = /obj/item/repair_kit,
 	)
 
 /datum/virtue/utility/failed_squire/apply_to_human(mob/living/carbon/human/recipient)
