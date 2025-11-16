@@ -516,7 +516,7 @@
 	var/mob/living/carbon/human/H = null
 	if(ishuman(src.loc))
 		H = src.loc
-	
+
 	. = FALSE
 	if(destination)
 		. = doMove(destination)
@@ -1261,6 +1261,9 @@ GLOBAL_VAR_INIT(pixel_diff_time, 1)
 
 	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
 		LAZYREMOVEASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_AREA_SENSITIVE, src)
+
+/atom/movable/proc/get_crafting_contents()
+	return null
 
 ///propogates ourselves through our nested contents, similar to other important_recursive_contents procs
 ///main difference is that client contents need to possibly duplicate recursive contents for the clients mob AND its eye

@@ -434,6 +434,9 @@
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
+/atom/proc/get_mechanics_examine(mob/user)
+	return list()
+
 //taking in the vanderline update on apperance, name and desc processes
 /atom/proc/vand_update_appearance(updates = ALL)
 	SHOULD_NOT_SLEEP(TRUE)
