@@ -85,19 +85,6 @@
 		)
 	craftdiff = 0
 
-
-/datum/crafting_recipe/roguetown/survival/mortar
-	name = "alchemical mortar"
-	result = /obj/item/reagent_containers/glass/mortar
-	reqs = list(/obj/item/natural/stone = 1)
-	craftdiff = 1
-
-/datum/crafting_recipe/roguetown/survival/pestle
-	name = "stone pestle"
-	result = /obj/item/pestle
-	reqs = list(/obj/item/natural/stone = 1)
-	craftdiff = 1
-
 /datum/crafting_recipe/roguetown/survival/bag
 	name = "bag"
 	result = /obj/item/storage/roguebag/crafted

@@ -86,6 +86,16 @@
 	cost = 35
 	contains = list(/obj/item/folding_table_stored)
 
+/datum/supply_pack/rogue/adventure_supplies/folding_alchstation
+	name = "alchemical station kit"
+	cost = 45
+	contains = list(/obj/item/folding_alchstation_stored)
+
+/datum/supply_pack/rogue/adventure_supplies/folding_alchcauldron
+	name = "folding cauldron"
+	cost = 45
+	contains = list(/obj/item/folding_alchcauldron_stored)
+
 /datum/supply_pack/rogue/adventure_supplies/mess_kit
 	name = "Mess Kit"
 	cost = 60

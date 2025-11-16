@@ -47,7 +47,9 @@
 						/obj/item/rogueweapon/huntingknife/scissors/steel = 1,
 						/obj/item/hair_dye_cream = 3,
 						/obj/item/heart_blood_canister/filled = 2,
-						/obj/item/bait/leech = 4
+						/obj/item/bait/leech = 4,
+						/obj/item/folding_alchcauldron_stored = 1,
+						/obj/item/recipe_book/alchemy = 1
 						)
 	if(H.age == AGE_OLD)
 		H.change_stat(STATKEY_SPD, -1)
