@@ -166,6 +166,11 @@
 	///Whether this class can be clicked on for details.
 	var/class_setup_examine = TRUE
 
+	/// Whether this job is intended to give quests
+	var/is_quest_giver = FALSE
+
+	/// How many quests this job can take at once
+	var/max_active_quests = 3
 
 
 /datum/job/proc/special_job_check(mob/dead/new_player/player)
